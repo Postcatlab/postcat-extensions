@@ -1,20 +1,71 @@
 {
-  "name": "eoapi-extensions",
-  "version": "1.0.0",
-  "description": "eoapi official extensions",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "@bqy/monorepo",
+  "version": "0.0.11",
+  "private": true,
+  "description": "",
+  "engines": {
+    "node": ">= 14"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-extensions.git"
+  "scripts": {
+    "build": "esno scripts/build.ts",
+    "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
+    "clean": "rimraf dist types packages/*/dist",
+    "dev": "nr update && nr docs",
+    "docs": "vitepress dev packages --open",
+    "lint": "eslint .",
+    "lint:fix": "nr lint --fix",
+    "publish:ci": "esno scripts/publish.ts",
+    "preinstall": "npx only-allow pnpm",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "release": "esno scripts/release.ts && git push --follow-tags"
   },
   "keywords": [],
-  "author": "",
+  "author": "eoapi",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eolinker/eoapi-extensions/issues"
+  "packageManager": "pnpm@6.32.11",
+  "devDependencies": {
+    "@antfu/ni": "^0.16.2",
+    "@changesets/cli": "^2.22.0",
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.3.0",
+    "@types/node": "^17.0.31",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "bumpp": "^7.1.1",
+    "commitizen": "^4.2.4",
+    "consola": "^2.15.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "esno": "^0.14.1",
+    "execa": "6.1.0",
+    "fast-glob": "^3.2.11",
+    "fs-extra": "^10.1.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.72.0",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "typescript": "^4.6.4",
+    "vitepress": "^0.22.3"
   },
-  "homepage": "https://github.com/eolinker/eoapi-extensions#readme"
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }

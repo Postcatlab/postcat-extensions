@@ -1,6 +1,13 @@
-*~
-dist
+.DS_Store
 node_modules
-.Ds_Store
+!**/glob-import/dir/node_modules
+dist
+TODOs.md
+*.log
+temp
+explorations
 .idea
-*-debug.log
+*.local
+*.cpuprofile
+*-debug.log*
+/.vscode/

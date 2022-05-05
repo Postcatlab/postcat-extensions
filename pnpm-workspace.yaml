@@ -1,3 +1,2 @@
 packages:
-  - push-eolink
-  - export-openapi
+  - 'packages/*'
