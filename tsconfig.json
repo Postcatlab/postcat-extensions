@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "packages/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "docs",
+    "commitlint.config.js",
+    ".eslintrc.js"
+  ]
+}
