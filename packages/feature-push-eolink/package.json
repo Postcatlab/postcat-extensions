@@ -1,13 +1,13 @@
 {
-  "name": "@eoapi/push-eolink",
+  "name": "@eoapi/feature-push-eolink",
   "version": "1.0.4",
   "description": "eoapi extension for push api data to eolinker",
-  "main": "dist/plugin-eolink.cjs.js",
-  "module": "dist/push-eolink.esm.js",
-  "moduleID": "eoapi-push-eolink",
+  "main": "feature-push-eolink.cjs.js",
+  "module": "feature-push-eolink.esm.js",
+  "moduleID": "eoapi-feature-push-eolink",
   "moduleName": "Push to Eolink",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-push-eolink/main/assets/logo.png",
+  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-feature-push-eolink/main/assets/logo.png",
   "main_node": "",
   "main_debug": "",
   "scripts": {
@@ -16,22 +16,15 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-push-eolink.git"
+    "url": "git+https://github.com/eolinker/eoapi-feature-push-eolink.git"
   },
   "keywords": [],
   "author": "Eolink",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eolinker/eoapi-push-eolink/issues"
+    "url": "https://github.com/eolinker/eoapi-feature-push-eolink/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-push-eolink#readme",
-  "buildOptions": {
-    "name": "eoapi-push-eolink",
-    "formats": [
-      "esm",
-      "cjs"
-    ]
-  },
+  "homepage": "https://github.com/eolinker/eoapi-feature-push-eolink#readme",
   "dependencies": {
     "ky": "^0.30.0"
   },
