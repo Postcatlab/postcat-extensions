@@ -1,6 +1,6 @@
 {
   "name": "@eoapi/monorepo",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "private": true,
   "description": "",
   "engines": {
@@ -18,7 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs"
+    "docs:build": "vitepress build docs",
+    "release": "esno scripts/release.ts && git push --follow-tags"
   },
   "keywords": [],
   "author": "eoapi",
@@ -35,6 +36,7 @@
     "@types/node": "^17.0.31",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
+    "bumpp": "^7.1.1",
     "chalk": "^5.0.1",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
@@ -43,6 +45,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "esno": "^0.14.1",
     "execa": "6.1.0",
+    "fs-extra": "^10.1.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
