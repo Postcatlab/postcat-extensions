@@ -1,0 +1,5 @@
+node_modules
+.Ds_Store
+*~
+dist
+*-debug.log

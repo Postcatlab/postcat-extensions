@@ -1,5 +1,6 @@
 *~
+dist
 node_modules
 .Ds_Store
 .idea
-
+*-debug.log
