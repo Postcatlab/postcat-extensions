@@ -1,15 +1,44 @@
-import fs from 'fs'
 import { execa } from 'execa'
+import consola from 'consola'
+import { execSync } from 'child_process'
+import path from 'path'
+import fs from 'fs-extra'
+import fg from 'fast-glob'
+import { pkgs } from './utils'
 
-const argvs = process.argv.slice(2)
-console.log('process.argv', argvs)
+const rootDir = path.resolve(__dirname, '..')
+// const watch = process.argv.includes('--watch')
 
-// 如果通过命令行传递了参数，则认为是指定打包，否则默认打包packages下所有包
-const pkgs = (argvs.length ? argvs : fs.readdirSync('packages')).filter((p) => {
-  return fs.statSync(`packages/${p}`).isDirectory()
-})
+const FILES_COPY_ROOT = ['LICENSE']
+
+const FILES_COPY_LOCAL = ['README.md', 'index.json', '*.cjs', '*.mjs', '*.d.ts']
 
 console.log('pkgs', pkgs)
+
+async function buildMetaFiles() {
+  for (const name of pkgs) {
+    const packageRoot = path.resolve(__dirname, '..', 'packages', name)
+    const packageDist = path.resolve(packageRoot, 'dist')
+
+    for (const file of FILES_COPY_ROOT)
+      await fs.copyFile(path.join(rootDir, file), path.join(packageDist, file))
+
+    const files = await fg(FILES_COPY_LOCAL, { cwd: packageRoot })
+    for (const file of files)
+      await fs.copyFile(
+        path.join(packageRoot, file),
+        path.join(packageDist, file)
+      )
+
+    const packageJSON = await fs.readJSON(
+      path.join(packageRoot, 'package.json')
+    )
+
+    await fs.writeJSON(path.join(packageDist, 'package.json'), packageJSON, {
+      spaces: 2
+    })
+  }
+}
 
 const runParallel = (targets, buildFn) => {
   const res = []
@@ -20,10 +49,33 @@ const runParallel = (targets, buildFn) => {
   return Promise.all(res)
 }
 
-const build = async (pkg) => {
+async function build(pkg: string) {
+  consola.info('Clean up')
+  execSync('pnpm run clean', { stdio: 'inherit' })
+
+  consola.info('Rollup')
   await execa('rollup', ['-c', '--environment', `TARGET:${pkg}`], {
     stdio: 'inherit'
   })
+  // execSync(
+  //   `pnpm run build:rollup ${
+  //     watch ? ' -- --watch' : ''
+  //   }`,
+  //   { stdio: 'inherit' }
+  // )
+
+  await buildMetaFiles()
 }
 
-runParallel(pkgs, build)
+async function cli() {
+  try {
+    await runParallel(pkgs, build)
+  } catch (e) {
+    console.error(e)
+    process.exit(1)
+  }
+}
+
+export { build }
+
+if (require.main === module) cli()

@@ -15,14 +15,15 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.22.0
       '@typescript-eslint/parser': ^5.22.0
       bumpp: ^7.1.1
-      chalk: ^5.0.1
       commitizen: ^4.2.4
+      consola: ^2.15.3
       cz-conventional-changelog: ^3.3.0
       eslint: ^8.14.0
       eslint-config-prettier: ^8.5.0
       eslint-plugin-prettier: ^4.0.0
       esno: ^0.14.1
       execa: 6.1.0
+      fast-glob: ^3.2.11
       fs-extra: ^10.1.0
       husky: ^7.0.4
       lint-staged: ^12.4.1
@@ -44,14 +45,15 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.22.0_5b52bb1e77494a9627aef8db6adb10bc
       '@typescript-eslint/parser': 5.22.0_eslint@8.14.0+typescript@4.6.4
       bumpp: 7.1.1
-      chalk: 5.0.1
       commitizen: 4.2.4
+      consola: 2.15.3
       cz-conventional-changelog: 3.3.0
       eslint: 8.14.0
       eslint-config-prettier: 8.5.0_eslint@8.14.0
       eslint-plugin-prettier: 4.0.0_665eb419c9d7860ca0c224f7f6dcdace
       esno: 0.14.1
       execa: 6.1.0
+      fast-glob: 3.2.11
       fs-extra: 10.1.0
       husky: 7.0.4
       lint-staged: 12.4.1
@@ -2160,11 +2162,6 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chalk/5.0.1:
-    resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: true
-
   /char-regex/1.0.2:
     resolution: {integrity: sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==}
     engines: {node: '>=10'}
@@ -2374,6 +2371,10 @@ packages:
       unique-string: 2.0.0
       write-file-atomic: 3.0.3
       xdg-basedir: 4.0.0
+    dev: true
+
+  /consola/2.15.3:
+    resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
     dev: true
 
   /conventional-changelog-angular/5.0.13:

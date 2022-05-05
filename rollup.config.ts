@@ -18,15 +18,15 @@ const { buildOptions = defaultBuildOptions } = require(resolve('package.json'))
 
 const formatMap = {
   esm: {
-    file: resolve(`dist/${pkg}.esm.js`),
+    file: resolve(`dist/index.esm.js`),
     format: 'esm'
   },
   cjs: {
-    file: resolve(`dist/${pkg}.cjs.js`),
+    file: resolve(`dist/index.cjs.js`),
     format: 'cjs'
   },
   umd: {
-    file: resolve(`dist/${pkg}.js`),
+    file: resolve(`dist/index.js`),
     format: 'umd'
   }
 }
