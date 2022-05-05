@@ -1,0 +1,20 @@
+{
+  "name": "eoapi-extensions",
+  "version": "1.0.0",
+  "description": "eoapi official extensions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eolinker/eoapi-extensions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eolinker/eoapi-extensions/issues"
+  },
+  "homepage": "https://github.com/eolinker/eoapi-extensions#readme"
+}
