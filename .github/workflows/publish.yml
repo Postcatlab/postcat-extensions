@@ -2,9 +2,8 @@ name: Publish Package
 
 on:
   push:
-    tags:
-      - v*
-
+    branches:
+      - main
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
@@ -26,13 +25,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: npx conventional-github-releaser -p angular
-        continue-on-error: true
-        env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.PERSONAL_TOKEN}}
-
       - run: pnpm run publish:ci
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           NODE_OPTIONS: --max-old-space-size=6144
-
