@@ -6,10 +6,8 @@ import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
 import nodePolyfills from 'rollup-plugin-node-polyfills'
 
-const sourcemap = 'inline'
-const input = './src/index.ts'
-
 const commonOptions = {
+  input: './src/index.ts',
   plugins: [
     typescript({
       tsconfigOverride: {
@@ -27,8 +25,7 @@ const commonOptions = {
     replace({
       preventAssignment: true
     })
-  ],
-  input
+  ]
 }
 
 /** @type import('rollup').RollupOptions */
@@ -37,7 +34,7 @@ const nodeCjs = {
     {
       file: 'dist/index.js',
       format: 'cjs',
-      sourcemap
+      sourcemap: 'inline'
     }
   ],
   ...commonOptions

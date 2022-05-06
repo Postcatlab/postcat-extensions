@@ -38,7 +38,6 @@ const createConfig = (output) => {
     plugins: [
       typescript(),
       json(),
-      nodeResolve(),
       // 配合 commnjs 解析第三方模块
       nodeResolve(),
       // 使得 rollup 支持 commonjs 规范，识别 commonjs 规范的依赖

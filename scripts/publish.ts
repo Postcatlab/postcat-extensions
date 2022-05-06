@@ -1,6 +1,5 @@
 import { execSync } from 'child_process'
 import path from 'path'
-import consola from 'consola'
 import { version } from '../package.json'
 import { pkgs } from './utils'
 
@@ -15,5 +14,4 @@ for (const name of pkgs) {
     stdio: 'inherit',
     cwd: path.join('packages', name, 'dist')
   })
-  consola.success(`Published @bqy/${name}`)
 }

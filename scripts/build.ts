@@ -1,5 +1,4 @@
 import { execa } from 'execa'
-import consola from 'consola'
 import { execSync } from 'child_process'
 import path from 'path'
 import fs from 'fs-extra'
@@ -50,10 +49,8 @@ const runParallel = (targets, buildFn) => {
 }
 
 async function build(pkg: string) {
-  consola.info('Clean up')
   execSync('pnpm run clean', { stdio: 'inherit' })
 
-  consola.info('Rollup')
   await execa('rollup', ['-c', '--environment', `TARGET:${pkg}`], {
     stdio: 'inherit'
   })

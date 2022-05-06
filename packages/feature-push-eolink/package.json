@@ -1,5 +1,5 @@
 {
-  "name": "@bqy/feature-push-eolink",
+  "name": "eoapi-push-eolink",
   "version": "1.0.4",
   "description": "eoapi extension for push api data to eolinker",
   "main": "feature-push-eolink.cjs.js",
@@ -7,7 +7,7 @@
   "moduleID": "eoapi-feature-push-eolink",
   "moduleName": "Push to Eolink",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-feature-push-eolink/main/assets/logo.png",
+  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature-push-eolink/assets/logo.png",
   "main_node": "",
   "main_debug": "",
   "scripts": {
@@ -16,15 +16,15 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-feature-push-eolink.git"
+    "url": "git+https://github.com/eolinker/eoapi-extensions.git"
   },
-  "keywords": [],
+  "keywords": ["feature", "eoapi"],
   "author": "Eolink",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eolinker/eoapi-feature-push-eolink/issues"
+    "url": "https://github.com/eolinker/eoapi-extensions/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-feature-push-eolink#readme",
+  "homepage": "https://github.com/eolinker/eoapi-extensions#readme",
   "dependencies": {
     "ky": "^0.30.0"
   },
@@ -36,7 +36,7 @@
       "action": "sync_to_remote",
       "label": "EoLink",
       "description": "Push API data to eolink.",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-push-eolink/main/assets/logo.png",
+      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature-push-eolink/assets/logo.png",
       "extestion": ""
     }
   }
