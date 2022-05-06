@@ -1,12 +1,13 @@
 {
-  "name": "eoapi-export-openapi",
+  "name": "@bqy/feature-export-openapi",
   "version": "1.0.7",
   "description": "eoapi extension export openapi",
-  "main": "dist/index.js",
-  "moduleID": "eoapi-export-openapi",
-  "moduleName": "export-openapi",
+  "main": "index.cjs.js",
+  "module": "index.esm.js",
+  "moduleID": "eoapi-feature-export-openapi",
+  "moduleName": "feature-export-openapi",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-export-openapi/main/assets/logo.png",
+  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-feature-export-openapi/main/assets/logo.png",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -14,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-export-openapi.git"
+    "url": "git+https://github.com/eolinker/eoapi-feature-export-openapi.git"
   },
   "keywords": [],
   "author": "Eolink",
   "license": "Apache-2.0 License",
   "bugs": {
-    "url": "https://github.com/eolinker/eoapi-export-openapi/issues"
+    "url": "https://github.com/eolinker/eoapi-feature-export-openapi/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-export-openapi#readme",
+  "homepage": "https://github.com/eolinker/eoapi-feature-export-openapi#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-json": "^4.1.0",
@@ -38,6 +39,9 @@
     "rollup-plugin-typescript2": "^0.31.2",
     "typescript": "^4.6.3"
   },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "features": {
     "apimanager.export": {
       "action": "export_convert",
@@ -46,8 +50,5 @@
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-export-openapi/main/assets/logo.png",
       "filename": "openapi.json"
     }
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }

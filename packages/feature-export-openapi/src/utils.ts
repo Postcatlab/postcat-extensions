@@ -1,47 +1,47 @@
-import * as _ from "lodash";
+import * as _ from 'lodash'
 
 const parseParamsInUrl = (url): string[] =>
-  url.match(/(?<={)(\S)+?(?=})/g) || [];
+  url.match(/(?<={)(\S)+?(?=})/g) || []
 
 export const setBase = (meta) => ({
-  openapi: "3.0.1",
+  openapi: '3.0.1',
   info: {
     title: meta.name,
     description: meta.name,
-    termsOfService: "",
+    termsOfService: '',
     contact: {},
     license: {
-      name: "Apache 2.0",
-      url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+      name: 'Apache 2.0',
+      url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
     },
-    version: "1.0.0"
+    version: '1.0.0'
   },
   externalDocs: {
-    description: "Find out more about Swagger",
-    url: "http://swagger.io"
+    description: 'Find out more about Swagger',
+    url: 'http://swagger.io'
   },
   servers: [],
   paths: {},
   tags: [],
   components: []
-});
+})
 
 export const setTags = (data, sourceData) => {
-  const { group } = sourceData;
+  const { group } = sourceData
   return _.set(
     data,
-    ["tags"],
+    ['tags'],
     group.map(({ name }) => ({
       name,
       description: name,
       externalDocs: {}
     }))
-  );
-};
+  )
+}
 
 export const setPaths = (data, sourceData) => {
-  const keys = parseParamsInUrl(sourceData.uri);
-  const _data = JSON.parse(JSON.stringify(data));
+  const keys = parseParamsInUrl(sourceData.uri)
+  const _data = JSON.parse(JSON.stringify(data))
   return {
     ..._data,
     paths: {
@@ -50,21 +50,21 @@ export const setPaths = (data, sourceData) => {
           (total, key) => ({
             [key]: {
               tags: [],
-              summary: "",
-              operationId: "",
+              summary: '',
+              operationId: '',
               requestBody: {
-                description: "",
+                description: '',
                 content: {},
                 require: true
               },
               responses: {
-                "200": {
-                  description: "OK",
-                  content: ""
+                '200': {
+                  description: 'OK',
+                  content: ''
                 }
               },
               security: [],
-              "x-codegen-request-body-name": "body"
+              'x-codegen-request-body-name': 'body'
             },
             ...total
           }),
@@ -72,30 +72,32 @@ export const setPaths = (data, sourceData) => {
         )
       }
     }
-  };
-};
+  }
+}
 
 export const setRequest = (data, sourceData) => {
-  const { responseBody } = sourceData;
-  return _.set(data, ["requestBody", "content"], {});
-};
+  const { responseBody } = sourceData
+  console.log('responseBody', responseBody)
+
+  return _.set(data, ['requestBody', 'content'], {})
+}
 
 export const setResponse = (data, sourceData) => {
-  const { responseBodyType, uri, method } = sourceData;
+  const { responseBodyType, uri, method } = sourceData
   return _.set(
     data,
     [
-      "paths",
+      'paths',
       uri,
       method.toLowerCase(),
-      "responses",
-      "content",
-      "application/" + responseBodyType
+      'responses',
+      'content',
+      'application/' + responseBodyType
     ],
     {
       schema: {
-        type: "object"
+        type: 'object'
       }
     }
-  );
-};
+  )
+}
