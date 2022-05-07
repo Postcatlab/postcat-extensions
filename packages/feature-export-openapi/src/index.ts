@@ -32,6 +32,9 @@ class ToOpenApi {
   // setTagToApi() {
   //   this.data = setTagToApi(this.data, this.sourceData);
   // }
+  setComponents() {
+    return this
+  }
   log(indent = 2) {
     console.log(JSON.stringify(this.data, null, indent))
     return this

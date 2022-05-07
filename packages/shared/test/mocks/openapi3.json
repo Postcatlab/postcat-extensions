@@ -1,0 +1,536 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "接口文档",
+		"description": "测试",
+		"contact": {
+			"name": "kaolvkaolv",
+			"url": "http://www.baidu.com",
+			"email": "12345678.com"
+		},
+		"version": "1.0"
+	},
+	"servers": [{
+		"url": "http://localhost:7060",
+		"description": "Inferred Url"
+	}],
+	"tags": [{
+		"name": "index-controller",
+		"description": "Index Controller"
+	}],
+	"paths": {
+		"/api/index/index": {
+			"get": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingGET",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"put": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingPUT",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"post": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingPOST",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingDELETE",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"options": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingOPTIONS",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"head": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingHEAD",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"patch": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingPATCH",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"trace": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "indexUsingTRACE",
+				"parameters": [{
+					"name": "data",
+					"in": "query",
+					"description": "data",
+					"required": true,
+					"style": "form",
+					"schema": {
+						"type": "string"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			}
+		},
+		"/api/index/test": {
+			"get": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingGET",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"put": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingPUT",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"post": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingPOST",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			},
+			"delete": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingDELETE",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"options": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingOPTIONS",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"head": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingHEAD",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"patch": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingPATCH",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			},
+			"trace": {
+				"tags": ["index-controller"],
+				"summary": "测试接口",
+				"operationId": "testUsingTRACE",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"*/*": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				}
+			}
+		}
+	},
+	"components": {}
+}

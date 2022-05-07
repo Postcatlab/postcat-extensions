@@ -107,31 +107,30 @@ importers:
   packages/shared:
     specifiers:
       '@babel/preset-env': ^7.17.10
-      '@rollup/plugin-commonjs': ^22.0.0
-      '@rollup/plugin-json': ^4.1.0
-      '@rollup/plugin-node-resolve': ^13.3.0
-      '@rollup/plugin-replace': ^4.0.0
       '@types/jest': ^27.5.0
       babel-jest: ^28.0.3
+      esbuild: ^0.14.38
       jest: ^28.0.2
+      lodash: ^4.17.21
       nodemon: ^2.0.15
-      rollup-plugin-node-polyfills: ^0.2.1
+      rollup-plugin-dts: ^4.2.1
+      rollup-plugin-esbuild: ^4.9.1
       rollup-plugin-terser: ^7.0.2
       ts-jest: ^28.0.1
       typescript: ^4.6.4
+    dependencies:
+      lodash: 4.17.21
     devDependencies:
       '@babel/preset-env': 7.17.10
-      '@rollup/plugin-commonjs': 22.0.0_rollup@2.72.0
-      '@rollup/plugin-json': 4.1.0_rollup@2.72.0
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.72.0
-      '@rollup/plugin-replace': 4.0.0_rollup@2.72.0
       '@types/jest': 27.5.0
       babel-jest: 28.0.3
-      jest: 28.0.3_@types+node@17.0.31
+      esbuild: 0.14.38
+      jest: 28.0.3
       nodemon: 2.0.16
-      rollup-plugin-node-polyfills: 0.2.1
-      rollup-plugin-terser: 7.0.2_rollup@2.72.0
-      ts-jest: 28.0.1_cdd77993efa4515eadbbf5a4d81400bd
+      rollup-plugin-dts: 4.2.1_typescript@4.6.4
+      rollup-plugin-esbuild: 4.9.1_esbuild@0.14.38
+      rollup-plugin-terser: 7.0.2
+      ts-jest: 28.0.1_efa57dee525f03e1a3cdb1b725f73ffa
       typescript: 4.6.4
 
 packages:
@@ -3737,6 +3736,10 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
+  /es-module-lexer/0.9.3:
+    resolution: {integrity: sha512-1HQ2M2sPtxwnvOvT1ZClHyQDiggdNjURWpY2we6aMKCQiUVxTmVs2UYPLIrD84sS+kMdUwfBSylbJPwNnBrnHQ==}
+    dev: true
+
   /esbuild-android-64/0.14.38:
     resolution: {integrity: sha512-aRFxR3scRKkbmNuGAK+Gee3+yFxkTJO/cx83Dkyzo4CnQl/2zVSurtG6+G86EQIZ+w+VYngVyK7P3HyTBKu3nw==}
     engines: {node: '>=12'}
@@ -4991,6 +4994,34 @@ packages:
       - supports-color
     dev: true
 
+  /jest-cli/28.0.3:
+    resolution: {integrity: sha512-NCPTEONCnhYGo1qzPP4OOcGF04YasM5GZSwQLI1HtEluxa3ct4U65IbZs6DSRt8XN1Rq0jhXwv02m5lHB28Uyg==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
+    hasBin: true
+    peerDependencies:
+      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
+    peerDependenciesMeta:
+      node-notifier:
+        optional: true
+    dependencies:
+      '@jest/core': 28.0.3
+      '@jest/test-result': 28.0.2
+      '@jest/types': 28.0.2
+      chalk: 4.1.2
+      exit: 0.1.2
+      graceful-fs: 4.2.10
+      import-local: 3.1.0
+      jest-config: 28.0.3
+      jest-util: 28.0.2
+      jest-validate: 28.0.2
+      prompts: 2.4.2
+      yargs: 17.4.1
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - ts-node
+    dev: true
+
   /jest-cli/28.0.3_@types+node@17.0.31:
     resolution: {integrity: sha512-NCPTEONCnhYGo1qzPP4OOcGF04YasM5GZSwQLI1HtEluxa3ct4U65IbZs6DSRt8XN1Rq0jhXwv02m5lHB28Uyg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
@@ -5017,6 +5048,44 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
+    dev: true
+
+  /jest-config/28.0.3:
+    resolution: {integrity: sha512-3gWOEHwGpNhyYOk9vnUMv94x15QcdjACm7A3lERaluwnyD6d1WZWe9RFCShgIXVOHzRfG1hWxsI2U0gKKSGgDQ==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
+    peerDependencies:
+      '@types/node': '*'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      '@babel/core': 7.17.10
+      '@jest/test-sequencer': 28.0.2
+      '@jest/types': 28.0.2
+      babel-jest: 28.0.3_@babel+core@7.17.10
+      chalk: 4.1.2
+      ci-info: 3.3.0
+      deepmerge: 4.2.2
+      glob: 7.2.0
+      graceful-fs: 4.2.10
+      jest-circus: 28.0.3
+      jest-environment-node: 28.0.2
+      jest-get-type: 28.0.2
+      jest-regex-util: 28.0.2
+      jest-resolve: 28.0.3
+      jest-runner: 28.0.3
+      jest-util: 28.0.2
+      jest-validate: 28.0.2
+      micromatch: 4.0.5
+      parse-json: 5.2.0
+      pretty-format: 28.0.2
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /jest-config/28.0.3_@types+node@17.0.31:
@@ -5376,6 +5445,25 @@ packages:
       supports-color: 8.1.1
     dev: true
 
+  /jest/28.0.3:
+    resolution: {integrity: sha512-uS+T5J3w5xyzd1KSJCGKhCo8WTJXbNl86f5SW11wgssbandJOVLRKKUxmhdFfmKxhPeksl1hHZ0HaA8VBzp7xA==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
+    hasBin: true
+    peerDependencies:
+      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
+    peerDependenciesMeta:
+      node-notifier:
+        optional: true
+    dependencies:
+      '@jest/core': 28.0.3
+      import-local: 3.1.0
+      jest-cli: 28.0.3
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - ts-node
+    dev: true
+
   /jest/28.0.3_@types+node@17.0.31:
     resolution: {integrity: sha512-uS+T5J3w5xyzd1KSJCGKhCo8WTJXbNl86f5SW11wgssbandJOVLRKKUxmhdFfmKxhPeksl1hHZ0HaA8VBzp7xA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
@@ -5393,6 +5481,11 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
+    dev: true
+
+  /joycon/3.1.1:
+    resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
+    engines: {node: '>=10'}
     dev: true
 
   /js-tokens/4.0.0:
@@ -5445,6 +5538,10 @@ packages:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}
     engines: {node: '>=6'}
     hasBin: true
+    dev: true
+
+  /jsonc-parser/3.0.0:
+    resolution: {integrity: sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==}
     dev: true
 
   /jsonfile/4.0.0:
@@ -5654,6 +5751,13 @@ packages:
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
+    dependencies:
+      sourcemap-codec: 1.4.8
+    dev: true
+
+  /magic-string/0.26.1:
+    resolution: {integrity: sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==}
+    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
@@ -6477,6 +6581,36 @@ packages:
       glob: 7.2.0
     dev: true
 
+  /rollup-plugin-dts/4.2.1_typescript@4.6.4:
+    resolution: {integrity: sha512-eaxQZNUJ5iQcxNGlpJ1CUgG4OSVqWjDZ3nNSWBIoGrpcote2aNphSe1RJOaSYkb8dwn3o+rYm1vvld/5z3EGSQ==}
+    engines: {node: '>=v12.22.11'}
+    peerDependencies:
+      rollup: ^2.70
+      typescript: ^4.6
+    dependencies:
+      magic-string: 0.26.1
+      typescript: 4.6.4
+    optionalDependencies:
+      '@babel/code-frame': 7.16.7
+    dev: true
+
+  /rollup-plugin-esbuild/4.9.1_esbuild@0.14.38:
+    resolution: {integrity: sha512-qn/x7Wz9p3Xnva99qcb+nopH0d2VJwVnsxJTGEg+Sh2Z3tqQl33MhOwzekVo1YTKgv+yAmosjcBRJygMfGrtLw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      esbuild: '>=0.10.1'
+      rollup: ^1.20.0 || ^2.0.0
+    dependencies:
+      '@rollup/pluginutils': 4.2.1
+      debug: 4.3.4
+      es-module-lexer: 0.9.3
+      esbuild: 0.14.38
+      joycon: 3.1.1
+      jsonc-parser: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /rollup-plugin-inject/3.0.2:
     resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
@@ -6490,6 +6624,17 @@ packages:
     resolution: {integrity: sha512-4kCrKPTJ6sK4/gLL/U5QzVT8cxJcofO0OU74tnB19F40cmuAKSzH5/siithxlofFEjwvw1YAhPmbvGNA6jEroA==}
     dependencies:
       rollup-plugin-inject: 3.0.2
+    dev: true
+
+  /rollup-plugin-terser/7.0.2:
+    resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
+    peerDependencies:
+      rollup: ^2.0.0
+    dependencies:
+      '@babel/code-frame': 7.16.7
+      jest-worker: 26.6.2
+      serialize-javascript: 4.0.0
+      terser: 5.13.1
     dev: true
 
   /rollup-plugin-terser/7.0.2_rollup@2.72.0:
@@ -7030,7 +7175,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/28.0.1_cdd77993efa4515eadbbf5a4d81400bd:
+  /ts-jest/28.0.1_efa57dee525f03e1a3cdb1b725f73ffa:
     resolution: {integrity: sha512-PbkbitaT/9ZYAqqzk3UYTvCq080Seo46T3m/AdwcZ0D8WH2uBhG6PvA8oOAWsZIknzPQU66fYobvFCL8IqIhmg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
@@ -7054,8 +7199,9 @@ packages:
       '@types/jest': 27.5.0
       babel-jest: 28.0.3
       bs-logger: 0.2.6
+      esbuild: 0.14.38
       fast-json-stable-stringify: 2.1.0
-      jest: 28.0.3_@types+node@17.0.31
+      jest: 28.0.3
       jest-util: 28.0.2
       json5: 2.2.1
       lodash.memoize: 4.1.2

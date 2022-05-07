@@ -1,0 +1,47 @@
+{
+  "components": [],
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "info": {
+    "contact": {},
+    "description": "Default",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "termsOfService": "",
+    "title": "Default",
+    "version": "0.0.3-beta"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/oop": {
+      "post": {
+        "requestBody": { "content": {} },
+        "responses": {},
+        "security": [],
+        "tags": []
+      }
+    },
+    "http://www.weather.com.cn/data/cityinfo/{cityCode}.html": {
+      "get": {
+        "requestBody": { "content": {} },
+        "responses": {},
+        "security": [],
+        "tags": []
+      }
+    },
+    "https://view.inews.qq.com/g2/getOnsInfo": {
+      "get": {
+        "requestBody": { "content": {} },
+        "responses": {},
+        "security": [],
+        "tags": []
+      }
+    }
+  },
+  "servers": [],
+  "tags": []
+}

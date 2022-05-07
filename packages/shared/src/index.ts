@@ -1,7 +1,14 @@
-// import ToOpenApi from './toOpenAPI'
+import ToOpenApi from './toOpenAPI'
 
-export const eo2openAPI = () => {
-  //   const engine = new ToOpenApi(element)
-  //   const json = engine.setPaths().setRequest().setResponse().log().json()
-  return ''
+export const eo2openAPI = (element) => {
+  const engine = new ToOpenApi(element)
+  return engine
+    .setPaths()
+    .setRequestHeader()
+    .setRequestBody()
+    .setResponseBody()
+    .log()
+    .json()
 }
+
+export default {}
