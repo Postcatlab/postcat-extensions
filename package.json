@@ -50,6 +50,7 @@
     "fs-extra": "^10.1.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.4.1",
+    "lodash-es": "^4.17.21",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.72.0",

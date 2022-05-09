@@ -9,7 +9,7 @@ const rootDir = path.resolve(__dirname, '..')
 
 const FILES_COPY_ROOT = ['LICENSE']
 
-const FILES_COPY_LOCAL = ['README.md', 'index.json', '*.cjs', '*.mjs', '*.d.ts']
+const FILES_COPY_LOCAL = ['README.md', '*.cjs', '*.mjs', '*.d.ts']
 
 console.log('pkgs', pkgs)
 

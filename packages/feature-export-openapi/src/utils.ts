@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import { set } from 'lodash-es'
 
 const parseParamsInUrl = (url): string[] =>
   url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -28,7 +28,7 @@ export const setBase = (meta) => ({
 
 export const setTags = (data, sourceData) => {
   const { group } = sourceData
-  return _.set(
+  return set(
     data,
     ['tags'],
     group.map(({ name }) => ({
@@ -79,12 +79,12 @@ export const setRequest = (data, sourceData) => {
   const { responseBody } = sourceData
   console.log('responseBody', responseBody)
 
-  return _.set(data, ['requestBody', 'content'], {})
+  return set(data, ['requestBody', 'content'], {})
 }
 
 export const setResponse = (data, sourceData) => {
   const { responseBodyType, uri, method } = sourceData
-  return _.set(
+  return set(
     data,
     [
       'paths',

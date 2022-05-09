@@ -27,6 +27,7 @@ importers:
       fs-extra: ^10.1.0
       husky: ^7.0.4
       lint-staged: ^12.4.1
+      lodash-es: ^4.17.21
       prettier: ^2.6.2
       rimraf: ^3.0.2
       rollup: ^2.72.0
@@ -59,6 +60,7 @@ importers:
       fs-extra: 10.1.0
       husky: 7.0.4
       lint-staged: 12.4.1
+      lodash-es: 4.17.21
       prettier: 2.6.2
       rimraf: 3.0.2
       rollup: 2.72.0
@@ -5608,7 +5610,6 @@ packages:
 
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: false
 
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=}

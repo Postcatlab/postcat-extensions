@@ -2,6 +2,7 @@ import path from 'path'
 import json from '@rollup/plugin-json'
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+import nodeResolve from '@rollup/plugin-node-resolve'
 
 const pkg = process.env.TARGET
 
@@ -39,7 +40,13 @@ const createConfig = (output, format = 'es') => {
     input: resolve('src/index.ts'),
     output,
     plugins:
-      format === 'dts' ? [dts()] : [esbuild({ target: 'esnext' }), json()]
+      format === 'dts'
+        ? [dts()]
+        : [
+            nodeResolve(),
+            esbuild({ target: 'esnext', legalComments: 'none', minify: true }),
+            json()
+          ]
   }
 }
 
