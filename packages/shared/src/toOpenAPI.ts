@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import { set, get } from 'lodash-es'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -64,7 +64,7 @@ const setBase = ({ name, version }) => ({
 
 const setTags = (data, sourceData: sourceInterface) => {
   const { group } = sourceData
-  _.set(
+  set(
     data,
     ['tags'],
     group.map(({ name }) => ({
@@ -78,7 +78,7 @@ const setTags = (data, sourceData: sourceInterface) => {
 
 const setPaths = (data, { apiData }: sourceInterface) => {
   apiData.forEach(({ uri, method }) => {
-    _.set(data, ['paths', uri, method.toLowerCase()], {
+    set(data, ['paths', uri, method.toLowerCase()], {
       tags: [],
       requestBody: {
         content: {}
@@ -98,8 +98,8 @@ const setRequestHeader = (data, { apiData }: sourceInterface) => {
       schema: { ...it, type: 'string' }
     }))
     const parameters =
-      _.get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
-    _.set(
+      get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
+    set(
       data,
       ['paths', uri, method.toLowerCase(), 'parameters'],
       parameters.concat(headerList)
@@ -116,14 +116,14 @@ const setRequestBody = (data, { apiData }: sourceInterface) => {
       return
     }
     if (requestBodyType === 'json') {
-      _.set(
+      set(
         data,
         ['paths', uri, method.toLowerCase(), 'requestBody', 'required'],
         true
       )
     }
     requestBody.forEach(({ name, description, required, type, example }) => {
-      _.set(
+      set(
         data,
         [
           'paths',
@@ -151,13 +151,13 @@ const setRequestBody = (data, { apiData }: sourceInterface) => {
 const setResponseBody = (data, { apiData }: sourceInterface) => {
   apiData.forEach(({ responseBodyType, uri, method, responseBody }) => {
     const paramType = paramTypeHash.get(responseBodyType)
-    _.set(
+    set(
       data,
       ['paths', uri, method.toLowerCase(), 'responses', '200', 'description'],
       'OK'
     )
     responseBody.forEach(({ name, ...it }) => {
-      _.set(
+      set(
         data,
         [
           'paths',
@@ -174,7 +174,7 @@ const setResponseBody = (data, { apiData }: sourceInterface) => {
         it
       )
     })
-    _.set(
+    set(
       data,
       [
         'paths',
@@ -195,7 +195,7 @@ const setResponseBody = (data, { apiData }: sourceInterface) => {
 }
 
 // const setResponseHeader = (data, { apiData, uri, method }: sourceInterface) => {
-//   _.set(data, [uri, method.toLowerCase()], responses)
+//   set(data, [uri, method.toLowerCase()], responses)
 //   return ''
 // }
 

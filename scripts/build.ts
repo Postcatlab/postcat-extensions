@@ -6,7 +6,6 @@ import fg from 'fast-glob'
 import { pkgs } from './utils'
 
 const rootDir = path.resolve(__dirname, '..')
-// const watch = process.argv.includes('--watch')
 
 const FILES_COPY_ROOT = ['LICENSE']
 
@@ -19,8 +18,11 @@ async function buildMetaFiles() {
     const packageRoot = path.resolve(__dirname, '..', 'packages', name)
     const packageDist = path.resolve(packageRoot, 'dist')
 
-    for (const file of FILES_COPY_ROOT)
+    await fs.ensureDir(packageDist)
+
+    for (const file of FILES_COPY_ROOT) {
       await fs.copyFile(path.join(rootDir, file), path.join(packageDist, file))
+    }
 
     const files = await fg(FILES_COPY_LOCAL, { cwd: packageRoot })
     for (const file of files)
@@ -54,12 +56,6 @@ async function build(pkg: string) {
   await execa('rollup', ['-c', '--environment', `TARGET:${pkg}`], {
     stdio: 'inherit'
   })
-  // execSync(
-  //   `pnpm run build:rollup ${
-  //     watch ? ' -- --watch' : ''
-  //   }`,
-  //   { stdio: 'inherit' }
-  // )
 
   await buildMetaFiles()
 }
