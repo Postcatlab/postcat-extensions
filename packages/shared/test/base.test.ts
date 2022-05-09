@@ -1,5 +1,4 @@
-import { eo2openAPI } from '../src'
-import * as _ from 'lodash'
+import { eo2openAPI } from '../dist/index.js'
 
 const source = {
   environment: [],
@@ -178,8 +177,157 @@ const target = {
   tags: []
 }
 
-test('simple openAPI', () => {
+const source2 = {
+  environment: [],
+  group: [],
+  project: [
+    {
+      uuid: 1,
+      name: 'Default'
+    }
+  ],
+  apiData: [
+    {
+      name: 'post-form',
+      projectID: 1,
+      uri: '/llp',
+      groupID: 0,
+      protocol: 'http',
+      method: 'POST',
+      requestBodyType: 'formData',
+      requestBodyJsonType: 'object',
+      requestBody: [
+        {
+          listDepth: 0,
+          name: 'AA',
+          type: 'string',
+          required: true,
+          example: '',
+          enum: [],
+          description: 'AAAA'
+        },
+        {
+          listDepth: 0,
+          name: '看看',
+          type: 'string',
+          required: true,
+          example: '',
+          enum: [],
+          description: ''
+        }
+      ],
+      queryParams: [],
+      restParams: [],
+      requestHeaders: [],
+      responseHeaders: [],
+      responseBodyType: 'json',
+      responseBodyJsonType: 'array',
+      responseBody: [
+        {
+          name: 'sss',
+          type: 'string',
+          required: true,
+          example: '',
+          enum: [],
+          description: 'SSS'
+        }
+      ],
+      uuid: 5
+    }
+  ],
+  version: '0.0.3-beta'
+}
+
+const target2 = {
+  components: [],
+  externalDocs: {
+    description: 'Find out more about Swagger',
+    url: 'http://swagger.io'
+  },
+  info: {
+    contact: {},
+    description: 'Default',
+    license: {
+      name: 'Apache 2.0',
+      url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    },
+    termsOfService: '',
+    title: 'Default',
+    version: '0.0.3-beta'
+  },
+  openapi: '3.0.1',
+  paths: {
+    '/llp': {
+      post: {
+        parameters: [],
+        requestBody: {
+          content: {
+            'multipart/form-data': {
+              schema: {
+                properties: {
+                  AA: {
+                    description: 'AAAA',
+                    example: '',
+                    required: true,
+                    type: 'string'
+                  },
+                  看看: {
+                    description: '',
+                    example: '',
+                    required: true,
+                    type: 'string'
+                  }
+                }
+              }
+            }
+          }
+        },
+        responses: {
+          '200': {
+            content: {
+              'application/json': {
+                schema: {
+                  properties: {
+                    sss: {
+                      description: 'SSS',
+                      enum: [],
+                      example: '',
+                      required: true,
+                      type: 'string'
+                    }
+                  },
+                  type: 'object'
+                }
+              }
+            },
+            description: 'OK'
+          }
+        },
+        security: [],
+        tags: []
+      }
+    }
+  },
+  servers: [],
+  tags: []
+}
+
+const source3 = {}
+
+const target3 = {}
+
+test('Test 1: rq-json/post/rs-json', () => {
   const result = eo2openAPI(source)
   // console.log(JSON.stringify(eoapi, null, 2))
   expect(result).toEqual(target)
+})
+
+test('Test 2: rq-form/post/rs-array', () => {
+  const result = eo2openAPI(source2)
+  expect(result).toEqual(target2)
+})
+
+test('Test 3: rq-rest/get/rs-array', () => {
+  const result = eo2openAPI(source2)
+  expect(result).toEqual(target2)
 })
