@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import { set, get } from 'lodash-unified'
 import { eoAPIInterface } from '../types/eoAPI'
 
 const paramTypeHash = new Map()
@@ -35,7 +35,7 @@ export const setBase = ({ name, version }) => ({
 
 export const setTags = (data, sourceData: eoAPIInterface) => {
   const { group } = sourceData
-  _.set(
+  set(
     data,
     ['tags'],
     group.map(({ name }) => ({
@@ -49,7 +49,7 @@ export const setTags = (data, sourceData: eoAPIInterface) => {
 
 export const setPaths = (data, { apiData }: eoAPIInterface) => {
   apiData.forEach(({ uri, method }) => {
-    _.set(data, ['paths', uri, method.toLowerCase()], {
+    set(data, ['paths', uri, method.toLowerCase()], {
       tags: [],
       requestBody: {
         content: {}
@@ -69,8 +69,8 @@ export const setRequestHeader = (data, { apiData }: eoAPIInterface) => {
       schema: { ...it, type: 'string' }
     }))
     const parameters =
-      _.get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
-    _.set(
+      get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
+    set(
       data,
       ['paths', uri, method.toLowerCase(), 'parameters'],
       parameters.concat(headerList)
@@ -87,14 +87,14 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
       return
     }
     if (requestBodyType === 'json') {
-      _.set(
+      set(
         data,
         ['paths', uri, method.toLowerCase(), 'requestBody', 'required'],
         true
       )
     }
     requestBody.forEach(({ name, description, required, type, example }) => {
-      _.set(
+      set(
         data,
         [
           'paths',
@@ -124,13 +124,13 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
     ({ responseBodyType, uri, method, responseBody, responseBodyJsonType }) => {
       const paramType = paramTypeHash.get(responseBodyType)
       const jsonType = jsonTypeHash.get(responseBodyJsonType)
-      _.set(
+      set(
         data,
         ['paths', uri, method.toLowerCase(), 'responses', '200', 'description'],
         'OK'
       )
       responseBody.forEach(({ name, ...it }) => {
-        _.set(
+        set(
           data,
           [
             'paths',
@@ -148,7 +148,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
         )
       })
       if (jsonType === 'array') {
-        _.set(
+        set(
           data,
           [
             'paths',
@@ -163,7 +163,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
           { type: 'array', items: {} }
         )
       } else {
-        _.set(
+        set(
           data,
           [
             'paths',

@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "eoapi extension export openapi",
   "main": "index.cjs.js",
   "module": "index.esm.js",

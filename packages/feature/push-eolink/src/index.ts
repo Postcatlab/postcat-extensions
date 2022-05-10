@@ -1,11 +1,13 @@
 import http from 'ky'
+import { eo2openAPI } from 'shared/src'
+
 const URL = `http://apis.apikit.deveolink.com/api/v2/api_studio/management/api/importOpenApi`
 
 export const sync_to_remote = async (data, { projectId, SecretKey }) => {
   const formData = new FormData()
   formData.append(
     'file[]',
-    new Blob([JSON.stringify(data)], {
+    new Blob([JSON.stringify(eo2openAPI(data))], {
       type: 'application/json'
     })
   )
