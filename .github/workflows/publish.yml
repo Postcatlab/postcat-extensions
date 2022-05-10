@@ -24,12 +24,15 @@ jobs:
           cache: pnpm
 
       - name: instal & build
-      - run: |
-        pnpm install
-        cd packages/feature/export/openapi
-        pnpm build
+      - run: pnpm install
 
-      - name: publish  
+      - name: into extension
+      - run: cd packages/feature/export/openapi
+
+      - name: build
+      - run: pnpm build
+
+      - name: publish
       - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
