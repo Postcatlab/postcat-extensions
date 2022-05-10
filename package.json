@@ -7,9 +7,6 @@
     "node": ">= 14"
   },
   "scripts": {
-    "build": "esno scripts/build.ts",
-    "build:rollup": "cross-env NODE_OPTIONS=\"--max-old-space-size=6144\" rollup -c",
-    "publish:ci": "esno scripts/publish.ts",
     "preinstall": "npx only-allow pnpm",
     "test": "jest --watch",
     "prepare": "husky install"
