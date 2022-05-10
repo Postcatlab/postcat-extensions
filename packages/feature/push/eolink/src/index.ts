@@ -1,5 +1,5 @@
 import http from 'ky'
-import { eo2openAPI } from 'shared/src'
+import { eo2openAPI } from 'shared'
 
 const URL = `http://apis.apikit.deveolink.com/api/v2/api_studio/management/api/importOpenApi`
 

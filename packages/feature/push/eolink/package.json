@@ -7,7 +7,7 @@
   "moduleID": "eoapi-feature-push-eolink",
   "moduleName": "Push to Eolink",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push-eolink/assets/logo.png",
+  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
   "main_node": "",
   "main_debug": "",
   "scripts": {
@@ -36,7 +36,7 @@
       "action": "sync_to_remote",
       "label": "EoLink",
       "description": "Push API data to eolink.",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push-eolink/assets/logo.png",
+      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
       "extestion": ""
     }
   }

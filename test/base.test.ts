@@ -1,4 +1,4 @@
-import { eo2openAPI } from '../shared/src'
+import { eo2openAPI } from '../shared'
 
 const source = {
   environment: [],

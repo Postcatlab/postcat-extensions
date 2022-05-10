@@ -7,7 +7,7 @@
   "moduleID": "eoapi-feature-export-openapi",
   "moduleName": "export openapi",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export-openapi/assets/logo.png",
+  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -47,7 +47,7 @@
       "action": "export_convert",
       "label": "OpenAPI(.json)",
       "description": "Convert api data into json of openapi format",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export-openapi/assets/logo.png",
+      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
       "filename": "openapi.json"
     }
   }
