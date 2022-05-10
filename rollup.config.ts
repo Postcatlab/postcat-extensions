@@ -1,14 +1,14 @@
 import path from 'path'
 import json from '@rollup/plugin-json'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import typescript from 'rollup-plugin-typescript2'
-import commonjs from '@rollup/plugin-commonjs'
+import esbuild from 'rollup-plugin-esbuild'
+import dts from 'rollup-plugin-dts'
+import nodeResolve from '@rollup/plugin-node-resolve'
 
 const pkg = process.env.TARGET
 
 const defaultBuildOptions = {
   name: pkg || 'index',
-  formats: ['esm', 'cjs']
+  formats: ['esm', 'cjs', 'umd', 'dts']
 }
 
 const resolve = (p) => {
@@ -28,26 +28,30 @@ const formatMap = {
   umd: {
     file: resolve(`dist/index.js`),
     format: 'umd'
+  },
+  dts: {
+    file: resolve(`dist/index.d.ts`),
+    format: 'es'
   }
 }
-const createConfig = (output) => {
+const createConfig = (output, format = 'es') => {
   output.name = buildOptions.name
   return {
     input: resolve('src/index.ts'),
     output,
-    plugins: [
-      typescript(),
-      json(),
-      // 配合 commnjs 解析第三方模块
-      nodeResolve(),
-      // 使得 rollup 支持 commonjs 规范，识别 commonjs 规范的依赖
-      commonjs()
-    ]
+    plugins:
+      format === 'dts'
+        ? [dts()]
+        : [
+            nodeResolve(),
+            esbuild({ target: 'esnext', legalComments: 'none', minify: true }),
+            json()
+          ]
   }
 }
 
 const configs = buildOptions.formats.map((format) =>
-  createConfig(formatMap[format])
+  createConfig(formatMap[format], format)
 )
 
 export default configs
