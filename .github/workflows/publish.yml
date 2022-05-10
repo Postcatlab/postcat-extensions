@@ -23,9 +23,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
-      - run: pnpm install
-      - run: cd packages/feature/export/openapi
-      - run: pnpm build
+      - name: instal & build
+      - run: |
+        pnpm install
+        cd packages/feature/export/openapi
+        pnpm build
+
+      - name: publish  
       - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
