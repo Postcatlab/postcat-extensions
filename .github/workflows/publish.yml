@@ -23,7 +23,8 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: cd packages/feature/export/openapi
+      - run: cd ./packages/feature/export/openapi
+      - run: pwd
       - run: pnpm run build
       - run: pnpm publish
         env:
