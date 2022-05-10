@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "eoapi extension export openapi",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/eolinker/eoapi-extensions#readme",
   "devDependencies": {
+    "@types/lodash-es": "*",
     "@types/node": "^17.0.29",
     "esbuild": "^0.14.38",
     "nodemon": "^2.0.15",
@@ -45,5 +46,10 @@
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
       "filename": "openapi.json"
     }
+  },
+  "dependencies": {
+    "lodash": "*",
+    "lodash-es": "*",
+    "lodash-unified": "^1.0.2"
   }
 }
