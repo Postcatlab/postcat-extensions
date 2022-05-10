@@ -23,9 +23,10 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
+      - run: cd packages/feature/export/openapi
       - run: pnpm install
-
-      - run: pnpm run publish:ci
+      - run: pnpm build
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           NODE_OPTIONS: --max-old-space-size=6144
