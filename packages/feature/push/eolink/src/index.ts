@@ -1,5 +1,4 @@
-import http from 'ky'
-import { eo2openAPI } from 'shared'
+import { eo2openAPI } from '../../../../../shared/src'
 
 const URL = `http://apis.apikit.deveolink.com/api/v2/api_studio/management/api/importOpenApi`
 
@@ -14,13 +13,14 @@ export const sync_to_remote = async (data, { projectId, SecretKey }) => {
   formData.append('project_id', projectId)
   formData.append('update_type', 'all')
   formData.append('api_status', '0')
-  const response = await http
-    .post(URL, {
-      headers: {
-        'Eo-Secret-Key': SecretKey
-      },
-      body: formData
-    })
-    .json()
+
+  const rawResponse = await fetch(URL, {
+    method: 'POST',
+    headers: {
+      'Eo-Secret-Key': SecretKey
+    },
+    body: formData
+  })
+  const response = await rawResponse.json()
   return response
 }
