@@ -15,7 +15,7 @@ jobs:
           node-version: 16
       - run: pnpm install
 
-  publish-npm:
+  publish-npm-export:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -31,5 +31,24 @@ jobs:
 
       - run: npm publish
         working-directory: packages/feature/export/openapi
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  publish-npm-push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: pnpm install
+      - run: pnpm build
+        working-directory: packages/feature/push/eolink
+
+      - run: npm publish
+        working-directory: packages/feature/push/eolink
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
