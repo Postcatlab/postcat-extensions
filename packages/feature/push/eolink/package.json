@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "eoapi extension for push api data to eolinker",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -8,14 +8,11 @@
   "moduleName": "Push to Eolink",
   "moduleType": "feature",
   "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
-  "main_node": "",
-  "main_debug": "",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
     "test": "nodemon index.js"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eolinker/eoapi-extensions.git"
