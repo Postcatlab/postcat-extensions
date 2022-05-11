@@ -7,7 +7,6 @@ export const eo2openAPI = (element) => {
     .setRequestHeader()
     .setRequestBody()
     .setResponseBody()
-    .log()
     .json()
 }
 
