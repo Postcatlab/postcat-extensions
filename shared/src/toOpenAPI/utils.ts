@@ -1,5 +1,6 @@
 import { set, get } from 'lodash-unified'
 import { eoAPIInterface } from '../types/eoAPI'
+import { transform } from '../trans'
 
 const paramTypeHash = new Map()
   .set('json', 'application/json')
@@ -93,7 +94,7 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
         true
       )
     }
-    requestBody.forEach(({ name, description, required, type, example }) => {
+    requestBody.forEach((it) => {
       set(
         data,
         [
@@ -103,16 +104,9 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
           'requestBody',
           'content',
           paramType,
-          'schema',
-          'properties',
-          name
+          'schema'
         ],
-        {
-          description,
-          required,
-          type,
-          example
-        }
+        transform(it)
       )
     })
   })
@@ -129,7 +123,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
         ['paths', uri, method.toLowerCase(), 'responses', '200', 'description'],
         'OK'
       )
-      responseBody.forEach(({ name, ...it }) => {
+      responseBody.forEach((it) => {
         set(
           data,
           [
@@ -140,11 +134,9 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
             '200',
             'content',
             paramType,
-            'schema',
-            'properties',
-            name
+            'schema'
           ],
-          it
+          transform(it)
         )
       })
       if (jsonType === 'array') {
@@ -160,7 +152,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
             paramType,
             'schema'
           ],
-          { type: 'array', items: {} }
+          transform(it, 'array')
         )
       } else {
         set(
@@ -173,10 +165,9 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
             '200',
             'content',
             paramType,
-            'schema',
-            'type'
+            'schema'
           ],
-          typeHash.get(responseBodyType)
+          transform(it, 'object')
         )
       }
     }
