@@ -54,7 +54,7 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "通用",
+      "title": "Push to Eolink",
       "properties": {
         "common.remoteServer.url": {
           "type": "string",
