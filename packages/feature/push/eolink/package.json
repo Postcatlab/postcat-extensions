@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "eoapi extension for push api data to eolinker",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -45,7 +45,7 @@
   "features": {
     "apimanager.sync": {
       "action": "sync_to_remote",
-      "label": "EoLink",
+      "label": "Eolink",
       "description": "Push API data to eolink.",
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
       "extestion": ""
@@ -56,19 +56,26 @@
       "type": "object",
       "title": "Push to Eolink",
       "properties": {
-        "common.remoteServer.url": {
+        "eolink.remoteServer.url": {
           "type": "string",
           "required": true,
           "default": "http://127.0.0.2",
           "label": "远程服务器地址",
           "description": "从远程服务器存取数据，配置后支持多人协作"
         },
-        "common.remoteServer.token": {
+        "eolink.remoteServer.token": {
           "type": "string",
           "required": false,
           "default": "VUYGIUGUYGHVIHBUGIUHIUFGUIGUFU",
           "label": "Token",
           "description": "远程服务器Token，配置后才可访问"
+        },
+        "eolink.remoteServer.projectId": {
+          "type": "string",
+          "required": false,
+          "default": "ProjectID",
+          "label": "ProjectID",
+          "description": "远程服务器ProjectID"
         }
       }
     }

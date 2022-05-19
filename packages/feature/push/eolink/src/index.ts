@@ -1,8 +1,7 @@
 import { eo2openAPI } from '../../../../../shared/src'
 
-const URL = `http://apis.apikit.deveolink.com/api/v2/api_studio/management/api/importOpenApi`
-
-export const sync_to_remote = async (data, { projectId, SecretKey }) => {
+export const sync_to_remote = async (data, { url,projectId, secretKey }) => {
+  console.log('projectId',projectId, 'secretKey', secretKey)
   const formData = new FormData()
   formData.append(
     'file[]',
@@ -14,10 +13,10 @@ export const sync_to_remote = async (data, { projectId, SecretKey }) => {
   formData.append('update_type', 'all')
   formData.append('api_status', '0')
 
-  const rawResponse = await fetch(URL, {
+  const rawResponse = await fetch(url, {
     method: 'POST',
     headers: {
-      'Eo-Secret-Key': SecretKey
+      'Eo-Secret-Key': secretKey
     },
     body: formData
   })
