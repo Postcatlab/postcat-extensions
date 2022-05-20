@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "eoapi extension export openapi",
   "main": "dist/index.js",
   "module": "dist/index.js",
