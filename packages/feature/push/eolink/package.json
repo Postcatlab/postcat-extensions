@@ -43,7 +43,7 @@
     "lodash-unified": "^1.0.2"
   },
   "features": {
-    "apimanager.sync": {
+    "apimanage.sync": {
       "action": "sync_to_remote",
       "label": "Eolink",
       "description": "Push API data to eolink.",
