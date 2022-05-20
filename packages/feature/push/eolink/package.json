@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "eoapi extension for push api data to eolinker",
   "main": "dist/index.js",
   "module": "dist/index.js",
