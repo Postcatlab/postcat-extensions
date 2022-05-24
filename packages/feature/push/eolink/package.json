@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "eoapi extension for push api data to eolinker",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -68,14 +68,14 @@
           "required": false,
           "default": "VUYGIUGUYGHVIHBUGIUHIUFGUIGUFU",
           "label": "Token",
-          "description": "远程服务器Token，配置后才可访问"
+          "description": "远程服务器 Token，配置后才可访问"
         },
         "eolink.remoteServer.projectId": {
           "type": "string",
           "required": false,
           "default": "ProjectID",
           "label": "ProjectID",
-          "description": "远程服务器ProjectID"
+          "description": "远程服务器 ProjectID"
         }
       }
     }

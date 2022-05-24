@@ -106,7 +106,7 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
           paramType,
           'schema'
         ],
-        transform(it)
+        transform(it, 'object')
       )
     })
   })
@@ -136,7 +136,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
             paramType,
             'schema'
           ],
-          transform(it)
+          transform(it, 'object')
         )
       })
       if (jsonType === 'array') {
@@ -152,7 +152,7 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
             paramType,
             'schema'
           ],
-          transform(it, 'array')
+          transform(it, 'object')
         )
       } else {
         set(
