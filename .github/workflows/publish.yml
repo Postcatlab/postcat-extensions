@@ -34,8 +34,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-    # import
-    publish-npm-import:
+  # import
+  publish-npm-import:
     needs: build
     runs-on: ubuntu-latest
     steps:
