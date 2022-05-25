@@ -73,6 +73,12 @@ importers:
       rollup-plugin-terser: 7.0.2_rollup@2.70.2
       typescript: 4.6.4
 
+  packages/feature/import/eoapi-openapi:
+    specifiers:
+      rollup: ^2.70.2
+    devDependencies:
+      rollup: 2.70.2
+
   packages/feature/push/eolink:
     specifiers:
       '@types/lodash-es': '*'
