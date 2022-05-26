@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "eoapi extension for push api data to eolinker",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -56,13 +56,6 @@
       "type": "object",
       "title": "Push to Eolink",
       "properties": {
-        "eolink.remoteServer.url": {
-          "type": "string",
-          "required": true,
-          "default": "http://127.0.0.2",
-          "label": "远程服务器地址",
-          "description": "从远程服务器存取数据，配置后支持多人协作"
-        },
         "eolink.remoteServer.token": {
           "type": "string",
           "required": false,
