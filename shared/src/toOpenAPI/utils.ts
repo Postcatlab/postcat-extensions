@@ -1,15 +1,27 @@
 import { set, get } from 'lodash-unified'
 import { eoAPIInterface } from '../types/eoAPI'
-import { transform } from '../trans'
 
 const paramTypeHash = new Map()
   .set('json', 'application/json')
   .set('xml', 'application/xml')
   .set('formData', 'multipart/form-data')
 
-const typeHash = new Map().set('json', 'object')
+// const typeHash = new Map().set('json', 'object')
 
-const jsonTypeHash = new Map().set('array', 'array')
+const transformProperties = (data, type) => ({
+  type,
+  required: data.filter((it) => it.required).map((it) => it.name),
+  properties: data.reduce(
+    (total, { type, required, name, children, ...item }) => ({
+      ...total,
+      [name]: {
+        ...item,
+        items: children?.length ? transformProperties(children, type) : {}
+      }
+    }),
+    {}
+  )
+})
 
 export const setBase = ({ name, version }) => ({
   openapi: '3.0.1',
@@ -94,21 +106,19 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
         true
       )
     }
-    requestBody.forEach((it) => {
-      set(
-        data,
-        [
-          'paths',
-          uri,
-          method.toLowerCase(),
-          'requestBody',
-          'content',
-          paramType,
-          'schema'
-        ],
-        transform(it, 'object')
-      )
-    })
+    set(
+      data,
+      [
+        'paths',
+        uri,
+        method.toLowerCase(),
+        'requestBody',
+        'content',
+        paramType,
+        'schema'
+      ],
+      transformProperties(requestBody, requestBodyType)
+    )
   })
   return data
 }
@@ -117,61 +127,26 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
   apiData.forEach(
     ({ responseBodyType, uri, method, responseBody, responseBodyJsonType }) => {
       const paramType = paramTypeHash.get(responseBodyType)
-      const jsonType = jsonTypeHash.get(responseBodyJsonType)
       set(
         data,
         ['paths', uri, method.toLowerCase(), 'responses', '200', 'description'],
         'OK'
       )
-      responseBody.forEach((it) => {
-        set(
-          data,
-          [
-            'paths',
-            uri,
-            method.toLowerCase(),
-            'responses',
-            '200',
-            'content',
-            paramType,
-            'schema'
-          ],
-          transform(it, 'object')
-        )
-      })
-      if (jsonType === 'array') {
-        set(
-          data,
-          [
-            'paths',
-            uri,
-            method.toLowerCase(),
-            'responses',
-            '200',
-            'content',
-            paramType,
-            'schema'
-          ],
-          transform(it, 'object')
-        )
-      } else {
-        set(
-          data,
-          [
-            'paths',
-            uri,
-            method.toLowerCase(),
-            'responses',
-            '200',
-            'content',
-            paramType,
-            'schema'
-          ],
-          transform(it, 'object')
-        )
-      }
+      set(
+        data,
+        [
+          'paths',
+          uri,
+          method.toLowerCase(),
+          'responses',
+          '200',
+          'content',
+          paramType,
+          'schema'
+        ],
+        transformProperties(responseBody, responseBodyJsonType)
+      )
     }
   )
-
   return data
 }

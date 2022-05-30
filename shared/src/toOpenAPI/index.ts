@@ -23,7 +23,7 @@ class ToOpenApi {
   constructor(data: eoAPIInterface) {
     this.sourceData = JSON.parse(JSON.stringify(data))
     const { project, version } = this.sourceData
-    this.data = setBase({ ...project[0], version })
+    this.data = setBase({ ...project, version })
   }
   setPaths() {
     this.data = setPaths(this.data, this.sourceData)

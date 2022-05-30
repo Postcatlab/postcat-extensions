@@ -11,7 +11,7 @@ export default [
       file: 'dist/index.js',
       sourcemap: 'inline'
     },
-    plugins: [esbuild({ target: 'esnext' }), terser()]
+    plugins: [esbuild({ target: 'esnext' })]
   },
   {
     input: 'src/index.ts',
