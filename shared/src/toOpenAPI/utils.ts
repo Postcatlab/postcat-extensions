@@ -1,4 +1,4 @@
-import { set, get } from 'lodash-unified'
+import { set, get, isEmpty } from 'lodash-unified'
 import { eoAPIInterface } from '../types/eoAPI'
 
 const paramTypeHash = new Map()
@@ -8,20 +8,27 @@ const paramTypeHash = new Map()
 
 // const typeHash = new Map().set('json', 'object')
 
-const transformProperties = (data, type) => ({
-  type,
-  required: data.filter((it) => it.required).map((it) => it.name),
-  properties: data.reduce(
-    (total, { type, required, name, children, ...item }) => ({
-      ...total,
-      [name]: {
-        ...item,
-        items: children?.length ? transformProperties(children, type) : {}
-      }
-    }),
-    {}
-  )
-})
+const transformProperties = (data, type) => {
+  if (isEmpty(data)) {
+    return {}
+  }
+  return {
+    type,
+    required: [
+      ...new Set(data?.filter((it) => it.required).map((it) => it.name) || [])
+    ],
+    properties: data.reduce(
+      (total, { type, required, name, children, ...item }) => ({
+        ...total,
+        [name]: {
+          ...item,
+          items: children?.length ? transformProperties(children, type) : {}
+        }
+      }),
+      {}
+    )
+  }
+}
 
 export const setBase = ({ name, version }) => ({
   openapi: '3.0.1',
@@ -99,7 +106,7 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
       console.error(`Can't parser the params type`)
       return
     }
-    if (requestBodyType === 'json') {
+    if (requestBodyType === 'json' && requestBody?.length > 0) {
       set(
         data,
         ['paths', uri, method.toLowerCase(), 'requestBody', 'required'],

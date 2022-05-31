@@ -1,7 +1,7 @@
 import { eo2openAPI } from '../../../../../shared/src'
 
-export const sync_to_remote = async (data, { url,projectId, secretKey }) => {
-  console.log('projectId',projectId, 'secretKey', secretKey)
+export const sync_to_remote = async (data, { url, projectId, secretKey }) => {
+  console.log('projectId', projectId, 'secretKey', secretKey)
   const formData = new FormData()
   formData.append(
     'file[]',
