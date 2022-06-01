@@ -1,11 +1,11 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "eoapi extension export openapi",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",
-  "moduleName": "export openapi",
+  "moduleName": "Export OpenAPI",
   "moduleType": "feature",
   "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
   "scripts": {
@@ -21,7 +21,7 @@
     "feature",
     "eoapi"
   ],
-  "author": "Eolink",
+  "author": "Eoapi",
   "license": "Apache-2.0 License",
   "bugs": {
     "url": "https://github.com/eolinker/eoapi-extensions/issues"
@@ -42,7 +42,7 @@
     "apimanage.export": {
       "action": "export_convert",
       "label": "OpenAPI(.json)",
-      "description": "Convert api data into json of openapi format",
+      "description": "Export apiData as a OpenAPI JSON file",
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
       "filename": "openapi.json"
     }
