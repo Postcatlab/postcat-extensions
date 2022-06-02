@@ -1,7 +1,7 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.13",
-  "description": "eoapi extension export openapi",
+  "version": "1.0.14",
+  "description": "Export apiData as a OpenAPI JSON file",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",
