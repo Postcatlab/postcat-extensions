@@ -72,6 +72,9 @@ export const importFunc = (eoapi: any, openapi: openAPIType, type = 'add') => {
   //     new: updateNew(data, eoapi)
   //   })
   // }
+  if (Object.keys(openapi).length === 0) {
+    return [null, { msg: '请上传合法的文件' }]
+  }
   // * 先从 components 字段中读取出结构体
   const {
     components: { schemas },
@@ -79,7 +82,7 @@ export const importFunc = (eoapi: any, openapi: openAPIType, type = 'add') => {
   } = openapi
   const structMap = new Map()
   if (schemas) {
-    Object.keys(schemas)?.forEach((it) => {
+    Object.keys(schemas).forEach((it) => {
       structMap.set(it, schemas[it])
     })
   }
