@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-openapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The import extension of eoapi",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",
