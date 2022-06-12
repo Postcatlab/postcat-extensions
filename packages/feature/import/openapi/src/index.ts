@@ -78,9 +78,11 @@ export const importFunc = (eoapi: any, openapi: openAPIType, type = 'add') => {
     paths
   } = openapi
   const structMap = new Map()
-  Object.keys(schemas).forEach((it) => {
-    structMap.set(it, schemas[it])
-  })
+  if (schemas) {
+    Object.keys(schemas)?.forEach((it) => {
+      structMap.set(it, schemas[it])
+    })
+  }
   console.log(paths)
   // const apiData = Object.keys(paths)
   //   .map((url) => {
