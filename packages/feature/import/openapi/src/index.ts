@@ -52,26 +52,68 @@ type openAPIType = {
   }
 }
 
-// const parserOpenAPI = (data) => {}
+const parserParameters = (list: any[] = []) => {
+  const queryParams = list.filter((it) => it.in === 'path')
+  const restParams = list.filter((it) => it.in === 'query')
+  const requestHeaders = list.filter((it) => it.in === 'header')
+  return {
+    queryParams,
+    restParams,
+    requestHeaders
+  }
+}
 
-// const updataAll = (data, eoapi) => {}
+const parserItems = (data) => {
+  return {}
+}
 
-// const updataAdd = (data, eoapi) => {}
+const parserResponses = (data) => {
+  if (!data) {
+    console.log('Data is Empty')
+    return {
+      requestBodyType: '',
+      requestBody: {}
+    }
+  }
+  const { content } = data
+  // * contentList => ['*/*', 'application/json', 'application/xml']
+  const contentList = Object.keys(content)
+  if (contentList.length === 0) {
+    return {
+      requestBodyType: '',
+      requestBody: {}
+    }
+  }
+  // * It could be better
+  let dataSchema: any = null
+  if (contentList.includes('application/json')) {
+    dataSchema = content['application/json'].schema
+  } else if (contentList.includes('application/xml')) {
+    dataSchema = content['application/xml'].schema
+  } else if (contentList.includes('*/*')) {
+    dataSchema = content['*/*'].schema
+  }
+  const { items, type } = dataSchema
+  return {
+    requestBodyType: type,
+    requestBody: {
+      ...parserItems(items)
+    }
+  }
+}
 
-// const updataImport = (data, eoapi) => {}
+const toOpenapi = ({ method, url, summary, parameters, responses }) => {
+  return {
+    name: summary,
+    protocol: 'http', // * openapi 中没有对应字段
+    uri: url,
+    method: method.toUpperCase(),
+    ...parserParameters(parameters),
+    ...parserResponses(responses[200])
+  }
+}
 
-// const updateNew = (data, eoapi) => {}
-
-export const importFunc = (eoapi: any, openapi: openAPIType, type = 'add') => {
-  // const updateStrategy = (eoapi) => {
-  //   const data = parserOpenAPI(openapi)
-  //   return (eoapi) => ({
-  //     all: updataAll(data, eoapi),
-  //     add: updataAdd(data, eoapi),
-  //     import: updataImport(data, eoapi),
-  //     new: updateNew(data, eoapi)
-  //   })
-  // }
+export const importFunc = (openapi: openAPIType) => {
   if (Object.keys(openapi).length === 0) {
     return [null, { msg: '请上传合法的文件' }]
   }
@@ -87,86 +129,22 @@ export const importFunc = (eoapi: any, openapi: openAPIType, type = 'add') => {
     })
   }
   console.log(paths)
-  // const apiData = Object.keys(paths)
-  //   .map((url) => {
-  //     const list: any = []
-  //     Object.keys(paths[url]).forEach((method: string) => {
-  //       list.push({ method, url, ...paths[url][method] })
-  //     })
-  //     return list
-  //   })
-  //   .flat(Infinity)
+  const apiData = Object.keys(paths)
+    .map((url) => {
+      const list: any = []
+      Object.keys(paths[url]).forEach((method: string) => {
+        list.push({ method, url, ...paths[url][method] })
+      })
+      return list
+    })
+    .flat(Infinity)
+    .map(toOpenapi)
   const environment = []
   const group = []
 
-  // updateStrategy[type]()
   return {
-    version: '1.0.3',
     environment,
     group,
-    apiData: [
-      {
-        name: '自定义导入数据3',
-        projectID: 1,
-        uri: 'http://www.weather.com.cn/data/cityinfo/{cityCode}.html',
-        groupID: 0,
-        protocol: 'http',
-        method: 'GET',
-        requestBodyType: 'raw',
-        requestBodyJsonType: 'object',
-        requestBody: '',
-        queryParams: [],
-        restParams: [
-          {
-            name: 'cityCode',
-            required: true,
-            example: '101010100',
-            description:
-              '城市代码 : http://www.mca.gov.cn/article/sj/xzqh/2020/20201201.html',
-            enum: [
-              {
-                default: true,
-                value: '110000',
-                description: 'Beijing'
-              },
-              {
-                default: false,
-                value: '440000',
-                description: 'Guangdong'
-              },
-              {
-                default: false,
-                value: '',
-                description: ''
-              }
-            ]
-          }
-        ],
-        requestHeaders: [],
-        responseHeaders: [],
-        responseBodyType: 'json',
-        responseBodyJsonType: 'object',
-        responseBody: [
-          {
-            name: 'weatherinfo',
-            required: true,
-            example: '',
-            type: 'object',
-            description: '',
-            children: [
-              {
-                name: 'city',
-                description: '',
-                type: 'string',
-                required: true,
-                example: '北京'
-              }
-            ]
-          }
-        ],
-        weight: 0,
-        uuid: 1
-      }
-    ]
+    apiData
   }
 }

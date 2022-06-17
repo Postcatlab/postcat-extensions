@@ -25,33 +25,7 @@
       "action": "importFunc",
       "label": "OpenAPI(.json)",
       "description": "",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
-      "properties": {
-        "import": {
-          "type": "string",
-          "default": "",
-          "label": "直接导入",
-          "description": "直接导入"
-        },
-        "add": {
-          "type": "string",
-          "default": true,
-          "label": "增量更新[推荐]",
-          "description": "增量更新"
-        },
-        "all": {
-          "type": "string",
-          "default": "",
-          "label": "全量更新[慎用]",
-          "description": "全量更新"
-        },
-        "new": {
-          "type": "string",
-          "default": "",
-          "label": "仅添加新 API",
-          "description": "仅添加新 API"
-        }
-      }
+      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png"
     }
   }
 }
