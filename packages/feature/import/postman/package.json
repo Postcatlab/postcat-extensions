@@ -1,10 +1,10 @@
 {
-  "name": "eoapi-import-openapi",
+  "name": "eoapi-import-postman",
   "version": "1.0.0",
-  "description": "The import extension of eoapi",
+  "description": "导入 Postman 格式的数据文件",
   "main": "dist/index.js",
-  "moduleID": "eoapi-import-openapi",
-  "moduleName": "Import OpenAPI",
+  "moduleID": "eoapi-import-postman",
+  "moduleName": "Import Postman",
   "moduleType": "feature",
   "author": "Eoapi",
   "logo": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png",
@@ -13,40 +13,19 @@
     "build:watch": "rollup -w -c rollup.config.js"
   },
   "devDependencies": {
-    "rollup": "^2.70.2"
+    "esbuild": "^0.14.38",
+    "rollup": "^2.70.2",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.1"
   },
   "features": {
     "apimanage.import": {
       "action": "importFunc",
-      "label": "OpenAPI(.json)",
+      "label": "Postman(.json)",
       "description": "",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
-      "properties": {
-        "import": {
-          "type": "string",
-          "default": "",
-          "label": "直接导入",
-          "description": "直接导入"
-        },
-        "add": {
-          "type": "string",
-          "default": "",
-          "label": "增量更新[推荐]",
-          "description": "增量更新"
-        },
-        "all": {
-          "type": "string",
-          "default": "",
-          "label": "全量更新[慎用]",
-          "description": "全量更新"
-        },
-        "new": {
-          "type": "string",
-          "default": "",
-          "label": "仅添加新 API",
-          "description": "仅添加新 API"
-        }
-      }
+      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png"
     }
   }
 }

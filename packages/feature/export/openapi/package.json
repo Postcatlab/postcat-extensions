@@ -1,7 +1,7 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.14",
-  "description": "Export apiData as a OpenAPI JSON file",
+  "version": "1.0.15",
+  "description": "导出 OpenAPI.json 格式的文件",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",

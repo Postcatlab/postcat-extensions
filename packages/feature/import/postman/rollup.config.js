@@ -1,16 +1,24 @@
-/** @type import('rollup').RollupOptions */
-const nodeCjs = {
-  input: './index.js',
-  output: [
-    {
-      file: 'dist/index.js',
+import { terser } from 'rollup-plugin-terser'
+import esbuild from 'rollup-plugin-esbuild'
+import dts from 'rollup-plugin-dts'
+
+export default [
+  {
+    input: 'src/index.ts',
+    output: {
+      name: 'eoapi-import-postman',
       format: 'umd',
-      name: 'index',
-      sourcemap: 'inline',
+      file: 'dist/index.js',
+      sourcemap: 'inline'
     },
-  ],
-};
-
-const bundles = [nodeCjs];
-
-export default bundles;
+    plugins: [esbuild({ target: 'esnext' }), terser()]
+  },
+  {
+    input: 'src/index.ts',
+    output: {
+      format: 'es',
+      file: 'dist/index.d.ts'
+    },
+    plugins: [dts()]
+  }
+]
