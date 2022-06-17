@@ -1,7 +1,7 @@
 {
   "name": "eoapi-import-openapi",
-  "version": "1.0.4",
-  "description": "The import extension of eoapi",
+  "version": "1.0.5",
+  "description": "导入 OpenAPI 规范的 json 格式文件",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",
   "moduleName": "Import OpenAPI",
