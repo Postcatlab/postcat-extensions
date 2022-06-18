@@ -104,7 +104,7 @@ const parserResponses = (data) => {
 
 const toOpenapi = ({ method, url, summary, parameters, responses }) => {
   return {
-    name: summary,
+    name: summary || url,
     protocol: 'http', // * openapi 中没有对应字段
     uri: url,
     projectID: 1,
@@ -118,16 +118,20 @@ export const importFunc = (openapi: openAPIType) => {
   if (Object.keys(openapi).length === 0) {
     return [null, { msg: '请上传合法的文件' }]
   }
+  if (!openapi.openapi) {
+    return [null, { msg: '文件不合法，缺乏 openapi 字段' }]
+  }
   // * 先从 components 字段中读取出结构体
-  const {
-    components: { schemas },
-    paths
-  } = openapi
   const structMap = new Map()
-  if (schemas) {
-    Object.keys(schemas).forEach((it) => {
-      structMap.set(it, schemas[it])
-    })
+  // console.log('==>>', openapi)
+  const { components, paths } = openapi
+  if (components) {
+    const { schemas } = components
+    if (schemas) {
+      Object.keys(schemas).forEach((it) => {
+        structMap.set(it, schemas[it])
+      })
+    }
   }
   const apiData = Object.keys(paths)
     .map((url) => {
@@ -146,9 +150,12 @@ export const importFunc = (openapi: openAPIType) => {
   const environment = []
   const group = []
 
-  return {
-    environment,
-    group,
-    apiData
-  }
+  return [
+    {
+      environment,
+      group,
+      apiData
+    },
+    null
+  ]
 }
