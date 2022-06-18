@@ -107,9 +107,10 @@ const toOpenapi = ({ method, url, summary, parameters, responses }) => {
     name: summary,
     protocol: 'http', // * openapi 中没有对应字段
     uri: url,
+    projectID: 1,
     method: method.toUpperCase(),
     ...parserParameters(parameters),
-    ...parserResponses(responses[200])
+    ...parserResponses(responses['200'])
   }
 }
 
@@ -128,12 +129,15 @@ export const importFunc = (openapi: openAPIType) => {
       structMap.set(it, schemas[it])
     })
   }
-  console.log(paths)
   const apiData = Object.keys(paths)
     .map((url) => {
       const list: any = []
       Object.keys(paths[url]).forEach((method: string) => {
-        list.push({ method, url, ...paths[url][method] })
+        list.push({
+          method,
+          url,
+          ...paths[url][method]
+        })
       })
       return list
     })
