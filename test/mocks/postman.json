@@ -1,0 +1,146 @@
+{
+  "info": {
+    "_postman_id": "b5fcda33-b434-41b0-99bc-af61f23548c6",
+    "name": "yoo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "yoo-1",
+      "item": [
+        {
+          "name": "flame",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    stack: 'kworker/u2:1;ret_from_fork_[k];kthread_[k];worker_thread_[k];process_one_work_[k];wb_workfn_[k];wb_writeback_[k];__writeback_inodes_wb_[k];writeback_sb_inodes_[k];__writeback_single_inode_[k];do_writepages_[k];ext4_writepages_[k];ext4_map_blocks_[k];ext4_es_insert_extent_[k];__es_remove_extent_[k];__es_tree_search.isra.15_[k];__es_tree_search.isra.15_[k] 1\ncrond;[unknown];entry_SYSCALL_64_after_hwframe_[k];do_syscall_64_[k];ksys_mmap_pgoff_[k];vm_mmap_pgoff_[k];do_mmap_[k];mmap_region_[k];__do_munmap_[k];unmap_region_[k];free_pgtables_[k];up_write_[k];up_write_[k] 1\ncrond;kworker/0:4;ret_from_fork_[k];kthread_[k];worker_thread_[k];process_one_work_[k];drm_fb_helper_damage_work_[k];drm_atomic_helper_dirtyfb_[k];drm_atomic_helper_commit_[k];commit_tail_[k];drm_atomic_helper_commit_tail_[k];drm_atomic_helper_commit_planes_[k];cirrus_pipe_update_[k];cirrus_fb_blit_rect_[k];drm_gem_shmem_vunmap_[k];__vunmap_[k];remove_vm_area_[k];unmap_kernel_range_noflush_[k];unmap_kernel_range_noflush_[k] 1\ndbus-daemon;pthread_mutex_lock 1\nhosteye;__GI___open64;entry_SYSCALL_64_after_hwframe_[k];do_syscall_64_[k];do_sys_open_[k];getname_flags_[k];kmem_cache_alloc_[k];_cond_resched_[k];rcu_all_qs_[k];rcu_all_qs_[k] 1\nsh;[unknown];[unknown] 1\nsshd;[unknown];[unknown] 1\nhosteye;[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];[unknown];__read;entry_SYSCALL_64_after_hwframe_[k];do_syscall_64_[k];ksys_read_[k];vfs_read_[k];seq_read_[k];__check_object_size_[k];__check_object_size_[k] 1\nkworker/0:5;ret_from_fork_[k];kthread_[k];worker_thread_[k];process_one_work_[k];drm_fb_helper_damage_work_[k];drm_client_buffer_vmap_[k];drm_gem_vmap_[k];drm_gem_shmem_vmap_[k];vmap_[k];map_kernel_range_noflush_[k];map_kernel_range_noflush_[k] 1\nsshd;[unknown];[unknown];[unknown] 1\nsshd;[unknown];[unknown] 1\nkworker/0:5;ret_from_fork_[k];kthread_[k];worker_thread_[k];process_one_work_[k];disk_check_events_[k];sr_block_check_events_[k];cdrom_check_events_[k];sr_check_events_[k];__scsi_execute_[k];blk_execute_rq_[k];blk_mq_sched_insert_request_[k];__blk_mq_delay_run_hw_queue_[k];__blk_mq_run_hw_queue_[k];blk_mq_sched_dispatch_requests_[k];__blk_mq_sched_dispatch_requests_[k];blk_mq_dispatch_rq_list_[k];scsi_queue_rq_[k];ata_scsi_queuecmd_[k];_raw_spin_unlock_irqrestore_[k];_raw_spin_unlock_irqrestore_[k] 1'\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3609/flamegraph",
+              "host": ["localhost"],
+              "port": "3609",
+              "path": ["flamegraph"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "v1/api/form",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "a",
+              "value": "a1",
+              "type": "default"
+            },
+            {
+              "key": "b",
+              "value": "b1",
+              "type": "default"
+            }
+          ]
+        },
+        "url": {
+          "raw": "v1/api/form",
+          "host": ["v1"],
+          "path": ["api", "form"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "v1/api/x-form",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "a",
+              "value": "a1",
+              "description": "a11",
+              "type": "default"
+            },
+            {
+              "key": "b",
+              "value": "b1",
+              "description": "b11",
+              "type": "default"
+            }
+          ]
+        },
+        "url": {
+          "raw": "v1/api/x-form",
+          "host": ["v1"],
+          "path": ["api", "x-form"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "v1/api/header",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "a",
+            "value": "a1",
+            "description": "aa1",
+            "type": "default"
+          },
+          {
+            "key": "b",
+            "value": "b1",
+            "description": "bb1",
+            "type": "default"
+          }
+        ],
+        "url": {
+          "raw": "v1/api/header",
+          "host": ["v1"],
+          "path": ["api", "header"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "v1/api/query?a=a1&b=b1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "v1/api/query?a=a1&b=b1",
+          "host": ["v1"],
+          "path": ["api", "query"],
+          "query": [
+            {
+              "key": "a",
+              "value": "a1",
+              "description": "aa1"
+            },
+            {
+              "key": "b",
+              "value": "b1",
+              "description": "bb1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

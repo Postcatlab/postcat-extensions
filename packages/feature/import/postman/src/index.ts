@@ -1,133 +1,88 @@
-export const importFunc = (data) => {
-  return {
-    version: '1.0.3',
-    environment: [],
-    group: [],
-    apiData: [
-      {
-        name: '自定义导入数据2',
-        projectID: 1,
-        uri: 'http://www.weather.com.cn/data/cityinfo/{cityCode}.html',
-        groupID: 0,
-        protocol: 'http',
-        method: 'GET',
-        requestBodyType: 'raw',
-        requestBodyJsonType: 'object',
-        requestBody: '',
-        queryParams: [],
-        restParams: [
-          {
-            name: 'cityCode',
-            required: true,
-            example: '101010100',
-            description:
-              '城市代码 : http://www.mca.gov.cn/article/sj/xzqh/2020/20201201.html',
-            enum: [
-              {
-                default: true,
-                value: '110000',
-                description: 'Beijing'
-              },
-              {
-                default: false,
-                value: '440000',
-                description: 'Guangdong'
-              },
-              {
-                default: false,
-                value: '',
-                description: ''
-              }
-            ]
-          }
-        ],
-        requestHeaders: [],
-        responseHeaders: [],
-        responseBodyType: 'json',
-        responseBodyJsonType: 'object',
-        responseBody: [
-          {
-            name: 'weatherinfo',
-            required: true,
-            example: '',
-            type: 'object',
-            description: '',
-            children: [
-              {
-                name: 'city',
-                description: '',
-                type: 'string',
-                required: true,
-                example: '北京'
-              }
-            ]
-          }
-        ],
-        weight: 0,
-        uuid: 1
-      },
-      {
-        name: '自定义导入数据3',
-        projectID: 1,
-        uri: 'http://www.weather.com.cn/data/cityinfo/{cityCode}.html',
-        groupID: 0,
-        protocol: 'http',
-        method: 'GET',
-        requestBodyType: 'raw',
-        requestBodyJsonType: 'object',
-        requestBody: '',
-        queryParams: [],
-        restParams: [
-          {
-            name: 'cityCode',
-            required: true,
-            example: '101010100',
-            description:
-              '城市代码 : http://www.mca.gov.cn/article/sj/xzqh/2020/20201201.html',
-            enum: [
-              {
-                default: true,
-                value: '110000',
-                description: 'Beijing'
-              },
-              {
-                default: false,
-                value: '440000',
-                description: 'Guangdong'
-              },
-              {
-                default: false,
-                value: '',
-                description: ''
-              }
-            ]
-          }
-        ],
-        requestHeaders: [],
-        responseHeaders: [],
-        responseBodyType: 'json',
-        responseBodyJsonType: 'object',
-        responseBody: [
-          {
-            name: 'weatherinfo',
-            required: true,
-            example: '',
-            type: 'object',
-            description: '',
-            children: [
-              {
-                name: 'city',
-                description: '',
-                type: 'string',
-                required: true,
-                example: '北京'
-              }
-            ]
-          }
-        ],
-        weight: 0,
-        uuid: 1
-      }
-    ]
+const parserParams = {
+  formdata: ({ formdata }) => ({
+    requestBody: formdata.map(({ key, ...items }) => ({
+      name: key,
+      required: true,
+      ...items
+    }))
+  }),
+  urlencoded: ({ urlencoded }) => ({
+    requestBody: urlencoded.map(({ key, ...items }) => ({
+      name: key,
+      ...items
+    }))
+  }),
+  raw: ({ raw }) => ({
+    requestBody: raw,
+    requestBodyType: 'raw',
+    requestBodyJsonType: ''
+  })
+}
+
+const parserRequest = (data) => {
+  if (!data) {
+    return {
+      requestBody: [],
+      requestBodyType: 'json',
+      requestBodyJsonType: 'object'
+    }
   }
+  const body = data?.body || {}
+  console.log('[]', body)
+  if (body.mode) {
+    console.log('ooo', parserParams[body.mode](body))
+    return {
+      requestBodyType: 'json',
+      requestBodyJsonType: 'object',
+      ...parserParams[body.mode](body)
+    }
+  }
+  return {
+    requestBody: [],
+    requestBodyType: 'json',
+    requestBodyJsonType: 'object'
+  }
+}
+
+const parserResponse = (data) => {
+  return {
+    responseBody: [],
+    responseBodyType: 'json',
+    responseBodyJsonType: 'object'
+  }
+}
+
+const parserItem = (data) => {
+  const { name, request, response, item } = data
+  if (item) {
+    return ''
+  }
+  const { method, url, header, body } = request
+  return {
+    name,
+    projectID: 1,
+    protocol: 'http',
+    method,
+    uri: url.raw,
+    queryParams: [],
+    restParams: [],
+    requestHeaders: header.map(({ key, ...items }) => ({
+      name: key,
+      ...items
+    })),
+    ...parserRequest(body),
+    ...parserResponse(response)
+  }
+}
+
+export const importFunc = (data) => {
+  const { item } = data
+  const apiData = item.map(parserItem).filter((it) => it)
+  console.log('lo', apiData)
+  const result = {
+    group: [],
+    environment: [],
+    apiData
+  }
+  return [result, null]
 }
