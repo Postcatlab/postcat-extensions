@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-postman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "导入 Postman 格式的数据文件",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-postman",
