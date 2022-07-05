@@ -23,8 +23,10 @@
       "filename": "data.json"
     },
     "i18n": {
-      "sourceLocale":"en-US",
-      "locales":[ "zh-Hans"]
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   }
 }
