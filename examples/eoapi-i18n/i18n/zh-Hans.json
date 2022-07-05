@@ -1,0 +1,9 @@
+{
+    "moduleName":"eoapi-国际化",
+    "description":"国际化插件示例",
+    "logo":"http://dummyimage.com/200x100",
+    "function.description":"导出 API 数据",
+    "now-lanuage":"当前语言是：{0}",
+    "multiple-variable":"替换多个变量： {0} {1}"
+
+}

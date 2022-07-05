@@ -1,0 +1,7 @@
+{
+    "moduleName":"eoapi-i18n",
+    "description":"The i18n example extension of eoapi",
+    "logo":"http://dummyimage.com/125x125",
+    "function.description":"export api data",
+    "now-lanuage":"Now lanuage is: {0}"
+}
