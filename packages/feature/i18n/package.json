@@ -20,7 +20,7 @@
   "features": {
     "apimanage.export": {
       "action": "exportFunc",
-      "label": "Data(.json)",
+      "label": "${function.label}",
       "description": "${function.description}",
       "icon": "http://dummyimage.com/125x125",
       "filename": "data.json"

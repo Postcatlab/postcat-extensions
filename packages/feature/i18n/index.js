@@ -1,6 +1,5 @@
 export const exportFunc = (data = {}) => {
   console.log(eo.i18n.localize('export-id','I am origin text'))
-  
   //localize(id:string,originText:string,...args)
   console.log(eo.i18n.localize('now-lanuage','Now lanuage is: {0}',eo.i18n.getSystemLanguage()))
   
