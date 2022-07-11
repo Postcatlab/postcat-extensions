@@ -54,6 +54,15 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
+      - run: pnpm install
+      - run: pnpm build
+        working-directory: packages/feature/import/postman
+
+      - run: npm publish
+        working-directory: packages/feature/import/postman
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
   publish-npm-push:
     needs: build
     runs-on: ubuntu-latest
