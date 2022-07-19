@@ -1,45 +1,16 @@
-### 导出
+# Export OpenAPI Extension
+## use
 
-可以使用导出类插件定期备份数据、与其他平台同步数据；
+Go to the overview page of the main interface, you can see the export function, click this area to open the corresponding pop-up window, and you can see the keywords of the installed export plug-ins. If it is not installed, it will not be displayed.
 
-#### 示例代码
+![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/images/image-20220512173155254.png)
 
-[eoapi to openapi](https://github.com/eolinker/eoapi-extensions/tree/main/packages/feature/export/openapi)
+Please select the file format you want to export, and click the OK button to complete the export.
 
-#### 配置
+![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/images/image-20220512173228275.png)
 
-- 导出方式：`Named Exports`（命名导出）
-- 导出类型：Function
-- 方法名：自定义，但需要与配置中的 `action` 字段保持一致
-- 传入参数：Eoapi 的 API 对象
-- 返回值：合法的`JSON`对象
-- 配置中的必要字段：
-  - `action`：主函数名称
-  - `label`：显示在 UI 上导出区域的名称
-  - `filename`：导出的文件名
+## export result
 
-目前，导出后写入文件的操作由核心系统完成，因此导出的拓展只需要返回导出的文件内容。
+![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/images/image-20220512173444118.png)
 
-#### 代码说明
-
-- 导出方式：`Named Exports`（命名导出）
-- 导出类型：`Function`
-- 方法名：自定义，但需要配置中的` action` 字段保持一致
-- 传入参数：Eoapi 的 API 对象
-- 返回值：`null`
-- 配置中的必要字段：
-  - `action`：主函数名称
-  - `label`：显示在 UI 上导出区域的名称
-
-### 3. 功能预告
-
-:::warning
-以下插件功能将会在后续支持，敬请期待。
-:::
-
-- 导入插件
-- API 文档生成代码
-- 语言包
-- 主题
-
-你想要拓展的功能不在我们的计划上？请在 [Issue](https://github.com/eolinker/eoapi/issues) 提出你的需求，十分感谢。
+After the export is successful, you can see a message indicating that the export is successful, indicating that there is no abnormality in the export process. If the export is abnormal, a failure message will pop up. Please contact the plugin developer for assistance in troubleshooting.
