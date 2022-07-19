@@ -1,34 +1,20 @@
-### 推送
+# Push to Eolink
 
-推送类插件允许我们将 Eoapi 上的数据一键推送到各个应用平台，比如：
+Push Eoapi API data to Eolink with one click;
+## configure
 
-- 推送到网关上完成 API 上线
-- 和低代码平台结合，将 API 快速变成低代码平台中可使用的组件等。
+Here we take the [**Push to Eolink**] plugin as an example. After the plugin is successfully installed, enter the configuration page to configure the token and remote address.
 
-#### 示例代码
+![image-202205121756587](./assets/images/image-05-20_17-09-50.jpg)
 
-一键将 API 推送到其他平台：[eoapi push eolink](https://github.com/eolinker/eoapi-extensions/tree/main/packages/feature/push/eolink)
+## use
 
-#### 代码说明
+Go to the overview page of the main page, you can see the push function, click this area to open the corresponding pop-up window, you can see the name of the push plug-in, it will not be displayed if it is not installed. Please select the desired push platform and click the [OK] button to complete the push.
 
-- 导出方式：`Named Exports`（命名导出）
-- 导出类型：`Function`
-- 方法名：自定义，但需要配置中的` action` 字段保持一致
-- 传入参数：Eoapi 的 API 对象
-- 返回值：`null`
-- 配置中的必要字段：
-  - `action`：主函数名称
-  - `label`：显示在 UI 上导出区域的名称
+![image-20220512173000566](./assets/images/image-20220512173000566.png)
 
-### 3. 功能预告
+![image-20220512173054947](./assets/images/image-20220512173054947.png)
 
-:::warning
-以下插件功能将会在后续支持，敬请期待。
-:::
+## push results
 
-- 导入插件
-- API 文档生成代码
-- 语言包
-- 主题
-
-你想要拓展的功能不在我们的计划上？请在 [Issue](https://github.com/eolinker/eoapi/issues) 提出你的需求，十分感谢。
+After the push is successful, you can see the message indicating that the push is successful, indicating that the push process is normal. If the push fails, a failure message will pop up. It may be a network error, or the pushed data is illegal. You can contact the extension developer to assist in troubleshooting.

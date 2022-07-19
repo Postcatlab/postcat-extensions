@@ -1,0 +1,6 @@
+{
+    "function.description":"Push API data to eolink.",
+    "configuration.token.description":"Eolink OpenAPI token, which can only be accessed remotely after configuration",
+    "configuration.projectId.description":"Eolink ProjectID"
+
+}

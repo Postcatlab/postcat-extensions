@@ -1,7 +1,7 @@
 {
   "name": "eoapi-export-openapi",
   "version": "1.0.15",
-  "description": "导出 OpenAPI.json 格式的文件",
+  "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",
@@ -42,9 +42,15 @@
     "apimanage.export": {
       "action": "export_convert",
       "label": "OpenAPI(.json)",
-      "description": "Export apiData as a OpenAPI JSON file",
+      "description": "${function.description}",
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png",
       "filename": "openapi.json"
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   },
   "dependencies": {

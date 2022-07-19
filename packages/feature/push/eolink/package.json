@@ -1,7 +1,7 @@
 {
   "name": "eoapi-push-eolink",
   "version": "1.0.18",
-  "description": "将数据以 OpenAPI 的格式推送到 eolink 平台",
+  "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-push-eolink",
@@ -46,7 +46,7 @@
     "apimanage.sync": {
       "action": "sync_to_remote",
       "label": "Eolink",
-      "description": "Push API data to eolink.",
+      "description": "${function.description}",
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
       "extestion": ""
     },
@@ -59,16 +59,22 @@
           "required": false,
           "default": "",
           "label": "Token",
-          "description": "远程服务器 Token，配置后才可访问"
+          "description": "${configuration.token.description}"
         },
         "projectId": {
           "type": "string",
           "required": false,
           "default": "ProjectID",
           "label": "ProjectID",
-          "description": "远程服务器 ProjectID"
+          "description": "${configuration.projectId.description}"
         }
       }
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   }
 }

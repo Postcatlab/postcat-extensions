@@ -1,7 +1,7 @@
 {
   "name": "eoapi-import-openapi",
   "version": "1.0.7",
-  "description": "导入 OpenAPI 规范的 JSON 格式文件",
+  "description": "Import the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",
   "moduleName": "Import OpenAPI",
@@ -24,8 +24,14 @@
     "apimanage.import": {
       "action": "importFunc",
       "label": "OpenAPI(.json)",
-      "description": "",
+      "description": "${function.description}",
       "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/export/openapi/assets/logo.png"
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   }
 }
