@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
