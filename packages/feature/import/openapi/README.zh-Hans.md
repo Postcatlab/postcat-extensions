@@ -6,5 +6,5 @@
 ![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/import/openapi/assets/images/2022-08-05-14-33-04.png)
 
 请选择想要入的文件格式，拖入文件点击确定按钮即可完成导入。
-![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/import/openapi/assets/images/2022-08-05-14-34-20.png)
+![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/import/openapi/assets/images/2022-08-05-14-38-04.png)
 

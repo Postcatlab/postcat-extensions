@@ -2,6 +2,9 @@
   "name": "eoapi-extensions",
   "version": "0.0.11",
   "private": true,
+  "repository": {
+    "url": "https://github.com/eolinker/eoapi-extensions"
+  },
   "description": "",
   "engines": {
     "node": ">= 14"
