@@ -1,4 +1,4 @@
-import { set, get, isEmpty } from 'lodash-unified'
+import * as _ from 'lodash'
 import { eoAPIInterface } from '../types/eoAPI'
 
 const paramTypeHash = new Map()
@@ -9,7 +9,7 @@ const paramTypeHash = new Map()
 // const typeHash = new Map().set('json', 'object')
 
 const transformProperties = (data, type) => {
-  if (isEmpty(data)) {
+  if (_.isEmpty(data)) {
     return {}
   }
   return {
@@ -55,7 +55,7 @@ export const setBase = ({ name, version }) => ({
 
 export const setTags = (data, sourceData: eoAPIInterface) => {
   const { group } = sourceData
-  set(
+  _.set(
     data,
     ['tags'],
     group.map(({ name }) => ({
@@ -69,7 +69,7 @@ export const setTags = (data, sourceData: eoAPIInterface) => {
 
 export const setPaths = (data, { apiData }: eoAPIInterface) => {
   apiData.forEach(({ uri, method }) => {
-    set(data, ['paths', uri, method.toLowerCase()], {
+    _.set(data, ['paths', uri, method.toLowerCase()], {
       tags: [],
       requestBody: {
         content: {}
@@ -89,8 +89,8 @@ export const setRequestHeader = (data, { apiData }: eoAPIInterface) => {
       schema: { ...it, type: 'string' }
     }))
     const parameters =
-      get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
-    set(
+      _.get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
+    _.set(
       data,
       ['paths', uri, method.toLowerCase(), 'parameters'],
       parameters.concat(headerList)
@@ -107,13 +107,13 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
       return
     }
     if (requestBodyType === 'json' && requestBody?.length > 0) {
-      set(
+      _.set(
         data,
         ['paths', uri, method.toLowerCase(), 'requestBody', 'required'],
         true
       )
     }
-    set(
+    _.set(
       data,
       [
         'paths',
@@ -134,12 +134,12 @@ export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
   apiData.forEach(
     ({ responseBodyType, uri, method, responseBody, responseBodyJsonType }) => {
       const paramType = paramTypeHash.get(responseBodyType)
-      set(
+      _.set(
         data,
         ['paths', uri, method.toLowerCase(), 'responses', '200', 'description'],
         'OK'
       )
-      set(
+      _.set(
         data,
         [
           'paths',
