@@ -6,7 +6,7 @@ import {
   setRequestHeader,
   setResponseBody
 } from './utils'
-import { eoAPIInterface } from '../types/eoAPI'
+import { eoAPIType } from '../types/eoAPI'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -20,7 +20,7 @@ import { eoAPIInterface } from '../types/eoAPI'
 class ToOpenApi {
   data = {}
   sourceData
-  constructor(data: eoAPIInterface) {
+  constructor(data: eoAPIType) {
     this.sourceData = JSON.parse(JSON.stringify(data))
     const { project, version } = this.sourceData
     this.data = setBase({ ...project, version })
@@ -49,6 +49,7 @@ class ToOpenApi {
   setTags() {
     this.data = setTags(this.data, this.sourceData)
   }
+
   // setTagToApi() {
   //   this.data = setTagToApi(this.data, this.sourceData);
   // }

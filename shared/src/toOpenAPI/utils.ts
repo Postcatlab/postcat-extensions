@@ -1,24 +1,24 @@
 import * as _ from 'lodash'
-import { eoAPIInterface } from '../types/eoAPI'
+import { eoAPIType } from '../types/eoAPI'
 
 const paramTypeHash = new Map()
   .set('json', 'application/json')
   .set('xml', 'application/xml')
   .set('formData', 'multipart/form-data')
 
-// const typeHash = new Map().set('json', 'object')
+const typeHash = new Map().set('json', 'object')
 
 const transformProperties = (data, type) => {
   if (_.isEmpty(data)) {
     return {}
   }
   return {
-    type,
+    type: typeHash.get(type) || type,
     required: [
       ...new Set(data?.filter((it) => it.required).map((it) => it.name) || [])
     ],
     properties: data.reduce(
-      (total, { type, required, name, children, ...item }) => ({
+      (total, { type, required, enum: struct, name, children, ...item }) => ({
         ...total,
         [name]: {
           ...item,
@@ -50,10 +50,10 @@ export const setBase = ({ name, version }) => ({
   servers: [],
   paths: {},
   tags: [],
-  components: []
+  components: {}
 })
 
-export const setTags = (data, sourceData: eoAPIInterface) => {
+export const setTags = (data, sourceData: eoAPIType) => {
   const { group } = sourceData
   _.set(
     data,
@@ -67,10 +67,13 @@ export const setTags = (data, sourceData: eoAPIInterface) => {
   return data
 }
 
-export const setPaths = (data, { apiData }: eoAPIInterface) => {
-  apiData.forEach(({ uri, method }) => {
+export const setPaths = (data, { apiData }: eoAPIType) => {
+  apiData.forEach(({ uri, name, method }) => {
     _.set(data, ['paths', uri, method.toLowerCase()], {
       tags: [],
+      summary: name,
+      description: name,
+      operationId: name,
       requestBody: {
         content: {}
       },
@@ -81,11 +84,12 @@ export const setPaths = (data, { apiData }: eoAPIInterface) => {
   return data
 }
 
-export const setRequestHeader = (data, { apiData }: eoAPIInterface) => {
+export const setRequestHeader = (data, { apiData }: eoAPIType) => {
   apiData.forEach(({ requestHeaders, method, uri }) => {
-    const headerList = requestHeaders.map(({ name, ...it }) => ({
+    const headerList = requestHeaders.map(({ name, required, ...it }) => ({
       name,
       in: 'header',
+      required: true,
       schema: { ...it, type: 'string' }
     }))
     const parameters =
@@ -99,7 +103,7 @@ export const setRequestHeader = (data, { apiData }: eoAPIInterface) => {
   return data
 }
 
-export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
+export const setRequestBody = (data, { apiData }: eoAPIType) => {
   apiData.forEach(({ requestBodyType, uri, method, requestBody }) => {
     const paramType = paramTypeHash.get(requestBodyType)
     if (!paramType) {
@@ -130,7 +134,7 @@ export const setRequestBody = (data, { apiData }: eoAPIInterface) => {
   return data
 }
 
-export const setResponseBody = (data, { apiData }: eoAPIInterface) => {
+export const setResponseBody = (data, { apiData }: eoAPIType) => {
   apiData.forEach(
     ({ responseBodyType, uri, method, responseBody, responseBodyJsonType }) => {
       const paramType = paramTypeHash.get(responseBodyType)

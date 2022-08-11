@@ -1,4 +1,4 @@
-export interface eoAPIInterface {
+export type eoAPIType = {
   environment: string
   group: Array<{ name: string }>
   project: Array<{ name: string }>

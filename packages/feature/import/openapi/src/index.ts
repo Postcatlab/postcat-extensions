@@ -102,9 +102,17 @@ const parserResponses = (data) => {
   }
 }
 
-const toOpenapi = ({ method, url, summary, parameters, responses }) => {
+const toOpenapi = ({
+  method,
+  url,
+  summary,
+  operationId,
+  parameters,
+  responses
+  // description,
+}) => {
   return {
-    name: summary || url,
+    name: summary || operationId || url,
     protocol: 'http', // * openapi 中没有对应字段
     uri: url,
     projectID: 1,
