@@ -78,24 +78,24 @@ const parserResponses = (data) => {
   }
   const { content } = data
   // * contentList => ['*/*', 'application/json', 'application/xml']
-  const contentList = Object.keys(content)
-  if (contentList.length === 0) {
+
+  // * 仅取第一项
+  const { schema }: any = Object.values(content).at(0)
+  if (schema == null) {
     return {
-      responseBodyType: ''
+      responseBodyType: '',
+      responseBody: []
     }
   }
-  // * It could be better
-  let dataSchema: any = null
-  if (contentList.includes('application/json')) {
-    dataSchema = content['application/json'].schema
-  } else if (contentList.includes('application/xml')) {
-    dataSchema = content['application/xml'].schema
-  } else if (contentList.includes('*/*')) {
-    dataSchema = content['*/*'].schema
-  }
-  const { type } = dataSchema
-  return {
-    responseBodyType: type || ''
+  if (schema['$ref']) {
+    const { properties, required, type } = structMap.get(
+      (schema['$ref'] as string).split('/').at(-1)
+    )
+    return {
+      responseBodyType: bodyTypeHash.get(type) || 'json',
+      responseBodyJsonType: type,
+      responseBody: parserProperties(properties, required)
+    }
   }
 }
 
