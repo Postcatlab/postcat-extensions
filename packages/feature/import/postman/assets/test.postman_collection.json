@@ -1,0 +1,4530 @@
+{
+  "info": {
+    "_postman_id": "a9bed804-ee1d-47e4-9002-ce3e24126a73",
+    "name": "test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9591068"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "sys",
+          "item": [
+            {
+              "name": "user",
+              "item": []
+            },
+            {
+              "name": "role",
+              "item": [
+                {
+                  "name": "获取角色列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "test-token",
+                        "value": "123456",
+                        "description": "测试用的token",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{apiUrl}}/admin/sys/role/list",
+                      "host": ["{{apiUrl}}"],
+                      "path": ["admin", "sys", "role", "list"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/list",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "list"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1992-02-18T07:38:37.597Z\",\n    \"updatedAt\": \"2021-12-17T09:37:50.494Z\",\n    \"id\": -97800776.99603526,\n    \"userId\": \"id tempor magna\",\n    \"name\": \"ullamco officia dolor\",\n    \"label\": \"enim anim\",\n    \"remark\": \"velit deserunt quis veniam\"\n  },\n  {\n    \"createdAt\": \"2002-05-31T17:13:52.578Z\",\n    \"updatedAt\": \"2003-07-17T08:53:34.775Z\",\n    \"id\": -97826961.06445861,\n    \"userId\": \"se\",\n    \"name\": \"velit in\",\n    \"label\": \"cupidatat ad deserunt consequat\",\n    \"remark\": \"in anim officia ad\"\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "分页查询角色信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/role/page?limit=10&page=1",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "role", "page"],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "description": "当前页包含数量"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "当前页包含数量"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/page?limit=10&page=1",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "page"],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1992-02-18T07:38:37.597Z\",\n    \"updatedAt\": \"2021-12-17T09:37:50.494Z\",\n    \"id\": -97800776.99603526,\n    \"userId\": \"id tempor magna\",\n    \"name\": \"ullamco officia dolor\",\n    \"label\": \"enim anim\",\n    \"remark\": \"velit deserunt quis veniam\"\n  },\n  {\n    \"createdAt\": \"2002-05-31T17:13:52.578Z\",\n    \"updatedAt\": \"2003-07-17T08:53:34.775Z\",\n    \"id\": -97826961.06445861,\n    \"userId\": \"se\",\n    \"name\": \"velit in\",\n    \"label\": \"cupidatat ad deserunt consequat\",\n    \"remark\": \"in anim officia ad\"\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "删除角色",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"roleIds\": [\n    1900502.3974094242,\n    -98516378.08185036\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/role/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "role", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"roleIds\": [\n    -64215084.9994437,\n    82907044.07718071\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "新增角色",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "name",
+                          "value": "娜美",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/role/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "role", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"eiusmod elit labore proident\",\n  \"label\": \"laborum amet nulla\",\n  \"remark\": \"qui culpa sit\",\n  \"menus\": [\n    \"proident incididunt commodo\",\n    \"ut\"\n  ],\n  \"depts\": [\n    \"adipisicing cupidatat et pariatur\",\n    \"elit do\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "add"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "更新角色",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ea\",\n  \"label\": \"cillum\",\n  \"roleId\": 26063498.955287963,\n  \"remark\": \"ipsum culpa\",\n  \"menus\": [\n    \"proident Lorem ullamco aute\",\n    \"sint anim\"\n  ],\n  \"depts\": [\n    \"ut incididunt\",\n    \"occaecat aliquip ut reprehenderit\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/role/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "role", "update"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"veniam occaecat culpa amet\",\n  \"label\": \"eu do pariatur\",\n  \"roleId\": -98201500.21051997,\n  \"remark\": \"reprehenderit Lorem\",\n  \"menus\": [\n    \"aliqua nulla anim proident\",\n    \"deserunt ipsum ut\"\n  ],\n  \"depts\": [\n    \"consectetur\",\n    \"ut pariatur\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/update",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "update"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "获取角色信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/role/info?roleId=-82722397.76965185",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "role", "info"],
+                      "query": [
+                        {
+                          "key": "roleId",
+                          "value": "-82722397.76965185",
+                          "description": "(Required) 需要查找的角色ID"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/role/info?roleId=-82722397.76965185",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "role", "info"],
+                          "query": [
+                            {
+                              "key": "roleId",
+                              "value": "-82722397.76965185"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"roleInfo\": {\n    \"createdAt\": \"1970-02-18T03:23:36.213Z\",\n    \"updatedAt\": \"1973-09-26T17:37:36.281Z\",\n    \"id\": -76652723.46901256,\n    \"userId\": \"cupidatat\",\n    \"name\": \"est in deserunt\",\n    \"label\": \"in incididunt cupidatat magna\",\n    \"remark\": \"qui pro\"\n  },\n  \"menus\": [\n    {\n      \"createdAt\": \"1983-01-18T02:40:30.744Z\",\n      \"updatedAt\": \"1984-09-13T01:23:00.984Z\",\n      \"id\": -13270607.613891408,\n      \"roleId\": 96082823.56054705,\n      \"menuId\": -28827781.201712593\n    },\n    {\n      \"createdAt\": \"1951-02-21T02:42:44.755Z\",\n      \"updatedAt\": \"1964-05-27T20:03:41.705Z\",\n      \"id\": -40956785.835404254,\n      \"roleId\": -22801660.54074928,\n      \"menuId\": -74922816.34876244\n    }\n  ],\n  \"depts\": [\n    {\n      \"createdAt\": \"1950-01-12T21:35:21.986Z\",\n      \"updatedAt\": \"1999-02-15T11:22:10.975Z\",\n      \"id\": 52469892.93481016,\n      \"roleId\": 593994.919278279,\n      \"departmentId\": 42876878.619476825\n    },\n    {\n      \"createdAt\": \"1962-08-08T08:20:28.133Z\",\n      \"updatedAt\": \"1994-08-09T23:59:58.237Z\",\n      \"id\": 53091363.40593317,\n      \"roleId\": 97412723.11610517,\n      \"departmentId\": 36811072.16513008\n    }\n  ]\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "menu",
+              "item": [
+                {
+                  "name": "获取对应权限的菜单列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/menu/list",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "menu", "list"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/menu/list",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "menu", "list"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1994-12-16T08:09:01.009Z\",\n    \"updatedAt\": \"1955-02-08T03:15:44.780Z\",\n    \"id\": -35632514.6338238,\n    \"parentId\": 63454255.8122679,\n    \"name\": \"ut tempor consectetur ex laborum\",\n    \"router\": \"non elit \",\n    \"perms\": \"dolor officia et aliquip\",\n    \"type\": 98525991.43569311,\n    \"icon\": \"sed consectetur do laboris minim\",\n    \"orderNum\": 67544376.04397655,\n    \"viewPath\": \"commodo eiusmod fugiat\",\n    \"keepalive\": false,\n    \"isShow\": true\n  },\n  {\n    \"createdAt\": \"2007-12-31T11:31:14.675Z\",\n    \"updatedAt\": \"2007-03-21T04:51:46.767Z\",\n    \"id\": 75428387.32478625,\n    \"parentId\": -9049444.060985133,\n    \"name\": \"ad magna s\",\n    \"router\": \"et adipisicing\",\n    \"perms\": \"laboris proident commodo\",\n    \"type\": 85322156.48776704,\n    \"icon\": \"aute minim nisi\",\n    \"orderNum\": -63495411.24717848,\n    \"viewPath\": \"aute aliqua eiusmod elit\",\n    \"keepalive\": true,\n    \"isShow\": false\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "新增菜单或权限",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": 96951743.32343072,\n  \"parentId\": -51689177.533839196,\n  \"name\": \"occaecat sunt ut tempor\",\n  \"orderNum\": -73481038.15382703,\n  \"router\": \"ut\",\n  \"perms\": \"laborum dolore sunt\",\n  \"viewPath\": \"aliquip consectetur minim\",\n  \"isShow\": true,\n  \"keepalive\": true,\n  \"icon\": \"ut\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/menu/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "menu", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": 96951743.32343072,\n  \"parentId\": -51689177.533839196,\n  \"name\": \"occaecat sunt ut tempor\",\n  \"orderNum\": -73481038.15382703,\n  \"router\": \"ut\",\n  \"perms\": \"laborum dolore sunt\",\n  \"viewPath\": \"aliquip consectetur minim\",\n  \"isShow\": true,\n  \"keepalive\": true,\n  \"icon\": \"ut\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/menu/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "menu", "add"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "更新菜单或权限",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": 34123608.52474353,\n  \"parentId\": 9115452.043336302,\n  \"name\": \"nisi ad sunt elit id\",\n  \"orderNum\": -37419354.10170449,\n  \"router\": \"qui laborum anim officia\",\n  \"perms\": \"in deserunt eu\",\n  \"viewPath\": \"aliqua nostrud\",\n  \"menuId\": 85810194.01327908,\n  \"isShow\": true,\n  \"keepalive\": true,\n  \"icon\": \"dolor eiusmod dolore tempor\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/menu/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "menu", "update"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": 34123608.52474353,\n  \"parentId\": 9115452.043336302,\n  \"name\": \"nisi ad sunt elit id\",\n  \"orderNum\": -37419354.10170449,\n  \"router\": \"qui laborum anim officia\",\n  \"perms\": \"in deserunt eu\",\n  \"viewPath\": \"aliqua nostrud\",\n  \"menuId\": 85810194.01327908,\n  \"isShow\": true,\n  \"keepalive\": true,\n  \"icon\": \"dolor eiusmod dolore tempor\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/menu/update",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "menu", "update"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "删除菜单或权限",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"menuId\": 70785396.71567953\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/menu/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "menu", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"menuId\": 70785396.71567953\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/menu/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "menu", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "菜单或权限信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/menu/info?menuId=-82722397.76965185",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "menu", "info"],
+                      "query": [
+                        {
+                          "key": "menuId",
+                          "value": "-82722397.76965185",
+                          "description": "(Required) 查询的菜单ID"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/menu/info?menuId=-82722397.76965185",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "menu", "info"],
+                          "query": [
+                            {
+                              "key": "menuId",
+                              "value": "-82722397.76965185"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"menu\": {\n    \"createdAt\": \"1986-05-06T12:05:09.775Z\",\n    \"updatedAt\": \"1951-04-28T02:19:40.960Z\",\n    \"id\": -78063624.28325726,\n    \"parentId\": -24785556.976515368,\n    \"name\": \"aute ex\",\n    \"router\": \"fugiat non ullamco\",\n    \"perms\": \"enim quis esse consectetur irure\",\n    \"type\": -5078725.871142134,\n    \"icon\": \"sed\",\n    \"orderNum\": 31772081.95660013,\n    \"viewPath\": \"exercitation dolor id\",\n    \"keepalive\": true,\n    \"isShow\": false\n  },\n  \"parentMenu\": {\n    \"createdAt\": \"1964-02-24T00:08:28.778Z\",\n    \"updatedAt\": \"1952-06-30T20:49:53.366Z\",\n    \"id\": 62501457.42614913,\n    \"parentId\": 63823576.57877758,\n    \"name\": \"in id ut consequat ipsum\",\n    \"router\": \"fugiat commodo consectetur et adipisicing\",\n    \"perms\": \"ex veniam nostrud nisi sed\",\n    \"type\": -97094224.08862412,\n    \"icon\": \"ut consequat\",\n    \"orderNum\": 44924783.395481616,\n    \"viewPath\": \"Excepteur voluptate aliquip\",\n    \"keepalive\": false,\n    \"isShow\": false\n  }\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "dept",
+              "item": [
+                {
+                  "name": "获取系统部门列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/list",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "list"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/list",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "list"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1993-11-23T06:49:59.374Z\",\n    \"updatedAt\": \"2004-05-09T13:11:43.305Z\",\n    \"id\": -6748032.407301664,\n    \"parentId\": 49074253.06718561,\n    \"name\": \"qui reprehenderit\",\n    \"orderNum\": 60636358.053022265\n  },\n  {\n    \"createdAt\": \"1972-01-27T05:21:34.098Z\",\n    \"updatedAt\": \"1978-11-05T08:47:49.978Z\",\n    \"id\": -88126577.15485592,\n    \"parentId\": 74865082.5213435,\n    \"name\": \"enim minim fugiat a\",\n    \"orderNum\": -99529358.15138173\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "创建系统部门",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"cupidatat et\",\n  \"parentId\": 72314992.0561069,\n  \"orderNum\": -31682545.821270928\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"cupidatat et\",\n  \"parentId\": 72314992.0561069,\n  \"orderNum\": -31682545.821270928\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "add"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "删除系统部门",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"departmentId\": 15661468.821704984\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"departmentId\": 15661468.821704984\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "查询单个系统部门信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/info?departmentId=-82722397.76965185",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "info"],
+                      "query": [
+                        {
+                          "key": "departmentId",
+                          "value": "-82722397.76965185",
+                          "description": "(Required) 查询的系统部门ID"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/info?departmentId=-82722397.76965185",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "info"],
+                          "query": [
+                            {
+                              "key": "departmentId",
+                              "value": "-82722397.76965185"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"department\": {\n    \"createdAt\": \"1948-08-02T03:48:22.160Z\",\n    \"updatedAt\": \"1994-03-27T14:27:59.910Z\",\n    \"id\": -46188041.75552333,\n    \"parentId\": 55731270.884556144,\n    \"name\": \"pariatur ess\",\n    \"orderNum\": -21564579.85445112\n  },\n  \"parentDepartment\": {\n    \"createdAt\": \"1958-08-19T16:06:45.642Z\",\n    \"updatedAt\": \"2019-03-17T17:09:59.852Z\",\n    \"id\": 85863087.83490133,\n    \"parentId\": 19751130.710270017,\n    \"name\": \"Ut ea quis\",\n    \"orderNum\": -80868225.86084943\n  }\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "更新系统部门",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"nisi\",\n  \"parentId\": -59725485.93469966,\n  \"id\": -26964907.30836594,\n  \"orderNum\": 52811340.92722243\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "update"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"nisi\",\n  \"parentId\": -59725485.93469966,\n  \"id\": -26964907.30836594,\n  \"orderNum\": 52811340.92722243\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/update",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "update"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "管理员部门转移",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"userIds\": [\n    -66396614.770286,\n    26227567.22405182\n  ],\n  \"departmentId\": 18023573.039890468\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/transfer",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "transfer"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userIds\": [\n    -85055126.06468941,\n    4116282.910659656\n  ],\n  \"departmentId\": -37793941.36973107\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/transfer",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "transfer"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "部门移动排序",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"depts\": [\n    {\n      \"id\": 89823922.13525069,\n      \"parentId\": 23489573.33938451\n    },\n    {\n      \"id\": 81212962.1516664,\n      \"parentId\": -75105944.39245822\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/dept/move",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "dept", "move"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"depts\": [\n    {\n      \"id\": -18533346.851967186,\n      \"parentId\": -22886186.711586863\n    },\n    {\n      \"id\": 38384528.12036529,\n      \"parentId\": 48627887.31797147\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/dept/move",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "dept", "move"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "log",
+              "item": [
+                {
+                  "name": "分页查询登录日志",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/log/login/page?limit=10&page=1",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "log", "login", "page"],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "description": "当前页包含数量"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "当前页包含数量"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/log/login/page?limit=10&page=1",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "log", "login", "page"],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"id\": 32234684.21036744,\n    \"ip\": \"sit voluptate\",\n    \"os\": \"dolore\",\n    \"browser\": \"eu sed voluptate\",\n    \"time\": \"adipis\",\n    \"username\": \"sed nulla non\"\n  },\n  {\n    \"id\": -86070141.82512702,\n    \"ip\": \"offici\",\n    \"os\": \"tempor sint dolor consequat minim\",\n    \"browser\": \"dolore eu dolore\",\n    \"time\": \"Lorem sunt fugiat\",\n    \"username\": \"consequat dolor qui\"\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "分页查询任务日志",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/log/task/page?limit=10&page=1",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "log", "task", "page"],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "description": "当前页包含数量"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "当前页包含数量"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/log/task/page?limit=10&page=1",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "log", "task", "page"],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"id\": -55771903.92599381,\n    \"taskId\": 67926982.44441402,\n    \"name\": \"occaecat\",\n    \"createdAt\": \"esse Excepteur\",\n    \"consumeTime\": -49983817.564434044,\n    \"detail\": \"anim offic\",\n    \"status\": -2052870.1330110133\n  },\n  {\n    \"id\": 1140207.6869210452,\n    \"taskId\": 60130960.50363469,\n    \"name\": \"Lorem tempor\",\n    \"createdAt\": \"proident\",\n    \"consumeTime\": 78905259.66350013,\n    \"detail\": \"anim\",\n    \"status\": -41546897.4590143\n  }\n]"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "task",
+              "item": [
+                {
+                  "name": "获取任务列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/page?limit=10&page=1",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "page"],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "description": "当前页包含数量"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "当前页包含数量"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/page?limit=10&page=1",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "page"],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1991-08-20T15:01:40.083Z\",\n    \"updatedAt\": \"1947-06-05T23:05:26.354Z\",\n    \"id\": -45054159.588537954,\n    \"name\": \"in mollit\",\n    \"service\": \"officia nisi ipsum\",\n    \"type\": -91262961.55020785,\n    \"status\": -26862212.374708295,\n    \"startTime\": \"1965-02-21T13:39:05.747Z\",\n    \"endTime\": \"2009-04-24T19:43:53.190Z\",\n    \"limit\": -69240660.31474343,\n    \"cron\": \"aute anim dolor cupidatat\",\n    \"every\": 55081423.8643873,\n    \"data\": \"eiusmod Ut consequat ut reprehenderit\",\n    \"jobOpts\": \"dolore\",\n    \"remark\": \"commodo nostrud magna\"\n  },\n  {\n    \"createdAt\": \"1957-01-17T23:38:33.153Z\",\n    \"updatedAt\": \"2008-06-28T10:34:16.189Z\",\n    \"id\": -53458464.23096758,\n    \"name\": \"sed exercitation\",\n    \"service\": \"amet culpa sit deserunt enim\",\n    \"type\": -49015559.40446456,\n    \"status\": -33613767.83687668,\n    \"startTime\": \"2018-07-06T13:43:48.349Z\",\n    \"endTime\": \"1963-03-19T13:42:38.513Z\",\n    \"limit\": -95443125.11758521,\n    \"cron\": \"cu\",\n    \"every\": -58587932.5701534,\n    \"data\": \"\",\n    \"jobOpts\": \"non mollit commodo\",\n    \"remark\": \"aliquip tempor\"\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "添加任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"ea\",\n  \"service\": \"esse sint\",\n  \"type\": -32806013.518173844,\n  \"status\": 94456067.61517009,\n  \"cron\": \"Duis cupidatat sunt\",\n  \"every\": -82319831.60751009,\n  \"startTime\": \"1956-06-10T08:13:32.458Z\",\n  \"endTime\": \"1958-02-10T16:27:45.019Z\",\n  \"limit\": -21524759.42052266,\n  \"data\": \"adipisicing dolor\",\n  \"remark\": \"magna in voluptat\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"ea\",\n  \"service\": \"esse sint\",\n  \"type\": -32806013.518173844,\n  \"status\": 94456067.61517009,\n  \"cron\": \"Duis cupidatat sunt\",\n  \"every\": -82319831.60751009,\n  \"startTime\": \"1956-06-10T08:13:32.458Z\",\n  \"endTime\": \"1958-02-10T16:27:45.019Z\",\n  \"limit\": -21524759.42052266,\n  \"data\": \"adipisicing dolor\",\n  \"remark\": \"magna in voluptat\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "add"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "更新任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"anim\",\n  \"service\": \"elit dolore\",\n  \"type\": -11461640.674741417,\n  \"status\": 85600150.53907928,\n  \"cron\": \"ullamco pariatur laboris officia\",\n  \"every\": 98621532.67556205,\n  \"id\": -58027791.91688674,\n  \"startTime\": \"1967-02-07T18:35:06.340Z\",\n  \"endTime\": \"2012-08-10T01:05:54.412Z\",\n  \"limit\": 38041537.79163405,\n  \"data\": \"qui in ex eiusmod\",\n  \"remark\": \"Lorem dolore dolor elit\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "update"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"anim\",\n  \"service\": \"elit dolore\",\n  \"type\": -11461640.674741417,\n  \"status\": 85600150.53907928,\n  \"cron\": \"ullamco pariatur laboris officia\",\n  \"every\": 98621532.67556205,\n  \"id\": -58027791.91688674,\n  \"startTime\": \"1967-02-07T18:35:06.340Z\",\n  \"endTime\": \"2012-08-10T01:05:54.412Z\",\n  \"limit\": 38041537.79163405,\n  \"data\": \"qui in ex eiusmod\",\n  \"remark\": \"Lorem dolore dolor elit\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/update",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "update"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "查询任务详细信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/info?id=-82722397.76965185",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "info"],
+                      "query": [
+                        {
+                          "key": "id",
+                          "value": "-82722397.76965185",
+                          "description": "(Required) 任务ID"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/info?id=-82722397.76965185",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "info"],
+                          "query": [
+                            {
+                              "key": "id",
+                              "value": "-82722397.76965185"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"createdAt\": \"1973-01-04T13:14:40.816Z\",\n  \"updatedAt\": \"1948-07-06T20:15:36.009Z\",\n  \"id\": -84708753.89302143,\n  \"name\": \"aliqua laborum dolor culpa\",\n  \"service\": \"aliquip Excepteur labore volup\",\n  \"type\": -75687071.62804148,\n  \"status\": 97970946.48106346,\n  \"startTime\": \"2002-01-15T09:58:58.046Z\",\n  \"endTime\": \"1986-04-27T06:30:31.646Z\",\n  \"limit\": 23974973.45660673,\n  \"cron\": \"sed\",\n  \"every\": 40175586.78750196,\n  \"data\": \"id dolor\",\n  \"jobOpts\": \"et ea\",\n  \"remark\": \"exercitation cillum quis\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "手动执行一次任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": 89361162.03883171\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/once",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "once"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": 89361162.03883171\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/once",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "once"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "停止任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": 89361162.03883171\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/stop",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "stop"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": 89361162.03883171\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/stop",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "stop"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "启动任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": 89361162.03883171\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/start",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "start"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": 89361162.03883171\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/start",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "start"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "删除任务",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": 89361162.03883171\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/task/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "task", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": 89361162.03883171\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/task/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "task", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "online",
+              "item": [
+                {
+                  "name": "查询当前在线用户",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/online/list",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "online", "list"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/online/list",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "online", "list"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"id\": 43072531.756237,\n    \"ip\": \"pariatur anim\",\n    \"username\": \"exercitation culpa in\",\n    \"isCurrent\": true,\n    \"time\": \"nulla minim laboris ipsum\",\n    \"os\": \"anim amet\",\n    \"browser\": \"consequat exercitation\",\n    \"disable\": true\n  },\n  {\n    \"id\": 42786788.93296614,\n    \"ip\": \"in\",\n    \"username\": \"cupidatat\",\n    \"isCurrent\": true,\n    \"time\": \"adipisicing\",\n    \"os\": \"quis adipisicing est velit officia\",\n    \"browser\": \"incididunt cupidatat dolore dolor laborum\",\n    \"disable\": false\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "下线指定在线用户",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": -2189883.534722537\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/online/kick",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "online", "kick"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": -2189883.534722537\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/online/kick",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "online", "kick"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "param-config",
+              "item": [
+                {
+                  "name": "分页获取参数配置列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/param-config/page?limit=10&page=1",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "param-config", "page"],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "description": "当前页包含数量"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "description": "当前页包含数量"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/param-config/page?limit=10&page=1",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "param-config", "page"],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "[\n  {\n    \"createdAt\": \"1997-02-20T02:25:00.782Z\",\n    \"updatedAt\": \"1990-05-09T18:51:16.832Z\",\n    \"id\": 8649221.71340549,\n    \"key\": \"dolore Excepteur velit enim\",\n    \"name\": \"n\",\n    \"value\": \"esse sit officia\",\n    \"remark\": \"laborum labore laboris ad\"\n  },\n  {\n    \"createdAt\": \"1957-07-13T22:23:19.380Z\",\n    \"updatedAt\": \"2005-05-21T08:00:11.906Z\",\n    \"id\": -19636656.68392931,\n    \"key\": \"cupidatat dolore id\",\n    \"name\": \"nulla\",\n    \"value\": \"eiusmod non\",\n    \"remark\": \"in aliqua fugiat minim dolor\"\n  }\n]"
+                    }
+                  ]
+                },
+                {
+                  "name": "新增参数配置",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"dolor cillum cupidatat\",\n  \"key\": \"ut proident\",\n  \"value\": \"eiusmod consectetur quis pariatur\",\n  \"remark\": \"aute\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/param-config/add",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "param-config", "add"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"dolor cillum cupidatat\",\n  \"key\": \"ut proident\",\n  \"value\": \"eiusmod consectetur quis pariatur\",\n  \"remark\": \"aute\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/param-config/add",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "param-config", "add"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "查询单个参数配置信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/param-config/info?id=-82722397.76965185",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "param-config", "info"],
+                      "query": [
+                        {
+                          "key": "id",
+                          "value": "-82722397.76965185",
+                          "description": "(Required) 需要查询的配置编号"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/param-config/info?id=-82722397.76965185",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "param-config", "info"],
+                          "query": [
+                            {
+                              "key": "id",
+                              "value": "-82722397.76965185"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"createdAt\": \"2014-08-14T05:22:25.467Z\",\n  \"updatedAt\": \"1975-02-11T08:28:34.829Z\",\n  \"id\": -24698453.857135043,\n  \"key\": \"ut do est ea\",\n  \"name\": \"aliqua et qui commodo est\",\n  \"value\": \"ut nostrud fugiat\",\n  \"remark\": \"dolor dolore dolor proident id\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "更新单个参数配置",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": 31796926.834310785,\n  \"name\": \"et sint minim\",\n  \"value\": \"occaecat deserunt aliqua id consequat\",\n  \"remark\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/param-config/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "param-config", "update"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": 31796926.834310785,\n  \"name\": \"et sint minim\",\n  \"value\": \"occaecat deserunt aliqua id consequat\",\n  \"remark\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/param-config/update",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "param-config", "update"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "删除指定的参数配置",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ids\": [\n    45048513.244858265,\n    -86528862.18222249\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/param-config/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "param-config", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ids\": [\n    -80503675.8789663,\n    -90279965.99268487\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/sys/param-config/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "sys", "param-config", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "获取服务器运行信息",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/sys/serve/stat",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "sys", "serve", "stat"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sys/serve/stat",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "sys", "serve", "stat"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"runtime\": {\n    \"os\": \"cillum\",\n    \"arch\": \"commodo ullamco dolor\",\n    \"nodeVersion\": \"proident nulla laboris do\",\n    \"npmVersion\": \"Du\"\n  },\n  \"cpu\": {\n    \"manufacturer\": \"Duis\",\n    \"brand\": \"dolore cupidatat aute\",\n    \"physicalCores\": 14286839.62530309,\n    \"model\": \"magna laboris aute cupidatat\",\n    \"speed\": 19093670.053126693,\n    \"rawCurrentLoad\": -54447610.083880395,\n    \"rawCurrentLoadIdle\": -59382187.79487996,\n    \"coresLoad\": [\n      {\n        \"rawLoad\": 49484155.34422913,\n        \"rawLoadIdle\": -10804561.73714599\n      },\n      {\n        \"rawLoad\": -92154886.66930734,\n        \"rawLoadIdle\": -21078051.35453944\n      }\n    ]\n  },\n  \"disk\": {\n    \"size\": 4976167.406876981,\n    \"used\": -55731002.67353843,\n    \"available\": 82860782.50398204\n  },\n  \"memory\": {\n    \"total\": -85898374.93941265,\n    \"available\": -58008185.64806214\n  }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "account",
+          "item": [
+            {
+              "name": "获取管理员资料",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/account/info",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "account", "info"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/account/info",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "account", "info"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"name\": \"dolore amet\",\n  \"nickName\": \"do reprehenderit\",\n  \"email\": \"proident minim velit\",\n  \"phone\": \"cillum adipisicing\",\n  \"remark\": \"consequat eu com\",\n  \"headImg\": \"nulla fugiat ad\",\n  \"loginIp\": \"commodo culpa eiusmod cillum\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "更改管理员资料",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nickName\": \"Ut elit labore\",\n  \"email\": \"est\",\n  \"phone\": \"in el\",\n  \"remark\": \"in amet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/account/update",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "account", "update"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"nickName\": \"Ut elit labore\",\n  \"email\": \"est\",\n  \"phone\": \"in el\",\n  \"remark\": \"in amet\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/account/update",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "account", "update"]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "更改管理员密码",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originPassword\": \"dolore sed reprehenderit qui\",\n  \"newPassword\": \"ex irure in\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/account/password",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "account", "password"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"originPassword\": \"dolore sed reprehenderit qui\",\n  \"newPassword\": \"ex irure in\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/account/password",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "account", "password"]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "管理员登出",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/account/logout",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "account", "logout"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/account/logout",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "account", "logout"]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "text/plain"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "获取菜单列表及权限列表",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/account/permmenu",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "account", "permmenu"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/account/permmenu",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "account", "permmenu"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"menus\": [\n    {\n      \"createdAt\": \"1968-07-04T05:07:12.682Z\",\n      \"updatedAt\": \"1956-03-15T09:49:44.451Z\",\n      \"id\": -18592734.41373785,\n      \"parentId\": 24146887.10644822,\n      \"name\": \"in sunt nulla\",\n      \"router\": \"irure consequat commodo\",\n      \"perms\": \"aliquip cillum eu\",\n      \"type\": -60693045.9209543,\n      \"icon\": \"ea ut eu\",\n      \"orderNum\": -96634474.74155138,\n      \"viewPath\": \"esse cupidatat dolore eu\",\n      \"keepalive\": false,\n      \"isShow\": false\n    },\n    {\n      \"createdAt\": \"1993-09-11T01:12:23.546Z\",\n      \"updatedAt\": \"2021-08-24T05:21:09.785Z\",\n      \"id\": -50594833.39760118,\n      \"parentId\": 5371993.707732111,\n      \"name\": \"velit\",\n      \"router\": \"tempor do Excepteur consectetur culpa\",\n      \"perms\": \"in laboris ullamco\",\n      \"type\": -47202396.33236179,\n      \"icon\": \"culpa elit occaecat consequat aute\",\n      \"orderNum\": -11126073.366545558,\n      \"viewPath\": \"velit occae\",\n      \"keepalive\": false,\n      \"isShow\": true\n    }\n  ],\n  \"perms\": [\n    \"sint Excepteur dolore dolor\",\n    \"ipsum Ut sit sunt\"\n  ]\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "netdisk",
+          "item": [
+            {
+              "name": "manage",
+              "item": [
+                {
+                  "name": "获取文件列表",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/list?marker=incididunt&path=incididunt&key=incididunt",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "list"],
+                      "query": [
+                        {
+                          "key": "marker",
+                          "value": "incididunt",
+                          "description": "(Required) 分页标识"
+                        },
+                        {
+                          "key": "path",
+                          "value": "incididunt",
+                          "description": "(Required) 当前路径"
+                        },
+                        {
+                          "key": "key",
+                          "value": "incididunt",
+                          "description": "搜索关键字"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/list?marker=incididunt&path=incididunt&key=incididunt",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "list"],
+                          "query": [
+                            {
+                              "key": "marker",
+                              "value": "incididunt"
+                            },
+                            {
+                              "key": "path",
+                              "value": "incididunt"
+                            },
+                            {
+                              "key": "key",
+                              "value": "incididunt"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"list\": [\n    {\n      \"id\": \"in id dolore\",\n      \"type\": \"file\",\n      \"name\": \"reprehenderit\",\n      \"putTime\": \"1962-02-21T06:06:37.907Z\",\n      \"fsize\": \"anim sit co\",\n      \"mimeType\": \"et sit\",\n      \"belongTo\": \"sunt ad\"\n    },\n    {\n      \"id\": \"id in reprehenderit quis cupidatat\",\n      \"type\": \"dir\",\n      \"name\": \"laboris id Duis\",\n      \"putTime\": \"1962-01-10T22:57:04.276Z\",\n      \"fsize\": \"sunt nostrud ad\",\n      \"mimeType\": \"irure voluptate sit\",\n      \"belongTo\": \"laborum d\"\n    }\n  ],\n  \"marker\": \"exercitat\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "创建文件夹，支持多级",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"dirName\": \"exercitation officia dolore tempor Lorem\",\n  \"path\": \"voluptate do tempor eiusmod eu\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/mkdir",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "mkdir"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"dirName\": \"exercitation officia dolore tempor Lorem\",\n  \"path\": \"voluptate do tempor eiusmod eu\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/mkdir",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "mkdir"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "获取上传Token，无Token前端无法上传",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/token",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "token"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/token",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "token"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"token\": \"elit tempor ut proident nulla\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "获取文件详细信息",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"non exercitation\",\n  \"path\": \"anim sint aliquip molli\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/info",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "info"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"non exercitation\",\n  \"path\": \"anim sint aliquip molli\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/info",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "info"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"fsize\": 55927126.02393207,\n  \"hash\": \"sunt\",\n  \"mimeType\": \"ut in\",\n  \"type\": -11078121.58885184,\n  \"putTime\": \"1968-09-09T13:30:53.421Z\",\n  \"md5\": \"in dolore\",\n  \"uploader\": \"aute\",\n  \"mark\": \"elit magna sunt\"\n}"
+                    }
+                  ]
+                },
+                {
+                  "name": "添加文件备注",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"irure\",\n  \"path\": \"aute irure nulla est\",\n  \"mark\": \"Duis dolor\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/mark",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "mark"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"irure\",\n  \"path\": \"aute irure nulla est\",\n  \"mark\": \"Duis dolor\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/mark",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "mark"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "获取下载链接，不支持下载文件夹",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"non exercitation\",\n  \"path\": \"anim sint aliquip molli\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/download",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "download"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"non exercitation\",\n  \"path\": \"anim sint aliquip molli\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/download",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "download"]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "\"incididunt\""
+                    }
+                  ]
+                },
+                {
+                  "name": "重命名文件或文件夹",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"laboris\",\n  \"toName\": \"irure eiusmod ipsum mollit ea\",\n  \"name\": \"mollit\",\n  \"path\": \"in dolor ad Excepteur enim\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/rename",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "rename"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"laboris\",\n  \"toName\": \"irure eiusmod ipsum mollit ea\",\n  \"name\": \"mollit\",\n  \"path\": \"in dolor ad Excepteur enim\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/rename",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "rename"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "删除文件或文件夹",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"files\": [\n    {\n      \"type\": \"file\",\n      \"name\": \"dolor ex deserunt\"\n    },\n    {\n      \"type\": \"file\",\n      \"name\": \"magna eu ad exercitation\"\n    }\n  ],\n  \"path\": \"Excepteur\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/delete",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "delete"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"files\": [\n    {\n      \"type\": \"dir\",\n      \"name\": \"dolore deserunt laboris ipsum\"\n    },\n    {\n      \"type\": \"file\",\n      \"name\": \"adipisicing\"\n    }\n  ],\n  \"path\": \"se\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/delete",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "delete"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "剪切文件或文件夹，支持批量",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"files\": [\n    {\n      \"type\": \"dir\",\n      \"name\": \"in exercitation\"\n    },\n    {\n      \"type\": \"dir\",\n      \"name\": \"elit magna in \"\n    }\n  ],\n  \"originPath\": \"ad enim do culpa aliqua\",\n  \"toPath\": \"sunt deserunt\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/cut",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "cut"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"files\": [\n    {\n      \"type\": \"file\",\n      \"name\": \"aliquip ipsum Ut\"\n    },\n    {\n      \"type\": \"dir\",\n      \"name\": \"sint do\"\n    }\n  ],\n  \"originPath\": \"consequat esse\",\n  \"toPath\": \"ad\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/cut",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "cut"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "复制文件或文件夹，支持批量",
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "<API Key>",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"files\": [\n    {\n      \"type\": \"file\",\n      \"name\": \"aliquip ipsum Ut\"\n    },\n    {\n      \"type\": \"dir\",\n      \"name\": \"sint do\"\n    }\n  ],\n  \"originPath\": \"consequat esse\",\n  \"toPath\": \"ad\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/manage/copy",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "manage", "copy"]
+                    }
+                  },
+                  "response": [
+                    {
+                      "name": "response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"files\": [\n    {\n      \"type\": \"file\",\n      \"name\": \"aliquip ipsum Ut\"\n    },\n    {\n      \"type\": \"dir\",\n      \"name\": \"sint do\"\n    }\n  ],\n  \"originPath\": \"consequat esse\",\n  \"toPath\": \"ad\"\n}",
+                          "options": {
+                            "raw": {
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/netdisk/manage/copy",
+                          "host": ["{{baseUrl}}"],
+                          "path": ["admin", "netdisk", "manage", "copy"]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "获取网盘空间数据统计",
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "<API Key>",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/netdisk/overview/desc",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "netdisk", "overview", "desc"]
+                }
+              },
+              "response": [
+                {
+                  "name": "response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/netdisk/overview/desc",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["admin", "netdisk", "overview", "desc"]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"spaceSize\": -46143542.2521224,\n  \"fileSize\": 29215546.45790696,\n  \"flowSize\": 47758950.047620505,\n  \"hitSize\": -80196166.46212375,\n  \"flowTrend\": {\n    \"times\": [\n      4591506.547796249,\n      -23280817.279626742\n    ],\n    \"datas\": [\n      1913551.9816385359,\n      24789513.035126686\n    ]\n  },\n  \"sizeTrend\": {\n    \"times\": [\n      94785610.8682724,\n      88187723.40254268\n    ],\n    \"datas\": [\n      -2845237.4523889422,\n      44290426.39744237\n    ]\n  }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "获取登录图片验证码",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/captcha/img?width=100&height=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "captcha", "img"],
+              "query": [
+                {
+                  "key": "width",
+                  "value": "100",
+                  "description": "验证码宽度"
+                },
+                {
+                  "key": "height",
+                  "value": "50",
+                  "description": "验证码高度"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/admin/captcha/img?width=100&height=50",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "captcha", "img"],
+                  "query": [
+                    {
+                      "key": "width",
+                      "value": "100"
+                    },
+                    {
+                      "key": "height",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"img\": \"do\",\n  \"id\": \"occaecat reprehenderit\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "管理员登录",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "(Required) ",
+                "key": "user-agent",
+                "value": "incididunt"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"minim proident eu veniam\",\n  \"password\": \"officia\",\n  \"captchaId\": \"ipsum Excepteur\",\n  \"verifyCode\": \"dolor commodo fugiat\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "login"]
+            }
+          },
+          "response": [
+            {
+              "name": "response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) ",
+                    "key": "user-agent",
+                    "value": "incididunt"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"minim proident eu veniam\",\n  \"password\": \"officia\",\n  \"captchaId\": \"ipsum Excepteur\",\n  \"verifyCode\": \"dolor commodo fugiat\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/login",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["admin", "login"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"token\": \"in voluptate culpa aliquip et\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/",
+      "type": "string"
+    }
+  ]
+}
