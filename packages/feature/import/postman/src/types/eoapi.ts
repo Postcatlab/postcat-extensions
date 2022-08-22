@@ -1,11 +1,11 @@
 export type ValueOf<T> = T[keyof T]
 
-export type EoapiItem =
+export type Child =
   | {
       /** 名称 */
       name?: string
       /** 子节点 */
-      items?: EoapiItem[]
+      children?: Child[]
     }
   | ApiData
 
@@ -24,9 +24,9 @@ export type Environment = {
   parameters?: EnvParameters[]
 }
 
-export type EoapiDataStruct = {
-  items: EoapiItem[]
-  envList: Environment[]
+export type Collections = {
+  collections: Child[]
+  enviroments: Environment[]
 }
 
 export interface ParamsEnum {
@@ -119,7 +119,7 @@ export enum ApiParamsTypeJsonOrXml {
   null = 'null'
 }
 
-export interface ApiEditBody extends BasiApiEditParams {
+export type ApiEditBody = BasiApiEditParams & {
   /**
    * 参数类型
    */

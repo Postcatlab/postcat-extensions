@@ -1,9 +1,9 @@
-import { isString, uniqueSlash } from './utils'
+import { isString, isObject, uniqueSlash, getDataType } from './utils'
 
 import {
-  EoapiDataStruct,
+  Collections,
   Environment,
-  EoapiItem,
+  Child,
   ApiData,
   ApiEditHeaders,
   ApiEditBody,
@@ -22,7 +22,7 @@ import type {
 } from './types/postman-collection'
 
 export class PostmanImporter {
-  eoapiData: EoapiDataStruct
+  eoapiData: Collections
   postmanData: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
 
   constructor(data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210) {
@@ -32,19 +32,19 @@ export class PostmanImporter {
 
   transformToEoapi(
     data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
-  ): EoapiDataStruct {
+  ): Collections {
     return {
-      items: this.transformItems(data.item),
-      envList: this.transformEnv(data.variable)
+      collections: this.transformItems(data.item),
+      enviroments: this.transformEnv(data.variable)
     }
   }
 
-  transformItems(items: Items[]): EoapiItem[] {
+  transformItems(items: Items[]): Child[] {
     return items.map((item) => {
       if (Array.isArray(item.item) && item.item.length) {
         return {
           name: item.name,
-          items: this.transformItems(item.item)
+          children: this.transformItems(item.item)
         }
       }
       const request = item.request as Request1
@@ -60,14 +60,14 @@ export class PostmanImporter {
         method: request?.method,
         requestBodyType: this.handleRequestBodyType(request?.body),
         requestBodyJsonType: this.handleJsonRootType(requestBody),
-        requestBody: requestBody,
+        requestBody: JSON.stringify(requestBody),
         queryParams: this.handleQueryParams(request?.url),
         restParams: [],
         requestHeaders: this.handleRequestHeader(request?.header),
         responseHeaders: this.handleResponseHeaders(response),
         responseBodyType: this.handleResponseBodyType(response),
         responseBodyJsonType: this.handleJsonRootType(responseBody),
-        responseBody: responseBody
+        responseBody: JSON.stringify(responseBody)
       }
     })
   }
@@ -76,7 +76,7 @@ export class PostmanImporter {
     return [
       {
         name: 'postImport',
-        hostUri: 'htttp://localhost',
+        hostUri: 'http://localhost',
         parameters: postmanEnv.map((item) => ({
           name: item.key!,
           value: item.value as unknown as string
@@ -100,12 +100,14 @@ export class PostmanImporter {
     if (isString(url)) {
       return []
     } else {
-      return url.query?.map((n) => ({
-        name: n.key || '',
-        example: n.value || '',
-        required: false,
-        description: n.description as string
-      }))
+      return (
+        url.query?.map((n) => ({
+          name: n.key || '',
+          example: n.value || '',
+          required: false,
+          description: n.description as string
+        })) || []
+      )
     }
   }
 
@@ -113,12 +115,14 @@ export class PostmanImporter {
     if (isString(headerList)) {
       return []
     } else {
-      return headerList.map((n) => ({
-        name: n.key,
-        example: n.value,
-        required: true,
-        description: n.description as string
-      }))
+      return (
+        headerList.map((n) => ({
+          name: n.key,
+          example: n.value,
+          required: true,
+          description: n.description as string
+        })) || []
+      )
     }
   }
 
@@ -157,15 +161,51 @@ export class PostmanImporter {
           required: true,
           example: n.value as string,
           description: n.description as string
-        })) || ''
+        })) || []
       )
     }
-    return ''
+    return []
   }
 
   handleResponseBody(res: Response[] = []): ApiEditBody[] | string {
-    return res[0]?.body || []
+    try {
+      const result = JSON.parse(res[0].body as string)
+      return [].concat(result).flatMap((item) => {
+        return Object.entries(item).map(([key, value]) => ({
+          description: '',
+          example: String(value),
+          name: key,
+          required: true,
+          type: getDataType(value),
+          children:
+            value && typeof value === 'object'
+              ? this.transformBodyData([].concat(value))
+              : undefined
+        }))
+      })
+    } catch (error) {
+      return res[0]?.body ?? []
+    }
   }
+
+  transformBodyData(val: Record<string, any>[]): ApiEditBody[] {
+    return val.flatMap((n) => {
+      return Object.entries(n).map(([key, value]) => {
+        return {
+          description: '',
+          example: String(value),
+          name: key,
+          required: true,
+          type: getDataType(value),
+          children:
+            value && typeof value === 'object'
+              ? this.transformBodyData([].concat(value))
+              : value
+        }
+      })
+    })
+  }
+
   handleResponseHeaders(res: Response[] = []): ApiEditHeaders[] {
     if (Array.isArray(res[0]?.header)) {
       return res[0].header

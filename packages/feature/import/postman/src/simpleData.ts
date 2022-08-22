@@ -1,4 +1,4 @@
-import { ApiData } from '../typing'
+import { ApiData } from './types/eoapi'
 
 export const sampleApiData: ApiData[] = [
   {

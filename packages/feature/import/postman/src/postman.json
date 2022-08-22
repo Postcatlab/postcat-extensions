@@ -1,0 +1,1756 @@
+{
+  "collections": [
+    {
+      "name": "admin",
+      "children": [
+        {
+          "name": "sys",
+          "children": [
+            {
+              "name": "user",
+              "uri": "",
+              "protocol": "http",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [],
+              "responseHeaders": [],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "array",
+              "responseBody": "[]"
+            },
+            {
+              "name": "role",
+              "children": [
+                {
+                  "name": "获取角色列表",
+                  "uri": "{{apiUrl}}/admin/sys/role/list",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    },
+                    {
+                      "name": "test-token",
+                      "example": "123456",
+                      "required": true,
+                      "description": "测试用的token"
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1992-02-18T07:38:37.597Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2021-12-17T09:37:50.494Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-97800776.99603526\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"id tempor magna\",\"name\":\"userId\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"ullamco officia dolor\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"enim anim\",\"name\":\"label\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"velit deserunt quis veniam\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2002-05-31T17:13:52.578Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2003-07-17T08:53:34.775Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-97826961.06445861\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"se\",\"name\":\"userId\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"velit in\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"cupidatat ad deserunt consequat\",\"name\":\"label\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"in anim officia ad\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "分页查询角色信息",
+                  "uri": "/admin/sys/role/page?limit=10&page=1",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "limit",
+                      "example": "10",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    },
+                    {
+                      "name": "page",
+                      "example": "1",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1992-02-18T07:38:37.597Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2021-12-17T09:37:50.494Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-97800776.99603526\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"id tempor magna\",\"name\":\"userId\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"ullamco officia dolor\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"enim anim\",\"name\":\"label\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"velit deserunt quis veniam\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2002-05-31T17:13:52.578Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2003-07-17T08:53:34.775Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-97826961.06445861\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"se\",\"name\":\"userId\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"velit in\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"cupidatat ad deserunt consequat\",\"name\":\"label\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"in anim officia ad\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "删除角色",
+                  "uri": "/admin/sys/role/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"roleIds\\\": [\\n    1900502.3974094242,\\n    -98516378.08185036\\n  ]\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "新增角色",
+                  "uri": "/admin/sys/role/add",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[{\"type\":\"string\",\"name\":\"name\",\"required\":true,\"example\":\"娜美\"}]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "更新角色",
+                  "uri": "/admin/sys/role/update",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"ea\\\",\\n  \\\"label\\\": \\\"cillum\\\",\\n  \\\"roleId\\\": 26063498.955287963,\\n  \\\"remark\\\": \\\"ipsum culpa\\\",\\n  \\\"menus\\\": [\\n    \\\"proident Lorem ullamco aute\\\",\\n    \\\"sint anim\\\"\\n  ],\\n  \\\"depts\\\": [\\n    \\\"ut incididunt\\\",\\n    \\\"occaecat aliquip ut reprehenderit\\\"\\n  ]\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "获取角色信息",
+                  "uri": "/admin/sys/role/info?roleId=-82722397.76965185",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "roleId",
+                      "example": "-82722397.76965185",
+                      "required": false,
+                      "description": "(Required) 需要查找的角色ID"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"roleInfo\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"1970-02-18T03:23:36.213Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1970-02-18T03:23:36.213Z\"},{\"description\":\"\",\"example\":\"1973-09-26T17:37:36.281Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1973-09-26T17:37:36.281Z\"},{\"description\":\"\",\"example\":\"-76652723.46901256\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-76652723.46901256},{\"description\":\"\",\"example\":\"cupidatat\",\"name\":\"userId\",\"required\":true,\"type\":\"string\",\"children\":\"cupidatat\"},{\"description\":\"\",\"example\":\"est in deserunt\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"est in deserunt\"},{\"description\":\"\",\"example\":\"in incididunt cupidatat magna\",\"name\":\"label\",\"required\":true,\"type\":\"string\",\"children\":\"in incididunt cupidatat magna\"},{\"description\":\"\",\"example\":\"qui pro\",\"name\":\"remark\",\"required\":true,\"type\":\"string\",\"children\":\"qui pro\"}]},{\"description\":\"\",\"example\":\"[object Object],[object Object]\",\"name\":\"menus\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"1983-01-18T02:40:30.744Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1983-01-18T02:40:30.744Z\"},{\"description\":\"\",\"example\":\"1984-09-13T01:23:00.984Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1984-09-13T01:23:00.984Z\"},{\"description\":\"\",\"example\":\"-13270607.613891408\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-13270607.613891408},{\"description\":\"\",\"example\":\"96082823.56054705\",\"name\":\"roleId\",\"required\":true,\"type\":\"number\",\"children\":96082823.56054705},{\"description\":\"\",\"example\":\"-28827781.201712593\",\"name\":\"menuId\",\"required\":true,\"type\":\"number\",\"children\":-28827781.201712593},{\"description\":\"\",\"example\":\"1951-02-21T02:42:44.755Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1951-02-21T02:42:44.755Z\"},{\"description\":\"\",\"example\":\"1964-05-27T20:03:41.705Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1964-05-27T20:03:41.705Z\"},{\"description\":\"\",\"example\":\"-40956785.835404254\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-40956785.835404254},{\"description\":\"\",\"example\":\"-22801660.54074928\",\"name\":\"roleId\",\"required\":true,\"type\":\"number\",\"children\":-22801660.54074928},{\"description\":\"\",\"example\":\"-74922816.34876244\",\"name\":\"menuId\",\"required\":true,\"type\":\"number\",\"children\":-74922816.34876244}]},{\"description\":\"\",\"example\":\"[object Object],[object Object]\",\"name\":\"depts\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"1950-01-12T21:35:21.986Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1950-01-12T21:35:21.986Z\"},{\"description\":\"\",\"example\":\"1999-02-15T11:22:10.975Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1999-02-15T11:22:10.975Z\"},{\"description\":\"\",\"example\":\"52469892.93481016\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":52469892.93481016},{\"description\":\"\",\"example\":\"593994.919278279\",\"name\":\"roleId\",\"required\":true,\"type\":\"number\",\"children\":593994.919278279},{\"description\":\"\",\"example\":\"42876878.619476825\",\"name\":\"departmentId\",\"required\":true,\"type\":\"number\",\"children\":42876878.619476825},{\"description\":\"\",\"example\":\"1962-08-08T08:20:28.133Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1962-08-08T08:20:28.133Z\"},{\"description\":\"\",\"example\":\"1994-08-09T23:59:58.237Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1994-08-09T23:59:58.237Z\"},{\"description\":\"\",\"example\":\"53091363.40593317\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":53091363.40593317},{\"description\":\"\",\"example\":\"97412723.11610517\",\"name\":\"roleId\",\"required\":true,\"type\":\"number\",\"children\":97412723.11610517},{\"description\":\"\",\"example\":\"36811072.16513008\",\"name\":\"departmentId\",\"required\":true,\"type\":\"number\",\"children\":36811072.16513008}]}]"
+                }
+              ]
+            },
+            {
+              "name": "menu",
+              "children": [
+                {
+                  "name": "获取对应权限的菜单列表",
+                  "uri": "/admin/sys/menu/list",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1994-12-16T08:09:01.009Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1955-02-08T03:15:44.780Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-35632514.6338238\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"63454255.8122679\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"ut tempor consectetur ex laborum\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"non elit \",\"name\":\"router\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"dolor officia et aliquip\",\"name\":\"perms\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"98525991.43569311\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"sed consectetur do laboris minim\",\"name\":\"icon\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"67544376.04397655\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"commodo eiusmod fugiat\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"2007-12-31T11:31:14.675Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2007-03-21T04:51:46.767Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"75428387.32478625\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"-9049444.060985133\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"ad magna s\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"et adipisicing\",\"name\":\"router\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"laboris proident commodo\",\"name\":\"perms\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"85322156.48776704\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"aute minim nisi\",\"name\":\"icon\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-63495411.24717848\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"aute aliqua eiusmod elit\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\"}]"
+                },
+                {
+                  "name": "新增菜单或权限",
+                  "uri": "/admin/sys/menu/add",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"type\\\": 96951743.32343072,\\n  \\\"parentId\\\": -51689177.533839196,\\n  \\\"name\\\": \\\"occaecat sunt ut tempor\\\",\\n  \\\"orderNum\\\": -73481038.15382703,\\n  \\\"router\\\": \\\"ut\\\",\\n  \\\"perms\\\": \\\"laborum dolore sunt\\\",\\n  \\\"viewPath\\\": \\\"aliquip consectetur minim\\\",\\n  \\\"isShow\\\": true,\\n  \\\"keepalive\\\": true,\\n  \\\"icon\\\": \\\"ut\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "更新菜单或权限",
+                  "uri": "/admin/sys/menu/update",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"type\\\": 34123608.52474353,\\n  \\\"parentId\\\": 9115452.043336302,\\n  \\\"name\\\": \\\"nisi ad sunt elit id\\\",\\n  \\\"orderNum\\\": -37419354.10170449,\\n  \\\"router\\\": \\\"qui laborum anim officia\\\",\\n  \\\"perms\\\": \\\"in deserunt eu\\\",\\n  \\\"viewPath\\\": \\\"aliqua nostrud\\\",\\n  \\\"menuId\\\": 85810194.01327908,\\n  \\\"isShow\\\": true,\\n  \\\"keepalive\\\": true,\\n  \\\"icon\\\": \\\"dolor eiusmod dolore tempor\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "删除菜单或权限",
+                  "uri": "/admin/sys/menu/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"menuId\\\": 70785396.71567953\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "菜单或权限信息",
+                  "uri": "/admin/sys/menu/info?menuId=-82722397.76965185",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "menuId",
+                      "example": "-82722397.76965185",
+                      "required": false,
+                      "description": "(Required) 查询的菜单ID"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"menu\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"1986-05-06T12:05:09.775Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1986-05-06T12:05:09.775Z\"},{\"description\":\"\",\"example\":\"1951-04-28T02:19:40.960Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1951-04-28T02:19:40.960Z\"},{\"description\":\"\",\"example\":\"-78063624.28325726\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-78063624.28325726},{\"description\":\"\",\"example\":\"-24785556.976515368\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":-24785556.976515368},{\"description\":\"\",\"example\":\"aute ex\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"aute ex\"},{\"description\":\"\",\"example\":\"fugiat non ullamco\",\"name\":\"router\",\"required\":true,\"type\":\"string\",\"children\":\"fugiat non ullamco\"},{\"description\":\"\",\"example\":\"enim quis esse consectetur irure\",\"name\":\"perms\",\"required\":true,\"type\":\"string\",\"children\":\"enim quis esse consectetur irure\"},{\"description\":\"\",\"example\":\"-5078725.871142134\",\"name\":\"type\",\"required\":true,\"type\":\"number\",\"children\":-5078725.871142134},{\"description\":\"\",\"example\":\"sed\",\"name\":\"icon\",\"required\":true,\"type\":\"string\",\"children\":\"sed\"},{\"description\":\"\",\"example\":\"31772081.95660013\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":31772081.95660013},{\"description\":\"\",\"example\":\"exercitation dolor id\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\",\"children\":\"exercitation dolor id\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\",\"children\":true},{\"description\":\"\",\"example\":\"false\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\",\"children\":false}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"parentMenu\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"1964-02-24T00:08:28.778Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1964-02-24T00:08:28.778Z\"},{\"description\":\"\",\"example\":\"1952-06-30T20:49:53.366Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1952-06-30T20:49:53.366Z\"},{\"description\":\"\",\"example\":\"62501457.42614913\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":62501457.42614913},{\"description\":\"\",\"example\":\"63823576.57877758\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":63823576.57877758},{\"description\":\"\",\"example\":\"in id ut consequat ipsum\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"in id ut consequat ipsum\"},{\"description\":\"\",\"example\":\"fugiat commodo consectetur et adipisicing\",\"name\":\"router\",\"required\":true,\"type\":\"string\",\"children\":\"fugiat commodo consectetur et adipisicing\"},{\"description\":\"\",\"example\":\"ex veniam nostrud nisi sed\",\"name\":\"perms\",\"required\":true,\"type\":\"string\",\"children\":\"ex veniam nostrud nisi sed\"},{\"description\":\"\",\"example\":\"-97094224.08862412\",\"name\":\"type\",\"required\":true,\"type\":\"number\",\"children\":-97094224.08862412},{\"description\":\"\",\"example\":\"ut consequat\",\"name\":\"icon\",\"required\":true,\"type\":\"string\",\"children\":\"ut consequat\"},{\"description\":\"\",\"example\":\"44924783.395481616\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":44924783.395481616},{\"description\":\"\",\"example\":\"Excepteur voluptate aliquip\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\",\"children\":\"Excepteur voluptate aliquip\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\",\"children\":false},{\"description\":\"\",\"example\":\"false\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\",\"children\":false}]}]"
+                }
+              ]
+            },
+            {
+              "name": "dept",
+              "children": [
+                {
+                  "name": "获取系统部门列表",
+                  "uri": "/admin/sys/dept/list",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1993-11-23T06:49:59.374Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2004-05-09T13:11:43.305Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-6748032.407301664\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"49074253.06718561\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"qui reprehenderit\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"60636358.053022265\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"1972-01-27T05:21:34.098Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1978-11-05T08:47:49.978Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-88126577.15485592\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"74865082.5213435\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"enim minim fugiat a\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-99529358.15138173\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\"}]"
+                },
+                {
+                  "name": "创建系统部门",
+                  "uri": "/admin/sys/dept/add",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"cupidatat et\\\",\\n  \\\"parentId\\\": 72314992.0561069,\\n  \\\"orderNum\\\": -31682545.821270928\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "删除系统部门",
+                  "uri": "/admin/sys/dept/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"departmentId\\\": 15661468.821704984\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "查询单个系统部门信息",
+                  "uri": "/admin/sys/dept/info?departmentId=-82722397.76965185",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "departmentId",
+                      "example": "-82722397.76965185",
+                      "required": false,
+                      "description": "(Required) 查询的系统部门ID"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"department\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"1948-08-02T03:48:22.160Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1948-08-02T03:48:22.160Z\"},{\"description\":\"\",\"example\":\"1994-03-27T14:27:59.910Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1994-03-27T14:27:59.910Z\"},{\"description\":\"\",\"example\":\"-46188041.75552333\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-46188041.75552333},{\"description\":\"\",\"example\":\"55731270.884556144\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":55731270.884556144},{\"description\":\"\",\"example\":\"pariatur ess\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"pariatur ess\"},{\"description\":\"\",\"example\":\"-21564579.85445112\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":-21564579.85445112}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"parentDepartment\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"1958-08-19T16:06:45.642Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1958-08-19T16:06:45.642Z\"},{\"description\":\"\",\"example\":\"2019-03-17T17:09:59.852Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"2019-03-17T17:09:59.852Z\"},{\"description\":\"\",\"example\":\"85863087.83490133\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":85863087.83490133},{\"description\":\"\",\"example\":\"19751130.710270017\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":19751130.710270017},{\"description\":\"\",\"example\":\"Ut ea quis\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"Ut ea quis\"},{\"description\":\"\",\"example\":\"-80868225.86084943\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":-80868225.86084943}]}]"
+                },
+                {
+                  "name": "更新系统部门",
+                  "uri": "/admin/sys/dept/update",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"nisi\\\",\\n  \\\"parentId\\\": -59725485.93469966,\\n  \\\"id\\\": -26964907.30836594,\\n  \\\"orderNum\\\": 52811340.92722243\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "管理员部门转移",
+                  "uri": "/admin/sys/dept/transfer",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"userIds\\\": [\\n    -66396614.770286,\\n    26227567.22405182\\n  ],\\n  \\\"departmentId\\\": 18023573.039890468\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "部门移动排序",
+                  "uri": "/admin/sys/dept/move",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"depts\\\": [\\n    {\\n      \\\"id\\\": 89823922.13525069,\\n      \\\"parentId\\\": 23489573.33938451\\n    },\\n    {\\n      \\\"id\\\": 81212962.1516664,\\n      \\\"parentId\\\": -75105944.39245822\\n    }\\n  ]\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                }
+              ]
+            },
+            {
+              "name": "log",
+              "children": [
+                {
+                  "name": "分页查询登录日志",
+                  "uri": "/admin/sys/log/login/page?limit=10&page=1",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "limit",
+                      "example": "10",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    },
+                    {
+                      "name": "page",
+                      "example": "1",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"32234684.21036744\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"sit voluptate\",\"name\":\"ip\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"dolore\",\"name\":\"os\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"eu sed voluptate\",\"name\":\"browser\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"adipis\",\"name\":\"time\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"sed nulla non\",\"name\":\"username\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-86070141.82512702\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"offici\",\"name\":\"ip\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"tempor sint dolor consequat minim\",\"name\":\"os\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"dolore eu dolore\",\"name\":\"browser\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"Lorem sunt fugiat\",\"name\":\"time\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"consequat dolor qui\",\"name\":\"username\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "分页查询任务日志",
+                  "uri": "/admin/sys/log/task/page?limit=10&page=1",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "limit",
+                      "example": "10",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    },
+                    {
+                      "name": "page",
+                      "example": "1",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"-55771903.92599381\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"67926982.44441402\",\"name\":\"taskId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"occaecat\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"esse Excepteur\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-49983817.564434044\",\"name\":\"consumeTime\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"anim offic\",\"name\":\"detail\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-2052870.1330110133\",\"name\":\"status\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"1140207.6869210452\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"60130960.50363469\",\"name\":\"taskId\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"Lorem tempor\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"proident\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"78905259.66350013\",\"name\":\"consumeTime\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"anim\",\"name\":\"detail\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-41546897.4590143\",\"name\":\"status\",\"required\":true,\"type\":\"number\"}]"
+                }
+              ]
+            },
+            {
+              "name": "task",
+              "children": [
+                {
+                  "name": "获取任务列表",
+                  "uri": "/admin/sys/task/page?limit=10&page=1",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "limit",
+                      "example": "10",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    },
+                    {
+                      "name": "page",
+                      "example": "1",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1991-08-20T15:01:40.083Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1947-06-05T23:05:26.354Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-45054159.588537954\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"in mollit\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"officia nisi ipsum\",\"name\":\"service\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-91262961.55020785\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"-26862212.374708295\",\"name\":\"status\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"1965-02-21T13:39:05.747Z\",\"name\":\"startTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2009-04-24T19:43:53.190Z\",\"name\":\"endTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-69240660.31474343\",\"name\":\"limit\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"aute anim dolor cupidatat\",\"name\":\"cron\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"55081423.8643873\",\"name\":\"every\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"eiusmod Ut consequat ut reprehenderit\",\"name\":\"data\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"dolore\",\"name\":\"jobOpts\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"commodo nostrud magna\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1957-01-17T23:38:33.153Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2008-06-28T10:34:16.189Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-53458464.23096758\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"sed exercitation\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"amet culpa sit deserunt enim\",\"name\":\"service\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-49015559.40446456\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"-33613767.83687668\",\"name\":\"status\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"2018-07-06T13:43:48.349Z\",\"name\":\"startTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1963-03-19T13:42:38.513Z\",\"name\":\"endTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-95443125.11758521\",\"name\":\"limit\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"cu\",\"name\":\"cron\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-58587932.5701534\",\"name\":\"every\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"\",\"name\":\"data\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"non mollit commodo\",\"name\":\"jobOpts\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"aliquip tempor\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "添加任务",
+                  "uri": "/admin/sys/task/add",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"ea\\\",\\n  \\\"service\\\": \\\"esse sint\\\",\\n  \\\"type\\\": -32806013.518173844,\\n  \\\"status\\\": 94456067.61517009,\\n  \\\"cron\\\": \\\"Duis cupidatat sunt\\\",\\n  \\\"every\\\": -82319831.60751009,\\n  \\\"startTime\\\": \\\"1956-06-10T08:13:32.458Z\\\",\\n  \\\"endTime\\\": \\\"1958-02-10T16:27:45.019Z\\\",\\n  \\\"limit\\\": -21524759.42052266,\\n  \\\"data\\\": \\\"adipisicing dolor\\\",\\n  \\\"remark\\\": \\\"magna in voluptat\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "更新任务",
+                  "uri": "/admin/sys/task/update",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"anim\\\",\\n  \\\"service\\\": \\\"elit dolore\\\",\\n  \\\"type\\\": -11461640.674741417,\\n  \\\"status\\\": 85600150.53907928,\\n  \\\"cron\\\": \\\"ullamco pariatur laboris officia\\\",\\n  \\\"every\\\": 98621532.67556205,\\n  \\\"id\\\": -58027791.91688674,\\n  \\\"startTime\\\": \\\"1967-02-07T18:35:06.340Z\\\",\\n  \\\"endTime\\\": \\\"2012-08-10T01:05:54.412Z\\\",\\n  \\\"limit\\\": 38041537.79163405,\\n  \\\"data\\\": \\\"qui in ex eiusmod\\\",\\n  \\\"remark\\\": \\\"Lorem dolore dolor elit\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "查询任务详细信息",
+                  "uri": "/admin/sys/task/info?id=-82722397.76965185",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "id",
+                      "example": "-82722397.76965185",
+                      "required": false,
+                      "description": "(Required) 任务ID"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1973-01-04T13:14:40.816Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1948-07-06T20:15:36.009Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-84708753.89302143\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"aliqua laborum dolor culpa\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"aliquip Excepteur labore volup\",\"name\":\"service\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-75687071.62804148\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"97970946.48106346\",\"name\":\"status\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"2002-01-15T09:58:58.046Z\",\"name\":\"startTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1986-04-27T06:30:31.646Z\",\"name\":\"endTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"23974973.45660673\",\"name\":\"limit\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"sed\",\"name\":\"cron\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"40175586.78750196\",\"name\":\"every\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"id dolor\",\"name\":\"data\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"et ea\",\"name\":\"jobOpts\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"exercitation cillum quis\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "手动执行一次任务",
+                  "uri": "/admin/sys/task/once",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": 89361162.03883171\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "停止任务",
+                  "uri": "/admin/sys/task/stop",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": 89361162.03883171\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "启动任务",
+                  "uri": "/admin/sys/task/start",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": 89361162.03883171\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "删除任务",
+                  "uri": "/admin/sys/task/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": 89361162.03883171\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                }
+              ]
+            },
+            {
+              "name": "online",
+              "children": [
+                {
+                  "name": "查询当前在线用户",
+                  "uri": "/admin/sys/online/list",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"43072531.756237\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"pariatur anim\",\"name\":\"ip\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"exercitation culpa in\",\"name\":\"username\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"isCurrent\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"nulla minim laboris ipsum\",\"name\":\"time\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"anim amet\",\"name\":\"os\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"consequat exercitation\",\"name\":\"browser\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"disable\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"42786788.93296614\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"in\",\"name\":\"ip\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"cupidatat\",\"name\":\"username\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"true\",\"name\":\"isCurrent\",\"required\":true,\"type\":\"boolean\"},{\"description\":\"\",\"example\":\"adipisicing\",\"name\":\"time\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"quis adipisicing est velit officia\",\"name\":\"os\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"incididunt cupidatat dolore dolor laborum\",\"name\":\"browser\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"disable\",\"required\":true,\"type\":\"boolean\"}]"
+                },
+                {
+                  "name": "下线指定在线用户",
+                  "uri": "/admin/sys/online/kick",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": -2189883.534722537\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                }
+              ]
+            },
+            {
+              "name": "param-config",
+              "children": [
+                {
+                  "name": "分页获取参数配置列表",
+                  "uri": "/admin/sys/param-config/page?limit=10&page=1",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "limit",
+                      "example": "10",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    },
+                    {
+                      "name": "page",
+                      "example": "1",
+                      "required": false,
+                      "description": "当前页包含数量"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"1997-02-20T02:25:00.782Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1990-05-09T18:51:16.832Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"8649221.71340549\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"dolore Excepteur velit enim\",\"name\":\"key\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"n\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"esse sit officia\",\"name\":\"value\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"laborum labore laboris ad\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1957-07-13T22:23:19.380Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"2005-05-21T08:00:11.906Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-19636656.68392931\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"cupidatat dolore id\",\"name\":\"key\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"nulla\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"eiusmod non\",\"name\":\"value\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"in aliqua fugiat minim dolor\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "新增参数配置",
+                  "uri": "/admin/sys/param-config/add",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"dolor cillum cupidatat\\\",\\n  \\\"key\\\": \\\"ut proident\\\",\\n  \\\"value\\\": \\\"eiusmod consectetur quis pariatur\\\",\\n  \\\"remark\\\": \\\"aute\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "查询单个参数配置信息",
+                  "uri": "/admin/sys/param-config/info?id=-82722397.76965185",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "id",
+                      "example": "-82722397.76965185",
+                      "required": false,
+                      "description": "(Required) 需要查询的配置编号"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"2014-08-14T05:22:25.467Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"1975-02-11T08:28:34.829Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-24698453.857135043\",\"name\":\"id\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"ut do est ea\",\"name\":\"key\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"aliqua et qui commodo est\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"ut nostrud fugiat\",\"name\":\"value\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"dolor dolore dolor proident id\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "更新单个参数配置",
+                  "uri": "/admin/sys/param-config/update",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"id\\\": 31796926.834310785,\\n  \\\"name\\\": \\\"et sint minim\\\",\\n  \\\"value\\\": \\\"occaecat deserunt aliqua id consequat\\\",\\n  \\\"remark\\\": \\\"\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "删除指定的参数配置",
+                  "uri": "/admin/sys/param-config/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"ids\\\": [\\n    45048513.244858265,\\n    -86528862.18222249\\n  ]\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                }
+              ]
+            },
+            {
+              "name": "获取服务器运行信息",
+              "uri": "/admin/sys/serve/stat",
+              "protocol": "http",
+              "method": "GET",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Accept",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "application/json"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "array",
+              "responseBody": "[{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"runtime\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"cillum\",\"name\":\"os\",\"required\":true,\"type\":\"string\",\"children\":\"cillum\"},{\"description\":\"\",\"example\":\"commodo ullamco dolor\",\"name\":\"arch\",\"required\":true,\"type\":\"string\",\"children\":\"commodo ullamco dolor\"},{\"description\":\"\",\"example\":\"proident nulla laboris do\",\"name\":\"nodeVersion\",\"required\":true,\"type\":\"string\",\"children\":\"proident nulla laboris do\"},{\"description\":\"\",\"example\":\"Du\",\"name\":\"npmVersion\",\"required\":true,\"type\":\"string\",\"children\":\"Du\"}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"cpu\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"Duis\",\"name\":\"manufacturer\",\"required\":true,\"type\":\"string\",\"children\":\"Duis\"},{\"description\":\"\",\"example\":\"dolore cupidatat aute\",\"name\":\"brand\",\"required\":true,\"type\":\"string\",\"children\":\"dolore cupidatat aute\"},{\"description\":\"\",\"example\":\"14286839.62530309\",\"name\":\"physicalCores\",\"required\":true,\"type\":\"number\",\"children\":14286839.62530309},{\"description\":\"\",\"example\":\"magna laboris aute cupidatat\",\"name\":\"model\",\"required\":true,\"type\":\"string\",\"children\":\"magna laboris aute cupidatat\"},{\"description\":\"\",\"example\":\"19093670.053126693\",\"name\":\"speed\",\"required\":true,\"type\":\"number\",\"children\":19093670.053126693},{\"description\":\"\",\"example\":\"-54447610.083880395\",\"name\":\"rawCurrentLoad\",\"required\":true,\"type\":\"number\",\"children\":-54447610.083880395},{\"description\":\"\",\"example\":\"-59382187.79487996\",\"name\":\"rawCurrentLoadIdle\",\"required\":true,\"type\":\"number\",\"children\":-59382187.79487996},{\"description\":\"\",\"example\":\"[object Object],[object Object]\",\"name\":\"coresLoad\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"49484155.34422913\",\"name\":\"rawLoad\",\"required\":true,\"type\":\"number\",\"children\":49484155.34422913},{\"description\":\"\",\"example\":\"-10804561.73714599\",\"name\":\"rawLoadIdle\",\"required\":true,\"type\":\"number\",\"children\":-10804561.73714599},{\"description\":\"\",\"example\":\"-92154886.66930734\",\"name\":\"rawLoad\",\"required\":true,\"type\":\"number\",\"children\":-92154886.66930734},{\"description\":\"\",\"example\":\"-21078051.35453944\",\"name\":\"rawLoadIdle\",\"required\":true,\"type\":\"number\",\"children\":-21078051.35453944}]}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"disk\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"4976167.406876981\",\"name\":\"size\",\"required\":true,\"type\":\"number\",\"children\":4976167.406876981},{\"description\":\"\",\"example\":\"-55731002.67353843\",\"name\":\"used\",\"required\":true,\"type\":\"number\",\"children\":-55731002.67353843},{\"description\":\"\",\"example\":\"82860782.50398204\",\"name\":\"available\",\"required\":true,\"type\":\"number\",\"children\":82860782.50398204}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"memory\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"-85898374.93941265\",\"name\":\"total\",\"required\":true,\"type\":\"number\",\"children\":-85898374.93941265},{\"description\":\"\",\"example\":\"-58008185.64806214\",\"name\":\"available\",\"required\":true,\"type\":\"number\",\"children\":-58008185.64806214}]}]"
+            }
+          ]
+        },
+        {
+          "name": "account",
+          "children": [
+            {
+              "name": "获取管理员资料",
+              "uri": "/admin/account/info",
+              "protocol": "http",
+              "method": "GET",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Accept",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "application/json"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "array",
+              "responseBody": "[{\"description\":\"\",\"example\":\"dolore amet\",\"name\":\"name\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"do reprehenderit\",\"name\":\"nickName\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"proident minim velit\",\"name\":\"email\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"cillum adipisicing\",\"name\":\"phone\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"consequat eu com\",\"name\":\"remark\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"nulla fugiat ad\",\"name\":\"headImg\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"commodo culpa eiusmod cillum\",\"name\":\"loginIp\",\"required\":true,\"type\":\"string\"}]"
+            },
+            {
+              "name": "更改管理员资料",
+              "uri": "/admin/account/update",
+              "protocol": "http",
+              "method": "POST",
+              "requestBodyType": "raw",
+              "requestBodyJsonType": "object",
+              "requestBody": "\"{\\n  \\\"nickName\\\": \\\"Ut elit labore\\\",\\n  \\\"email\\\": \\\"est\\\",\\n  \\\"phone\\\": \\\"in el\\\",\\n  \\\"remark\\\": \\\"in amet\\\"\\n}\"",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Content-Type",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "text/plain"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "object",
+              "responseBody": "\"\""
+            },
+            {
+              "name": "更改管理员密码",
+              "uri": "/admin/account/password",
+              "protocol": "http",
+              "method": "POST",
+              "requestBodyType": "raw",
+              "requestBodyJsonType": "object",
+              "requestBody": "\"{\\n  \\\"originPassword\\\": \\\"dolore sed reprehenderit qui\\\",\\n  \\\"newPassword\\\": \\\"ex irure in\\\"\\n}\"",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Content-Type",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "text/plain"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "object",
+              "responseBody": "\"\""
+            },
+            {
+              "name": "管理员登出",
+              "uri": "/admin/account/logout",
+              "protocol": "http",
+              "method": "POST",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "text/plain"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "object",
+              "responseBody": "\"\""
+            },
+            {
+              "name": "获取菜单列表及权限列表",
+              "uri": "/admin/account/permmenu",
+              "protocol": "http",
+              "method": "GET",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Accept",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "application/json"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "array",
+              "responseBody": "[{\"description\":\"\",\"example\":\"[object Object],[object Object]\",\"name\":\"menus\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"1968-07-04T05:07:12.682Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1968-07-04T05:07:12.682Z\"},{\"description\":\"\",\"example\":\"1956-03-15T09:49:44.451Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"1956-03-15T09:49:44.451Z\"},{\"description\":\"\",\"example\":\"-18592734.41373785\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-18592734.41373785},{\"description\":\"\",\"example\":\"24146887.10644822\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":24146887.10644822},{\"description\":\"\",\"example\":\"in sunt nulla\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"in sunt nulla\"},{\"description\":\"\",\"example\":\"irure consequat commodo\",\"name\":\"router\",\"required\":true,\"type\":\"string\",\"children\":\"irure consequat commodo\"},{\"description\":\"\",\"example\":\"aliquip cillum eu\",\"name\":\"perms\",\"required\":true,\"type\":\"string\",\"children\":\"aliquip cillum eu\"},{\"description\":\"\",\"example\":\"-60693045.9209543\",\"name\":\"type\",\"required\":true,\"type\":\"number\",\"children\":-60693045.9209543},{\"description\":\"\",\"example\":\"ea ut eu\",\"name\":\"icon\",\"required\":true,\"type\":\"string\",\"children\":\"ea ut eu\"},{\"description\":\"\",\"example\":\"-96634474.74155138\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":-96634474.74155138},{\"description\":\"\",\"example\":\"esse cupidatat dolore eu\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\",\"children\":\"esse cupidatat dolore eu\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\",\"children\":false},{\"description\":\"\",\"example\":\"false\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\",\"children\":false},{\"description\":\"\",\"example\":\"1993-09-11T01:12:23.546Z\",\"name\":\"createdAt\",\"required\":true,\"type\":\"string\",\"children\":\"1993-09-11T01:12:23.546Z\"},{\"description\":\"\",\"example\":\"2021-08-24T05:21:09.785Z\",\"name\":\"updatedAt\",\"required\":true,\"type\":\"string\",\"children\":\"2021-08-24T05:21:09.785Z\"},{\"description\":\"\",\"example\":\"-50594833.39760118\",\"name\":\"id\",\"required\":true,\"type\":\"number\",\"children\":-50594833.39760118},{\"description\":\"\",\"example\":\"5371993.707732111\",\"name\":\"parentId\",\"required\":true,\"type\":\"number\",\"children\":5371993.707732111},{\"description\":\"\",\"example\":\"velit\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"velit\"},{\"description\":\"\",\"example\":\"tempor do Excepteur consectetur culpa\",\"name\":\"router\",\"required\":true,\"type\":\"string\",\"children\":\"tempor do Excepteur consectetur culpa\"},{\"description\":\"\",\"example\":\"in laboris ullamco\",\"name\":\"perms\",\"required\":true,\"type\":\"string\",\"children\":\"in laboris ullamco\"},{\"description\":\"\",\"example\":\"-47202396.33236179\",\"name\":\"type\",\"required\":true,\"type\":\"number\",\"children\":-47202396.33236179},{\"description\":\"\",\"example\":\"culpa elit occaecat consequat aute\",\"name\":\"icon\",\"required\":true,\"type\":\"string\",\"children\":\"culpa elit occaecat consequat aute\"},{\"description\":\"\",\"example\":\"-11126073.366545558\",\"name\":\"orderNum\",\"required\":true,\"type\":\"number\",\"children\":-11126073.366545558},{\"description\":\"\",\"example\":\"velit occae\",\"name\":\"viewPath\",\"required\":true,\"type\":\"string\",\"children\":\"velit occae\"},{\"description\":\"\",\"example\":\"false\",\"name\":\"keepalive\",\"required\":true,\"type\":\"boolean\",\"children\":false},{\"description\":\"\",\"example\":\"true\",\"name\":\"isShow\",\"required\":true,\"type\":\"boolean\",\"children\":true}]},{\"description\":\"\",\"example\":\"sint Excepteur dolore dolor,ipsum Ut sit sunt\",\"name\":\"perms\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"s\",\"name\":\"0\",\"required\":true,\"type\":\"string\",\"children\":\"s\"},{\"description\":\"\",\"example\":\"i\",\"name\":\"1\",\"required\":true,\"type\":\"string\",\"children\":\"i\"},{\"description\":\"\",\"example\":\"n\",\"name\":\"2\",\"required\":true,\"type\":\"string\",\"children\":\"n\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"3\",\"required\":true,\"type\":\"string\",\"children\":\"t\"},{\"description\":\"\",\"example\":\" \",\"name\":\"4\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"E\",\"name\":\"5\",\"required\":true,\"type\":\"string\",\"children\":\"E\"},{\"description\":\"\",\"example\":\"x\",\"name\":\"6\",\"required\":true,\"type\":\"string\",\"children\":\"x\"},{\"description\":\"\",\"example\":\"c\",\"name\":\"7\",\"required\":true,\"type\":\"string\",\"children\":\"c\"},{\"description\":\"\",\"example\":\"e\",\"name\":\"8\",\"required\":true,\"type\":\"string\",\"children\":\"e\"},{\"description\":\"\",\"example\":\"p\",\"name\":\"9\",\"required\":true,\"type\":\"string\",\"children\":\"p\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"10\",\"required\":true,\"type\":\"string\",\"children\":\"t\"},{\"description\":\"\",\"example\":\"e\",\"name\":\"11\",\"required\":true,\"type\":\"string\",\"children\":\"e\"},{\"description\":\"\",\"example\":\"u\",\"name\":\"12\",\"required\":true,\"type\":\"string\",\"children\":\"u\"},{\"description\":\"\",\"example\":\"r\",\"name\":\"13\",\"required\":true,\"type\":\"string\",\"children\":\"r\"},{\"description\":\"\",\"example\":\" \",\"name\":\"14\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"d\",\"name\":\"15\",\"required\":true,\"type\":\"string\",\"children\":\"d\"},{\"description\":\"\",\"example\":\"o\",\"name\":\"16\",\"required\":true,\"type\":\"string\",\"children\":\"o\"},{\"description\":\"\",\"example\":\"l\",\"name\":\"17\",\"required\":true,\"type\":\"string\",\"children\":\"l\"},{\"description\":\"\",\"example\":\"o\",\"name\":\"18\",\"required\":true,\"type\":\"string\",\"children\":\"o\"},{\"description\":\"\",\"example\":\"r\",\"name\":\"19\",\"required\":true,\"type\":\"string\",\"children\":\"r\"},{\"description\":\"\",\"example\":\"e\",\"name\":\"20\",\"required\":true,\"type\":\"string\",\"children\":\"e\"},{\"description\":\"\",\"example\":\" \",\"name\":\"21\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"d\",\"name\":\"22\",\"required\":true,\"type\":\"string\",\"children\":\"d\"},{\"description\":\"\",\"example\":\"o\",\"name\":\"23\",\"required\":true,\"type\":\"string\",\"children\":\"o\"},{\"description\":\"\",\"example\":\"l\",\"name\":\"24\",\"required\":true,\"type\":\"string\",\"children\":\"l\"},{\"description\":\"\",\"example\":\"o\",\"name\":\"25\",\"required\":true,\"type\":\"string\",\"children\":\"o\"},{\"description\":\"\",\"example\":\"r\",\"name\":\"26\",\"required\":true,\"type\":\"string\",\"children\":\"r\"},{\"description\":\"\",\"example\":\"i\",\"name\":\"0\",\"required\":true,\"type\":\"string\",\"children\":\"i\"},{\"description\":\"\",\"example\":\"p\",\"name\":\"1\",\"required\":true,\"type\":\"string\",\"children\":\"p\"},{\"description\":\"\",\"example\":\"s\",\"name\":\"2\",\"required\":true,\"type\":\"string\",\"children\":\"s\"},{\"description\":\"\",\"example\":\"u\",\"name\":\"3\",\"required\":true,\"type\":\"string\",\"children\":\"u\"},{\"description\":\"\",\"example\":\"m\",\"name\":\"4\",\"required\":true,\"type\":\"string\",\"children\":\"m\"},{\"description\":\"\",\"example\":\" \",\"name\":\"5\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"U\",\"name\":\"6\",\"required\":true,\"type\":\"string\",\"children\":\"U\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"7\",\"required\":true,\"type\":\"string\",\"children\":\"t\"},{\"description\":\"\",\"example\":\" \",\"name\":\"8\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"s\",\"name\":\"9\",\"required\":true,\"type\":\"string\",\"children\":\"s\"},{\"description\":\"\",\"example\":\"i\",\"name\":\"10\",\"required\":true,\"type\":\"string\",\"children\":\"i\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"11\",\"required\":true,\"type\":\"string\",\"children\":\"t\"},{\"description\":\"\",\"example\":\" \",\"name\":\"12\",\"required\":true,\"type\":\"string\",\"children\":\" \"},{\"description\":\"\",\"example\":\"s\",\"name\":\"13\",\"required\":true,\"type\":\"string\",\"children\":\"s\"},{\"description\":\"\",\"example\":\"u\",\"name\":\"14\",\"required\":true,\"type\":\"string\",\"children\":\"u\"},{\"description\":\"\",\"example\":\"n\",\"name\":\"15\",\"required\":true,\"type\":\"string\",\"children\":\"n\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"16\",\"required\":true,\"type\":\"string\",\"children\":\"t\"}]}]"
+            }
+          ]
+        },
+        {
+          "name": "netdisk",
+          "children": [
+            {
+              "name": "manage",
+              "children": [
+                {
+                  "name": "获取文件列表",
+                  "uri": "/admin/netdisk/manage/list?marker=incididunt&path=incididunt&key=incididunt",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [
+                    {
+                      "name": "marker",
+                      "example": "incididunt",
+                      "required": false,
+                      "description": "(Required) 分页标识"
+                    },
+                    {
+                      "name": "path",
+                      "example": "incididunt",
+                      "required": false,
+                      "description": "(Required) 当前路径"
+                    },
+                    {
+                      "name": "key",
+                      "example": "incididunt",
+                      "required": false,
+                      "description": "搜索关键字"
+                    }
+                  ],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"[object Object],[object Object]\",\"name\":\"list\",\"required\":true,\"type\":\"array\",\"children\":[{\"description\":\"\",\"example\":\"in id dolore\",\"name\":\"id\",\"required\":true,\"type\":\"string\",\"children\":\"in id dolore\"},{\"description\":\"\",\"example\":\"file\",\"name\":\"type\",\"required\":true,\"type\":\"string\",\"children\":\"file\"},{\"description\":\"\",\"example\":\"reprehenderit\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"reprehenderit\"},{\"description\":\"\",\"example\":\"1962-02-21T06:06:37.907Z\",\"name\":\"putTime\",\"required\":true,\"type\":\"string\",\"children\":\"1962-02-21T06:06:37.907Z\"},{\"description\":\"\",\"example\":\"anim sit co\",\"name\":\"fsize\",\"required\":true,\"type\":\"string\",\"children\":\"anim sit co\"},{\"description\":\"\",\"example\":\"et sit\",\"name\":\"mimeType\",\"required\":true,\"type\":\"string\",\"children\":\"et sit\"},{\"description\":\"\",\"example\":\"sunt ad\",\"name\":\"belongTo\",\"required\":true,\"type\":\"string\",\"children\":\"sunt ad\"},{\"description\":\"\",\"example\":\"id in reprehenderit quis cupidatat\",\"name\":\"id\",\"required\":true,\"type\":\"string\",\"children\":\"id in reprehenderit quis cupidatat\"},{\"description\":\"\",\"example\":\"dir\",\"name\":\"type\",\"required\":true,\"type\":\"string\",\"children\":\"dir\"},{\"description\":\"\",\"example\":\"laboris id Duis\",\"name\":\"name\",\"required\":true,\"type\":\"string\",\"children\":\"laboris id Duis\"},{\"description\":\"\",\"example\":\"1962-01-10T22:57:04.276Z\",\"name\":\"putTime\",\"required\":true,\"type\":\"string\",\"children\":\"1962-01-10T22:57:04.276Z\"},{\"description\":\"\",\"example\":\"sunt nostrud ad\",\"name\":\"fsize\",\"required\":true,\"type\":\"string\",\"children\":\"sunt nostrud ad\"},{\"description\":\"\",\"example\":\"irure voluptate sit\",\"name\":\"mimeType\",\"required\":true,\"type\":\"string\",\"children\":\"irure voluptate sit\"},{\"description\":\"\",\"example\":\"laborum d\",\"name\":\"belongTo\",\"required\":true,\"type\":\"string\",\"children\":\"laborum d\"}]},{\"description\":\"\",\"example\":\"exercitat\",\"name\":\"marker\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "创建文件夹，支持多级",
+                  "uri": "/admin/netdisk/manage/mkdir",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"dirName\\\": \\\"exercitation officia dolore tempor Lorem\\\",\\n  \\\"path\\\": \\\"voluptate do tempor eiusmod eu\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "获取上传Token，无Token前端无法上传",
+                  "uri": "/admin/netdisk/manage/token",
+                  "protocol": "http",
+                  "method": "GET",
+                  "requestBodyType": "json",
+                  "requestBodyJsonType": "array",
+                  "requestBody": "[]",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"elit tempor ut proident nulla\",\"name\":\"token\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "获取文件详细信息",
+                  "uri": "/admin/netdisk/manage/info",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"non exercitation\\\",\\n  \\\"path\\\": \\\"anim sint aliquip molli\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    },
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"55927126.02393207\",\"name\":\"fsize\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"sunt\",\"name\":\"hash\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"ut in\",\"name\":\"mimeType\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"-11078121.58885184\",\"name\":\"type\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"1968-09-09T13:30:53.421Z\",\"name\":\"putTime\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"in dolore\",\"name\":\"md5\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"aute\",\"name\":\"uploader\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"elit magna sunt\",\"name\":\"mark\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "添加文件备注",
+                  "uri": "/admin/netdisk/manage/mark",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"irure\\\",\\n  \\\"path\\\": \\\"aute irure nulla est\\\",\\n  \\\"mark\\\": \\\"Duis dolor\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "获取下载链接，不支持下载文件夹",
+                  "uri": "/admin/netdisk/manage/download",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"name\\\": \\\"non exercitation\\\",\\n  \\\"path\\\": \\\"anim sint aliquip molli\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    },
+                    {
+                      "name": "Accept",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "application/json"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "array",
+                  "responseBody": "[{\"description\":\"\",\"example\":\"i\",\"name\":\"0\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"n\",\"name\":\"1\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"c\",\"name\":\"2\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"i\",\"name\":\"3\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"d\",\"name\":\"4\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"i\",\"name\":\"5\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"d\",\"name\":\"6\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"u\",\"name\":\"7\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"n\",\"name\":\"8\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"t\",\"name\":\"9\",\"required\":true,\"type\":\"string\"}]"
+                },
+                {
+                  "name": "重命名文件或文件夹",
+                  "uri": "/admin/netdisk/manage/rename",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"type\\\": \\\"laboris\\\",\\n  \\\"toName\\\": \\\"irure eiusmod ipsum mollit ea\\\",\\n  \\\"name\\\": \\\"mollit\\\",\\n  \\\"path\\\": \\\"in dolor ad Excepteur enim\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "删除文件或文件夹",
+                  "uri": "/admin/netdisk/manage/delete",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"files\\\": [\\n    {\\n      \\\"type\\\": \\\"file\\\",\\n      \\\"name\\\": \\\"dolor ex deserunt\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"file\\\",\\n      \\\"name\\\": \\\"magna eu ad exercitation\\\"\\n    }\\n  ],\\n  \\\"path\\\": \\\"Excepteur\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "剪切文件或文件夹，支持批量",
+                  "uri": "/admin/netdisk/manage/cut",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"files\\\": [\\n    {\\n      \\\"type\\\": \\\"dir\\\",\\n      \\\"name\\\": \\\"in exercitation\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"dir\\\",\\n      \\\"name\\\": \\\"elit magna in \\\"\\n    }\\n  ],\\n  \\\"originPath\\\": \\\"ad enim do culpa aliqua\\\",\\n  \\\"toPath\\\": \\\"sunt deserunt\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                },
+                {
+                  "name": "复制文件或文件夹，支持批量",
+                  "uri": "/admin/netdisk/manage/copy",
+                  "protocol": "http",
+                  "method": "POST",
+                  "requestBodyType": "raw",
+                  "requestBodyJsonType": "object",
+                  "requestBody": "\"{\\n  \\\"files\\\": [\\n    {\\n      \\\"type\\\": \\\"file\\\",\\n      \\\"name\\\": \\\"aliquip ipsum Ut\\\"\\n    },\\n    {\\n      \\\"type\\\": \\\"dir\\\",\\n      \\\"name\\\": \\\"sint do\\\"\\n    }\\n  ],\\n  \\\"originPath\\\": \\\"consequat esse\\\",\\n  \\\"toPath\\\": \\\"ad\\\"\\n}\"",
+                  "queryParams": [],
+                  "restParams": [],
+                  "requestHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "example": "application/json",
+                      "required": true
+                    }
+                  ],
+                  "responseHeaders": [
+                    {
+                      "name": "Content-Type",
+                      "required": false,
+                      "example": "text/plain"
+                    }
+                  ],
+                  "responseBodyType": "json",
+                  "responseBodyJsonType": "object",
+                  "responseBody": "\"\""
+                }
+              ]
+            },
+            {
+              "name": "获取网盘空间数据统计",
+              "uri": "/admin/netdisk/overview/desc",
+              "protocol": "http",
+              "method": "GET",
+              "requestBodyType": "json",
+              "requestBodyJsonType": "array",
+              "requestBody": "[]",
+              "queryParams": [],
+              "restParams": [],
+              "requestHeaders": [
+                {
+                  "name": "Accept",
+                  "example": "application/json",
+                  "required": true
+                }
+              ],
+              "responseHeaders": [
+                {
+                  "name": "Content-Type",
+                  "required": false,
+                  "example": "application/json"
+                }
+              ],
+              "responseBodyType": "json",
+              "responseBodyJsonType": "array",
+              "responseBody": "[{\"description\":\"\",\"example\":\"-46143542.2521224\",\"name\":\"spaceSize\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"29215546.45790696\",\"name\":\"fileSize\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"47758950.047620505\",\"name\":\"flowSize\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"-80196166.46212375\",\"name\":\"hitSize\",\"required\":true,\"type\":\"number\"},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"flowTrend\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"4591506.547796249,-23280817.279626742\",\"name\":\"times\",\"required\":true,\"type\":\"array\",\"children\":[]},{\"description\":\"\",\"example\":\"1913551.9816385359,24789513.035126686\",\"name\":\"datas\",\"required\":true,\"type\":\"array\",\"children\":[]}]},{\"description\":\"\",\"example\":\"[object Object]\",\"name\":\"sizeTrend\",\"required\":true,\"type\":\"object\",\"children\":[{\"description\":\"\",\"example\":\"94785610.8682724,88187723.40254268\",\"name\":\"times\",\"required\":true,\"type\":\"array\",\"children\":[]},{\"description\":\"\",\"example\":\"-2845237.4523889422,44290426.39744237\",\"name\":\"datas\",\"required\":true,\"type\":\"array\",\"children\":[]}]}]"
+            }
+          ]
+        },
+        {
+          "name": "获取登录图片验证码",
+          "uri": "/admin/captcha/img?width=100&height=50",
+          "protocol": "http",
+          "method": "GET",
+          "requestBodyType": "json",
+          "requestBodyJsonType": "array",
+          "requestBody": "[]",
+          "queryParams": [
+            {
+              "name": "width",
+              "example": "100",
+              "required": false,
+              "description": "验证码宽度"
+            },
+            {
+              "name": "height",
+              "example": "50",
+              "required": false,
+              "description": "验证码高度"
+            }
+          ],
+          "restParams": [],
+          "requestHeaders": [
+            {
+              "name": "Accept",
+              "example": "application/json",
+              "required": true
+            }
+          ],
+          "responseHeaders": [
+            {
+              "name": "Content-Type",
+              "required": false,
+              "example": "application/json"
+            }
+          ],
+          "responseBodyType": "json",
+          "responseBodyJsonType": "array",
+          "responseBody": "[{\"description\":\"\",\"example\":\"do\",\"name\":\"img\",\"required\":true,\"type\":\"string\"},{\"description\":\"\",\"example\":\"occaecat reprehenderit\",\"name\":\"id\",\"required\":true,\"type\":\"string\"}]"
+        },
+        {
+          "name": "管理员登录",
+          "uri": "/admin/login",
+          "protocol": "http",
+          "method": "POST",
+          "requestBodyType": "raw",
+          "requestBodyJsonType": "object",
+          "requestBody": "\"{\\n  \\\"username\\\": \\\"minim proident eu veniam\\\",\\n  \\\"password\\\": \\\"officia\\\",\\n  \\\"captchaId\\\": \\\"ipsum Excepteur\\\",\\n  \\\"verifyCode\\\": \\\"dolor commodo fugiat\\\"\\n}\"",
+          "queryParams": [],
+          "restParams": [],
+          "requestHeaders": [
+            {
+              "name": "user-agent",
+              "example": "incididunt",
+              "required": true,
+              "description": "(Required) "
+            },
+            {
+              "name": "Content-Type",
+              "example": "application/json",
+              "required": true
+            },
+            {
+              "name": "Accept",
+              "example": "application/json",
+              "required": true
+            }
+          ],
+          "responseHeaders": [
+            {
+              "name": "Content-Type",
+              "required": false,
+              "example": "application/json"
+            }
+          ],
+          "responseBodyType": "json",
+          "responseBodyJsonType": "array",
+          "responseBody": "[{\"description\":\"\",\"example\":\"in voluptate culpa aliquip et\",\"name\":\"token\",\"required\":true,\"type\":\"string\"}]"
+        }
+      ]
+    }
+  ],
+  "enviroments": [
+    {
+      "name": "postImport",
+      "hostUri": "http://localhost",
+      "parameters": [
+        {
+          "name": "baseUrl",
+          "value": "/"
+        }
+      ]
+    }
+  ]
+}
