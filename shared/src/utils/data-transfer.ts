@@ -101,12 +101,14 @@ export const xml2json = (tmpl) => {
   let index = null
   while (xml) {
     // * handle end tags
-    if (xml.substring(0, 2) === '</') {
+    if (xml.trim().substring(0, 2) === '</') {
       const end = xml.match(endTag)
       const [str, label] = end
       const last = stack.pop()
       if (last.tagName !== label) {
-        throw new Error('Parse error 101')
+        throw new Error(
+          `Parse error 101. [${last.tagName}] is not eq [${label}]`
+        )
       }
       if (stack.length === 0) {
         result.push(last)
@@ -115,12 +117,25 @@ export const xml2json = (tmpl) => {
         parent.children.push(last)
         stack.push(parent)
       }
-      xml = xml.substring(str.length)
+      xml = xml.trim().substring(str.length)
       continue
     }
     // * handle start tags
     if ((start = xml.match(startTag))) {
       const [str, label, attr] = start
+      if (str.slice(-2) === '/>') {
+        // * single tag
+        const parent = stack.pop()
+        parent.children.push({
+          tagName: label.trim(),
+          attr: attr.trim(),
+          content: '',
+          children: []
+        })
+        stack.push(parent)
+        xml = xml.trim().substring(str.length)
+        continue
+      }
       stack.push({
         tagName: label.trim(),
         attr: attr.trim(),
@@ -144,6 +159,7 @@ export const xml2json = (tmpl) => {
   if (stack.length) {
     throw new Error('Parse error 102')
   }
+  // console.log(JSON.stringify(result, null, 2));
   return result
 }
 
@@ -152,6 +168,7 @@ type uiData = {
   rootType: JsonRootType | string
   data: ApiEditBody | any
 }
+
 export const xml2UiData = (text) => {
   const data: any[] = xml2json(text)
   const deep = (list = []) =>

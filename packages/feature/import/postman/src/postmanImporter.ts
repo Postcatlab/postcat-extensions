@@ -21,6 +21,7 @@ import type {
   VariableList
 } from './types/postman-collection'
 import { text2UiData } from '../../../../../shared/src/utils/data-transfer'
+import { whatTextType } from '../../../../../shared/src/utils/common'
 
 export class PostmanImporter {
   eoapiData: Collections
@@ -59,24 +60,21 @@ export class PostmanImporter {
       const request = item.request as Request1
       const response = item.response as Response[]
 
-      const requestBody = this.handleRequestBody(request?.body)
-      const responseBody = this.handleResponseBody(response)
-
       return {
         name: item.name,
         uri: this.handleUrl(request?.url),
         protocol: 'http',
         method: request?.method,
         requestBodyType: this.handleRequestBodyType(request?.body),
-        requestBodyJsonType: this.handleJsonRootType(requestBody),
-        requestBody: requestBody,
+        requestBodyJsonType: this.handleJsonRootType(request?.body),
+        requestBody: this.handleRequestBody(request?.body),
         queryParams: this.handleQueryParams(request?.url),
         restParams: [],
         requestHeaders: this.handleRequestHeader(request?.header),
         responseHeaders: this.handleResponseHeaders(response),
         responseBodyType: this.handleResponseBodyType(response),
         responseBodyJsonType: 'object',
-        responseBody: responseBody
+        responseBody: this.handleResponseBody(response)
       }
     })
   }
@@ -159,6 +157,12 @@ export class PostmanImporter {
       return []
     } else if (body?.mode === 'raw') {
       try {
+        // if (
+        //   whatTextType(body.raw) === 'json' &&
+        //   body?.options?.raw?.language === 'json'
+        // ) {
+        //   return this.transformBodyData(JSON.parse(body.raw))
+        // }
         return text2UiData(body.raw || '').data
       } catch (error) {
         console.error(error)
@@ -203,7 +207,7 @@ export class PostmanImporter {
   }
 
   transformBodyData(val: Record<string, any>[]): ApiEditBody[] {
-    return val.flatMap((n) => {
+    return [].concat(val).flatMap((n) => {
       return Object.entries(n).map(([key, value]) => {
         return {
           description: '',
@@ -235,12 +239,12 @@ export class PostmanImporter {
     }
   }
 
-  handleJsonRootType(body: string | ApiEditBody[]): JsonRootType {
-    let _body = body
+  handleJsonRootType(body: Request1['body']): JsonRootType {
+    let _body = body?.raw
 
-    if (isString(body)) {
+    if (isString(_body)) {
       try {
-        _body = JSON.parse(body)
+        _body = JSON.parse(_body)
       } catch (error) {}
     }
 
