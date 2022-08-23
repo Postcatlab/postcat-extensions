@@ -45,14 +45,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/import/openapi
-
-      - run: npm publish
-        working-directory: packages/feature/import/openapi
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - run: pnpm install
       - run: pnpm build
@@ -62,6 +54,17 @@ jobs:
         working-directory: packages/feature/import/postman
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - run: pnpm install
+      - run: pnpm build
+        working-directory: packages/feature/import/openapi
+
+      - run: npm publish
+        working-directory: packages/feature/import/openapi
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+
 
   publish-npm-push:
     needs: build
