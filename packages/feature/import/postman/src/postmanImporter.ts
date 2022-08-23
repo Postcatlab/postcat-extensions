@@ -69,14 +69,14 @@ export class PostmanImporter {
         method: request?.method,
         requestBodyType: this.handleRequestBodyType(request?.body),
         requestBodyJsonType: this.handleJsonRootType(requestBody),
-        requestBody: JSON.stringify(requestBody),
+        requestBody: requestBody,
         queryParams: this.handleQueryParams(request?.url),
         restParams: [],
         requestHeaders: this.handleRequestHeader(request?.header),
         responseHeaders: this.handleResponseHeaders(response),
         responseBodyType: this.handleResponseBodyType(response),
         responseBodyJsonType: 'object',
-        responseBody: JSON.stringify(responseBody)
+        responseBody: responseBody
       }
     })
   }

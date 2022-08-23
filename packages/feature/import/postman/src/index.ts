@@ -9,7 +9,10 @@ export const importFunc = (
   data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
 ) => {
   const postmanImporter = new PostmanImporter(data)
-
+  console.log(
+    'postmanImporter.eoapiData33',
+    JSON.parse(JSON.stringify(postmanImporter.eoapiData))
+  )
   return [postmanImporter.eoapiData, null]
 }
 
