@@ -27,6 +27,12 @@
       "label": "Postman(.json)",
       "description": "${function.description}",
       "icon": "https://data.eolink.com/WIC2HqFc1d10cf7198c88467bffcd0b8d063b52dc4cf66d"
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   }
 }

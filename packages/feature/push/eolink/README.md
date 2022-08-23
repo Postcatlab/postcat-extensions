@@ -7,7 +7,7 @@ Here we take the [**Push to Eolink**] plugin as an example. After the plugin is 
 
 ![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/images/image-05-20_17-09-50.jpg)
 
- p ## use
+ p ## usage
 
 Go to the overview page of the main page, you can see the push function, click this area to open the corresponding pop-up window, you can see the name of the push plug-in, it will not be displayed if it is not installed. Please select the desired push platform and click the [OK] button to complete the push.
 
