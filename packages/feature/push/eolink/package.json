@@ -7,7 +7,7 @@
   "moduleID": "eoapi-feature-push-eolink",
   "moduleName": "Push to Eolink",
   "moduleType": "feature",
-  "logo": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
+  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -45,7 +45,7 @@
       "action": "sync_to_remote",
       "label": "Eolink",
       "description": "${function.description}",
-      "icon": "https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/logo.png",
+      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
       "extestion": ""
     },
     "configuration": {
