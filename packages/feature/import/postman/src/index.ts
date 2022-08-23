@@ -1,5 +1,5 @@
-import fs from 'node:fs'
-import postCollectionJson from '../assets/test.postman_collection.json'
+// import fs from 'node:fs'
+// import postCollectionJson from '../assets/test.postman_collection.json'
 import { PostmanImporter } from './postmanImporter'
 import { HttpsSchemaGetpostmanComJsonDraft07CollectionV210 } from './types/postman-collection'
 
@@ -13,7 +13,7 @@ export const importFunc = (
   return [postmanImporter.eoapiData, null]
 }
 
-const [data] = importFunc(postCollectionJson)
+// const [data] = importFunc(postCollectionJson)
 
-console.log('data', data)
-fs.writeFileSync('postman.json', JSON.stringify(data, null, 2))
+// console.log('data', data)
+// fs.writeFileSync('postman.json', JSON.stringify(data, null, 2))
