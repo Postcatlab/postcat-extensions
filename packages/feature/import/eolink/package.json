@@ -7,7 +7,7 @@
   "moduleName": "Import OpenAPI",
   "moduleType": "feature",
   "author": "Eoapi",
-  "logo": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png",
+  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -20,7 +20,7 @@
       "action": "importFunc",
       "label": "OpenAPI(.json)",
       "description": "",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da"
+      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406"
     }
   }
 }
