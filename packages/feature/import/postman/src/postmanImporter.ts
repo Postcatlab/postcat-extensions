@@ -20,6 +20,7 @@ import type {
   HttpsSchemaGetpostmanComJsonDraft07CollectionV210,
   VariableList
 } from './types/postman-collection'
+import { text2UiData } from '../../../../../shared/src/utils/data-transfer'
 
 export class PostmanImporter {
   eoapiData: Collections
@@ -34,17 +35,25 @@ export class PostmanImporter {
     data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
   ): Collections {
     return {
-      collections: this.transformItems(data.item),
+      collections: this.transformItems([
+        {
+          name: data.info?.name || 'postman collection name',
+          item: data.item
+        }
+      ]),
       enviroments: this.transformEnv(data.variable)
     }
   }
 
   transformItems(items: Items[]): Child[] {
     return items.map((item) => {
-      if (Array.isArray(item.item) && item.item.length) {
+      if (!item.request) {
         return {
           name: item.name,
-          children: this.transformItems(item.item)
+          children:
+            Array.isArray(item.item) && item.item.length
+              ? this.transformItems(item.item)
+              : []
         }
       }
       const request = item.request as Request1
@@ -66,7 +75,7 @@ export class PostmanImporter {
         requestHeaders: this.handleRequestHeader(request?.header),
         responseHeaders: this.handleResponseHeaders(response),
         responseBodyType: this.handleResponseBodyType(response),
-        responseBodyJsonType: this.handleJsonRootType(responseBody),
+        responseBodyJsonType: 'object',
         responseBody: JSON.stringify(responseBody)
       }
     })
@@ -92,7 +101,7 @@ export class PostmanImporter {
       const newUri = this.postmanData.variable?.reduce((prev, curr) => {
         return prev?.replace(`{{${curr.key}}}`, String(curr.value || ''))
       }, url?.raw)
-      return uniqueSlash(newUri || '')
+      return uniqueSlash(newUri || url?.raw || '')
     }
   }
 
@@ -129,13 +138,13 @@ export class PostmanImporter {
   handleRequestBodyType(body: Request1['body']): ApiBodyEnum {
     switch (body?.mode) {
       case ApiBodyEnum.Raw:
-        return ApiBodyEnum.Raw
+        return body?.options?.raw?.language || ApiBodyEnum.Raw
       case 'file':
         return ApiBodyEnum.Binary
       case 'formdata':
         return ApiBodyEnum['Form-data']
       case 'urlencoded':
-        return ApiBodyEnum.JSON
+        return ApiBodyEnum['Form-data']
       default:
         return ApiBodyEnum.JSON
     }
@@ -149,7 +158,12 @@ export class PostmanImporter {
     if (Object.is(body, null)) {
       return []
     } else if (body?.mode === 'raw') {
-      return body.raw || ''
+      try {
+        return text2UiData(body.raw || '').data
+      } catch (error) {
+        console.error(error)
+        return body.raw || ''
+      }
     } else if (['formdata', 'urlencoded'].includes(body?.mode!)) {
       const data = body?.[body.mode!] as NonNullable<
         Request1['body']
