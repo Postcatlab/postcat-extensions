@@ -1,3 +1,5 @@
+import { getDataType } from '../../../../../shared/src/utils/is'
+
 type methodType = {
   tags: Array<string>
   summary: string
@@ -55,9 +57,36 @@ const bodyTypeHash = new Map().set('object', 'json')
 const structMap = new Map()
 
 const parserParameters = (list: any[] = []) => {
-  const queryParams = list.filter((it) => it.in === 'path')
-  const restParams = list.filter((it) => it.in === 'query')
-  const requestHeaders = list.filter((it) => it.in === 'header')
+  const queryParams = list
+    .filter((it) => it.in === 'path')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
+  const restParams = list
+    .filter((it) => it.in === 'query')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
+  const requestHeaders = list
+    .filter((it) => it.in === 'header')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
   return {
     queryParams,
     restParams,
@@ -73,7 +102,7 @@ const parserResponses = (data) => {
   if (!data) {
     console.log('Data is Empty')
     return {
-      responseBodyType: ''
+      responseBodyType: 'json'
     }
   }
   const { content } = data
@@ -83,7 +112,7 @@ const parserResponses = (data) => {
   const { schema }: any = Object.values(content).at(0)
   if (schema == null) {
     return {
-      responseBodyType: '',
+      responseBodyType: 'json',
       responseBody: []
     }
   }
@@ -109,7 +138,10 @@ const parserItems = (path) => {
     children: Object.entries(properties).map(([key, value]: any) => {
       return {
         name: key,
-        ...value
+        required: false,
+        example: String(value.example || ''),
+        type: getDataType(value.example ?? ''),
+        description: ''
       }
     })
   }
@@ -120,10 +152,13 @@ const parserProperties = (properties, required: string[] = []) => {
     const { items, $ref, ...other } = value
     const ref = items?.$ref || $ref
     return {
+      // ...other,
+      ...parserItems(ref),
       name: key,
       required: required.includes(key),
-      ...other,
-      ...parserItems(ref)
+      example: String(other.example || ''),
+      type: getDataType(other.example ?? ''),
+      description: ''
     }
   })
 }
@@ -132,7 +167,7 @@ const parserRequests = (requestBody) => {
   const content = requestBody?.content
   if (content == null) {
     return {
-      requestBodyType: '',
+      requestBodyType: 'json',
       requestBody: []
     }
   }
@@ -140,7 +175,7 @@ const parserRequests = (requestBody) => {
   const { schema }: any = Object.values(content).at(0)
   if (schema == null) {
     return {
-      requestBodyType: '',
+      requestBodyType: 'json',
       requestBody: []
     }
   }
@@ -187,7 +222,7 @@ export const importFunc = (openapi: openAPIType) => {
   }
   // * 先从 components 字段中读取出结构体
   // console.log('==>>', openapi)
-  const { components, paths } = openapi
+  const { components, paths, tags, info } = openapi
   if (components) {
     const { schemas } = components
     if (schemas) {
@@ -196,7 +231,8 @@ export const importFunc = (openapi: openAPIType) => {
       })
     }
   }
-  const apiData = Object.keys(paths)
+  const groups = tags.map((n) => ({ name: n.name, children: Array() }))
+  const apiDatas = Object.keys(paths)
     .map((url) => {
       const list: any = []
       Object.keys(paths[url]).forEach((method: string) => {
@@ -209,16 +245,44 @@ export const importFunc = (openapi: openAPIType) => {
       return list
     })
     .flat(Infinity)
-    .map(toOpenapi)
-  console.log(JSON.stringify(apiData.at(0), null, 2))
-  const environment = []
-  const group = []
+    .map((item) => {
+      const group = groups.find((n) => n.name === item.tags[0])
+      const apiData = toOpenapi(item)
+      if (group) {
+        ;(group.children ??= []).push(apiData)
+      } else {
+        return apiData
+      }
+    })
+    .filter(Boolean)
+  console.log(
+    JSON.parse(
+      JSON.stringify({
+        collections: [...tags, ...apiDatas],
+        enviroments: []
+      })
+    )
+  )
+  // const environment = []
+  // const group = []
 
+  // return [
+  //   {
+  //     environment,
+  //     group,
+  //     apiData
+  //   },
+  //   null
+  // ]
   return [
     {
-      environment,
-      group,
-      apiData
+      collections: [
+        {
+          name: info.title,
+          children: [...groups, ...apiDatas]
+        }
+      ],
+      enviroments: []
     },
     null
   ]

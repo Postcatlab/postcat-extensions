@@ -48,21 +48,22 @@ jobs:
 
       - run: pnpm install
       - run: pnpm build
-        working-directory: packages/feature/import/postman
+        working-directory: packages/feature/import/openapi
 
       - run: npm publish
-        working-directory: packages/feature/import/postman
+        working-directory: packages/feature/import/openapi
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
       - run: pnpm install
       - run: pnpm build
-        working-directory: packages/feature/import/openapi
+        working-directory: packages/feature/import/postman
 
       - run: npm publish
-        working-directory: packages/feature/import/openapi
+        working-directory: packages/feature/import/postman
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
 
 
 
