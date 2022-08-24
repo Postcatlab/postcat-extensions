@@ -136,7 +136,8 @@ export class PostmanImporter {
   handleRequestBodyType(body: Request1['body']): ApiBodyEnum {
     switch (body?.mode) {
       case ApiBodyEnum.Raw:
-        return body?.options?.raw?.language || ApiBodyEnum.Raw
+        const type = whatTextType(body.raw)
+        return ['xml', 'json'].includes(type) ? type : ApiBodyEnum.Raw
       case 'file':
         return ApiBodyEnum.Binary
       case 'formdata':
@@ -157,12 +158,9 @@ export class PostmanImporter {
       return []
     } else if (body?.mode === 'raw') {
       try {
-        // if (
-        //   whatTextType(body.raw) === 'json' &&
-        //   body?.options?.raw?.language === 'json'
-        // ) {
-        //   return this.transformBodyData(JSON.parse(body.raw))
-        // }
+        if (whatTextType(body.raw) === 'json') {
+          return this.transformBodyData(JSON.parse(body.raw.replace(/\s/g, '')))
+        }
         return text2UiData(body.raw || '').data
       } catch (error) {
         console.error(error)
@@ -187,7 +185,7 @@ export class PostmanImporter {
 
   handleResponseBody(res: Response[] = []): ApiEditBody[] | string {
     try {
-      const result = JSON.parse(res[0].body as string)
+      const result = JSON.parse(res[0].body.replace(/\s/g, ''))
       return [].concat(result).flatMap((item) => {
         return Object.entries(item).map(([key, value]) => ({
           description: '',
@@ -197,7 +195,7 @@ export class PostmanImporter {
           type: getDataType(value),
           children:
             value && typeof value === 'object'
-              ? this.transformBodyData([].concat(value))
+              ? this.transformBodyData(value)
               : undefined
         }))
       })
@@ -207,21 +205,23 @@ export class PostmanImporter {
   }
 
   transformBodyData(val: Record<string, any>[]): ApiEditBody[] {
-    return [].concat(val).flatMap((n) => {
-      return Object.entries(n).map(([key, value]) => {
-        return {
-          description: '',
-          example: String(value),
-          name: key,
-          required: true,
-          type: getDataType(value),
-          children:
-            value && typeof value === 'object'
-              ? this.transformBodyData([].concat(value))
-              : value
-        }
+    return Array()
+      .concat(val)
+      .flatMap((n) => {
+        return Object.entries<any>(n).map(([key, value]) => {
+          return {
+            description: '',
+            example: String(value),
+            name: key,
+            required: true,
+            type: getDataType(value),
+            children:
+              value && typeof value === 'object'
+                ? this.transformBodyData(value)
+                : undefined
+          }
+        })
       })
-    })
   }
 
   handleResponseHeaders(res: Response[] = []): ApiEditHeaders[] {
@@ -244,7 +244,7 @@ export class PostmanImporter {
 
     if (isString(_body)) {
       try {
-        _body = JSON.parse(_body)
+        _body = JSON.parse(_body.replace(/\s/g, ''))
       } catch (error) {}
     }
 

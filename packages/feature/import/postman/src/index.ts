@@ -10,7 +10,7 @@ export const importFunc = (
 ) => {
   const postmanImporter = new PostmanImporter(data)
   console.log(
-    'postmanImporter.eoapiData33',
+    'postmanImporter.eoapiData22',
     JSON.parse(JSON.stringify(postmanImporter.eoapiData))
   )
   return [postmanImporter.eoapiData, null]
