@@ -231,7 +231,10 @@ export const importFunc = (openapi: openAPIType) => {
       })
     }
   }
-  const groups = tags.map((n) => ({ name: n.name, children: Array() }))
+  const groups = tags.reduce((prev, curr) => {
+    prev[curr.name] = { name: curr.name, children: Array() }
+    return prev
+  }, {})
   const apiDatas = Object.keys(paths)
     .map((url) => {
       const list: any = []
@@ -246,10 +249,17 @@ export const importFunc = (openapi: openAPIType) => {
     })
     .flat(Infinity)
     .map((item) => {
-      const group = groups.find((n) => n.name === item.tags[0])
+      const groupName = item.tags[0]
+      let group
+      if (groupName) {
+        group = groups[groupName] ??= {
+          name: groupName,
+          children: []
+        }
+      }
       const apiData = toOpenapi(item)
       if (group) {
-        ;(group.children ??= []).push(apiData)
+        group.children.push(apiData)
       } else {
         return apiData
       }
@@ -279,7 +289,7 @@ export const importFunc = (openapi: openAPIType) => {
       collections: [
         {
           name: info.title,
-          children: [...groups, ...apiDatas]
+          children: [...Object.values(groups), ...apiDatas]
         }
       ],
       enviroments: []
