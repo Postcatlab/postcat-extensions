@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-openapi",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Import the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",
