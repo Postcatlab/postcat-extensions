@@ -55,6 +55,13 @@ type openAPIType = {
 }
 const bodyTypeHash = new Map().set('object', 'json')
 const structMap = new Map()
+const typeMap = {
+  integer: 'int'
+}
+
+const formatType = (type: string) => {
+  return typeMap[type] || type
+}
 
 const parserParameters = (list: any[] = []) => {
   const queryParams = list
@@ -128,37 +135,37 @@ const parserResponses = (data) => {
   }
 }
 
+const get$Ref = (prop: Record<string, any> = {}) => {
+  const { items, allOf, anyOf, oneOf } = prop
+  const of = [allOf, anyOf, oneOf].find((n) => n)?.[0]
+  return (items || of)?.$ref
+}
+
 const parserItems = (path) => {
   if (path == null) {
     return {}
   }
-  const { type, properties } = structMap.get((path as string).split('/').at(-1))
+  const { type, properties, required } = structMap.get(
+    (path as string).split('/').at(-1)
+  )
   return {
     type,
-    children: Object.entries(properties).map(([key, value]: any) => {
-      return {
-        name: key,
-        required: false,
-        example: String(value.example || ''),
-        type: getDataType(value.example ?? ''),
-        description: ''
-      }
-    })
+    children: parserProperties(properties, required)
   }
 }
 
 const parserProperties = (properties, required: string[] = []) => {
   return Object.entries(properties).map(([key, value]: any) => {
-    const { items, $ref, ...other } = value
-    const ref = items?.$ref || $ref
+    const { type, description, default: defaultValue } = value
+    const ref = get$Ref(value)
     return {
       // ...other,
       ...parserItems(ref),
       name: key,
       required: required.includes(key),
-      example: String(other.example || ''),
-      type: getDataType(other.example ?? ''),
-      description: ''
+      example: String(defaultValue || ''),
+      type: formatType(type) || getDataType(defaultValue ?? ''),
+      description: description || ''
     }
   })
 }
