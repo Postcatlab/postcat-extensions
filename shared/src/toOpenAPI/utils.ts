@@ -10,7 +10,7 @@ const paramTypeHash = new Map()
 const typeHash = new Map().set('json', 'object')
 
 const transformProperties = (data, type) => {
-  if (_.isEmpty(data) && !Array.isArray(data)) {
+  if (_.isEmpty(data) || !Array.isArray(data)) {
     return {}
   }
   return {
