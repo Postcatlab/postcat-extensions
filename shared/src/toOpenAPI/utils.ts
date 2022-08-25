@@ -5,6 +5,7 @@ const paramTypeHash = new Map()
   .set('json', 'application/json')
   .set('xml', 'application/xml')
   .set('formData', 'multipart/form-data')
+  .set('raw', 'text/plain')
 
 const typeHash = new Map().set('json', 'object')
 
@@ -107,6 +108,7 @@ export const setRequestBody = (data, { apiData }: eoAPIType) => {
   apiData.forEach(({ requestBodyType, uri, method, requestBody }) => {
     const paramType = paramTypeHash.get(requestBodyType)
     if (!paramType) {
+      console.log('paramType', paramType, requestBodyType)
       console.error(`Can't parser the params type`)
       return
     }
@@ -117,19 +119,38 @@ export const setRequestBody = (data, { apiData }: eoAPIType) => {
         true
       )
     }
-    _.set(
-      data,
-      [
-        'paths',
-        uri,
-        method.toLowerCase(),
-        'requestBody',
-        'content',
-        paramType,
-        'schema'
-      ],
-      transformProperties(requestBody, requestBodyType)
-    )
+    if (requestBodyType === 'raw') {
+      _.set(
+        data,
+        [
+          'paths',
+          uri,
+          method.toLowerCase(),
+          'requestBody',
+          'content',
+          paramType,
+          'schema'
+        ],
+        {
+          type: 'string',
+          example: requestBody
+        }
+      )
+    } else {
+      _.set(
+        data,
+        [
+          'paths',
+          uri,
+          method.toLowerCase(),
+          'requestBody',
+          'content',
+          paramType,
+          'schema'
+        ],
+        transformProperties(requestBody, requestBodyType)
+      )
+    }
   })
   return data
 }
