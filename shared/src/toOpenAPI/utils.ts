@@ -11,7 +11,10 @@ const typeHash = new Map().set('json', 'object')
 
 const transformProperties = (data, type) => {
   if (_.isEmpty(data) || !Array.isArray(data)) {
-    return {}
+    return {
+      type: 'string',
+      example: data
+    }
   }
   return {
     type: typeHash.get(type) || type,
@@ -119,38 +122,20 @@ export const setRequestBody = (data, { apiData }: eoAPIType) => {
         true
       )
     }
-    if (requestBodyType === 'raw') {
-      _.set(
-        data,
-        [
-          'paths',
-          uri,
-          method.toLowerCase(),
-          'requestBody',
-          'content',
-          paramType,
-          'schema'
-        ],
-        {
-          type: 'string',
-          example: requestBody
-        }
-      )
-    } else {
-      _.set(
-        data,
-        [
-          'paths',
-          uri,
-          method.toLowerCase(),
-          'requestBody',
-          'content',
-          paramType,
-          'schema'
-        ],
-        transformProperties(requestBody, requestBodyType)
-      )
-    }
+
+    _.set(
+      data,
+      [
+        'paths',
+        uri,
+        method.toLowerCase(),
+        'requestBody',
+        'content',
+        paramType,
+        'schema'
+      ],
+      transformProperties(requestBody, requestBodyType)
+    )
   })
   return data
 }
