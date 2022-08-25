@@ -33,20 +33,19 @@ type openAPIType = {
     termsOfService: {}
   }
   externalDocs: { description: string; url: string }
-  servers: Array<object>
+  servers: Record<string, string>[]
   tags: Array<{
     name: string
     description: string
     externalDocs: { description: string; url: string }
   }>
   paths: {
-    [key: string]: {
-      get?: methodType
-      post?: methodType
-      put?: methodType
-      delete?: methodType
-      option?: methodType
-    }
+    servers?: Record<string, string>[]
+    get?: methodType
+    post?: methodType
+    put?: methodType
+    delete?: methodType
+    option?: methodType
   }
   components: {
     schemas: {}
@@ -216,7 +215,7 @@ const toOpenapi = ({
     method: method.toUpperCase(),
     ...parserRequests(requestBody),
     ...parserParameters(parameters),
-    ...parserResponses(responses['200'])
+    ...parserResponses(responses?.['200'])
   }
 }
 
@@ -227,9 +226,33 @@ export const importFunc = (openapi: openAPIType) => {
   if (!openapi.openapi) {
     return [null, { msg: '文件不合法，缺乏 openapi 字段' }]
   }
+  const enviroments = {
+    hostUri: '',
+    name: '',
+    parameters: [] as { name: string; value: string }[]
+  }
   // * 先从 components 字段中读取出结构体
   // console.log('==>>', openapi)
-  const { components, paths, tags, info } = openapi
+  const { components, paths, tags = [], servers, info } = openapi
+
+  const setEnv = (servers: Record<string, string>[] = []) => {
+    if (servers && Array.isArray(servers) && servers.length) {
+      servers.forEach((n) => {
+        if (!enviroments.hostUri) {
+          enviroments.hostUri = n.url
+          enviroments.name = n.url
+        } else {
+          enviroments.parameters.push({
+            name: n.url,
+            value: n.url
+          })
+        }
+      })
+    }
+  }
+
+  setEnv(servers)
+
   if (components) {
     const { schemas } = components
     if (schemas) {
@@ -245,18 +268,23 @@ export const importFunc = (openapi: openAPIType) => {
   const apiDatas = Object.keys(paths)
     .map((url) => {
       const list: any = []
+
       Object.keys(paths[url]).forEach((method: string) => {
-        list.push({
-          method,
-          url,
-          ...paths[url][method]
-        })
+        if (method === 'servers') {
+          setEnv(paths.servers)
+        } else {
+          list.push({
+            method,
+            url,
+            ...paths[url][method]
+          })
+        }
       })
       return list
     })
     .flat(Infinity)
     .map((item) => {
-      const groupName = item.tags[0]
+      const groupName = item.tags?.[0]
       let group
       if (groupName) {
         group = groups[groupName] ??= {
@@ -264,6 +292,7 @@ export const importFunc = (openapi: openAPIType) => {
           children: []
         }
       }
+      // console.log('item', item)
       const apiData = toOpenapi(item)
       if (group) {
         group.children.push(apiData)
@@ -299,7 +328,7 @@ export const importFunc = (openapi: openAPIType) => {
           children: [...Object.values(groups), ...apiDatas]
         }
       ],
-      enviroments: []
+      enviroments: enviroments.hostUri ? enviroments : []
     },
     null
   ]
