@@ -80,7 +80,7 @@ export interface ParamsEnum {
   description: string
 }
 
-export enum ApiBodyType {
+export enum ApiBodyEnum {
   'Form-data' = 'formData',
   JSON = 'json',
   XML = 'xml',
@@ -252,7 +252,7 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  requestBodyType?: ApiBodyType
+  requestBodyType?: ApiBodyEnum | string
 
   /**
    * 请求头数据，数据用json存储
@@ -308,7 +308,7 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  responseBodyType?: ApiBodyType
+  responseBodyType?: ApiBodyEnum | string
 
   /**
    * Responsejson根类型
