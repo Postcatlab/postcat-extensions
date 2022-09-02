@@ -5,6 +5,941 @@
   "groupOrder": null,
   "groupPath": "1986096",
   "groupDepth": 1,
+  "apiList": [
+    {
+      "baseInfo": {
+        "apiName": "测试get",
+        "apiURI": "/test/get",
+        "apiProtocol": 0,
+        "apiSuccessMock": "",
+        "apiFailureMock": "",
+        "apiRequestType": 1,
+        "apiStatus": 0,
+        "starred": 0,
+        "apiNoteType": 1,
+        "apiNoteRaw": "",
+        "apiNote": "",
+        "apiRequestParamType": 0,
+        "apiRequestRaw": "",
+        "apiRequestBinary": null,
+        "apiFailureStatusCode": "200",
+        "apiSuccessStatusCode": "200",
+        "apiFailureContentType": "text/html; charset=UTF-8",
+        "apiSuccessContentType": "text/html; charset=UTF-8",
+        "apiRequestParamJsonType": 0,
+        "advancedSetting": null,
+        "beforeInject": "",
+        "afterInject": "",
+        "createTime": "2022-09-02 11:21:08",
+        "apiUpdateTime": "2022-09-02 16:34:48",
+        "apiTag": ""
+      },
+      "responseHeader": [
+        {
+          "headerName": "Accept-Encoding",
+          "headerValue": "",
+          "paramNotNull": "0",
+          "default": 0,
+          "paramName": "编码格式"
+        }
+      ],
+      "headerInfo": [],
+      "authInfo": {
+        "status": "0"
+      },
+      "requestInfo": [
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "",
+          "paramKey": "name",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": []
+        },
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "",
+          "paramKey": "org",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": []
+        }
+      ],
+      "urlParam": [
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "",
+          "paramKey": "schoolName",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0
+        }
+      ],
+      "restfulParam": [],
+      "structureID": [],
+      "databaseFieldID": [],
+      "globalStructureID": [],
+      "fileID": "",
+      "requestParamSetting": [],
+      "resultParamSetting": [],
+      "customInfo": {
+        "messageEncoding": "utf-8"
+      },
+      "soapVersion": null,
+      "resultInfo": [
+        {
+          "responseID": 988829,
+          "responseCode": "200",
+          "responseName": "成功",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "13",
+              "paramName": "",
+              "paramKey": "result",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "",
+                  "paramKey": "good",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": []
+                }
+              ]
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "是的",
+              "paramKey": "yes",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            }
+          ],
+          "raw": "",
+          "binary": "",
+          "isDefault": 1
+        }
+      ],
+      "resultParamJsonType": 0,
+      "resultParamType": 0,
+      "version": 1040,
+      "testCastList": [],
+      "mockExpectationList": [
+        {
+          "expectationID": 5348944,
+          "expectationName": "系统默认期望",
+          "triggerCondition": {
+            "headerParam": [],
+            "bodyParam": [],
+            "urlParam": [],
+            "bodyParamJsonType": "0",
+            "bodyParamType": "0",
+            "restParam": []
+          },
+          "responseHttpCode": "200",
+          "responseDelay": "0.00",
+          "responseHeader": [],
+          "responseBodySettingType": 4,
+          "mockConfig": {
+            "type": "object"
+          },
+          "mockRule": null,
+          "mockResult": null,
+          "updateTime": "2022-09-02 11:21:08",
+          "mockStatus": "enable"
+        }
+      ],
+      "apiManagerID": 344660,
+      "createUserID": 344660,
+      "updateUserID": 344660,
+      "apiID": 48806607,
+      "apiType": "http",
+      "groupName": "一级分组",
+      "swaggerID": null,
+      "groupDepth": 1
+    },
+    {
+      "baseInfo": {
+        "apiName": "测试post",
+        "apiURI": "/test/post",
+        "apiProtocol": 0,
+        "apiSuccessMock": "",
+        "apiFailureMock": "",
+        "apiRequestType": 0,
+        "apiStatus": 0,
+        "starred": 0,
+        "apiNoteType": 1,
+        "apiNoteRaw": "",
+        "apiNote": "",
+        "apiRequestParamType": 1,
+        "apiRequestRaw": "我是普通文本",
+        "apiRequestBinary": null,
+        "apiFailureStatusCode": "200",
+        "apiSuccessStatusCode": "200",
+        "apiFailureContentType": "text/html; charset=UTF-8",
+        "apiSuccessContentType": "text/html; charset=UTF-8",
+        "apiRequestParamJsonType": 0,
+        "advancedSetting": null,
+        "beforeInject": "",
+        "afterInject": "",
+        "createTime": "2022-09-02 11:17:27",
+        "apiUpdateTime": "2022-09-02 11:18:02",
+        "apiTag": ""
+      },
+      "responseHeader": [
+        {
+          "headerName": "Accept-Language",
+          "headerValue": "",
+          "paramNotNull": "0",
+          "default": 0,
+          "paramName": "zh"
+        }
+      ],
+      "headerInfo": [],
+      "authInfo": {
+        "status": "0"
+      },
+      "requestInfo": [],
+      "urlParam": [],
+      "restfulParam": [],
+      "structureID": [],
+      "databaseFieldID": [],
+      "globalStructureID": [],
+      "fileID": "",
+      "requestParamSetting": [],
+      "resultParamSetting": [],
+      "customInfo": {
+        "messageEncoding": "utf-8"
+      },
+      "soapVersion": null,
+      "resultInfo": [
+        {
+          "responseID": 988824,
+          "responseCode": "200",
+          "responseName": "成功",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "13",
+              "paramName": "",
+              "paramKey": "user",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "路飞",
+                  "paramKey": "name",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": [],
+                  "paramMock": "@ctitle"
+                },
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "18",
+                  "paramKey": "age",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": []
+                }
+              ]
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "广东",
+              "paramKey": "address",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramMock": "@address"
+            }
+          ],
+          "raw": "",
+          "binary": "",
+          "isDefault": 1
+        },
+        {
+          "responseID": 988825,
+          "responseCode": "403",
+          "responseName": "失败",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "13",
+              "paramName": "",
+              "paramKey": "user",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "娜美",
+                  "paramKey": "name",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": [],
+                  "paramMock": "@ctitle"
+                },
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "20",
+                  "paramKey": "age",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": []
+                }
+              ]
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "东海",
+              "paramKey": "address",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramMock": "@address"
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "fail",
+              "paramKey": "status",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            }
+          ],
+          "raw": "",
+          "binary": "",
+          "isDefault": 0
+        }
+      ],
+      "resultParamJsonType": 0,
+      "resultParamType": 0,
+      "version": 1040,
+      "testCastList": [],
+      "mockExpectationList": [
+        {
+          "expectationID": 5348931,
+          "expectationName": "系统默认期望",
+          "triggerCondition": {
+            "headerParam": [],
+            "bodyParam": [],
+            "urlParam": [],
+            "bodyParamJsonType": "0",
+            "bodyParamType": "3",
+            "restParam": []
+          },
+          "responseHttpCode": "200",
+          "responseDelay": "0.00",
+          "responseHeader": [],
+          "responseBodySettingType": 4,
+          "mockConfig": {
+            "type": "object"
+          },
+          "mockRule": null,
+          "mockResult": null,
+          "updateTime": "2022-09-02 11:17:27",
+          "mockStatus": "enable"
+        }
+      ],
+      "apiManagerID": 344660,
+      "createUserID": 344660,
+      "updateUserID": 344660,
+      "apiID": 48806578,
+      "apiType": "http",
+      "groupName": "一级分组",
+      "swaggerID": null,
+      "groupDepth": 1
+    },
+    {
+      "baseInfo": {
+        "apiName": "测试post JSON",
+        "apiURI": "/test/post/json",
+        "apiProtocol": 0,
+        "apiSuccessMock": "",
+        "apiFailureMock": "",
+        "apiRequestType": 0,
+        "apiStatus": 0,
+        "starred": 0,
+        "apiNoteType": 1,
+        "apiNoteRaw": "",
+        "apiNote": "",
+        "apiRequestParamType": 2,
+        "apiRequestRaw": "",
+        "apiRequestBinary": null,
+        "apiFailureStatusCode": "200",
+        "apiSuccessStatusCode": "200",
+        "apiFailureContentType": "text/html; charset=UTF-8",
+        "apiSuccessContentType": "text/html; charset=UTF-8",
+        "apiRequestParamJsonType": 0,
+        "advancedSetting": null,
+        "beforeInject": "",
+        "afterInject": "",
+        "createTime": "2022-09-02 11:29:37",
+        "apiUpdateTime": "2022-09-02 11:29:37",
+        "apiTag": ""
+      },
+      "responseHeader": [],
+      "headerInfo": [],
+      "authInfo": {
+        "status": "0"
+      },
+      "requestInfo": [
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "班级",
+          "paramKey": "className",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": []
+        },
+        {
+          "paramNotNull": "0",
+          "paramType": "12",
+          "paramName": "学生",
+          "paramKey": "student",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "学生姓名",
+              "paramKey": "name",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "学生年龄",
+              "paramKey": "age",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            }
+          ]
+        }
+      ],
+      "urlParam": [],
+      "restfulParam": [],
+      "structureID": [],
+      "databaseFieldID": [],
+      "globalStructureID": [],
+      "fileID": "",
+      "requestParamSetting": [],
+      "resultParamSetting": [],
+      "customInfo": {
+        "messageEncoding": "utf-8"
+      },
+      "soapVersion": null,
+      "resultInfo": [
+        {
+          "responseID": 988831,
+          "responseCode": "200",
+          "responseName": "成功",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [],
+          "raw": "",
+          "binary": "",
+          "isDefault": 1
+        }
+      ],
+      "resultParamJsonType": 0,
+      "resultParamType": 0,
+      "version": 1040,
+      "testCastList": [],
+      "mockExpectationList": [
+        {
+          "expectationID": 5348970,
+          "expectationName": "系统默认期望",
+          "triggerCondition": {
+            "headerParam": [],
+            "bodyParam": [],
+            "urlParam": [],
+            "bodyParamJsonType": "0",
+            "bodyParamType": "1",
+            "restParam": []
+          },
+          "responseHttpCode": "200",
+          "responseDelay": "0.00",
+          "responseHeader": [],
+          "responseBodySettingType": 4,
+          "mockConfig": {
+            "type": "object"
+          },
+          "mockRule": null,
+          "mockResult": null,
+          "updateTime": "2022-09-02 11:29:37",
+          "mockStatus": "enable"
+        }
+      ],
+      "apiManagerID": 344660,
+      "createUserID": 344660,
+      "updateUserID": 344660,
+      "apiID": 48806665,
+      "apiType": "http",
+      "groupName": "一级分组",
+      "swaggerID": null,
+      "groupDepth": 1
+    },
+    {
+      "baseInfo": {
+        "apiName": "测试post xml",
+        "apiURI": "/test/post/xml",
+        "apiProtocol": 0,
+        "apiSuccessMock": "",
+        "apiFailureMock": "",
+        "apiRequestType": 0,
+        "apiStatus": 0,
+        "starred": 0,
+        "apiNoteType": 1,
+        "apiNoteRaw": "",
+        "apiNote": "",
+        "apiRequestParamType": 3,
+        "apiRequestRaw": "",
+        "apiRequestBinary": null,
+        "apiFailureStatusCode": "200",
+        "apiSuccessStatusCode": "200",
+        "apiFailureContentType": "text/html; charset=UTF-8",
+        "apiSuccessContentType": "text/html; charset=UTF-8",
+        "apiRequestParamJsonType": 0,
+        "advancedSetting": null,
+        "beforeInject": "",
+        "afterInject": "",
+        "createTime": "2022-09-02 11:26:47",
+        "apiUpdateTime": "2022-09-02 11:27:32",
+        "apiTag": ""
+      },
+      "responseHeader": [
+        {
+          "headerName": "Accept-Encoding",
+          "headerValue": "",
+          "paramNotNull": "0",
+          "default": 0,
+          "paramName": "编码格式"
+        }
+      ],
+      "headerInfo": [],
+      "authInfo": {
+        "status": "0"
+      },
+      "requestInfo": [
+        {
+          "paramNotNull": "0",
+          "paramType": 13,
+          "paramName": "",
+          "paramKey": "menus",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "",
+              "paramKey": "sub_menus",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            }
+          ]
+        }
+      ],
+      "urlParam": [
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "姓名",
+          "paramKey": "name",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0
+        }
+      ],
+      "restfulParam": [],
+      "structureID": [],
+      "databaseFieldID": [],
+      "globalStructureID": [],
+      "fileID": "",
+      "requestParamSetting": [],
+      "resultParamSetting": [],
+      "customInfo": {
+        "messageEncoding": "utf-8"
+      },
+      "soapVersion": null,
+      "resultInfo": [
+        {
+          "responseID": 988830,
+          "responseCode": "200",
+          "responseName": "成功",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "13",
+              "paramName": "",
+              "paramKey": "result",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "",
+                  "paramKey": "good",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": []
+                }
+              ]
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "是的",
+              "paramKey": "yes",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            }
+          ],
+          "raw": "",
+          "binary": "",
+          "isDefault": 1
+        }
+      ],
+      "resultParamJsonType": 0,
+      "resultParamType": 0,
+      "version": 1040,
+      "testCastList": [],
+      "mockExpectationList": [
+        {
+          "expectationID": 5348963,
+          "expectationName": "系统默认期望",
+          "triggerCondition": {
+            "headerParam": [],
+            "bodyParam": [],
+            "urlParam": [],
+            "bodyParamJsonType": "0",
+            "bodyParamType": "4",
+            "restParam": []
+          },
+          "responseHttpCode": "200",
+          "responseDelay": "0.00",
+          "responseHeader": [],
+          "responseBodySettingType": 4,
+          "mockConfig": {
+            "type": "object"
+          },
+          "mockRule": null,
+          "mockResult": null,
+          "updateTime": "2022-09-02 11:26:47",
+          "mockStatus": "enable"
+        }
+      ],
+      "apiManagerID": 344660,
+      "createUserID": 344660,
+      "updateUserID": 344660,
+      "apiID": 48806652,
+      "apiType": "http",
+      "groupName": "一级分组",
+      "swaggerID": null,
+      "groupDepth": 1
+    },
+    {
+      "baseInfo": {
+        "apiName": "测试自定义数据和结构体",
+        "apiURI": "/test/info/mixin",
+        "apiProtocol": 0,
+        "apiSuccessMock": "",
+        "apiFailureMock": "",
+        "apiRequestType": 0,
+        "apiStatus": 0,
+        "starred": 0,
+        "apiNoteType": 1,
+        "apiNoteRaw": "",
+        "apiNote": "",
+        "apiRequestParamType": 2,
+        "apiRequestRaw": "",
+        "apiRequestBinary": null,
+        "apiFailureStatusCode": "200",
+        "apiSuccessStatusCode": "200",
+        "apiFailureContentType": "text/html; charset=UTF-8",
+        "apiSuccessContentType": "text/html; charset=UTF-8",
+        "apiRequestParamJsonType": 0,
+        "advancedSetting": null,
+        "beforeInject": "",
+        "afterInject": "",
+        "createTime": "2022-09-02 11:52:24",
+        "apiUpdateTime": "2022-09-02 18:52:16",
+        "apiTag": ""
+      },
+      "responseHeader": [
+        {
+          "headerName": "User-Agent",
+          "headerValue": "",
+          "paramNotNull": "0",
+          "default": 0
+        }
+      ],
+      "headerInfo": [],
+      "authInfo": {
+        "status": "0"
+      },
+      "requestInfo": [
+        {
+          "structureID": "S3729",
+          "updateData": []
+        },
+        {
+          "paramNotNull": "0",
+          "paramType": "0",
+          "paramName": "自定义的",
+          "paramKey": "customField",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": []
+        },
+        {
+          "structureID": 1122104,
+          "updateData": {
+            "XBXKWXN45026d6440a92dad354768422272f65891faedc8": {
+              "paramNotNull": "0",
+              "childList": [
+                {
+                  "structureID": 1122095,
+                  "updateData": []
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "urlParam": [],
+      "restfulParam": [],
+      "structureID": [1122104, 1122095, 1122099],
+      "databaseFieldID": [],
+      "globalStructureID": ["3729", "2186"],
+      "fileID": "",
+      "requestParamSetting": [],
+      "resultParamSetting": [],
+      "customInfo": {
+        "messageEncoding": "utf-8"
+      },
+      "soapVersion": null,
+      "resultInfo": [
+        {
+          "responseID": 988844,
+          "responseCode": "200",
+          "responseName": "成功",
+          "responseType": 0,
+          "paramJsonType": 0,
+          "paramList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "0",
+              "paramName": "哈哈哈哈",
+              "paramKey": "customField",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": []
+            },
+            {
+              "structureID": "S2186",
+              "updateData": {
+                "2d6ff510bc28cb048b8625915db315e4": {
+                  "childList": [
+                    {
+                      "paramNotNull": "0",
+                      "paramType": "13",
+                      "paramName": "",
+                      "paramKey": "customStructData",
+                      "paramValue": "",
+                      "paramLimit": "",
+                      "paramNote": "",
+                      "paramValueList": [],
+                      "default": 0,
+                      "childList": [
+                        {
+                          "structureID": 1122099,
+                          "updateData": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "raw": "",
+          "binary": "",
+          "isDefault": 1
+        }
+      ],
+      "resultParamJsonType": 0,
+      "resultParamType": 0,
+      "version": 1040,
+      "dataStructureIDList": [
+        {
+          "dataStructureID": 1122095
+        },
+        {
+          "dataStructureID": 1122099
+        },
+        {
+          "dataStructureID": 1122104
+        }
+      ],
+      "globalDataStructureIDList": [
+        {
+          "globalDataStructureID": 2186
+        },
+        {
+          "globalDataStructureID": 3729
+        }
+      ],
+      "testCastList": [],
+      "mockExpectationList": [
+        {
+          "expectationID": 5349026,
+          "expectationName": "系统默认期望",
+          "triggerCondition": {
+            "headerParam": [],
+            "bodyParam": [],
+            "urlParam": [],
+            "bodyParamJsonType": "0",
+            "bodyParamType": "1",
+            "restParam": []
+          },
+          "responseHttpCode": "200",
+          "responseDelay": "0.00",
+          "responseHeader": [],
+          "responseBodySettingType": 4,
+          "mockConfig": {
+            "type": "object"
+          },
+          "mockRule": null,
+          "mockResult": null,
+          "updateTime": "2022-09-02 11:52:24",
+          "mockStatus": "enable"
+        }
+      ],
+      "apiManagerID": 344660,
+      "createUserID": 344660,
+      "updateUserID": 344660,
+      "apiID": 48807038,
+      "apiType": "http",
+      "groupName": "一级分组",
+      "swaggerID": null,
+      "groupDepth": 1
+    }
+  ],
   "childGroupList": [
     {
       "groupID": 1986120,
@@ -11773,6 +12708,238 @@
         }
       ],
       "ID": 1122156
+    }
+  ],
+  "globaldataStructureList": [
+    {
+      "structureID": 2186,
+      "spaceID": 111,
+      "structureName": "java_http_page_response",
+      "structureDesc": "java_http项目分页返回数据结构",
+      "updateTime": "2021-11-12 17:03:12",
+      "createUserID": 166968,
+      "updateUserID": 337,
+      "structureData": [
+        {
+          "paramNotNull": "0",
+          "paramType": "8",
+          "paramName": "请求是否成功",
+          "paramKey": "success",
+          "paramValue": "true",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [
+            {
+              "value": "true",
+              "valueDescription": "",
+              "paramType": "8",
+              "radio": true
+            },
+            {
+              "value": "false",
+              "valueDescription": "",
+              "paramType": "8"
+            }
+          ],
+          "default": 0,
+          "childList": [],
+          "paramTypeString": ["boolean"],
+          "paramID": "nttp3qJ03206b9dda834e6ed0b699da2df3df8e5b5af05e"
+        },
+        {
+          "paramNotNull": "0",
+          "paramType": "3",
+          "paramName": "请求返回码",
+          "paramKey": "code",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": [],
+          "paramID": "VbQAGTE593b6c216d12c2fe7fb5e54029b0482df19b3b2e"
+        },
+        {
+          "paramNotNull": "1",
+          "paramType": "0",
+          "paramName": "请求返回信息，包括提醒、错误信息",
+          "paramKey": "message",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": [],
+          "paramID": "k7vQYwm5a344814fb6ae28d4b91f75b5cfd769ec390ec8d"
+        },
+        {
+          "paramNotNull": "1",
+          "paramType": "0",
+          "paramName": "请求id",
+          "paramKey": "request_id",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "childList": [],
+          "paramID": "qd9GDXhb1f89f84da0c69f0a594838b61e810035fc6e7a8"
+        },
+        {
+          "paramNotNull": "0",
+          "paramType": "13",
+          "paramName": "请求返回结果集",
+          "paramKey": "data",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "paramID": "lexUykC430c4648f91dad4995be586888e9e2b0f6f8d75f",
+          "childList": [
+            {
+              "paramNotNull": "0",
+              "paramType": "13",
+              "paramName": "分页描述对象",
+              "paramKey": "page_info",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "paramID": "2d6ff510bc28cb048b8625915db315e4",
+              "childList": [
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "页数",
+                  "paramKey": "page_index",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": [],
+                  "paramID": "0406070250ef8734e3190ba711e57b54"
+                },
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "每页条数",
+                  "paramKey": "page_size",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": [],
+                  "paramID": "740bc632302df48d7639d5154ed4a136"
+                },
+                {
+                  "paramNotNull": "0",
+                  "paramType": "0",
+                  "paramName": "总条数",
+                  "paramKey": "total",
+                  "paramValue": "",
+                  "paramLimit": "",
+                  "paramNote": "",
+                  "paramValueList": [],
+                  "default": 0,
+                  "childList": [],
+                  "paramID": "db4ee48f0581ebea0cccede766820e6b"
+                }
+              ]
+            },
+            {
+              "paramNotNull": "0",
+              "paramType": "12",
+              "paramName": "返回数组列表",
+              "paramKey": "items",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramID": "be32147d0ef844f16369510a67161fdf"
+            }
+          ]
+        }
+      ],
+      "structureType": "15",
+      "groupID": 0,
+      "removed": 0,
+      "removeTime": null,
+      "ID": 2186
+    },
+    {
+      "structureID": 3729,
+      "spaceID": 111,
+      "structureName": "apiNote",
+      "structureDesc": "apispace文档",
+      "updateTime": "2022-01-19 17:33:16",
+      "createUserID": 214520,
+      "updateUserID": 214520,
+      "structureData": [
+        {
+          "paramNotNull": "1",
+          "paramType": "13",
+          "paramName": "文档",
+          "paramKey": "apiNoteInfo",
+          "paramValue": "",
+          "paramLimit": "",
+          "paramNote": "",
+          "paramValueList": [],
+          "default": 0,
+          "paramID": "2b259b6e55db4ca4073c53f074628f17",
+          "childList": [
+            {
+              "paramNotNull": "1",
+              "paramType": "10",
+              "paramName": "文档类型（0：富文本，1：markdown）",
+              "paramKey": "apiNoteType",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramID": "0a67cbf35abfcde51c086e7188a8c24c"
+            },
+            {
+              "paramNotNull": "1",
+              "paramType": "0",
+              "paramName": "文档原始数据",
+              "paramKey": "apiNoteRaw",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramID": "5eeb106f0ae045bfc5e002541b0bf4aa"
+            },
+            {
+              "paramNotNull": "1",
+              "paramType": "0",
+              "paramName": "文档数据,带样式",
+              "paramKey": "apiNote",
+              "paramValue": "",
+              "paramLimit": "",
+              "paramNote": "",
+              "paramValueList": [],
+              "default": 0,
+              "childList": [],
+              "paramID": "f17099b912713fc3bf8e739da422abe1"
+            }
+          ]
+        }
+      ],
+      "structureType": "15",
+      "groupID": 0,
+      "removed": 0,
+      "removeTime": null,
+      "ID": 3729
     }
   ]
 }

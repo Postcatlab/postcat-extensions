@@ -28,12 +28,32 @@ const METHOD_ARR = [
   'PATCH'
 ] as const
 
+const tmpParamTypeArr = [
+  'string',
+  'file',
+  'json',
+  'int',
+  'float',
+  'double',
+  'date',
+  'datetime',
+  'boolean',
+  'byte',
+  'short',
+  'long',
+  'array',
+  'object',
+  'number',
+  'null'
+] as const
+
+const apiBodyTypes = ['formData', 'raw', 'json', 'xml', 'binary'] as const
 export class EolinkImporter {
   eoapiData: Collections
-  postmanData
+  eolinkData
 
   constructor(data) {
-    this.postmanData = data
+    this.eolinkData = data
     this.eoapiData = this.transformToEoapi(data)
   }
 
@@ -56,21 +76,23 @@ export class EolinkImporter {
           ? this.transformItems(item.childGroupList)
           : []
 
-      const apis = item?.apiList?.map((n) => {
-        const { baseInfo, apiType } = n
+      const apis = item?.apiList?.map((apiItem) => {
+        const { baseInfo, apiType } = apiItem
 
         return {
           name: baseInfo?.apiName,
           uri: baseInfo?.apiURI,
           protocol: apiType,
           method: METHOD_ARR[baseInfo?.apiRequestType || 0],
-          requestBodyType: this.handleRequestBodyType(request?.body),
-          requestBodyJsonType: this.handleJsonRootType(request?.body),
-          requestBody: this.handleRequestBody(request?.body),
+          requestBodyType: apiBodyTypes[baseInfo.apiRequestParamType],
+          requestBodyJsonType: ['array', 'json'][
+            baseInfo?.apiRequestParamJsonType
+          ],
+          requestBody: this.handleRequestBody(apiItem),
           queryParams: this.handleQueryParams(request?.url),
           restParams: [],
           requestHeaders: this.handleRequestHeader(request?.header),
-          responseHeaders: this.handleResponseHeaders(response),
+          responseHeaders: this.handleResponseHeaders(apiItem.responseHeader),
           responseBodyType: this.handleResponseBodyType(response),
           responseBodyJsonType: 'object',
           responseBody: this.handleResponseBody(response)
@@ -158,32 +180,29 @@ export class EolinkImporter {
     return this.handleRequestBodyType(res[0]?.body)
   }
 
-  handleRequestBody(body): ApiEditBody[] | string {
-    if (Object.is(body, null)) {
-      return []
-    } else if (body?.mode === 'raw') {
-      try {
-        if (whatTextType(body.raw) === 'json') {
-          return this.transformBodyData(JSON.parse(body.raw.replace(/\s/g, '')))
-        }
-        return text2UiData(body.raw || '').data
-      } catch (error) {
-        console.error(error)
-        return body.raw || ''
-      }
-    } else if (['formdata', 'urlencoded'].includes(body?.mode!)) {
-      const data = body?.[body.mode!]
-      return (
-        data?.map((n) => ({
-          type: n.type === 'file' ? 'file' : 'string',
+  handleStructure() {}
+
+  handleRequestBody(apiItem): ApiEditBody[] | string {
+    const d = apiBodyTypes
+    const { baseInfo, requestInfo } = apiItem
+    const apiRequestParamType = baseInfo.apiRequestParamType
+    //  raw
+    if (apiRequestParamType === 1) {
+      return baseInfo?.apiRequestRaw
+    } else if ([0, 2, 3].includes(apiRequestParamType)) {
+      return requestInfo.map((item) => {
+        const structs = this.eolinkData.dataStructureList.filter((n) =>
+          apiStructureID.includes(n.structureID)
+        )
+        return structs.map((n) => ({
+          type: tmpParamTypeArr[apiItem.apiRequestParamType],
           name: n.key,
           required: true,
           example: n.value as string,
           description: n.description as string
-        })) || []
-      )
+        }))
+      })
     }
-    return []
   }
 
   handleResponseBody(res: Response[] = []): ApiEditBody[] | string {
@@ -227,19 +246,13 @@ export class EolinkImporter {
       })
   }
 
-  handleResponseHeaders(res: Response[] = []): ApiEditHeaders[] {
-    if (Array.isArray(res[0]?.header)) {
-      return res[0].header
-        .filter((n) => !isString(n))
-        .map((n) => ({
-          name: n.key,
-          required: Boolean(n.disabled),
-          example: n.value,
-          description: n.description as string
-        }))
-    } else {
-      return []
-    }
+  handleResponseHeaders(responseHeader = []): ApiEditHeaders[] {
+    return responseHeader.map((n) => ({
+      name: n.headerName,
+      required: n.paramNotNull === '0',
+      example: n.default,
+      description: n.paramName as string
+    }))
   }
 
   handleJsonRootType(body): JsonRootType {
