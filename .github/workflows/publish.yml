@@ -5,15 +5,15 @@ on:
     branches: [main]
 
 jobs:
- build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: npm/action-setup@v2
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: npm install
+      - run: pnpm install
 
   publish-npm-export:
     needs: build
