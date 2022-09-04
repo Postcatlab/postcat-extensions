@@ -258,5 +258,5 @@ export const reconvert = (str: string) => {
       parseInt(encodeURIComponent($0).replace(/(%26%23)(\d{1,6})(%3B)/g, '$2'))
     )
   })
-  return str
+  return str.replace(/\s/g, '')
 }
