@@ -34,8 +34,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
-  # import
-  publish-npm-import:
+  # import openapi
+  publish-npm-import-openapi:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -55,6 +55,19 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
+
+  # import postman
+  publish-npm-import-postman:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
       - run: pnpm install
       - run: pnpm build
         working-directory: packages/feature/import/postman
@@ -64,7 +77,26 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
+  # import eolink
+  publish-npm-import-eolink:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
 
+      - run: pnpm install
+      - run: pnpm build
+        working-directory: packages/feature/import/eolink
+
+      - run: npm publish
+        working-directory: packages/feature/import/eolink
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
 
   publish-npm-push:
