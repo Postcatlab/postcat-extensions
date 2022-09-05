@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-eolink",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Import Postman Collections v2.1",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
