@@ -1,13 +1,13 @@
 {
   "name": "eoapi-import-eolink",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "Import Postman Collections v2.1",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
   "moduleName": "Import Eolink",
   "moduleType": "feature",
   "author": "Eoapi",
-  "logo": "https://www.eolink.com/assets/images/index/import_to_apikit.png",
+  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -25,7 +25,7 @@
       "action": "importFunc",
       "label": "Eolink(.json)",
       "description": "${function.description}",
-      "icon": "https://www.eolink.com/assets/images/index/import_to_apikit.png"
+      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406"
     },
     "i18n": {
       "sourceLocale": "en-US",

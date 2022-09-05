@@ -3,7 +3,7 @@ import { EolinkImporter } from './EolinkImporter'
 
 export const importFunc = (data) => {
   // const f = eval('(' + reconvert(JSON.stringify(data)) + ')')
-  const postmanImporter = new EolinkImporter(JSON.parse(JSON.stringify(data)))
+  const postmanImporter = new EolinkImporter(data)
   console.log(
     'EolinkImporter.eoapiData22',
     JSON.parse(JSON.stringify(postmanImporter.eoapiData))
