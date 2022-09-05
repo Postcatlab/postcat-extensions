@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-eolink",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Import Eolink",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
