@@ -111,12 +111,11 @@ const parserResponses = (data) => {
       responseBodyType: 'json'
     }
   }
-  const { content } = data
+  const { content = {} } = data
   // * contentList => ['*/*', 'application/json', 'application/xml']
-
   // * 仅取第一项
-  const { schema }: any = Object.values(content).at(0)
-  if (schema == null) {
+  const { schema }: any = Object.values(content).at(0) || {}
+  if (!schema) {
     return {
       responseBodyType: 'json',
       responseBody: []
@@ -141,7 +140,7 @@ const get$Ref = (prop: Record<string, any> = {}) => {
 }
 
 const parserItems = (path) => {
-  if (path == null) {
+  if (!path) {
     return {}
   }
   const { type, properties, required } = structMap.get(
@@ -149,14 +148,21 @@ const parserItems = (path) => {
   )
   return {
     type,
-    children: parserProperties(properties, required)
+    children: parserProperties(properties, required, path)
   }
 }
 
-const parserProperties = (properties, required: string[] = []) => {
+const parserProperties = (
+  properties = {},
+  required: string[] = [],
+  lastRef = ''
+) => {
   return Object.entries(properties).map(([key, value]: any) => {
     const { type, description, default: defaultValue } = value
     const ref = get$Ref(value)
+    if (ref === lastRef) {
+      return {}
+    }
     return {
       // ...other,
       ...parserItems(ref),
@@ -171,7 +177,7 @@ const parserProperties = (properties, required: string[] = []) => {
 
 const parserRequests = (requestBody) => {
   const content = requestBody?.content
-  if (content == null) {
+  if (!content) {
     return {
       requestBodyType: 'json',
       requestBody: []
