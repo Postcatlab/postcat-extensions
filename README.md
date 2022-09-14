@@ -7,6 +7,17 @@ eoapi official extensions
 pnpm install
 ```
 
+## Generate CHANGELOG
+1. 执行 changeset，开始交互式填写变更集，这个命令会将你的包全部列出来，然后选择你要更改发布的包
+
+```bash
+pnpm changeset
+```
+
+2. 执行 changeset version，修改发布包的版本
+```bash
+pnpm version-packages
+```
 ## Release
 
 ```bash
