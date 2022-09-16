@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import _ from 'lodash'
 import { eoAPIType } from '../types/eoAPI'
 
 const paramTypeHash = new Map()
