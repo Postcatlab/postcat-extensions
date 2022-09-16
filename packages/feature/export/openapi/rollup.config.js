@@ -9,7 +9,10 @@ export default [
       name: 'eoapi-export-openapi',
       format: 'umd',
       file: 'dist/index.js',
-      sourcemap: 'inline'
+      sourcemap: 'inline',
+      globals: {
+        lodash: 'lodash'
+      }
     },
     plugins: [esbuild({ target: 'esnext' })]
   },
