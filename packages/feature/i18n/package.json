@@ -1,8 +1,8 @@
 {
   "name": "eoapi-i18n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The i18n example extension of eoapi",
-  "author":"scar",
+  "author": "scar",
   "main": "dist/index.js",
   "moduleID": "eoapi-i18n",
   "moduleName": "eoapi-i18n",
