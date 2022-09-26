@@ -54,6 +54,7 @@ type openAPIType = {
 }
 const bodyTypeHash = new Map().set('object', 'json')
 const structMap = new Map()
+const propertiesMap = new Map()
 const typeMap = {
   integer: 'int'
 }
@@ -146,6 +147,7 @@ const parserItems = (path) => {
   const { type, properties, required } = structMap.get(
     (path as string).split('/').at(-1)
   )
+
   return {
     type,
     children: parserProperties(properties, required, path)
@@ -163,15 +165,19 @@ const parserProperties = (
     if (ref === lastRef) {
       return {}
     }
-    return {
+    if (propertiesMap.get(ref)) {
+      return propertiesMap.get(ref)
+    }
+    const properties = {
       // ...other,
-      ...parserItems(ref),
       name: key,
       required: required.includes(key),
       example: String(defaultValue || ''),
       type: formatType(type) || getDataType(defaultValue ?? ''),
       description: description || ''
     }
+    ref && propertiesMap.set(ref, properties)
+    return Object.assign(properties, parserItems(ref))
   })
 }
 
