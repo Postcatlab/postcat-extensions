@@ -1,6 +1,6 @@
 # eoapi-extensions
-eoapi official extensions
-
+- examples: show how to contribute feature by extension 
+- packages: official extension code
 ## Install
 
 ```bash
