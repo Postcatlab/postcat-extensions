@@ -122,10 +122,9 @@ const parserResponses = (data) => {
       responseBody: []
     }
   }
-  if (schema['$ref']) {
-    const { properties, required, type } = structMap.get(
-      (schema['$ref'] as string).split('/').at(-1)
-    )
+  const $ref = schema['$ref'] || schema?.items?.['$ref']
+  if ($ref) {
+    const { properties, required, type } = structMap.get($ref.split('/').at(-1))
     return {
       responseBodyType: bodyTypeHash.get(type) || 'json',
       responseBodyJsonType: type,
@@ -197,10 +196,9 @@ const parserRequests = (requestBody) => {
       requestBody: []
     }
   }
-  if (schema['$ref']) {
-    const { properties, required, type } = structMap.get(
-      (schema['$ref'] as string).split('/').at(-1)
-    )
+  const $ref = schema['$ref'] || schema?.items?.['$ref']
+  if ($ref) {
+    const { properties, required, type } = structMap.get($ref.split('/').at(-1))
     return {
       requestBodyType: bodyTypeHash.get(type) || 'json',
       requestBodyJsonType: type,
@@ -219,6 +217,13 @@ const toOpenapi = ({
   requestBody
   // description,
 }) => {
+  if (summary == '获取空间列表') {
+    console.log(
+      '获取空间列表',
+      responses?.['200'],
+      parserResponses(responses?.['200'])
+    )
+  }
   return {
     name: summary || operationId || url,
     protocol: 'http', // * openapi 中没有对应字段
@@ -314,12 +319,15 @@ export const importFunc = (openapi: openAPIType) => {
     })
     .filter(Boolean)
   console.log(
-    JSON.parse(
-      JSON.stringify({
-        collections: [...tags, ...apiDatas],
-        enviroments: []
-      })
-    )
+    structuredClone({
+      collections: [
+        {
+          name: info.title,
+          children: [...Object.values(groups), ...apiDatas]
+        }
+      ],
+      enviroments: enviroments.hostUri ? enviroments : []
+    })
   )
   // const environment = []
   // const group = []
