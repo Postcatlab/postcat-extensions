@@ -130,6 +130,12 @@ const parserResponses = (data) => {
       responseBodyJsonType: type,
       responseBody: parserProperties(properties, required)
     }
+  } else if (schema?.type) {
+    return {
+      responseBodyType: bodyTypeHash.get(schema.type) || 'json',
+      responseBodyJsonType: schema.type,
+      responseBody: parserProperties(schema.properties, schema.required)
+    }
   }
 }
 
@@ -203,6 +209,12 @@ const parserRequests = (requestBody) => {
       requestBodyType: bodyTypeHash.get(type) || 'json',
       requestBodyJsonType: type,
       requestBody: parserProperties(properties, required)
+    }
+  } else if (schema?.type) {
+    return {
+      responseBodyType: bodyTypeHash.get(schema.type) || 'json',
+      responseBodyJsonType: schema.type,
+      responseBody: parserProperties(schema.properties, schema.required)
     }
   }
 }
