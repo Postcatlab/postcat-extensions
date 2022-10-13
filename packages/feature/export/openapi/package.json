@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -54,6 +54,6 @@
     }
   },
   "dependencies": {
-    "lodash": "*"
+    "lodash-es": "^4.17.21"
   }
 }
