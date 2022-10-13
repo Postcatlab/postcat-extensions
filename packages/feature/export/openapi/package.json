@@ -1,12 +1,13 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",
   "moduleName": "Export OpenAPI",
   "moduleType": "feature",
+  "type": "module",
   "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
     "build": "rollup -c rollup.config.js",
