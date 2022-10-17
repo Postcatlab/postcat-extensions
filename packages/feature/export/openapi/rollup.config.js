@@ -1,6 +1,7 @@
 import { terser } from 'rollup-plugin-terser'
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 
 export default [
   {
@@ -14,7 +15,7 @@ export default [
         lodash: 'lodash'
       }
     },
-    plugins: [esbuild({ target: 'esnext' })]
+    plugins: [nodeResolve(), esbuild({ target: 'esnext' })]
   },
   {
     input: 'src/index.ts',
