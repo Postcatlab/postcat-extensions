@@ -64,7 +64,7 @@ const formatType = (type: string) => {
 }
 
 const parserParameters = (list: any[] = []) => {
-  const queryParams = list
+  const restParams = list
     .filter((it) => it.in === 'path')
     .map((n) => ({
       ...n,
@@ -74,7 +74,7 @@ const parserParameters = (list: any[] = []) => {
         value: item
       }))
     }))
-  const restParams = list
+  const queryParams = list
     .filter((it) => it.in === 'query')
     .map((n) => ({
       ...n,
