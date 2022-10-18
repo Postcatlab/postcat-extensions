@@ -12,3 +12,4 @@ explorations
 *.cpuprofile
 *-debug.log*
 /.vscode/
+**/demo

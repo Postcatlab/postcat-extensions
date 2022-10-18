@@ -1,11 +1,12 @@
 export type eoAPIType = {
   environment: string
-  group: Array<{ name: string }>
+  group: Array<{ name: string; uuid: number }>
   project: Array<{ name: string }>
   apiData: Array<{
     name: string
     uri: string
     method: string
+    groupID: number
     requestBodyType: string
     responseBodyType: string
     responseBodyJsonType: string

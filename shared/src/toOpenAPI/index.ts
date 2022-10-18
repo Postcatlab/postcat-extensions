@@ -48,6 +48,7 @@ class ToOpenApi {
 
   setTags() {
     this.data = setTags(this.data, this.sourceData)
+    return this
   }
 
   // setTagToApi() {

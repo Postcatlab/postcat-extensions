@@ -59,28 +59,31 @@ export const setBase = ({ name, version }) => ({
 
 export const setTags = (data, sourceData: eoAPIType) => {
   const { group } = sourceData
+
   _.set(
     data,
     ['tags'],
     group.map(({ name }) => ({
       name,
-      description: name,
-      externalDocs: {}
+      description: name
     }))
   )
   return data
 }
 
-export const setPaths = (data, { apiData }: eoAPIType) => {
-  apiData.forEach(({ uri, name, method }) => {
+export const setPaths = (data, { apiData, group }: eoAPIType) => {
+  apiData.forEach(({ uri, name, method, groupID }) => {
+    const groupName = group.find((n) => n.uuid === groupID)?.name
     _.set(data, ['paths', uri, method.toLowerCase()], {
-      tags: [],
+      tags: groupName ? [groupName] : [],
       summary: name,
       description: name,
       operationId: name,
-      requestBody: {
-        content: {}
-      },
+      requestBody: ['DELETE', 'GET'].includes(method)
+        ? undefined
+        : {
+            content: {}
+          },
       responses: {},
       security: []
     })
@@ -96,12 +99,23 @@ export const setRequestHeader = (data, { apiData }: eoAPIType) => {
       required: true,
       schema: { ...it, type: 'string' }
     }))
+    const pathParams =
+      uri.match(/(?<=\{)(.+?)(?=\})/g)?.map((n) => ({
+        name: n,
+        in: 'path',
+        description: '',
+        required: true,
+        example: '',
+        schema: {
+          type: 'string'
+        }
+      })) || []
     const parameters =
       _.get(data, ['paths', uri, method.toLowerCase(), 'parameters']) || []
     _.set(
       data,
       ['paths', uri, method.toLowerCase(), 'parameters'],
-      parameters.concat(headerList)
+      parameters.concat(headerList).concat(pathParams)
     )
   })
   return data
@@ -110,6 +124,9 @@ export const setRequestHeader = (data, { apiData }: eoAPIType) => {
 export const setRequestBody = (data, { apiData }: eoAPIType) => {
   apiData.forEach(({ requestBodyType, uri, method, requestBody }) => {
     const paramType = paramTypeHash.get(requestBodyType)
+    if (['DELETE', 'GET'].includes(method)) {
+      return
+    }
     if (!paramType) {
       console.log('paramType', paramType, requestBodyType)
       console.error(`Can't parser the params type`)
