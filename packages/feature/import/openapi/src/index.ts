@@ -52,6 +52,8 @@ type openAPIType = {
     securitySchemes?: {}
   }
 }
+
+const allowedValues = ['object', 'array']
 const bodyTypeHash = new Map().set('object', 'json')
 const structMap = new Map()
 const propertiesMap = new Map()
@@ -62,6 +64,19 @@ const typeMap = {
 const formatType = (type: string) => {
   return typeMap[type] || type
 }
+
+// const getRootType = (val: any) => {
+//   if (Array.isArray(val)) {
+//     return 'array'
+//   } else if (typeof val === 'string') {
+//     try {
+//       return Array.isArray(JSON.parse(val)) ? 'array' : 'object'
+//     } catch (error) {
+//       return 'object'
+//     }
+//   }
+//   return 'object'
+// }
 
 const parserParameters = (list: any[] = []) => {
   const restParams = list
@@ -127,13 +142,15 @@ const parserResponses = (data) => {
     const { properties, required, type } = structMap.get($ref.split('/').at(-1))
     return {
       responseBodyType: bodyTypeHash.get(type) || 'json',
-      responseBodyJsonType: type,
+      responseBodyJsonType: allowedValues.includes(type) ? type : 'object',
       responseBody: parserProperties(properties, required)
     }
   } else if (schema?.type) {
     return {
       responseBodyType: bodyTypeHash.get(schema.type) || 'json',
-      responseBodyJsonType: schema.type,
+      responseBodyJsonType: allowedValues.includes(schema.type)
+        ? schema.type
+        : 'object',
       responseBody: parserProperties(schema.properties, schema.required)
     }
   }
@@ -213,7 +230,9 @@ const parserRequests = (requestBody) => {
   } else if (schema?.type) {
     return {
       responseBodyType: bodyTypeHash.get(schema.type) || 'json',
-      responseBodyJsonType: schema.type,
+      responseBodyJsonType: allowedValues.includes(schema.type)
+        ? schema.type
+        : 'object',
       responseBody: parserProperties(schema.properties, schema.required)
     }
   }
