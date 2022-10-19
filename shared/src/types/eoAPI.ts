@@ -1,38 +1,9 @@
 export type eoAPIType = {
+  version: string
   environment: string
   group: Array<{ name: string; uuid: number }>
-  project: Array<{ name: string }>
-  apiData: Array<{
-    name: string
-    uri: string
-    method: string
-    groupID: number
-    requestBodyType: string
-    responseBodyType: string
-    responseBodyJsonType: string
-    responseBody: Array<{
-      name: string
-      type: string
-      required: boolean
-      example: string
-      enum: Array<object>
-      description: string
-    }>
-    requestHeaders: Array<{
-      name: string
-      required: boolean
-      example: string
-      description: string
-    }>
-    requestBody: Array<{
-      name: string
-      type: string
-      required: boolean
-      example: string | number
-      description: string
-      enum: Array<object>
-    }>
-  }>
+  project: { name: string }
+  apiData: ApiData[]
 }
 
 export type ValueOf<T> = T[keyof T]
@@ -214,6 +185,7 @@ export type ApiEditQuery = BasiApiEditParams
 export type ApiEditRest = BasiApiEditParams
 
 export interface ApiData {
+  groupID: number
   /**
    * name
    *
@@ -274,7 +246,7 @@ export interface ApiData {
    *
    * @type {object}
    */
-  requestBody?: ApiEditBody[] | string
+  requestBody: ApiEditBody[] | string
 
   /**
    * get请求参数，数据用json存储

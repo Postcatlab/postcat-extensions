@@ -16,6 +16,27 @@ export function isObject(val: any): val is Record<any, any> {
   return val !== null && is(val, 'Object')
 }
 
+export function isEmpty(val: any): val is boolean {
+  if (val == null) {
+    return true
+  }
+  if (
+    Array.isArray(val) ||
+    typeof val === 'string' ||
+    typeof val.splice === 'function'
+  ) {
+    return !val.length
+  }
+
+  if (isObject(val)) {
+    return !Object.keys(val).length
+  }
+  if (is(val, 'Map') || is(val, 'Set')) {
+    return !val.size
+  }
+  return true
+}
+
 /** get data type */
 export const getDataType = (data) => {
   return toString.call(data).slice(8, -1).toLocaleLowerCase()

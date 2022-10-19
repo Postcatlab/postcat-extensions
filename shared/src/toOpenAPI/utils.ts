@@ -1,7 +1,8 @@
 import _ from 'lodash-es'
 import { eoAPIType } from '../types/eoAPI'
+import { OpenAPIV3 } from 'openapi-types'
 
-const paramTypeHash = new Map()
+export const paramTypeHash = new Map()
   .set('json', 'application/json')
   .set('xml', 'application/xml')
   .set('formData', 'multipart/form-data')
@@ -34,7 +35,7 @@ const transformProperties = (data, type) => {
   }
 }
 
-export const setBase = ({ name, version }) => ({
+export const parseDoc = ({ name, version }): OpenAPIV3.Document => ({
   openapi: '3.0.1',
   info: {
     title: name || '',
@@ -57,7 +58,7 @@ export const setBase = ({ name, version }) => ({
   components: {}
 })
 
-export const setTags = (data, sourceData: eoAPIType) => {
+export const parseTags = (data, sourceData: eoAPIType): OpenAPIV3.TagObject => {
   const { group } = sourceData
 
   _.set(
