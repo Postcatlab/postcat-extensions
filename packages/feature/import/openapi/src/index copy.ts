@@ -1,12 +1,59 @@
 import { getDataType } from '../../../../../shared/src/utils/is'
-import { OpenAPIV3 } from 'openapi-types'
+
+type methodType = {
+  tags: Array<string>
+  summary: string
+  operationId: string
+  requestBody: {
+    description?: string
+    required?: boolean
+    content: {
+      [key: string]: {
+        schema: {}
+      }
+    }
+  }
+  responses: {
+    default: {
+      description: string
+      content: {}
+    }
+  }
+  security: Array<{}>
+  'x-codegen-request-body-name'?: string
+}
+type openAPIType = {
+  openapi: string
+  info: {
+    title: string
+    description: string
+    version: string
+    license: { name: string; url: string }
+    contact: {}
+    termsOfService: {}
+  }
+  externalDocs: { description: string; url: string }
+  servers: Record<string, string>[]
+  tags: Array<{
+    name: string
+    description: string
+    externalDocs: { description: string; url: string }
+  }>
+  paths: {
+    servers?: Record<string, string>[]
+    get?: methodType
+    post?: methodType
+    put?: methodType
+    delete?: methodType
+    option?: methodType
+  }
+  components: {
+    schemas: {}
+    securitySchemes?: {}
+  }
+}
 
 const allowedValues = ['object', 'array']
-export const parametersInMap = new Map([
-  ['query', 'queryParams'],
-  ['path', 'restParams'],
-  ['header', 'requestHeaders']
-])
 const bodyTypeHash = new Map().set('object', 'json')
 const structMap = new Map()
 const propertiesMap = new Map()
@@ -31,18 +78,42 @@ const formatType = (type: string) => {
 //   return 'object'
 // }
 
-const parserParameters = (list: OpenAPIV3.ParameterObject[] = []) => {
-  return list.reduce(
-    (prev, curr) => {
-      prev[parametersInMap.get(curr.in)!].push(curr)
-      return prev
-    },
-    {
-      queryParams: [],
-      restParams: [],
-      requestHeaders: []
-    }
-  )
+const parserParameters = (list: any[] = []) => {
+  const restParams = list
+    .filter((it) => it.in === 'path')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
+  const queryParams = list
+    .filter((it) => it.in === 'query')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
+  const requestHeaders = list
+    .filter((it) => it.in === 'header')
+    .map((n) => ({
+      ...n,
+      example: String(n.schema?.default ?? ''),
+      enum: n.schema?.enum?.map((item) => ({
+        default: n.schema?.default === item,
+        value: item
+      }))
+    }))
+  return {
+    queryParams,
+    restParams,
+    requestHeaders
+  }
 }
 
 // const parserItems = (data) => {
@@ -177,6 +248,13 @@ const toOpenapi = ({
   requestBody
   // description,
 }) => {
+  if (summary == '获取空间列表') {
+    console.log(
+      '获取空间列表',
+      responses?.['200'],
+      parserResponses(responses?.['200'])
+    )
+  }
   return {
     name: summary || operationId || url,
     protocol: 'http', // * openapi 中没有对应字段
@@ -185,11 +263,11 @@ const toOpenapi = ({
     method: method.toUpperCase(),
     ...parserRequests(requestBody),
     ...parserParameters(parameters),
-    ...parserResponses(['200', '201', '204'].find((n) => responses?.[n]))
+    ...parserResponses(responses?.['200'])
   }
 }
 
-export const importFunc = (openapi: OpenAPIV3.Document) => {
+export const importFunc = (openapi: openAPIType) => {
   if (Object.keys(openapi).length === 0) {
     return [null, { msg: '请上传合法的文件' }]
   }
@@ -205,7 +283,7 @@ export const importFunc = (openapi: OpenAPIV3.Document) => {
   // console.log('==>>', openapi)
   const { components, paths, tags = [], servers, info } = openapi
 
-  const setEnv = (servers: OpenAPIV3.ServerObject[] = []) => {
+  const setEnv = (servers: Record<string, string>[] = []) => {
     if (servers && Array.isArray(servers) && servers.length) {
       servers.forEach((n) => {
         if (!enviroments.hostUri) {
@@ -239,14 +317,14 @@ export const importFunc = (openapi: OpenAPIV3.Document) => {
     .map((url) => {
       const list: any = []
 
-      Object.keys(paths[url] || {}).forEach((method: string) => {
+      Object.keys(paths[url]).forEach((method: string) => {
         if (method === 'servers') {
           setEnv(paths.servers)
         } else {
           list.push({
             method,
             url,
-            ...paths[url]?.[method]
+            ...paths[url][method]
           })
         }
       })

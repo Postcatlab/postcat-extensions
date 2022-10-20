@@ -8,14 +8,14 @@ export type eoAPIType = {
 
 export type ValueOf<T> = T[keyof T]
 
-export type Child =
-  | {
-      /** 名称 */
-      name?: string
-      /** 子节点 */
-      children?: Child[]
-    }
-  | ApiData
+export type ApiGroup = {
+  /** 名称 */
+  name?: string
+  /** 子节点 */
+  children?: Child[]
+}
+
+export type Child = ApiGroup | ApiData
 
 export type EnvParameters = {
   name: string
@@ -185,7 +185,7 @@ export type ApiEditQuery = BasiApiEditParams
 export type ApiEditRest = BasiApiEditParams
 
 export interface ApiData {
-  groupID: number
+  groupID?: number
   /**
    * name
    *
