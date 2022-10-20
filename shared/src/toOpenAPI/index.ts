@@ -7,8 +7,9 @@ import {
   setResponseBody,
   paramTypeHash
 } from './utils'
-import { ApiData, eoAPIType } from '../types/eoAPI'
+import { ApiData, ApiEditBody, eoAPIType } from '../types/eoAPI'
 import { OpenAPIV3 } from 'openapi-types'
+import { isString } from '../utils/is'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -19,6 +20,14 @@ import { OpenAPIV3 } from 'openapi-types'
 //   return ''
 // }
 
+type SchemaObjectType =
+  | OpenAPIV3.ArraySchemaObjectType
+  | OpenAPIV3.NonArraySchemaObjectType
+
+const typeMap = new Map<string, SchemaObjectType>([
+  ['json', 'object'],
+  ['raw', 'string']
+])
 class ToOpenApi {
   data: OpenAPIV3.Document
   eoapiData: eoAPIType
@@ -70,12 +79,15 @@ class ToOpenApi {
       return paths
     }, {})
   }
-  generateRequestBody(apiData: ApiData): OpenAPIV3.RequestBodyObject | undefined {
-    const { method, requestBodyType, requestBody } = apiData
-    const paramType = paramTypeHash.get(requestBodyType)
+  generateRequestBody(
+    apiData: ApiData
+  ): OpenAPIV3.RequestBodyObject | undefined {
+    const { method, requestBodyJsonType, requestBodyType, requestBody } =
+      apiData
+    const paramType = paramTypeHash.get(requestBodyJsonType)
 
     if (!paramType) {
-      console.log('paramType', paramType, requestBodyType)
+      console.log('paramType', paramType, requestBodyJsonType)
       console.error(`Can't parser the params type`)
       return
     }
@@ -84,15 +96,59 @@ class ToOpenApi {
       return
     }
 
+    return {
+      content: {
+        [paramType]: {
+          schema: this.parseToSchema(
+            apiData.requestBody,
+            requestBodyJsonType as SchemaObjectType
+          )
+        }
+      },
+      required: requestBodyType === 'json' && requestBody?.length > 0
+    }
+  }
+  /**
+   *
+   * @param data
+   * @param type data type
+   * @returns
+   */
+  parseToSchema(
+    data: ApiEditBody[] | string,
+    type: SchemaObjectType
+  ): OpenAPIV3.SchemaObject {
+    if (isString(data)) {
       return {
-        content: {
-          [paramType]: {
-            schema: this.
-          }
-        },
-        required: requestBodyType === 'json' && requestBody?.length > 0
-      }
-
+        type: typeMap.get(type) || type,
+        required: [],
+        example: data
+      } as OpenAPIV3.SchemaObject
+    } else {
+      return {
+        type: typeMap.get(type) || type,
+        required: [
+          ...new Set(
+            data?.filter((it) => it.required).map((it) => it.name) || []
+          )
+        ],
+        properties: data.reduce(
+          (
+            total,
+            { type, required, enum: struct, name, children, ...item }
+          ) => ({
+            ...total,
+            [name]: {
+              ...item,
+              items: children?.length
+                ? this.parseToSchema(children, type as SchemaObjectType)
+                : {}
+            }
+          }),
+          {}
+        )
+      } as OpenAPIV3.SchemaObject
+    }
   }
   generateTags(): OpenAPIV3.TagObject[] {
     return this.eoapiData.group.map(({ name }) => ({
