@@ -225,7 +225,7 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  requestBodyType?: ApiBodyEnum | string
+  requestBodyType?: ApiBodyEnum
 
   /**
    * 请求头数据，数据用json存储
@@ -239,7 +239,7 @@ export interface ApiData {
    *
    * @type {JsonRootType|string}
    */
-  requestBodyJsonType?: JsonRootType | string
+  requestBodyJsonType?: JsonRootType
 
   /**
    * 请求参数(多层结构)，数据用json存储
@@ -281,12 +281,12 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  responseBodyType?: ApiBodyEnum | string
+  responseBodyType?: ApiBodyEnum
 
   /**
    * Responsejson根类型
    *
    * @type {JsonRootType|string}
    */
-  responseBodyJsonType?: JsonRootType | string
+  responseBodyJsonType?: JsonRootType
 }

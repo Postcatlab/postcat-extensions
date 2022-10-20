@@ -1,5 +1,5 @@
-import { eo2openAPI } from '../../../../../shared/src'
+import EoToOpenApi from './Eo2OpenAPI'
 
 export const export_convert = ({ data = {} }: any) => {
-  return eo2openAPI(data)
+  return new EoToOpenApi(data).data
 }
