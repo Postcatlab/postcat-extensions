@@ -220,36 +220,37 @@ export class OpenAPIParser {
   }
 
   is$ref(schema: any = {}): schema is OpenAPIV3.ReferenceObject {
-    const { items, allOf, anyOf, oneOf } = schema
-    const of = [allOf, anyOf, oneOf].find((n) => n)?.[0]
-    return [items, of, schema].find((n) => n?.$ref)?.$ref
+    return Boolean(this.get$Ref(schema))
   }
 
   get$Ref = (schema: any = {}): string | undefined => {
     const { items, allOf, anyOf, oneOf } = schema
     const of = [allOf, anyOf, oneOf].find((n) => n)?.[0]
-    return (items || of || schema)?.$ref
+    const target = [items, of, schema].find((n) => n?.$ref)
+    return target?.$ref
   }
 
   transformProperties(
     properties: OpenAPIV3.BaseSchemaObject['properties'] = {},
-    required: string[] = []
+    required: string[] = [],
+    lastRef = ''
   ) {
     return Object.entries(properties).map(([key, value]) => {
-      const schemaObject = this.is$ref(value)
-        ? this.getSchemaBy$ref(this.get$Ref(value)!)
-        : value
+      const ref = this.get$Ref(value)
+      const schemaObject = ref
+        ? this.getSchemaBy$ref(ref)
+        : (value as OpenAPIV3.SchemaObject)
 
       if (!schemaObject) {
         return {}
       }
 
       const { type, description, default: defaultValue } = schemaObject
-      const ref = this.get$Ref(schemaObject)
+      // const ref = this.get$Ref(schemaObject)
+      if (ref === lastRef || this.propertiesMap.get(ref)) {
+        return this.propertiesMap.get(ref)
+      }
 
-      // if (this.propertiesMap.get(ref)) {
-      //   return this.propertiesMap.get(ref)
-      // }
       const editBody = {
         // ...other,
         name: key,
@@ -257,13 +258,7 @@ export class OpenAPIParser {
         example: String(defaultValue || ''),
         type:
           value.type || formatType(type!) || getDataType(defaultValue ?? ''),
-        description: description || '',
-        children: schemaObject?.properties
-          ? this.transformProperties(
-              schemaObject?.properties,
-              schemaObject.required
-            )
-          : undefined
+        description: description || ''
       }
       if (ref) {
         this.propertiesMap.set(ref, editBody)
@@ -271,7 +266,7 @@ export class OpenAPIParser {
         Object.assign(editBody, {
           type: type,
           children: schema?.properties
-            ? this.transformProperties(schema?.properties, schema.required)
+            ? this.transformProperties(schema?.properties, schema.required, ref)
             : undefined
         })
       } else if (
@@ -280,9 +275,19 @@ export class OpenAPIParser {
       ) {
         const items = schemaObject?.items as OpenAPIV3.SchemaObject
         Object.assign(editBody, {
-          children: items?.properties
-            ? this.transformProperties(items?.properties, items.required)
-            : undefined
+          children: this.transformProperties(
+            items?.properties,
+            items.required,
+            ref
+          )
+        })
+      } else if (type === 'object' && schemaObject?.properties) {
+        Object.assign(editBody, {
+          children: this.transformProperties(
+            schemaObject?.properties,
+            schemaObject.required,
+            ref
+          )
         })
       }
       return editBody
@@ -334,7 +339,6 @@ export class OpenAPIParser {
   generateResponseBody(responses: OpenAPIV3.ResponsesObject) {
     const resObj = this.getResponseObject(responses)
     if (resObj?.content) {
-      console.log(Object.values(resObj.content).at(0))
       return this.schema2eoapiEditBody(
         Object.values(resObj.content).at(0)?.schema
       )
