@@ -245,7 +245,7 @@ export class OpenAPIParser {
         return {}
       }
 
-      const { type, description, default: defaultValue } = schemaObject
+      const { type, description, default: defaultValue, example } = schemaObject
       // const ref = this.get$Ref(schemaObject)
       if (ref === lastRef || this.propertiesMap.get(ref)) {
         return this.propertiesMap.get(ref)
@@ -255,7 +255,7 @@ export class OpenAPIParser {
         // ...other,
         name: key,
         required: required.includes(key),
-        example: String(defaultValue || ''),
+        example: String(defaultValue || example || ''),
         type:
           value.type || formatType(type!) || getDataType(defaultValue ?? ''),
         description: description || ''
