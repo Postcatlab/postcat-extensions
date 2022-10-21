@@ -1,50 +1,21 @@
 export type eoAPIType = {
+  version: string
   environment: string
   group: Array<{ name: string; uuid: number }>
-  project: Array<{ name: string }>
-  apiData: Array<{
-    name: string
-    uri: string
-    method: string
-    groupID: number
-    requestBodyType: string
-    responseBodyType: string
-    responseBodyJsonType: string
-    responseBody: Array<{
-      name: string
-      type: string
-      required: boolean
-      example: string
-      enum: Array<object>
-      description: string
-    }>
-    requestHeaders: Array<{
-      name: string
-      required: boolean
-      example: string
-      description: string
-    }>
-    requestBody: Array<{
-      name: string
-      type: string
-      required: boolean
-      example: string | number
-      description: string
-      enum: Array<object>
-    }>
-  }>
+  project: { name: string }
+  apiData: ApiData[]
 }
 
 export type ValueOf<T> = T[keyof T]
 
-export type Child =
-  | {
-      /** 名称 */
-      name?: string
-      /** 子节点 */
-      children?: Child[]
-    }
-  | ApiData
+export type ApiGroup = {
+  /** 名称 */
+  name?: string
+  /** 子节点 */
+  children?: Child[]
+}
+
+export type Child = ApiGroup | ApiData
 
 export type EnvParameters = {
   name: string
@@ -214,6 +185,7 @@ export type ApiEditQuery = BasiApiEditParams
 export type ApiEditRest = BasiApiEditParams
 
 export interface ApiData {
+  groupID?: number
   /**
    * name
    *
@@ -253,7 +225,7 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  requestBodyType?: ApiBodyEnum | string
+  requestBodyType?: ApiBodyEnum
 
   /**
    * 请求头数据，数据用json存储
@@ -267,14 +239,14 @@ export interface ApiData {
    *
    * @type {JsonRootType|string}
    */
-  requestBodyJsonType?: JsonRootType | string
+  requestBodyJsonType?: JsonRootType
 
   /**
    * 请求参数(多层结构)，数据用json存储
    *
    * @type {object}
    */
-  requestBody?: ApiEditBody[] | string
+  requestBody: ApiEditBody[] | string
 
   /**
    * get请求参数，数据用json存储
@@ -309,12 +281,12 @@ export interface ApiData {
    *
    * @type {ApiBodyType|string}
    */
-  responseBodyType?: ApiBodyEnum | string
+  responseBodyType?: ApiBodyEnum
 
   /**
    * Responsejson根类型
    *
    * @type {JsonRootType|string}
    */
-  responseBodyJsonType?: JsonRootType | string
+  responseBodyJsonType?: JsonRootType
 }
