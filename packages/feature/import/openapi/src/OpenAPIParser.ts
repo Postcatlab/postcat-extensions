@@ -138,6 +138,9 @@ export class OpenAPIParser {
               requestBodyType: this.getBodyType(
                 obj.requestBody as OpenAPIV3.RequestBodyObject
               ),
+              responseHeaders: this.generateResponseHeaders(
+                this.getResponseObject(obj.responses)?.headers
+              ),
               responseBody: this.generateResponseBody(obj.responses),
               responseBodyJsonType: this.getBodyJsonType(
                 this.getResponseObject(obj.responses)
@@ -358,5 +361,24 @@ export class OpenAPIParser {
     } else {
       return Object.values(responses).at(0) as OpenAPIV3.ResponseObject
     }
+  }
+
+  generateResponseHeaders(headers: OpenAPIV3.ResponseObject['headers'] = {}) {
+    return Object.entries(headers).reduce<BasiApiEditParams[]>(
+      (prev, [name, detail]) => {
+        if (!this.is$ref(detail)) {
+          prev.push({
+            ...detail,
+            name: name,
+            required: Boolean(detail.required),
+            example: String(detail.example ?? ''),
+            description: detail.description || ''
+          })
+        }
+
+        return prev
+      },
+      []
+    )
   }
 }
