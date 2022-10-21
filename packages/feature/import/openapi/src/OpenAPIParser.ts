@@ -139,9 +139,11 @@ export class OpenAPIParser {
                 obj.requestBody as OpenAPIV3.RequestBodyObject
               ),
               responseBody: this.generateResponseBody(obj.responses),
-              responseBodyJsonType: this.getBodyJsonType(obj.requestBody),
-              responseBodyType: this.getBodyType(
-                obj.requestBody as OpenAPIV3.RequestBodyObject
+              responseBodyJsonType: this.getBodyJsonType(
+                this.getResponseObject(obj.responses)
+              ),
+              responseBodyType: contentTypeMap.get(
+                this.getResponseContentType(obj.responses)
               )
             }
 
@@ -292,9 +294,14 @@ export class OpenAPIParser {
     if (this.is$ref(schema)) {
       const schemaObject = this.getSchemaBy$ref(this.get$Ref(schema)!)
       return schemaObject ? this.schema2eoapiEditBody(schemaObject) : []
+    } else if (schema.type === 'array') {
+      const items = schema.items as OpenAPIV3.SchemaObject
+      return this.transformProperties(items?.properties, schema.required)
+    } else if (schema.type === 'object') {
+      return this.transformProperties(schema?.properties, schema.required)
+    } else {
+      return schema.example
     }
-
-    return this.transformProperties(schema.properties, schema.required)
   }
 
   getSchemaBy$ref($ref = '') {
@@ -311,7 +318,6 @@ export class OpenAPIParser {
     if (!body) {
       return []
     }
-
     if (this.is$ref(body)) {
       const schemaObject = this.getSchemaBy$ref(this.get$Ref(body))
       return schemaObject ? this.schema2eoapiEditBody(schemaObject) : []
@@ -319,16 +325,38 @@ export class OpenAPIParser {
       const media = Object.values(body.content).at(0)
       return media?.schema ? this.schema2eoapiEditBody(media?.schema) : []
     }
-    return []
+    return this.schema2eoapiEditBody(body)
   }
 
   generateResponseBody(responses: OpenAPIV3.ResponsesObject) {
+    const resObj = this.getResponseObject(responses)
+    if (resObj?.content) {
+      console.log(Object.values(resObj.content).at(0))
+      return this.schema2eoapiEditBody(
+        Object.values(resObj.content).at(0)?.schema
+      )
+    } else {
+      return []
+    }
+  }
+
+  getResponseContentType(responses: OpenAPIV3.ResponsesObject) {
+    const resObj = this.getResponseObject(responses)
+    if (resObj?.content) {
+      return Object.keys(resObj?.content).at(0) || 'application/json'
+    } else {
+      return 'application/json'
+    }
+  }
+
+  getResponseObject(
+    responses: OpenAPIV3.ResponsesObject
+  ): OpenAPIV3.ResponseObject | undefined {
     const successCode = [200, 201].find((code) => responses[code])
     if (successCode) {
-      return this.generateBody(responses[successCode])
+      return responses[successCode] as OpenAPIV3.ResponseObject
     } else {
-      const res = Object.values(responses).at(0)
-      return this.generateBody(res)
+      return Object.values(responses).at(0) as OpenAPIV3.ResponseObject
     }
   }
 }
