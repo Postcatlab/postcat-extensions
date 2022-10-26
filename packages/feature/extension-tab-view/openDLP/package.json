@@ -1,0 +1,50 @@
+{
+  "name": "eoapi-opendlp",
+  "title": "OpenDLP(data loss prevention)",
+  "version": "0.0.1",
+  "description": "OpenDLP detect API sensitive words to make your API more secure",
+  "repository": {
+    "url": "https://github.com/hitsz-ids/openDLP"
+  },
+  "author": "OpenDLP",
+  "logo": "https://avatars.githubusercontent.com/u/55747983?s=200&v=4",
+  "scripts": {
+    "build": "webpack src/index.js"
+  },
+  "features": {
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "label": "Token",
+          "description": "${configuration.token.description}"
+        }
+      }
+    },
+    "extensionTabView": [
+      {
+        "name": "Operate",
+        "url": "http://localhost:8080"
+      }
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "~1.1.8",
+    "@grpc/proto-loader": "~0.5.4",
+    "async": "~3.2.3",
+    "google-protobuf": "~3.14.0",
+    "grpc-web": "~1.4.1",
+    "lodash": "~4.17.0",
+    "webpack": "~4.43.0",
+    "webpack-cli": "~3.3.11"
+  }
+}

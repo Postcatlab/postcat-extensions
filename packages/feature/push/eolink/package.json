@@ -52,7 +52,6 @@
     },
     "configuration": {
       "type": "object",
-      "title": "Push to Eolink",
       "properties": {
         "token": {
           "type": "string",
