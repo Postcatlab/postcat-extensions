@@ -1,6 +1,6 @@
 import * as grpcWeb from 'grpc-web';
 
-import * as src_proto_sensitive_pb from '../../src/proto/sensitive_pb';
+import * as src_proto_sensitive_pb from './sensitive_pb';
 
 
 export class OpenDlpServiceClient {
