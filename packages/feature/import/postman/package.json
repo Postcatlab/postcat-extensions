@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "moduleID": "eoapi-import-postman",
   "moduleName": "Import Postman",
-  "moduleType": "feature",
   "author": "Eoapi",
   "logo": "https://data.eolink.com/WIC2HqFc1d10cf7198c88467bffcd0b8d063b52dc4cf66d",
   "scripts": {

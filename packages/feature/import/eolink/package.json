@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
   "moduleName": "Import Eolink",
-  "moduleType": "feature",
   "author": "Eoapi",
   "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {

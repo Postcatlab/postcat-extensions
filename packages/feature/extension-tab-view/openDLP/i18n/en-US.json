@@ -1,4 +1,3 @@
 {
-    "function.description":"Import Swagger OpenAPI v3.0"
-
+  "configuration.url.description": "OpenDLP service address"
 }

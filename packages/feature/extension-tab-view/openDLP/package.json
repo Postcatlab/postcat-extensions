@@ -1,6 +1,6 @@
 {
   "name": "eoapi-opendlp",
-  "title": "OpenDLP(data loss prevention)",
+  "title": "OpenDLP sercurity check",
   "version": "0.0.1",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
@@ -16,12 +16,12 @@
     "configuration": {
       "type": "object",
       "properties": {
-        "token": {
+        "uri": {
           "type": "string",
-          "required": false,
+          "required": true,
           "default": "",
-          "label": "Token",
-          "description": "${configuration.token.description}"
+          "title": "URL",
+          "description": "${configuration.url.description}"
         }
       }
     },
