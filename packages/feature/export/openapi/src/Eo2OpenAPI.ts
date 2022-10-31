@@ -182,7 +182,8 @@ class EoToOpenApi {
    */
   parseToSchema(
     data: ApiEditBody[] | string,
-    type: SchemaObjectType
+    type: SchemaObjectType,
+    rest = {}
   ): OpenAPIV3.ArraySchemaObject | OpenAPIV3.NonArraySchemaObject {
     if (typeof data === 'string') {
       return {
@@ -191,15 +192,16 @@ class EoToOpenApi {
       } as OpenAPIV3.SchemaObject
     } else {
       const schemaType = bodyTypeMap.get(type) || type
-
       if (schemaType === 'array') {
         return {
+          ...rest,
           type: schemaType,
           required: this.getRequired(data),
           items: this.parseToSchema(data, 'object')
         } as OpenAPIV3.ArraySchemaObject
       } else {
         return {
+          ...rest,
           type: schemaType as OpenAPIV3.NonArraySchemaObjectType,
           required: this.getRequired(data),
           properties: data?.reduce<
@@ -209,7 +211,8 @@ class EoToOpenApi {
             if (children?.length) {
               prev[name] = this.parseToSchema(
                 children,
-                type as SchemaObjectType
+                type as SchemaObjectType,
+                item
               )
             } else {
               prev[name] = {
