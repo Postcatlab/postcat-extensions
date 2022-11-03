@@ -1,12 +1,13 @@
-import { eo2openAPI } from '../../../../../shared/src'
+import EoToOpenApi from './EoToOpenApi'
 
-const url = 'https://apis.eolink.com/api/v2/api_studio/management/api/importOpenApi'
+const url =
+  'https://apis.eolink.com/api/v2/api_studio/management/api/importOpenApi'
 export const sync_to_remote = async (data, { projectId, secretKey }) => {
   console.log('projectId', projectId, 'secretKey', secretKey)
   const formData = new FormData()
   formData.append(
     'file[]',
-    new Blob([JSON.stringify(eo2openAPI(data))], {
+    new Blob([JSON.stringify(new EoToOpenApi(data).data)], {
       type: 'application/json'
     })
   )

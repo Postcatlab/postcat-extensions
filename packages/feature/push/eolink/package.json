@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -40,7 +40,8 @@
   },
   "dependencies": {
     "lodash": "*",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "openapi-types": "^12.0.2"
   },
   "features": {
     "apimanage.sync": {
