@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -44,6 +44,13 @@
     "openapi-types": "^12.0.2"
   },
   "features": {
+    "syncAPI": {
+      "action": "sync_to_remote",
+      "label": "Eolink",
+      "description": "${function.description}",
+      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
+      "extestion": ""
+    },
     "apimanage.sync": {
       "action": "sync_to_remote",
       "label": "Eolink",

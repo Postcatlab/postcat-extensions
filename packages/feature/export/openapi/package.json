@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -41,6 +41,13 @@
     "typescript": "^4.6.3"
   },
   "features": {
+    "exportAPI": {
+      "action": "export_convert",
+      "label": "OpenAPI(.json)",
+      "description": "${function.description}",
+      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+      "filename": "openapi.json"
+    },
     "apimanage.export": {
       "action": "export_convert",
       "label": "OpenAPI(.json)",
