@@ -1,6 +1,4 @@
 # Import Eolink
-> The client version needs to be >= 1.6.0 to use this plugin
-
 ## usage
 
 Go to the overview page of the main interface, you can see the export function, click this area to open the corresponding pop-up window, and you can see the keywords of the installed export plug-ins. If it is not installed, it will not be displayed.
