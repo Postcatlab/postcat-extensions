@@ -212,7 +212,10 @@ class EoToOpenApi {
               prev[name] = this.parseToSchema(
                 children,
                 type as SchemaObjectType,
-                item
+                {
+                  ...item,
+                  example: item.example || this.children2object(children)
+                }
               )
             } else {
               prev[name] = {
@@ -230,6 +233,19 @@ class EoToOpenApi {
         }
       }
     }
+  }
+
+  children2object(children: ApiEditBody[] = [], initObj = {}) {
+    return children.reduce((prev, curr) => {
+      prev[curr.name] = curr.example
+      if (curr.children?.length) {
+        prev[curr.name] =
+          curr.type === 'object'
+            ? this.children2object(curr.children, (prev[curr.name] = {}))
+            : [this.children2object(curr.children)]
+      }
+      return prev
+    }, initObj)
   }
 
   generateResponseHeaders(headers?: ApiEditHeaders[]) {
