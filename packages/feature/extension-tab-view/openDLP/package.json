@@ -6,6 +6,7 @@
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
   },
+  "main": "src/operate.js",
   "node": "src/main.js",
   "author": "OpenDLP",
   "logo": "https://avatars.githubusercontent.com/u/55747983?s=200&v=4",
@@ -13,24 +14,42 @@
     "build": "webpack src/index.js"
   },
   "features": {
-    "configuration": {
-      "type": "object",
-      "properties": {
-        "uri": {
-          "type": "string",
-          "required": true,
-          "default": "",
-          "title": "URL",
-          "description": "${configuration.url.description}"
-        }
-      }
-    },
     "extensionTabView": [
       {
         "name": "Operate",
-        "url": "http://localhost:8080"
+        "url": "./page/index.html",
+        "debugUrl": "http://localhost:8080"
       }
     ],
+    "apiPreviewTab": {
+      "rightExtra": [
+        {
+          "name": "API Sercurity Check",
+          "icon": "file-text-one",
+          "tooltip": "扫描API敏感词",
+          "tooltipTrigger": "hover",
+          "events": [
+            {
+              "name": "click",
+              "handler": "sercurityCheck"
+            }
+          ]
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "API Sercurity",
+      "properties": {
+        "serverUrl": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "label": "OpenDLP服务地址",
+          "description": "部署OpenDLP服务后得到的地址"
+        }
+      }
+    },
     "i18n": {
       "sourceLocale": "en-US",
       "locales": [

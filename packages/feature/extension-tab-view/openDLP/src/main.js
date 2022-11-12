@@ -1,11 +1,11 @@
 const messages = require('./protos/sensitive_pb')
-const services = require('./protos/sensitive_grpc_pb');
+const services = require('./protos/sensitive_grpc_pb')
 const grpc = require('@grpc/grpc-js')
 const { EOF } = require('dns')
 
 function main() {
   let client = new services.OpenDlpServiceClient(
-    '192.168.3.16:50051',
+    'localhost:50051',
     grpc.credentials.createInsecure()
   )
   let request = new messages.SensitiveAPIScanRequest()
@@ -27,6 +27,6 @@ function main() {
     console.log('StringSensitiveAnalyze:', JSON.stringify(response.toObject()))
   })
 }
-eo.getSettings();
+// eo.getSettings();
 
 main()
