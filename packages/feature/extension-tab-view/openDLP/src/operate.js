@@ -3,7 +3,8 @@ const path = require('node:path')
 
 const pkgName = 'eoapi-opendlp'
 
-const params = JSON.stringify({
+// opendlp 官方示例请求参数
+const params = {
   description: 'eu mollit id',
   doc_type: 1,
   response_body: [
@@ -58,29 +59,66 @@ const params = JSON.stringify({
     }
   ],
   name: 'Get User ID Card',
-  uri: 'http://www.weather.com.cn/userinfo/bankcard'
-})
+  uri: 'http://8.219.85.124:3000/userinfo/bankcard'
+}
 
-const data = [
-  {
-    apiPos: 'API路径',
-    fieldPos: 'person.email',
-    type: '银行卡',
-    value: 'xxxxxxxxxxx'
-  },
-  {
-    apiPos: '请求体',
-    fieldPos: 'person.email',
-    type: '日期',
-    value: '1949'
-  }
-]
+const keyMap = {
+  uriList: 'API路径',
+  descriptionList: '描述',
+  queryParamsList: '查询参数',
+  restParamsList: '路径参数',
+  requestBodyList: '请求体',
+  responseBodyList: '响应体'
+}
 
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
 
+// 假数据
+const data = {
+  status: {
+    code: 0,
+    msg: '敏感API文档扫描成功。'
+  },
+  result: {
+    uriList: [
+      {
+        sensitiveType: 'BANK_CARD',
+        key: '[]',
+        start: 35,
+        end: 43
+      }
+    ],
+    descriptionList: [],
+    queryParamsList: [],
+    restParamsList: [],
+    requestBodyList: [],
+    responseBodyList: [
+      {
+        sensitiveType: 'EMAIL',
+        key: '[0, "example"]',
+        start: 0,
+        end: 12
+      },
+      {
+        sensitiveType: 'EMAIL',
+        key: '[1, "children", 1, "example"]',
+        start: 0,
+        end: 12
+      },
+      {
+        sensitiveType: 'MOBILE_PHONE',
+        key: '[2, "example"]',
+        start: 0,
+        end: 0
+      }
+    ]
+  }
+}
+
 const sercurityCheck = async (model) => {
+  model.response_body = JSON.stringify(model.responseBody)
   const docs = JSON.stringify(model)
-  console.log('docs', docs)
+
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
   if (serverUrl) {
     const protoFile = await fs.readFile(protoFilePath)
@@ -89,11 +127,16 @@ const sercurityCheck = async (model) => {
       {
         proto: protoFile.toString(),
         url: serverUrl,
-        name: 'hitszids.wf.opendlp.api.v1'
+        name: 'hitszids.wf.opendlp.api.v1',
+        context: {
+          docs: params
+        }
       },
       {
-        next: (client, resolve) => {
-          client.SensitiveAPIScan(docs, (err, response) => {
+        next: (client, { docs }, resolve) => {
+          console.log('docs', typeof docs)
+          console.log('docs', docs)
+          client.SensitiveAPIScan(params, docs, (err, response) => {
             if (err) {
               resolve([null, err])
               return
@@ -103,35 +146,32 @@ const sercurityCheck = async (model) => {
         }
       }
     )
+    // console.log('docs', docs)
     console.log('==>>', res)
+
+    if (Object.is(res.at?.(0), null)) {
+      return window.eo.modalService.create({
+        nzTitle: '提示',
+        nzCancelText: null,
+        nzContent: res.at?.(1).details || '操作失败'
+      })
+    }
 
     const modal = window.eo.modalService.create({
       nzTitle: 'API敏感词',
       nzCancelText: null,
-      nzContent: `
-      <table>
-        <tr>
-          <th>API位置</th>
-          <th>字段位置</th>
-          <th>类型</th>
-          <th>值</th>
-        </tr>
-        ${data.reduce((prev, curr) => {
-          return (
-            prev +
-            `<tr>
-              <td>${curr.apiPos}</td>
-              <td>${curr.fieldPos}</td>
-              <td>${curr.type}</td>
-              <td>${curr.value}</td>
-            </tr>`
-          )
-        }, '')}
-      </table>
-      `,
+      nzContent: `<div class="opendlp-table"></div>`,
       nzOnOk() {
         modal.destroy()
       }
+    })
+
+    requestIdleCallback(() => {
+      // 假数据覆盖真实数据
+      res.result = data.result
+      document.querySelector('.opendlp-table').innerHTML = generateTable(
+        res.result
+      )
     })
   } else {
     const modal = window.eo.modalService.create({
@@ -153,6 +193,93 @@ const sercurityCheck = async (model) => {
       }
     })
   }
+}
+
+const getFieldPosAndValue = (key = '', origin = params.response_body) => {
+  const arr = JSON.parse(key).slice(0, -1)
+  const { pos, resBody } = arr.reduce(
+    (obj, field, index) => {
+      const target = obj.resBody[field]
+      const name = Array.isArray(target)
+        ? obj.resBody.type === 'array'
+          ? `[${arr[index + 1]}]`
+          : null
+        : target?.name
+      return {
+        pos: name ? `${obj.pos}.${name}` : obj.pos,
+        resBody: target
+      }
+    },
+    { pos: '', resBody: origin }
+  )
+  return [pos.slice(1), resBody.example]
+}
+
+const getUriPosAndValue = (uri = '', obj = {}) => {
+  const { start = 0, end = 0 } = obj
+  const replaceStr = uri.slice(start, end)
+  const str = uri.replace(
+    replaceStr,
+    `<span style="color: red">${replaceStr}</span>`
+  )
+
+  return [str, replaceStr]
+}
+
+const generateTable = (data) => {
+  const content = `
+      <style>
+      .opendlp-table table {
+        table-layout: fixed;
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        border:1px solid #ccc;
+      }
+
+      .opendlp-table thead {
+        height: 33px;
+        font-weight: bold;
+        color: rgb(16, 16, 16);
+        background: rgb(223, 223, 225);
+      }
+
+      .opendlp-table td,
+      .opendlp-table th {
+        text-align: center;
+      }
+
+
+      </style>
+      <table rules=all>
+      <thead>
+        <tr>
+          <th>API位置</th>
+          <th>字段位置</th>
+          <th>类型</th>
+          <th>值</th>
+        </tr>
+      </thead>
+      ${Object.entries(data).reduce((prev, [key, arr]) => {
+        arr.forEach((item) => {
+          const [pos, value] =
+            key === 'uriList'
+              ? getUriPosAndValue(params.uri, item)
+              : getFieldPosAndValue(item.key)
+          prev += `
+          <tr>
+            <td>${keyMap[key]}</td>
+            <td>${pos}</td>
+            <td>${item.sensitiveType}</td>
+            <td>${value}</td>
+          </tr>`
+        })
+        return prev
+      }, '')}
+    </table>
+    `
+
+  return content
 }
 
 module.exports = {

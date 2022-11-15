@@ -43,7 +43,7 @@
       "properties": {
         "serverUrl": {
           "type": "string",
-          "required": false,
+          "required": true,
           "default": "",
           "label": "OpenDLP服务地址",
           "description": "部署OpenDLP服务后得到的地址"
