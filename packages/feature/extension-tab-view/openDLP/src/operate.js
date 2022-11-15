@@ -127,23 +127,9 @@ const sercurityCheck = async (model) => {
       {
         proto: protoFile.toString(),
         url: serverUrl,
-        name: 'hitszids.wf.opendlp.api.v1',
-        context: {
-          docs: params
-        }
-      },
-      {
-        next: (client, { docs }, resolve) => {
-          console.log('docs', typeof docs)
-          console.log('docs', docs)
-          client.SensitiveAPIScan(params, docs, (err, response) => {
-            if (err) {
-              resolve([null, err])
-              return
-            }
-            resolve([response, null])
-          })
-        }
+        packages: 'hitszids.wf.opendlp.api.v1',
+        method: 'SensitiveAPIScan',
+        params
       }
     )
     // console.log('docs', docs)
