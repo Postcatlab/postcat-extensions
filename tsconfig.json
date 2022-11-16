@@ -13,9 +13,17 @@
     "esModuleInterop": true,
     "removeComments": false,
     "rootDir": ".",
+    "typeRoots": [
+      "./typings"
+    ]
   },
   "include": [
-    "packages/**/*", "shared", "babel.config.js", "jest.config.js", "test",
+    "packages/**/*",
+    "shared",
+    "babel.config.js",
+    "jest.config.js",
+    "test",
+    "./typings"
   ],
   "exclude": [
     "node_modules",
@@ -25,6 +33,8 @@
     ".eslintrc.js"
   ],
   "paths": {
-    "@shared/*": ["shared/*"] 
+    "@shared/*": [
+      "shared/*"
+    ]
   }
 }
