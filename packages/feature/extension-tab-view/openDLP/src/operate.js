@@ -95,7 +95,8 @@ const sercurityCheck = async (model) => {
 }
 
 const getFieldPosAndValue = (key = '', origin) => {
-  const arr = JSON.parse(key).slice(0, -1)
+  const arr = JSON.parse(key)
+  const valueKey = arr.pop()
   const { pos, resBody } = arr.reduce(
     (obj, field, index) => {
       const target = obj.resBody[field]
@@ -111,7 +112,7 @@ const getFieldPosAndValue = (key = '', origin) => {
     },
     { pos: '', resBody: origin }
   )
-  return [pos.slice(1), resBody.example || resBody.value || '']
+  return [pos.slice(1), resBody[valueKey] || '']
 }
 
 const getUriPosAndValue = (uri = '', obj = {}) => {
