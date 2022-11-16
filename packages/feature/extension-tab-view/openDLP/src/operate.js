@@ -59,11 +59,12 @@ const sercurityCheck = async (model) => {
         nzContent: res.at?.(1).details || '操作失败'
       })
     }
-
-    document.querySelector('.opendlp-table').innerHTML = generateTable(
-      res.result,
-      model
-    )
+    const opendlpTableEl = document.querySelector('.opendlp-table')
+    if (Object.entries(res.result).some(([_, value]) => value.length)) {
+      opendlpTableEl.innerHTML = generateTable(res.result, model)
+    } else {
+      opendlpTableEl.innerHTML = '暂无敏感词'
+    }
   } else {
     const modal = window.eo.modalService.create({
       nzTitle: '跳转设置页配置openDLP服务？',
@@ -153,7 +154,6 @@ const generateTable = (data, model) => {
       </thead>
       ${Object.entries(data).reduce((prev, [key, arr]) => {
         arr.forEach((item) => {
-          console.log(item)
           const [pos, value] =
             key === 'uriList'
               ? getUriPosAndValue(params.uri, item)
