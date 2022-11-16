@@ -24,6 +24,7 @@ const dataToOriginkeyMap = {
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
 
 const sercurityCheck = async (model) => {
+  console.log('model', model)
   const params = { doc_type: 1 }
   Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
     if (model[value]) {
@@ -110,7 +111,7 @@ const getFieldPosAndValue = (key = '', origin) => {
     },
     { pos: '', resBody: origin }
   )
-  return [pos.slice(1), resBody.example]
+  return [pos.slice(1), resBody.example || resBody.value || '']
 }
 
 const getUriPosAndValue = (uri = '', obj = {}) => {
