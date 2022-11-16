@@ -4,7 +4,7 @@ const path = require('node:path')
 const pkgName = 'eoapi-opendlp'
 
 const keyMap = {
-  uri: 'API路径',
+  uri: 'API 路径',
   description: '描述',
   query_params: '查询参数',
   rest_params: '路径参数',
@@ -19,6 +19,26 @@ const dataToOriginkeyMap = {
   rest_params: 'restParams',
   request_body: 'requestBody',
   response_body: 'responseBody'
+}
+const strBySensitiveType = {
+  DEFAULT: '默认',
+  BANK_CARD: '银行卡',
+  DATE: '日期',
+  DOMAIN_NAME: '域名',
+  EMAIL: '邮箱',
+  ID_CARD: '身份证',
+  IPV4: 'IPV4',
+  IPV6: 'IPV6',
+  LICENSE_PLATE: '车牌号',
+  MAC: 'MAC地址',
+  MOBILE_PHONE: '手机号',
+  PASSPORT: '护照',
+  POSTCODE: '邮编',
+  SOCIAL_CREDIT_CODE: '统一社会信用代码',
+  TELEPHONE: '电话号码',
+  PERSON: '人名',
+  COMPANY_NAME: '公司名',
+  LOCATION: '地名',
 }
 
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
