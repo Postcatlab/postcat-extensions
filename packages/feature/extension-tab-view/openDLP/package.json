@@ -49,12 +49,6 @@
           "description": "部署OpenDLP服务后得到的地址"
         }
       }
-    },
-    "i18n": {
-      "sourceLocale": "en-US",
-      "locales": [
-        "zh-Hans"
-      ]
     }
   },
   "dependencies": {
