@@ -24,9 +24,15 @@ const dataToOriginkeyMap = {
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
 
 const sercurityCheck = async (model) => {
-  const params = JSON.parse(JSON.stringify(model))
-  params.request_body = JSON.stringify(model.requestBody)
-  params.response_body = JSON.stringify(model.responseBody)
+  const params = { doc_type: 1 }
+  Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
+    if (model[value]) {
+      params[key] =
+        typeof model[value] === 'string'
+          ? model[value]
+          : JSON.stringify(model[value])
+    }
+  })
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
   if (serverUrl) {
