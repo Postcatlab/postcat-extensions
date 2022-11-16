@@ -3,136 +3,53 @@ const path = require('node:path')
 
 const pkgName = 'eoapi-opendlp'
 
-// opendlp 官方示例请求参数
-const params = {
-  description: 'eu mollit id',
-  doc_type: 1,
-  response_body: [
-    {
-      name: 'string',
-      value: 'string',
-      description: '',
-      type: 'string',
-      required: true,
-      example: 'hello@qq.com'
-    },
-    {
-      name: 'array',
-      required: true,
-      example: '',
-      type: 'array',
-      description: '',
-      children: [
-        {
-          name: 'dom1',
-          value: '',
-          description: '',
-          type: 'string',
-          required: true,
-          example: ''
-        },
-        {
-          name: 'email',
-          value: '',
-          description: '',
-          type: 'string',
-          required: true,
-          example: 'alice@qq.com'
-        },
-        {
-          name: 'dom3',
-          value: '',
-          description: '',
-          type: 'string',
-          required: true,
-          example: ''
-        }
-      ]
-    },
-    {
-      name: 'mobile',
-      value: '',
-      description: '',
-      type: 'string',
-      required: true,
-      example: ''
-    }
-  ],
-  name: 'Get User ID Card',
-  uri: 'http://8.219.85.124:3000/userinfo/bankcard'
+const keyMap = {
+  uri: 'API路径',
+  description: '描述',
+  query_params: '查询参数',
+  rest_params: '路径参数',
+  request_body: '请求体',
+  response_body: '响应体'
 }
 
-const keyMap = {
-  uriList: 'API路径',
-  descriptionList: '描述',
-  queryParamsList: '查询参数',
-  restParamsList: '路径参数',
-  requestBodyList: '请求体',
-  responseBodyList: '响应体'
+const dataToOriginkeyMap = {
+  uri: 'uri',
+  description: '',
+  query_params: 'queryParams',
+  rest_params: 'restParams',
+  request_body: 'requestBody',
+  response_body: 'responseBody'
 }
 
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
 
-// 假数据
-const data = {
-  status: {
-    code: 0,
-    msg: '敏感API文档扫描成功。'
-  },
-  result: {
-    uriList: [
-      {
-        sensitiveType: 'BANK_CARD',
-        key: '[]',
-        start: 35,
-        end: 43
-      }
-    ],
-    descriptionList: [],
-    queryParamsList: [],
-    restParamsList: [],
-    requestBodyList: [],
-    responseBodyList: [
-      {
-        sensitiveType: 'EMAIL',
-        key: '[0, "example"]',
-        start: 0,
-        end: 12
-      },
-      {
-        sensitiveType: 'EMAIL',
-        key: '[1, "children", 1, "example"]',
-        start: 0,
-        end: 12
-      },
-      {
-        sensitiveType: 'MOBILE_PHONE',
-        key: '[2, "example"]',
-        start: 0,
-        end: 0
-      }
-    ]
-  }
-}
-
 const sercurityCheck = async (model) => {
-  model.response_body = JSON.stringify(model.responseBody)
-  const docs = JSON.stringify(model)
+  const params = JSON.parse(JSON.stringify(model))
+  params.request_body = JSON.stringify(model.requestBody)
+  params.response_body = JSON.stringify(model.responseBody)
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
   if (serverUrl) {
     const protoFile = await fs.readFile(protoFilePath)
     const Grpc = window.eo.Grpc
-    const [res, err] = await Grpc.send(
-      {
-        proto: protoFile.toString(),
-        url: serverUrl,
-        packages: 'hitszids.wf.opendlp.api.v1',
-        method: 'SensitiveAPIScan',
-        params
+    console.log('params', params)
+
+    const modal = window.eo.modalService.create({
+      nzTitle: 'API敏感词',
+      nzCancelText: null,
+      nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
+      nzOnOk() {
+        modal.destroy()
       }
-    )
-    // console.log('docs', docs)
+    })
+
+    const [res, err] = await Grpc.send({
+      proto: protoFile.toString(),
+      url: serverUrl,
+      packages: 'hitszids.wf.opendlp.api.v1',
+      method: 'SensitiveAPIScan',
+      params
+    })
     console.log('==>>', res)
 
     if (Object.is(res.at?.(0), null)) {
@@ -143,22 +60,10 @@ const sercurityCheck = async (model) => {
       })
     }
 
-    const modal = window.eo.modalService.create({
-      nzTitle: 'API敏感词',
-      nzCancelText: null,
-      nzContent: `<div class="opendlp-table"></div>`,
-      nzOnOk() {
-        modal.destroy()
-      }
-    })
-
-    requestIdleCallback(() => {
-      // 假数据覆盖真实数据
-      res.result = data.result
-      document.querySelector('.opendlp-table').innerHTML = generateTable(
-        res.result
-      )
-    })
+    document.querySelector('.opendlp-table').innerHTML = generateTable(
+      res.result,
+      model
+    )
   } else {
     const modal = window.eo.modalService.create({
       nzTitle: '跳转设置页配置openDLP服务？',
@@ -181,7 +86,7 @@ const sercurityCheck = async (model) => {
   }
 }
 
-const getFieldPosAndValue = (key = '', origin = params.response_body) => {
+const getFieldPosAndValue = (key = '', origin) => {
   const arr = JSON.parse(key).slice(0, -1)
   const { pos, resBody } = arr.reduce(
     (obj, field, index) => {
@@ -212,7 +117,7 @@ const getUriPosAndValue = (uri = '', obj = {}) => {
   return [str, replaceStr]
 }
 
-const generateTable = (data) => {
+const generateTable = (data, model) => {
   const content = `
       <style>
       .opendlp-table table {
@@ -248,15 +153,16 @@ const generateTable = (data) => {
       </thead>
       ${Object.entries(data).reduce((prev, [key, arr]) => {
         arr.forEach((item) => {
+          console.log(item)
           const [pos, value] =
             key === 'uriList'
               ? getUriPosAndValue(params.uri, item)
-              : getFieldPosAndValue(item.key)
+              : getFieldPosAndValue(item.key, model[dataToOriginkeyMap[key]])
           prev += `
           <tr>
             <td>${keyMap[key]}</td>
             <td>${pos}</td>
-            <td>${item.sensitiveType}</td>
+            <td>${item.sensitive_type}</td>
             <td>${value}</td>
           </tr>`
         })
