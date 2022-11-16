@@ -42,7 +42,7 @@ const sercurityCheck = async (model) => {
     console.log('params', params)
 
     const modal = window.eo.modalService.create({
-      nzTitle: 'API敏感词',
+      nzTitle: 'API 敏感词',
       nzCancelText: null,
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
       nzOnOk() {
@@ -74,9 +74,9 @@ const sercurityCheck = async (model) => {
     }
   } else {
     const modal = window.eo.modalService.create({
-      nzTitle: '跳转设置页配置openDLP服务？',
+      nzTitle: '跳转设置页配置 openDLP 服务？',
       nzContent:
-        '您还没有配置openDLP服务地址，目前无法使用本插件，是否要跳转到配置页？',
+        '您还没有配置 openDLP 服务地址，目前无法使用本插件，是否要跳转到配置页？',
       nzOkText: '跳转配置',
       nzOnOk() {
         // 'http://localhost:4200/#/home/extension/detail?id=eoapi-extension-samples-vue3&name=eoapi-extension-samples-vue3&tab=0'
@@ -153,7 +153,7 @@ const generateTable = (data, model) => {
       <table rules=all>
       <thead>
         <tr>
-          <th>API位置</th>
+          <th>API 位置</th>
           <th>字段位置</th>
           <th>类型</th>
           <th>值</th>
