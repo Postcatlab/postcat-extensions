@@ -58,7 +58,7 @@ const sercurityCheck = async (model) => {
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
   if (serverUrl) {
     const protoFile = await fs.readFile(protoFilePath)
-    const Grpc = window.eo.Grpc
+    const Grpc = window.eo.gRPC
     console.log('params', params)
 
     const modal = window.eo.modalService.create({
