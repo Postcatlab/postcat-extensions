@@ -24,9 +24,16 @@ const dataToOriginkeyMap = {
 const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
 
 const sercurityCheck = async (model) => {
-  const params = JSON.parse(JSON.stringify(model))
-  params.request_body = JSON.stringify(model.requestBody)
-  params.response_body = JSON.stringify(model.responseBody)
+  console.log('model', model)
+  const params = { doc_type: 1 }
+  Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
+    if (model[value]) {
+      params[key] =
+        typeof model[value] === 'string'
+          ? model[value]
+          : JSON.stringify(model[value])
+    }
+  })
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
   if (serverUrl) {
@@ -35,7 +42,7 @@ const sercurityCheck = async (model) => {
     console.log('params', params)
 
     const modal = window.eo.modalService.create({
-      nzTitle: 'API敏感词',
+      nzTitle: 'API 敏感词',
       nzCancelText: null,
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
       nzOnOk() {
@@ -67,9 +74,9 @@ const sercurityCheck = async (model) => {
     }
   } else {
     const modal = window.eo.modalService.create({
-      nzTitle: '跳转设置页配置openDLP服务？',
+      nzTitle: '跳转设置页配置 openDLP 服务？',
       nzContent:
-        '您还没有配置openDLP服务地址，目前无法使用本插件，是否要跳转到配置页？',
+        '您还没有配置 openDLP 服务地址，目前无法使用本插件，是否要跳转到配置页？',
       nzOkText: '跳转配置',
       nzOnOk() {
         // 'http://localhost:4200/#/home/extension/detail?id=eoapi-extension-samples-vue3&name=eoapi-extension-samples-vue3&tab=0'
@@ -88,7 +95,8 @@ const sercurityCheck = async (model) => {
 }
 
 const getFieldPosAndValue = (key = '', origin) => {
-  const arr = JSON.parse(key).slice(0, -1)
+  const arr = JSON.parse(key)
+  const valueKey = arr.pop()
   const { pos, resBody } = arr.reduce(
     (obj, field, index) => {
       const target = obj.resBody[field]
@@ -104,7 +112,7 @@ const getFieldPosAndValue = (key = '', origin) => {
     },
     { pos: '', resBody: origin }
   )
-  return [pos.slice(1), resBody.example]
+  return [pos.slice(1), resBody[valueKey] || '']
 }
 
 const getUriPosAndValue = (uri = '', obj = {}) => {
@@ -146,7 +154,7 @@ const generateTable = (data, model) => {
       <table rules=all>
       <thead>
         <tr>
-          <th>API位置</th>
+          <th>API 位置</th>
           <th>字段位置</th>
           <th>类型</th>
           <th>值</th>
