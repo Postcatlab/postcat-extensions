@@ -8,7 +8,7 @@ export default [
   {
     input: 'src/operate.ts',
     output: {
-      name: 'eoapi-import-openapi',
+      name: 'eoapi-opendlp',
       format: 'umd',
       file: 'dist/operate.js',
       sourcemap: 'inline'
