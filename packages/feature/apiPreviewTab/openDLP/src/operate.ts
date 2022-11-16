@@ -1,13 +1,12 @@
-const fs = require('node:fs/promises')
-const path = require('node:path')
+import protoText from 'inline!./src/protos/sensitive.proto'
 
 const pkgName = 'eoapi-opendlp'
 
 const keyMap = {
   uri: 'API 路径',
   description: '描述',
-  query_params: '查询参数',
-  rest_params: '路径参数',
+  query_params: 'Query 参数',
+  rest_params: 'Rest 参数',
   request_body: '请求体',
   response_body: '响应体'
 }
@@ -38,13 +37,10 @@ const strBySensitiveType = {
   TELEPHONE: '电话号码',
   PERSON: '人名',
   COMPANY_NAME: '公司名',
-  LOCATION: '地名',
+  LOCATION: '地名'
 }
 
-const protoFilePath = path.join(__dirname, './protos/sensitive.proto')
-
-const sercurityCheck = async (model) => {
-  console.log('model', model)
+export const sercurityCheck = async (model) => {
   const params = { doc_type: 1 }
   Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
     if (model[value]) {
@@ -56,22 +52,26 @@ const sercurityCheck = async (model) => {
   })
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
+  console.log('serverUrl', serverUrl)
   if (serverUrl) {
-    const protoFile = await fs.readFile(protoFilePath)
     const Grpc = window.eo.gRPC
     console.log('params', params)
 
     const modal = window.eo.modalService.create({
       nzTitle: 'API 敏感词',
       nzCancelText: null,
+      nzBodyStyle: {
+        maxHeight: '70vh',
+        overflow: 'hidden'
+      },
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
       nzOnOk() {
         modal.destroy()
       }
     })
 
-    const [res, err] = await Grpc.send({
-      proto: protoFile.toString(),
+    const [res] = await Grpc.send({
+      proto: protoText,
       url: serverUrl,
       packages: 'hitszids.wf.opendlp.api.v1',
       method: 'SensitiveAPIScan',
@@ -87,8 +87,8 @@ const sercurityCheck = async (model) => {
         nzContent: res.at?.(1).details || '操作失败'
       })
     }
-    const opendlpTableEl = document.querySelector('.opendlp-table')
-    if (Object.entries(res.result).some(([_, value]) => value.length)) {
+    const opendlpTableEl = document.querySelector('.opendlp-table')!
+    if (Object.entries<any>(res.result).some(([_, value]) => value.length)) {
       opendlpTableEl.innerHTML = generateTable(res.result, model)
     } else {
       opendlpTableEl.innerHTML = '暂无敏感词'
@@ -106,7 +106,7 @@ const sercurityCheck = async (model) => {
             type: '',
             id: pkgName,
             name: pkgName,
-            tab: 1
+            tab: 0
           }
         })
         modal.destroy()
@@ -115,7 +115,12 @@ const sercurityCheck = async (model) => {
   }
 }
 
-const getFieldPosAndValue = (key = '', origin) => {
+const getFieldPosAndValue = (
+  key = '',
+  origin,
+  obj: Record<string, any> = {}
+) => {
+  const { start = 0, end = 0 } = obj
   const arr = JSON.parse(key)
   const valueKey = arr.pop()
   const { pos, resBody } = arr.reduce(
@@ -133,10 +138,10 @@ const getFieldPosAndValue = (key = '', origin) => {
     },
     { pos: '', resBody: origin }
   )
-  return [pos.slice(1), resBody[valueKey] || '']
+  return [pos.slice(1), (resBody[valueKey] || '').slice(start, end)]
 }
 
-const getUriPosAndValue = (uri = '', obj = {}) => {
+const getUriPosAndValue = (uri = '', obj: Record<string, any> = {}) => {
   const { start = 0, end = 0 } = obj
   const replaceStr = uri.slice(start, end)
   const str = uri.replace(
@@ -155,19 +160,32 @@ const generateTable = (data, model) => {
         width: 100%;
         margin: 0 auto;
         border-collapse: collapse;
-        border:1px solid #ccc;
+        border: 1px solid var(--DIVIDER);
       }
-
+      tbody {
+        display: block;
+        max-height: 400px;
+        overflow: auto;
+      }
+      .opendlp-table table thead,
+      .opendlp-table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
       .opendlp-table thead {
-        height: 33px;
+        background-color: var(--TABLE_HEADER_BG);
         font-weight: bold;
-        color: rgb(16, 16, 16);
-        background: rgb(223, 223, 225);
+        height: 39px;
       }
 
       .opendlp-table td,
       .opendlp-table th {
         text-align: center;
+        height: 38px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
 
@@ -181,18 +199,23 @@ const generateTable = (data, model) => {
           <th>值</th>
         </tr>
       </thead>
-      ${Object.entries(data).reduce((prev, [key, arr]) => {
+      ${Object.entries<any[]>(data).reduce((prev, [key, arr]) => {
         arr.forEach((item) => {
           const [pos, value] =
             key === 'uriList'
-              ? getUriPosAndValue(params.uri, item)
-              : getFieldPosAndValue(item.key, model[dataToOriginkeyMap[key]])
+              ? getUriPosAndValue(model.uri, item)
+              : getFieldPosAndValue(
+                  item.key,
+                  model[dataToOriginkeyMap[key]],
+                  item
+                )
+          const sensitiveType = strBySensitiveType[item.sensitive_type]
           prev += `
           <tr>
             <td>${keyMap[key]}</td>
-            <td>${pos}</td>
-            <td>${item.sensitive_type}</td>
-            <td>${value}</td>
+            <td title=${pos}>${pos}</td>
+            <td title=${sensitiveType}>${sensitiveType}</td>
+            <td title=${value}>${value}</td>
           </tr>`
         })
         return prev
@@ -203,6 +226,4 @@ const generateTable = (data, model) => {
   return content
 }
 
-module.exports = {
-  sercurityCheck
-}
+export default sercurityCheck
