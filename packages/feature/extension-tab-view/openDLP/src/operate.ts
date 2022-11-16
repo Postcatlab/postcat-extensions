@@ -41,7 +41,6 @@ const strBySensitiveType = {
 }
 
 export const sercurityCheck = async (model) => {
-  console.log('model', model)
   const params = { doc_type: 1 }
   Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
     if (model[value]) {
@@ -53,6 +52,7 @@ export const sercurityCheck = async (model) => {
   })
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
+  console.log('serverUrl', serverUrl)
   if (serverUrl) {
     const Grpc = window.eo.gRPC
     console.log('params', params)
@@ -105,7 +105,7 @@ export const sercurityCheck = async (model) => {
             type: '',
             id: pkgName,
             name: pkgName,
-            tab: 1
+            tab: 0
           }
         })
         modal.destroy()
@@ -182,6 +182,9 @@ const generateTable = (data, model) => {
       .opendlp-table th {
         text-align: center;
         height: 38px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
 
@@ -205,12 +208,13 @@ const generateTable = (data, model) => {
                   model[dataToOriginkeyMap[key]],
                   item
                 )
+          const sensitiveType = strBySensitiveType[item.sensitive_type]
           prev += `
           <tr>
             <td>${keyMap[key]}</td>
-            <td>${pos}</td>
-            <td>${strBySensitiveType[item.sensitive_type]}</td>
-            <td>${value}</td>
+            <td title=${pos}>${pos}</td>
+            <td title=${sensitiveType}>${sensitiveType}</td>
+            <td title=${value}>${value}</td>
           </tr>`
         })
         return prev
