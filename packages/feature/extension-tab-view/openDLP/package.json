@@ -45,8 +45,8 @@
           "type": "string",
           "required": true,
           "default": "",
-          "label": "OpenDLP服务地址",
-          "description": "部署OpenDLP服务后得到的地址"
+          "label": "OpenDLP服务 地址",
+          "description": "部署 OpenDLP 服务后得到的地址"
         }
       }
     }
