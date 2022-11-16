@@ -75,13 +75,14 @@ const sercurityCheck = async (model) => {
       url: serverUrl,
       packages: 'hitszids.wf.opendlp.api.v1',
       method: 'SensitiveAPIScan',
+      service: 'OpenDlpService',
       params
     })
     console.log('==>>', res)
 
     if (Object.is(res.at?.(0), null)) {
       return window.eo.modalService.create({
-        nzTitle: '提示',
+        nzTitle: '提示', 
         nzCancelText: null,
         nzContent: res.at?.(1).details || '操作失败'
       })
