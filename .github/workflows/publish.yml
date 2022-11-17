@@ -18,6 +18,8 @@ jobs:
         # module. We don't recommend setting this,
         # unless you have a very specific use case.
         force: true
+    - run: pnpm install
+    - run: pnpm build
       env:
         # Typically an npm token
         REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"

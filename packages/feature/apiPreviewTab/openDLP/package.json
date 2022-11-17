@@ -1,7 +1,7 @@
 {
   "name": "eoapi-opendlp",
   "title": "OpenDLP sercurity check",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
@@ -21,7 +21,6 @@
           "name": "API Sercurity Check",
           "icon": "file-text-one",
           "tooltip": "扫描API敏感词",
-          "tooltipTrigger": "hover",
           "events": [
             {
               "name": "click",
