@@ -164,6 +164,7 @@ importers:
       lodash: '*'
       lodash-es: ^4.17.21
       nodemon: ^2.0.15
+      openapi-types: ^12.0.2
       rollup: ^2.78.0
       rollup-plugin-dts: ^4.2.1
       rollup-plugin-esbuild: ^4.9.1
@@ -172,6 +173,7 @@ importers:
     dependencies:
       lodash: 4.17.21
       lodash-es: 4.17.21
+      openapi-types: 12.0.2
     devDependencies:
       '@rollup/plugin-node-resolve': 15.0.0_rollup@2.79.1
       '@types/lodash-es': 4.17.6
@@ -5064,7 +5066,6 @@ packages:
 
   /openapi-types/12.0.2:
     resolution: {integrity: sha512-GuTo7FyZjOIWVhIhQSWJVaws6A82sWIGyQogxxYBYKZ0NBdyP2CYSIgOwFfSB+UVoPExk/YzFpyYitHS8KVZtA==}
-    dev: true
 
   /os-tmpdir/1.0.2:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}

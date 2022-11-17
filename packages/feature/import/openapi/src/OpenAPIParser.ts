@@ -196,7 +196,8 @@ export class OpenAPIParser {
   ) {
     let type = 'object'
     if (this.is$ref(body)) {
-      const schema = this.getSchemaBy$ref(this.get$Ref(body))
+      const [ref] = this.get$Ref(body)
+      const schema = this.getSchemaBy$ref(ref)
       if (schema?.type) {
         type = schema.type
       }
@@ -220,14 +221,16 @@ export class OpenAPIParser {
   }
 
   is$ref(schema: any = {}): schema is OpenAPIV3.ReferenceObject {
-    return Boolean(this.get$Ref(schema))
+    const [ref] = this.get$Ref(schema)
+    return Boolean(ref)
   }
 
-  get$Ref = (schema: any = {}): string | undefined => {
+  get$Ref = (schema: any = {}): [string, OpenAPIV3.BaseSchemaObject] => {
     const { items, allOf, anyOf, oneOf } = schema
-    const of = [allOf, anyOf, oneOf].find((n) => n)?.[0]
-    const target = [items, of, schema].find((n) => n?.$ref)
-    return target?.$ref
+    const of = [allOf, anyOf, oneOf].find((n) => n) || []
+    const target = [items, schema].concat(of).find((n) => n?.$ref)
+    const s = of?.reduce?.((p, c) => ({ ...p, ...c }), {})
+    return [target?.$ref, s]
   }
 
   transformProperties(
@@ -235,8 +238,8 @@ export class OpenAPIParser {
     required: string[] = [],
     lastRef = ''
   ) {
-    return Object.entries(properties).map(([key, value]) => {
-      const ref = this.get$Ref(value)
+    return Object.entries(properties).map(([name, value]) => {
+      const [ref] = this.get$Ref(value)
       const schemaObject = ref
         ? this.getSchemaBy$ref(ref)
         : (value as OpenAPIV3.SchemaObject)
@@ -247,19 +250,24 @@ export class OpenAPIParser {
 
       const { type, description, default: defaultValue, example } = schemaObject
       // const ref = this.get$Ref(schemaObject)
-      if (ref === lastRef || this.propertiesMap.get(ref)) {
-        return this.propertiesMap.get(ref)
-      }
 
       const editBody = {
         // ...other,
-        name: key,
-        required: required.includes(key),
+        name,
+        required: required.includes(name),
         example: String(defaultValue || example || ''),
         type:
           value.type || formatType(type!) || getDataType(defaultValue ?? ''),
         description: description || ''
       }
+
+      if (ref === lastRef || this.propertiesMap.get(ref)) {
+        return {
+          ...this.propertiesMap.get(ref),
+          ...editBody
+        }
+      }
+
       if (ref) {
         this.propertiesMap.set(ref, editBody)
         const schema = this.getSchemaBy$ref(ref)
@@ -300,8 +308,17 @@ export class OpenAPIParser {
     if (!schema) return []
 
     if (this.is$ref(schema)) {
-      const schemaObject = this.getSchemaBy$ref(this.get$Ref(schema)!)
-      return schemaObject ? this.schema2eoapiEditBody(schemaObject) : []
+      const [ref, innerSchema] = this.get$Ref(schema)
+      const schemaObject = this.getSchemaBy$ref(ref)
+
+      return schemaObject
+        ? this.schema2eoapiEditBody(schemaObject).concat(
+            this.transformProperties(
+              innerSchema?.properties,
+              innerSchema?.required
+            )
+          )
+        : []
     } else if (schema.type === 'array') {
       const items = schema.items as OpenAPIV3.SchemaObject
       return this.transformProperties(items?.properties, schema.required)
@@ -313,7 +330,7 @@ export class OpenAPIParser {
   }
 
   getSchemaBy$ref($ref = '') {
-    const entity = $ref.split('/').at(-1)
+    const entity = $ref?.split('/').at(-1)
     return entity ? this.structMap.get(entity) : undefined
   }
 
@@ -327,7 +344,8 @@ export class OpenAPIParser {
       return []
     }
     if (this.is$ref(body)) {
-      const schemaObject = this.getSchemaBy$ref(this.get$Ref(body))
+      const [ref] = this.get$Ref(body)
+      const schemaObject = this.getSchemaBy$ref(ref)
       return schemaObject ? this.schema2eoapiEditBody(schemaObject) : []
     } else if (body?.content) {
       const media = Object.values(body.content).at(0)
