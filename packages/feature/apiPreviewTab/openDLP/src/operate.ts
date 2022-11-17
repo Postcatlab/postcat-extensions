@@ -41,6 +41,7 @@ const strBySensitiveType = {
 }
 
 export const sercurityCheck = async (model) => {
+  console.log('model', window?.structuredClone?.(model))
   const params = { doc_type: 1 }
   Object.entries(dataToOriginkeyMap).forEach(([key, value]) => {
     if (model[value]) {
