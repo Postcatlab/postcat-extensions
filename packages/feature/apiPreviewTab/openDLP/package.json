@@ -2,6 +2,9 @@
   "name": "eoapi-opendlp",
   "title": "OpenDLP sercurity check",
   "version": "0.0.3",
+  "moduleID": "eoapi-opendlp",
+  "moduleName": "eoapi-opendlp",
+  "moduleType": "eoapi-opendlp",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
