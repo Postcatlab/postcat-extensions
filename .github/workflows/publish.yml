@@ -12,8 +12,6 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
-      env:
-        REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
@@ -49,3 +47,5 @@ jobs:
         # module. We don't recommend setting this,
         # unless you have a very specific use case.
         force: true
+      env:
+        REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
