@@ -9,7 +9,7 @@
   "main": "dist/operate.js",
   "node": "src/main.js",
   "author": "OpenDLP",
-  "logo": "https://avatars.githubusercontent.com/u/55747983?s=200&v=4",
+  "logo": "https://data.eolink.com/qI7HuYB07f63e5567e7cf17a61c96ace137083194f3f898",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
