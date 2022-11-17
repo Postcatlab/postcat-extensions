@@ -12,7 +12,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '16'
-        registry-url: https://registry.npmjs.com/
+      env:
+        REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
@@ -39,5 +40,12 @@ jobs:
     - name: Publish
       if: success()
       uses: author/action-publish@stable
-      env:
-        REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
+      with:
+        # Optionally specify the directories to scan
+        # for modules. If this is not specified, the
+        # root directory is scanned.
+        scan: "./packages"
+        # Optionally force publishing as a public
+        # module. We don't recommend setting this,
+        # unless you have a very specific use case.
+        force: true
