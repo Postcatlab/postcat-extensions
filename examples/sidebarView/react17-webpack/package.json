@@ -8,7 +8,6 @@
   "author": "Demo",
   "main": "dist/index.js",
   "pageEntry": "./react17/index.html",
-  "devServerUrl": "http://192.168.31.171:4005/child/react17",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png?20220125121207",
   "scripts": {
     "dev": "node scripts/start.js",

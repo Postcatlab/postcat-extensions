@@ -1,0 +1,290 @@
+syntax = "proto3";
+
+package hitszids.wf.opendlp.api.v1;
+
+option java_multiple_files = true;
+option java_outer_classname = "OpenDlpProto";
+option java_package = "org.hitszids.wf.opendlp.api.v1";
+
+service OpenDlpService{
+  // 字符串敏感数据识别
+  rpc StringSensitiveAnalyze(StringSensitiveAnalyzeRequest) returns (StringSensitiveAnalyzeResponse) {};
+
+  // API文档中的敏感API扫描
+  rpc SensitiveAPIScan(SensitiveAPIScanRequest) returns (SensitiveAPIScanResponse) {};
+
+  // 字符串敏感数据脱敏
+  rpc StringMaskWithAnalyzeResult(StringMaskWithAnalyzeResultRequest) returns (StringMaskWithAnalyzeResultResponse) {};
+
+  // 字符串敏感数据分析与脱敏
+  rpc StringMask(StringMaskRequest) returns (StringMaskResponse) {};
+}
+
+// 内置敏感数据类型
+enum PredefinedSensitiveType {
+  DEFAULT = 0;
+  BANK_CARD = 1;
+  DATE = 2;
+  DOMAIN_NAME = 3;
+  EMAIL = 4;
+  ID_CARD = 5;
+  IPV4 = 6;
+  IPV6 = 7;
+  LICENSE_PLATE = 8;
+  MAC = 9;
+  MOBILE_PHONE = 10;
+  PASSPORT = 11;
+  POSTCODE = 12;
+  SOCIAL_CREDIT_CODE = 13;
+  TELEPHONE = 14;
+  PERSON = 15;
+  COMPANY_NAME = 16;
+  LOCATION = 17;
+}
+
+// 输入字符串类型
+enum InputStringType {
+  UNKNOWN = 0;    // 不指定时的默认值，此时程序会自行推断是下面三种类型的哪一种
+  JSON = 1;       // json格式字符串
+  XML = 2;        // xml格式字符串
+  OTHER = 3;      // 视为无格式字符串
+}
+
+// ------------------ StringSensitiveAnalyze ------------------
+// 字符串敏感数据识别服务请求
+message StringSensitiveAnalyzeRequest{
+
+  // 待进行敏感数据识别的字符串
+  string to_analyze_string = 1;
+
+  // 字符串类型
+  InputStringType string_type = 2;
+
+  // 指定识别哪些类型敏感数据，默认所有
+  repeated PredefinedSensitiveType entities = 3;
+
+  // 指定不使用nlp模型，不使用nlp模型会影响[PERSON, COMPANY_NAME, LOCATION]的识别效果。
+  bool not_use_nlp = 4;
+
+  // 自定义关键词、正则yaml字符串
+  string user_define_rule_yaml_string = 5;
+}
+
+// 敏感数据识别服务响应
+message StringSensitiveAnalyzeResponse{
+  // 状态码
+  Status status = 1;
+
+  // 识别结果
+  repeated StringSensitiveAnalyzeResult result = 2;
+}
+
+message StringSensitiveAnalyzeResult{
+  // 敏感类型
+  string sensitive_type = 1;
+  // 定位json、xml元素的路径，数组的json串形式。对于无格式字符串，为空数组。
+  // ，例如：{"objList":[{"uid":"10086"},{"uid":["aaaa","bbbb"]}]}
+  // 定位"10086"的key为："['objList', 0, 'uid']"
+  // 定位"aaaa"的key为："['objList', 1, 'uid', 0]"
+  string key = 2;    // json数组字符串，用json解析，数组中字符串为key，int为数组下标。
+  // 敏感实体的开始位置
+  int32 start = 3;
+  // 敏感实体的结束位置
+  int32 end = 4;
+}
+
+
+// ------------------ SensitiveAPIScan ------------------
+// API文档中的敏感API发现服务请求
+message SensitiveAPIScanRequest{
+  // api文档类型
+  enum DocType {
+    DEFAULT = 0;  // 默认格式
+    EOAPI = 1;    // eoapi格式
+  }
+  // uri
+  string uri = 1;
+
+  // API文档格式类型
+  DocType doc_type = 2;
+
+  // 名称或描述，对应eoapi API文档中的name
+  string description = 3;
+
+  // 请求query参数
+  string query_params = 4;
+
+  // 请求rest参数
+  string rest_params = 5;
+
+  // 请求体
+  string request_body = 6;
+
+  // 响应体
+  string response_body = 7;
+
+  // 指定识别哪些类型敏感数据，默认所有
+  repeated PredefinedSensitiveType entities = 8;
+
+  // 指定不使用nlp模型，不使用nlp模型会影响[PERSON, COMPANY_NAME, LOCATION]的识别效果。
+  bool not_use_nlp = 9;
+
+  // 自定义关键词、正则yaml字符串
+  string user_define_rule_yaml_string = 10;
+}
+
+// API文档中的敏感API发现服务响应
+message SensitiveAPIScanResponse{
+  // 状态码
+  Status status = 1;
+
+  // 识别结果
+  SensitiveAPIScanResult result= 2;
+}
+
+// API文档中的敏感API发现结果
+message SensitiveAPIScanResult{
+  // uri结果
+  repeated StringSensitiveAnalyzeResult uri = 1;
+
+  repeated StringSensitiveAnalyzeResult description = 2;
+
+  repeated StringSensitiveAnalyzeResult query_params = 3;
+
+  repeated StringSensitiveAnalyzeResult rest_params = 4;
+
+  repeated StringSensitiveAnalyzeResult request_body = 5;
+
+  repeated StringSensitiveAnalyzeResult response_body = 6;
+}
+
+
+// ----------------- StringMaskWithAnalyzeResult ------------
+// 字符串敏感数据脱敏请求
+message StringMaskWithAnalyzeResultRequest{
+  // 待脱敏字符串
+  string to_mask_string = 1;
+
+  // 敏感数据识别结果
+  repeated StringSensitiveAnalyzeResult sensitive_analyze_results = 2;
+
+  // 脱敏参数
+  map<string, MaskConfig> mask_config = 3;
+
+}
+
+message MaskConfig{
+  // 遮掩
+  message Cover{
+    string cover_char = 1;       // 用于遮掩的字符
+    int32 offset_start = 2;      // 遮掩起始偏移
+    int32 offset_end = 3;        // 遮掩结束偏移
+    int32 cover_length = 4;      // 遮掩长度
+    bool from_back = 5;          // 是否从尾部开始遮掩
+    string ignore_char_set = 6;  // 遮掩时忽略的字符集合
+  }
+
+  // 替换
+  message Replace{
+    string new_value = 1;        // 替换敏感实体
+  }
+
+  // 哈希
+  message Hash{
+    enum HashMethod{
+      SHA256 = 0;
+      SHA512 = 1;
+      MD5 = 2;
+    }
+
+    HashMethod value = 1;
+  }
+
+  // 采用以下四种脱敏方法中的某一种,哪个有设值就用哪个脱敏方法
+  // 其中readact不管是设True还是False，都表明使用该脱敏方法
+  oneof method {
+    Replace replace = 1;
+    Cover cover = 2;
+    Hash hash = 3;
+    bool redact = 4;    // 擦除
+  }
+}
+
+// 字符串敏感数据脱敏响应
+message StringMaskWithAnalyzeResultResponse{
+  // 状态码
+  Status status = 1;
+
+  // 脱敏后字符串
+  string result= 2;
+}
+
+
+// ----------------- StringMask ------------
+// 字符串敏感数据分析与脱敏
+message StringMaskRequest{
+  // 待脱敏字符串
+  string to_mask_string = 1;
+
+  // 字符串类型
+  InputStringType string_type = 2;
+
+  // 指定识别哪些类型敏感数据，默认所有
+  repeated PredefinedSensitiveType entities = 3;
+
+  // 指定不使用nlp模型，不使用nlp模型会影响[PERSON, COMPANY_NAME, LOCATION]的识别效果。
+  bool not_use_nlp = 4;
+
+  // 自定义关键词、正则yaml字符串
+  string user_define_rule_yaml_string = 5;
+
+  // 脱敏参数
+  map<string, MaskConfig> mask_config = 6;
+}
+
+// 字符串敏感数据脱敏响应
+message StringMaskResponse{
+  // 状态码
+  Status status = 1;
+
+  // 脱敏后字符串
+  string result= 2;
+}
+
+
+// ------------------ 公用 ------------------
+// 接口请求的应答状态码、消息
+message Status {
+  // 应答状态码
+  StatusCode code = 1;
+
+  // 应答消息
+  string msg = 2;
+}
+
+// 应答状态码枚举值
+enum StatusCode {
+  // 成功,所有列都正常返回识别结果
+  OK = 0;
+
+  // 参数有误, 文件不存在也属于参数有误
+  PARAMETER_ERROR = 10000;
+
+  // 读取数据文件失败
+  FILE_READ_ERROR = 10001;
+
+  // 自定义正则json文件解析失败
+  JSON_FILE_PARSE_ERROR = 10002;
+
+  // 字符串敏感数据识别失败
+  STRING_SENSITIVE_ANALYZE_ERROR = 10003;
+
+  // API文档中的敏感API发现失败
+  SENSITIVE_API_SCAN_ERROR = 10004;
+
+  // 字符串敏感数据脱敏失败
+  STRING_MASK_ERROR = 10005;
+
+  // 字符串敏感数据识别与脱敏失败
+  STRING_ANALYZE_MASK_ERROR = 10006;
+}

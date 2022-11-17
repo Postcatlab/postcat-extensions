@@ -1,4 +1,4 @@
-import EoToOpenApi from './EoToOpenApi'
+import EoToOpenApi from 'packages/feature/export/openapi/src/Eo2OpenAPI'
 
 const url =
   'https://apis.eolink.com/api/v2/api_studio/management/api/importOpenApi'

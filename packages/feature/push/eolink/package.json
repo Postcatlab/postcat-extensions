@@ -6,7 +6,6 @@
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-push-eolink",
   "moduleName": "Push to Eolink",
-  "moduleType": "feature",
   "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {
     "build": "rollup -c rollup.config.js",
@@ -60,12 +59,12 @@
     },
     "configuration": {
       "type": "object",
-      "title": "Push to Eolink",
       "properties": {
         "token": {
           "type": "string",
           "required": false,
           "default": "",
+          "title": "Token",
           "label": "Token",
           "description": "${configuration.token.description}"
         },
@@ -73,6 +72,7 @@
           "type": "string",
           "required": false,
           "default": "ProjectID",
+          "title": "ProjectID",
           "label": "ProjectID",
           "description": "${configuration.projectId.description}"
         }

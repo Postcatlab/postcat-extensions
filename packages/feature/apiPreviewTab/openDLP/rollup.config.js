@@ -2,25 +2,31 @@ import { terser } from 'rollup-plugin-terser'
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import inlineCode from 'rollup-plugin-inline-code'
 import { name } from './package.json'
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/operate.ts',
     output: {
       name: name,
       format: 'umd',
-      file: 'dist/index.js',
+      file: 'dist/operate.js',
       sourcemap: 'inline'
     },
-    plugins: [nodeResolve(), esbuild({ target: 'esnext' }), terser()]
+    plugins: [
+      nodeResolve(),
+      inlineCode(),
+      esbuild({ target: 'esnext' }),
+      terser()
+    ]
   },
   {
-    input: 'src/index.ts',
+    input: 'src/operate.ts',
     output: {
       format: 'es',
-      file: 'dist/index.d.ts'
+      file: 'dist/operate.d.ts'
     },
-    plugins: [dts()]
+    plugins: [dts(), inlineCode()]
   }
 ]
