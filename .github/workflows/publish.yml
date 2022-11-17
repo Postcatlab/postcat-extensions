@@ -7,18 +7,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout your updatd source code
     - uses: actions/checkout@v2
-    - uses: author/action-publish@stable
-      with:
-        # Optionally specify the directories to scan
-        # for modules. If this is not specified, the
-        # root directory is scanned.
-        scan: "./packages"
-        # Optionally force publishing as a public
-        # module. We don't recommend setting this,
-        # unless you have a very specific use case.
-        force: true
+
+      # If the version has changed, create a new git tag for it.
+    - name: build
+    - run: pnpm install
+    - run: pnpm build
+
+      # Use this action to publish a single module to npm.
+    - name: Publish
+      if: success()
+      uses: author/action-publish@stable
       env:
-        # Typically an npm token
         REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
