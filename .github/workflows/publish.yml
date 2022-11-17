@@ -1,160 +1,23 @@
-name: Node.js Package
+name: Publish
 
-on:
-  push:
-    branches: [main]
+on: [push]
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: pnpm install
-
-  publish-npm-export:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/export/openapi
-
-      - run: npm publish
-        working-directory: packages/feature/export/openapi
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-  # import openapi
-  publish-npm-import-openapi:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/import/openapi
-
-      - run: npm publish
-        working-directory: packages/feature/import/openapi
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-
-  # import postman
-  publish-npm-import-postman:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/import/postman
-
-      - run: npm publish
-        working-directory: packages/feature/import/postman
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-  # import eolink
-  publish-npm-import-eolink:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/import/eolink
-
-      - run: npm publish
-        working-directory: packages/feature/import/eolink
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-# push eolink
-  publish-npm-push:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/push/eolink
-
-      - run: npm publish
-        working-directory: packages/feature/push/eolink
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-
-# demo react17-webpack
-  publish-npm-demo-react17-webpack:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/demo/react17-webpack
-
-      - run: npm publish
-        working-directory: packages/feature/demo/react17-webpack
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-# demo vue3-webpack
-  publish-npm-demo-vue3-webpack:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: pnpm install
-      - run: pnpm build
-        working-directory: packages/feature/demo/vue3-webpack
-
-      - run: npm publish
-        working-directory: packages/feature/demo/vue3-webpack
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+    - uses: actions/checkout@v2
+    - uses: author/action-publish@stable
+      with:
+        # Optionally specify the directories to scan
+        # for modules. If this is not specified, the
+        # root directory is scanned.
+        scan: "./packages"
+        # Optionally force publishing as a public
+        # module. We don't recommend setting this,
+        # unless you have a very specific use case.
+        force: true
+      env:
+        # Typically an npm token
+        REGISTRY_TOKEN: "${{ secrets.NPM_TOKEN }}"
