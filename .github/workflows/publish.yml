@@ -12,10 +12,9 @@ jobs:
 
       # If the version has changed, create a new git tag for it.
     - name: build
-      uses: actions/checkout@v2
       run: |
-         pnpm install
-         pnpm build
+        pnpm install
+        pnpm build
 
       # Use this action to publish a single module to npm.
     - name: Publish
