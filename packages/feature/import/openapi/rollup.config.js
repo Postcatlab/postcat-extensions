@@ -2,12 +2,13 @@ import { terser } from 'rollup-plugin-terser'
 import esbuild from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
+import { name } from './package.json'
 
 export default [
   {
     input: 'src/index.ts',
     output: {
-      name: 'eoapi-import-openapi',
+      name: name,
       format: 'umd',
       file: 'dist/index.js',
       sourcemap: 'inline'
