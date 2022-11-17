@@ -82,7 +82,7 @@ export const sercurityCheck = async (model) => {
 
     if (Object.is(res.at?.(0), null)) {
       return window.eo.modalService.create({
-        nzTitle: '提示', 
+        nzTitle: '提示',
         nzCancelText: null,
         nzContent: res.at?.(1).details || '操作失败'
       })
@@ -190,7 +190,7 @@ const generateTable = (data, model) => {
 
 
       </style>
-      <table rules=all>
+      <table rules="all">
       <thead>
         <tr>
           <th>API 位置</th>
@@ -213,9 +213,9 @@ const generateTable = (data, model) => {
           prev += `
           <tr>
             <td>${keyMap[key]}</td>
-            <td title=${pos}>${pos}</td>
-            <td title=${sensitiveType}>${sensitiveType}</td>
-            <td title=${value}>${value}</td>
+            <td title="${pos}">${pos}</td>
+            <td title="${sensitiveType}">${sensitiveType}</td>
+            <td title="${value}">${value}</td>
           </tr>`
         })
         return prev
