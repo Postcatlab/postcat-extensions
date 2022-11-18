@@ -1,10 +1,11 @@
 {
   "name": "eoapi-import-openapi",
-  "version": "1.0.24",
-  "description": "Import the JSON format file of the OpenAPI specification",
+  "version": "1.0.28",
+  "description": "Import the JSON format file of the OpenAPI/Swagger specification",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",
-  "moduleName": "Import OpenAPI",
+  "title": "Import OpenAPI/Swagger",
+  "moduleName":"Import OpenAPI/Swagger",
   "author": "Eoapi",
   "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
@@ -21,6 +22,12 @@
     "typescript": "^4.1"
   },
   "features": {
+    "importAPI": {
+      "action": "importFunc",
+      "label": "OpenAPI(.json)",
+      "description": "${function.description}",
+      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da"
+    },
     "apimanage.import": {
       "action": "importFunc",
       "label": "OpenAPI(.json)",

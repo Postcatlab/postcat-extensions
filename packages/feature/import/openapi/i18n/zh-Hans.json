@@ -1,5 +1,5 @@
 {
-    "moduleName":"导入 OpenAPI",
+    "title":"导入 OpenAPI",
     "description":"导入 OpenAPI  JSON 格式文件",
     "function.description":"导入 Swagger OpenAPI v3.0"
 }

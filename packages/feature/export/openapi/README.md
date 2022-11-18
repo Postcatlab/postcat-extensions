@@ -1,4 +1,6 @@
 # Export OpenAPI Extension
+
+Supports exporting OpenAPI version 3.0 JSON files.
 ## usage
 
 Go to the overview page of the main interface, you can see the export function, click this area to open the corresponding pop-up window, and you can see the keywords of the installed export plug-ins. If it is not installed, it will not be displayed.

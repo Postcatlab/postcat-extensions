@@ -1,33 +1,26 @@
 {
   "name": "eoapi-opendlp",
   "title": "OpenDLP sercurity check",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
   },
-  "main": "src/operate.js",
+  "main": "dist/operate.js",
   "node": "src/main.js",
   "author": "OpenDLP",
-  "logo": "https://avatars.githubusercontent.com/u/55747983?s=200&v=4",
+  "logo": "https://data.eolink.com/qI7HuYB07f63e5567e7cf17a61c96ace137083194f3f898",
   "scripts": {
-    "build": "webpack src/index.js"
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -w -c rollup.config.js"
   },
   "features": {
-    "extensionTabView": [
-      {
-        "name": "Operate",
-        "url": "./page/index.html",
-        "debugUrl": "http://localhost:8080"
-      }
-    ],
     "apiPreviewTab": {
       "rightExtra": [
         {
           "name": "API Sercurity Check",
           "icon": "file-text-one",
-          "tooltip": "扫描API敏感词",
-          "tooltipTrigger": "hover",
+          "tooltip": "扫描 API 敏感词",
           "events": [
             {
               "name": "click",
@@ -37,28 +30,34 @@
         }
       ]
     },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    },
     "configuration": {
       "type": "object",
       "title": "API Sercurity",
       "properties": {
         "serverUrl": {
           "type": "string",
-          "required": false,
+          "required": true,
           "default": "",
-          "label": "OpenDLP服务地址",
-          "description": "部署OpenDLP服务后得到的地址"
+          "label": "OpenDLP 服务地址",
+          "description": "部署 OpenDLP 服务后得到的地址"
         }
       }
-    },
-    "i18n": {
-      "sourceLocale": "en-US",
-      "locales": [
-        "zh-Hans"
-      ]
     }
   },
-  "dependencies": {
-    "@grpc/grpc-js": "~1.1.8",
-    "google-protobuf": "^3.21.2"
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "esbuild": "^0.14.38",
+    "rollup": "^2.78.0",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "rollup-plugin-inline-code": "^1.2.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.1"
   }
 }

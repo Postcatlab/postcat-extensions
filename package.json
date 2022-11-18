@@ -11,6 +11,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "build": "pnpm run --filter=\"eoapi-*\" build",
     "test": "jest --watch",
     "changeset": "changeset",
     "version-packages": "changeset version",

@@ -1,9 +1,10 @@
 {
   "name": "eoapi-import-postman",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Import Postman Collections v2.1",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-postman",
+  "title": "Import Postman",
   "moduleName": "Import Postman",
   "author": "Eoapi",
   "logo": "https://data.eolink.com/WIC2HqFc1d10cf7198c88467bffcd0b8d063b52dc4cf66d",
@@ -21,6 +22,12 @@
     "typescript": "^4.1"
   },
   "features": {
+    "importAPI": {
+      "action": "importFunc",
+      "label": "Postman(.json)",
+      "description": "${function.description}",
+      "icon": "https://data.eolink.com/WIC2HqFc1d10cf7198c88467bffcd0b8d063b52dc4cf66d"
+    },
     "apimanage.import": {
       "action": "importFunc",
       "label": "Postman(.json)",
