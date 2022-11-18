@@ -87,8 +87,10 @@ export const sercurityCheck = async (model) => {
     console.log('err ==>>', err)
 
     if (res === null || Object.is(res?.at?.(0), null)) {
+      const errDetails = (res?.at?.(1) || err).details
       return modal.updateConfig({
-        nzContent: res?.at?.(1).details || '扫描失败'
+        nzTitle: '提示',
+        nzContent: errDetails ? `服务错误: ${errDetails}` : '扫描失败'
       })
     }
     const opendlpTableEl = document.querySelector('.opendlp-table')!
