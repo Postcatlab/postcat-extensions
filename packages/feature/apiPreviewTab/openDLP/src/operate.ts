@@ -85,7 +85,7 @@ export const sercurityCheck = async (model) => {
       return window.eo.modalService.create({
         nzTitle: '提示',
         nzCancelText: null,
-        nzContent: res.at?.(1).details || '操作失败'
+        nzContent: res?.at?.(1).details || '操作失败'
       })
     }
     const opendlpTableEl = document.querySelector('.opendlp-table')!
