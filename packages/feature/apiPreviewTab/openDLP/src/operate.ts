@@ -67,7 +67,7 @@ export const sercurityCheck = async (model) => {
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
       nzFooter: [
         {
-          label: `Cancel`,
+          label: '取消',
           onClick: () => {
             modal.destroy()
           }
