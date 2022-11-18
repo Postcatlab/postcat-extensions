@@ -60,15 +60,19 @@ export const sercurityCheck = async (model) => {
 
     const modal = window.eo.modalService.create({
       nzTitle: 'API 敏感词',
-      nzCancelText: null,
       nzBodyStyle: {
         maxHeight: '70vh',
         overflow: 'hidden'
       },
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
-      nzOnOk() {
-        modal.destroy()
-      }
+      nzFooter: [
+        {
+          label: `Cancel`,
+          onClick: () => {
+            modal.destroy()
+          }
+        }
+      ]
     })
 
     const [res] = await Grpc.send({
