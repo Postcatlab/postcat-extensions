@@ -81,7 +81,7 @@ export const sercurityCheck = async (model) => {
     })
     console.log('==>>', res)
 
-    if (Object.is(res.at?.(0), null)) {
+    if (res === null || Object.is(res?.at?.(0), null)) {
       return window.eo.modalService.create({
         nzTitle: '提示',
         nzCancelText: null,
