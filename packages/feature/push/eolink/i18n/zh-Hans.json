@@ -1,5 +1,5 @@
 {
-    "moduleName":"同步到 Eolink",
+    "title":"同步到 Eolink",
     "description":"将数据以 OpenAPI 的格式推送到 eolink 平台",
     "function.description":"将 API 信息推送到 Eolink",
     "configuration.token.description":"Eolink OpenAPI Token，配置后才可访问",

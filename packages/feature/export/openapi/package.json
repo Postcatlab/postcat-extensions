@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-export-openapi",
-  "moduleName": "Export OpenAPI",
+  "title": "Export OpenAPI",
   "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
     "build": "rollup -c rollup.config.js",

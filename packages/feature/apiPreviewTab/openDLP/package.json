@@ -20,7 +20,7 @@
         {
           "name": "API Sercurity Check",
           "icon": "file-text-one",
-          "tooltip": "扫描API敏感词",
+          "tooltip": "扫描 API 敏感词",
           "events": [
             {
               "name": "click",
