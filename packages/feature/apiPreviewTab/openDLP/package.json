@@ -30,6 +30,12 @@
         }
       ]
     },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    },
     "configuration": {
       "type": "object",
       "title": "API Sercurity",
