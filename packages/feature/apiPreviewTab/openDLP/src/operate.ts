@@ -86,7 +86,7 @@ export const sercurityCheck = async (model) => {
     console.log('res ==>>', res)
     console.log('err ==>>', err)
 
-    if (res === null || Object.is(res?.at?.(0), null)) {
+    if (res === null || Object.is(res?.at?.(0), null) || err) {
       const errDetails = (res?.at?.(1) || err).details
       return modal.updateConfig({
         nzTitle: '提示',
