@@ -85,11 +85,9 @@ export const sercurityCheck = async (model) => {
     })
     console.log('==>>', res)
 
-    if (Object.is(res.at?.(0), null)) {
-      return window.eo.modalService.create({
-        nzTitle: '提示',
-        nzCancelText: null,
-        nzContent: res.at?.(1).details || '操作失败'
+    if (res === null || Object.is(res?.at?.(0), null)) {
+      return modal.updateConfig({
+        nzContent: res?.at?.(1).details || '扫描失败'
       })
     }
     const opendlpTableEl = document.querySelector('.opendlp-table')!
