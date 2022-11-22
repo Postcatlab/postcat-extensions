@@ -1,9 +1,6 @@
 name: Publish
-<<<<<<< HEAD
 
 on: [push]
-=======
->>>>>>> b6cc518c895cad5c01c72bd726ca0720db4a62c9
 
 
 
