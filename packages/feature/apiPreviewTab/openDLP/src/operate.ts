@@ -67,7 +67,7 @@ export const sercurityCheck = async (model) => {
       nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
       nzFooter: [
         {
-          label: '取消',
+          label: `Cancel`,
           onClick: () => {
             modal.destroy()
           }
@@ -75,7 +75,7 @@ export const sercurityCheck = async (model) => {
       ]
     })
 
-    const [res] = await Grpc.send({
+    const [res, err] = await Grpc.send({
       proto: protoText,
       url: serverUrl,
       packages: 'hitszids.wf.opendlp.api.v1',
@@ -83,11 +83,14 @@ export const sercurityCheck = async (model) => {
       service: 'OpenDlpService',
       params
     })
-    console.log('==>>', res)
+    console.log('res ==>>', res)
+    console.log('err ==>>', err)
 
-    if (res === null || Object.is(res?.at?.(0), null)) {
+    if (res === null || Object.is(res?.at?.(0), null) || err) {
+      const errDetails = (res?.at?.(1) || err).details
       return modal.updateConfig({
-        nzContent: res?.at?.(1).details || '扫描失败'
+        nzTitle: '提示',
+        nzContent: errDetails ? `服务错误: ${errDetails}` : '扫描失败'
       })
     }
     const opendlpTableEl = document.querySelector('.opendlp-table')!
