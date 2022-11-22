@@ -50,7 +50,7 @@ export class EolinkImporter {
   transformToEoapi(data): Collections {
     return {
       collections: this.transformItems(data),
-      enviroments: []
+      environments: []
     }
   }
 

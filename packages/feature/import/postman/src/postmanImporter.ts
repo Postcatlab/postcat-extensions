@@ -42,7 +42,7 @@ export class PostmanImporter {
           item: data.item
         }
       ]),
-      enviroments: this.transformEnv(data.variable)
+      environments: this.transformEnv(data.variable)
     }
   }
 

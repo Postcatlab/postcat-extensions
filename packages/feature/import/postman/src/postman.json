@@ -381,7 +381,7 @@
       ]
     }
   ],
-  "enviroments": [
+  "environments": [
     {
       "name": "postImport",
       "hostUri": "http://localhost",

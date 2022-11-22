@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-openapi",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "Import the JSON format file of the OpenAPI/Swagger specification",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-openapi",

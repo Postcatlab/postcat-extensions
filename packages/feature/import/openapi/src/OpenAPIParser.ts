@@ -40,7 +40,7 @@ export class OpenAPIParser {
   openAPI: OpenAPIV3.Document
   groups: { [name: string]: ApiGroup } = {}
   apiDatas: ApiData[] = []
-  enviroments: Environment[] = []
+  environments: Environment[] = []
   structMap = new Map<string, OpenAPIV3.SchemaObject>()
   propertiesMap = new Map()
 
@@ -55,7 +55,7 @@ export class OpenAPIParser {
     // 生成API
     this.generateApiDatas(paths)
     // 生成环境
-    this.generateEnviroments(servers)
+    this.generateEnvironments(servers)
 
     this.data = {
       collections: [
@@ -64,7 +64,7 @@ export class OpenAPIParser {
           children: [...Object.values(this.groups), ...this.apiDatas]
         }
       ],
-      enviroments: this.enviroments
+      environments: this.environments
     }
   }
 
@@ -76,10 +76,10 @@ export class OpenAPIParser {
     }
   }
 
-  generateEnviroments = (servers: OpenAPIV3.ServerObject[] = []) => {
+  generateEnvironments = (servers: OpenAPIV3.ServerObject[] = []) => {
     if (servers && Array.isArray(servers) && servers.length) {
       servers.forEach((n) => {
-        const targetEnv = this.enviroments.find((m) => m.hostUri === n.url) || {
+        const targetEnv = this.environments.find((m) => m.hostUri === n.url) || {
           hostUri: n.url,
           name: n.description,
           parameters: [] as EnvParameters[]
@@ -158,7 +158,7 @@ export class OpenAPIParser {
               prev.push(apiData)
             }
           } else if (method === 'servers') {
-            this.generateEnviroments(pathItemObj.servers)
+            this.generateEnvironments(pathItemObj.servers)
           }
         })
       }

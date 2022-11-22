@@ -34,7 +34,7 @@ export type Environment = {
 
 export type Collections = {
   collections: Child[]
-  enviroments: Environment[]
+  environments: Environment[]
 }
 
 export interface ParamsEnum {
