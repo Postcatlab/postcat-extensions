@@ -2,7 +2,7 @@
 
 ## 简介
 
-Eoapi 中的 openDLP 插件基于 [openDLP](https://github.com/hitsz-ids/openDLP) 开源项目，针对 Eoapi 场景实现了以下敏感 API 发现功能，通过扫描 API 文档，识别该API 是否可能是一个涉及敏感数据的 API；
+Eoapi 中的 openDLP 插件基于 [openDLP](https://github.com/hitsz-ids/openDLP) 开源项目，针对 Eoapi 场景实现了敏感 API 发现功能，通过扫描 API 文档，识别该API 是否可能是一个涉及敏感数据的 API。
 
 目前内置支持 17 类敏感数据类型，可以通过自定义正则支持更多类型的识别。对于有地区和语言差异的类型，目前都是支持中国大陆地区、简体中文。具体敏感数据类型如下：
 
