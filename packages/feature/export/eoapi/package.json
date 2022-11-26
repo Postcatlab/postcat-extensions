@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-eoapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Export the JSON format file of the Eoapi specification",
   "main": "dist/index.js",
   "title": "Export Eoapi",
@@ -14,9 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/eolinker/eoapi-extensions.git"
   },
-  "author": {
-    "name": "Eoapi"
-  },
+  "author":  "Eoapi",
   "license": "Apache-2.0 License",
   "bugs": {
     "url": "https://github.com/eolinker/eoapi-extensions/issues"
