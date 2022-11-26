@@ -1,14 +1,10 @@
 {
-  "name": "eoapi-export-openapi",
-  "version": "1.0.36",
-  "description": "Export the JSON format file of the OpenAPI specification",
+  "name": "eoapi-export-eoapi",
+  "version": "1.0.2",
+  "description": "Export the JSON format file of the Eoapi specification",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "moduleID": "eoapi-feature-export-openapi",
-  "moduleName": "eoapi-feature-export-openapi",
-  "moduleType":"feature",
-  "title": "Export OpenAPI",
-  "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+  "title": "Export Eoapi",
+  "logo": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -18,11 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/eolinker/eoapi-extensions.git"
   },
-  "keywords": [
-    "feature",
-    "eoapi"
-  ],
-  "author": "Eoapi",
+  "author":  "Eoapi",
   "license": "Apache-2.0 License",
   "bugs": {
     "url": "https://github.com/eolinker/eoapi-extensions/issues"
@@ -33,7 +25,6 @@
     "@types/lodash-es": "*",
     "@types/node": "^17.0.29",
     "esbuild": "^0.14.38",
-    "nodemon": "^2.0.15",
     "rollup": "^2.78.0",
     "rollup-plugin-dts": "^4.2.1",
     "rollup-plugin-esbuild": "^4.9.1",
@@ -44,17 +35,10 @@
   "features": {
     "exportAPI": {
       "action": "export_convert",
-      "label": "OpenAPI(.json)",
+      "label": "Eoapi(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
-      "filename": "openapi.json"
-    },
-    "apimanage.export": {
-      "action": "export_convert",
-      "label": "OpenAPI(.json)",
-      "description": "${function.description}",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
-      "filename": "Eoapi-Export-OpenAPI.json"
+      "icon": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png",
+      "filename": "Eoapi-export.json"
     },
     "i18n": {
       "sourceLocale": "en-US",

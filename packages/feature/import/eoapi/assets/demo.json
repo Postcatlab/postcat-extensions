@@ -1,0 +1,345 @@
+{
+  "collections": [
+    {
+      "name": "Default",
+      "children": [
+        { "name": "test", "children": [] },
+        {
+          "description": "Get City Weather Today",
+          "name": "Get City Weather Today",
+          "uri": "http://www.weather.com.cn/data/cityinfo/{cityCode}.html",
+          "method": "GET",
+          "protocol": "http",
+          "requestHeaders": [],
+          "restParams": [
+            {
+              "name": "cityCode",
+              "required": true,
+              "example": "101010100",
+              "description": "City Code : http://www.mca.gov.cn/article/sj/xzqh/2020/20201201.html",
+              "enum": [
+                {
+                  "default": true,
+                  "value": "110000",
+                  "description": "Beijing"
+                },
+                {
+                  "default": false,
+                  "value": "440000",
+                  "description": "Guangdong"
+                },
+                { "default": false, "value": "", "description": "" }
+              ],
+              "in": "path",
+              "schema": { "type": "string" }
+            }
+          ],
+          "queryParams": [],
+          "requestBody": [],
+          "requestBodyJsonType": "object",
+          "requestBodyType": "json",
+          "responseHeaders": [],
+          "responseBody": [
+            {
+              "name": "weatherinfo",
+              "required": true,
+              "example": "[object Object]",
+              "type": "object",
+              "description": "",
+              "children": [
+                {
+                  "name": "city",
+                  "required": true,
+                  "example": "北京",
+                  "type": "string",
+                  "description": ""
+                },
+                {
+                  "name": "cityid",
+                  "required": true,
+                  "example": "101010100",
+                  "type": "string",
+                  "description": ""
+                },
+                {
+                  "name": "temp1",
+                  "required": true,
+                  "example": "18℃",
+                  "type": "string",
+                  "description": "minimum temperature"
+                },
+                {
+                  "name": "temp2",
+                  "required": true,
+                  "example": "31℃",
+                  "type": "string",
+                  "description": "maximun temperature"
+                },
+                {
+                  "name": "weather",
+                  "required": true,
+                  "example": "多云转阴",
+                  "type": "string",
+                  "description": ""
+                },
+                {
+                  "name": "img1",
+                  "required": true,
+                  "example": "n1.gif",
+                  "type": "string",
+                  "description": ""
+                },
+                {
+                  "name": "img2",
+                  "required": true,
+                  "example": "d2.gif",
+                  "type": "string",
+                  "description": ""
+                },
+                {
+                  "name": "ptime",
+                  "required": true,
+                  "example": "18:00",
+                  "type": "string",
+                  "description": ""
+                }
+              ]
+            }
+          ],
+          "responseBodyJsonType": "object",
+          "responseBodyType": "json"
+        },
+        {
+          "description": "COVID-19 national epidemic",
+          "name": "COVID-19 national epidemic",
+          "uri": "https://view.inews.qq.com/g2/getOnsInfo",
+          "method": "GET",
+          "protocol": "http",
+          "requestHeaders": [],
+          "restParams": [],
+          "queryParams": [
+            {
+              "name": "name",
+              "required": true,
+              "example": "disease_h5",
+              "description": ""
+            }
+          ],
+          "requestBody": [],
+          "requestBodyJsonType": "object",
+          "requestBodyType": "json",
+          "responseHeaders": [
+            {
+              "name": "date",
+              "required": true,
+              "description": "",
+              "example": "Sat, 05 Feb 2022 04:30:44 GMT"
+            },
+            {
+              "name": "content-type",
+              "required": true,
+              "description": "",
+              "example": "application/json"
+            },
+            {
+              "name": "transfer-encoding",
+              "required": true,
+              "description": "",
+              "example": "chunked"
+            },
+            {
+              "name": "connection",
+              "required": true,
+              "description": "",
+              "example": "close"
+            },
+            {
+              "name": "server",
+              "required": true,
+              "description": "",
+              "example": "openresty"
+            },
+            {
+              "name": "tracecode",
+              "required": true,
+              "description": "",
+              "example": "8QMewH9c6JodvyHb5wE="
+            },
+            {
+              "name": "x-client-ip",
+              "required": true,
+              "description": "",
+              "example": "120.26.198.150"
+            },
+            {
+              "name": "x-server-ip",
+              "required": true,
+              "description": "",
+              "example": "58.250.137.40"
+            }
+          ],
+          "responseBody": [
+            {
+              "name": "ret",
+              "required": true,
+              "example": "",
+              "type": "number",
+              "description": ""
+            },
+            {
+              "name": "data",
+              "required": true,
+              "example": "{\"lastUpdateTime\":\"2022-02-05 11:52:51\",\"chinaTotal\":{\"confirm\":139641,\"heal\":126827,\"dead\":5700,\"nowConfirm\":7114,\"suspect\":2,\"nowSevere\":6,\"importedCase\":12684,\"noInfect\":887,\"showLocalConfirm\":1,\"showlocalinfeciton\":1,\"localConfirm\":851,\"noInfectH5\":109,\"localConfirmH5\":850,\"local_acc_confirm\":106297},\"chinaAdd\":{\"confirm\":321,\"heal\":165,\"dead\":0,\"nowConfirm\":156,\"suspect\":-2,\"nowSevere\":0,\"importedCase\":18,\"noInfect\":60,\"localConfirm\":-67,\"noInfectH5\":0,\"localConfirmH5\":9},\"isShowAdd\":true,\"showAddSwitch\":{\"all\":true,\"confirm\":true,\"suspect\":true,\"dead\":true,\"heal\":true,\"nowConfirm\":true,\"nowSevere\":true,\"importedCase\":true,\"noInfect\":true,\"localConfirm\":true,\"localinfeciton\":true},\"areaTree\":[{\"name\":\"中国\",\"today\":{\"confirm\":321,\"isUpdated\":true},\"total\":{\"nowConfirm\":7114,\"confirm\":139641,\"dead\":5700,\"showRate\":false,\"heal\":126827,\"showHeal\":true,\"wzz\":0,\"provinceLocalConfirm\":0}}]}",
+              "type": "object",
+              "description": "The actual parameter is string, in order to show the document expansion display",
+              "children": [
+                {
+                  "name": "areaTree",
+                  "required": true,
+                  "example": "{\\"name\\":\\"中国\\",\\"today\\":{\\"confirm\\":\\"321\\",\\"isUpdated\\":\\"true\\"},\\"total\\":{\\"nowConfirm\\":\\"7114\\",\\"confirm\\":\\"139641\\",\\"dead\\":\\"5700\\",\\"showRate\\":\\"\\",\\"heal\\":\\"126827\\",\\"showHeal\\":\\"true\\",\\"wzz\\":\\"\\",\\"provinceLocalConfirm\\":\\"\\"},\\"children\\":\\"\\"}",
+                  "type": "array",
+                  "description": "",
+                  "children": [
+                    {
+                      "name": "name",
+                      "required": true,
+                      "example": "中国",
+                      "type": "string",
+                      "description": ""
+                    },
+                    {
+                      "name": "today",
+                      "required": true,
+                      "example": "[object Object]",
+                      "type": "object",
+                      "description": "",
+                      "children": [
+                        {
+                          "name": "confirm",
+                          "required": true,
+                          "example": "321",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "isUpdated",
+                          "required": true,
+                          "example": "true",
+                          "type": "boolean",
+                          "description": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "total",
+                      "required": true,
+                      "example": "[object Object]",
+                      "type": "object",
+                      "description": "",
+                      "children": [
+                        {
+                          "name": "nowConfirm",
+                          "required": true,
+                          "example": "7114",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "confirm",
+                          "required": true,
+                          "example": "139641",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "dead",
+                          "required": true,
+                          "example": "5700",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "showRate",
+                          "required": true,
+                          "example": "",
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        {
+                          "name": "heal",
+                          "required": true,
+                          "example": "126827",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "showHeal",
+                          "required": true,
+                          "example": "true",
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        {
+                          "name": "wzz",
+                          "required": true,
+                          "example": "",
+                          "type": "number",
+                          "description": ""
+                        },
+                        {
+                          "name": "provinceLocalConfirm",
+                          "required": true,
+                          "example": "",
+                          "type": "number",
+                          "description": ""
+                        }
+                      ]
+                    },
+                    {
+                      "name": "children",
+                      "required": true,
+                      "example": "",
+                      "type": "array",
+                      "description": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "chinaTotal",
+                  "required": true,
+                  "example": "",
+                  "type": "object",
+                  "description": ""
+                },
+                {
+                  "name": "chinaAdd",
+                  "required": true,
+                  "example": "",
+                  "type": "object",
+                  "description": ""
+                },
+                {
+                  "name": "showAddSwitch",
+                  "required": true,
+                  "example": "",
+                  "type": "object",
+                  "description": ""
+                },
+                {
+                  "name": "lastUpdateTime",
+                  "required": true,
+                  "example": "2022-02-05 11:52:51",
+                  "type": "object",
+                  "description": ""
+                }
+              ]
+            }
+          ],
+          "responseBodyJsonType": "object",
+          "responseBodyType": "json"
+        }
+      ]
+    }
+  ],
+  "environments": []
+}

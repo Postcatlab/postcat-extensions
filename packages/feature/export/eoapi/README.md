@@ -1,6 +1,6 @@
-# Export OpenAPI Extension
+# Export Eoapi Extension
 
-Supports exporting OpenAPI version 3.0 JSON files.
+Supports exporting Eoapi JSON files.
 ## usage
 
 It can also be exported on the space page:

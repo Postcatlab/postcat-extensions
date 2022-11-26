@@ -1,4 +1,4 @@
-# Import Eolink
+# Import Eoapi
 ## usage
 
 The import function has multiple entries, you can click the plus sign in the API group to import the API:
