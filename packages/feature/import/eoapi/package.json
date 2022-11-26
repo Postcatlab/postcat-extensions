@@ -1,6 +1,6 @@
 {
   "name": "eoapi-import-eoapi",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "Import Eoapi",
   "description": "The import extension of eoapi",
   "main": "dist/index.js",
@@ -11,6 +11,7 @@
     "build:watch": "rollup -w -c rollup.config.js"
   },
   "devDependencies": {
+    "esbuild": "^0.14.38",
     "rollup": "^2.70.2"
   },
   "features": {

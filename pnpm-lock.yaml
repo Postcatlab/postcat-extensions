@@ -137,8 +137,10 @@ importers:
 
   packages/feature/import/eoapi:
     specifiers:
+      esbuild: ^0.14.38
       rollup: ^2.70.2
     devDependencies:
+      esbuild: 0.14.42
       rollup: 2.79.1
 
   packages/feature/import/eolink:

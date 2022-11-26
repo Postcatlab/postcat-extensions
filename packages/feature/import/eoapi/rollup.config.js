@@ -1,16 +1,11 @@
-/** @type import('rollup').RollupOptions */
-const nodeCjs = {
-  input: './index.js',
-  output: [
-    {
-      file: 'dist/index.js',
+export default [
+  {
+    input: 'index.js',
+    output: {
+      name:'eoapi-import-eoapi',
       format: 'umd',
-      name: 'index',
+      file: 'dist/index.js',
       sourcemap: 'inline',
-    },
-  ],
-};
-
-const bundles = [nodeCjs];
-
-export default bundles;
+    }
+  }
+]
