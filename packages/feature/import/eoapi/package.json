@@ -1,9 +1,13 @@
 {
   "name": "eoapi-eoapi",
   "version": "1.0.0",
+  "title": "Import Eoapi",
   "description": "The import extension of eoapi",
   "main": "dist/index.js",
   "logo": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png",
+  "author": {
+    "name": "Eoapi"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -14,10 +18,15 @@
   "features": {
     "importAPI": {
       "action": "importFunc",
-      "label": "Data(.json)",
+      "label": "Eoapi(.json)",
       "description": "",
-      "icon": "",
-      "filename": "data.json"
+      "icon": "https://s3.bmp.ovh/imgs/2022/05/18/d8d200e3dc050831.png"
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
     }
   }
 }

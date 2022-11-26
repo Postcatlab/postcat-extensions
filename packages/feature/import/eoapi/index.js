@@ -1,8 +1,7 @@
 export const importFunc = (data = {}) => {
-  console.log(data)
-  return {
-    name: 'eoapi',
-    version: data.version,
-    data: data
-  }
+  data.collections=[{
+    name:"Default",
+    children:data.collections
+  }]
+  return [data, null]
 }

@@ -1,5 +1,5 @@
 {
-  "title": "导入 Eolink",
-  "description": "导入 Eolink  JSON 格式文件",
-  "function.description": "导入 Eolink"
+  "title": "导入 Eoapi",
+  "description": "导入 Eoapi  JSON 格式文件",
+  "function.description": "导入 Eoapi"
 }
