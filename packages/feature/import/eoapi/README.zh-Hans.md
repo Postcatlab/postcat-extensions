@@ -1,4 +1,4 @@
-# 导入 Eolink 插件。
+# 导入 Eoapi 插件。
 
 ## 使用
 
@@ -7,6 +7,7 @@
 
 也可以在空间页面进行导入：
 ![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/shared/assets/images/overview-zh.png)
+
 
 请选择想要入的文件格式，拖入文件点击确定按钮即可完成导入。
 
