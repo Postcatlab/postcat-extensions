@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export const uuid = (): string => Math.random().toString(36).slice(-8)
 
 // const DOMAIN_REGEX =

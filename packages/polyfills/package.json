@@ -1,0 +1,40 @@
+{
+  "name": "@eoapi/polyfills",
+  "version": "0.0.2",
+  "title": "Eoapi polyfills",
+  "description": "The polyfills for eoapi extensions",
+  "author": "Eoapi",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "unpkg": "./dist/index.umd.js",
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build": "rollup -c"
+  },
+  "devDependencies": {
+    "@babel/core": ">=7.13.0 <8.0.0",
+    "@rollup/plugin-alias": "^4.0.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^23.0.3",
+    "@rollup/plugin-json": "^5.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "esbuild": "^0.15.16",
+    "rollup": "^3.5.1",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-esbuild": "^5.0.0"
+  }
+}
