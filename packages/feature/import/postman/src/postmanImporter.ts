@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { isString, isObject, uniqueSlash, getDataType } from './utils'
 
 import {

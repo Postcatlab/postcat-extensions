@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { ApiData } from './types/eoapi'
 
 export const sampleApiData: ApiData[] = [

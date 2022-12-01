@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { OpenAPIV3 } from 'openapi-types'
 import {
   ApiBodyEnum,
@@ -79,7 +80,9 @@ export class OpenAPIParser {
   generateEnvironments = (servers: OpenAPIV3.ServerObject[] = []) => {
     if (servers && Array.isArray(servers) && servers.length) {
       servers.forEach((n) => {
-        const targetEnv = this.environments.find((m) => m.hostUri === n.url) || {
+        const targetEnv = this.environments.find(
+          (m) => m.hostUri === n.url
+        ) || {
           hostUri: n.url,
           name: n.description,
           parameters: [] as EnvParameters[]

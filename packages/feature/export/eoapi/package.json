@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/eolinker/eoapi-extensions.git"
   },
-  "author":  "Eoapi",
+  "author": "Eoapi",
   "license": "Apache-2.0 License",
   "bugs": {
     "url": "https://github.com/eolinker/eoapi-extensions/issues"

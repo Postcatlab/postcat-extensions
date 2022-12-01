@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { GroupTreeItem } from '../types/tree.model'
 import { whatType } from './common'
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { whatType, whatTextType } from './common'
 import { ApiBodyType, ApiEditBody, JsonRootType } from '../types/eoAPI'
 import { flatData } from './tree.utils'
