@@ -2,7 +2,7 @@ APISpace 是 Eolink 旗下专业的 API 开放与交易平台，为广大企业�
 
 # 使用指南
 
-![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/sidebarView/apispace/assets/guide.png)
+![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/sidebarView/apispace/assets/guide.png)
 
 # 联系方式
 
