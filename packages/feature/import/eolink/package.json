@@ -1,13 +1,13 @@
 {
   "name": "eoapi-import-eolink",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "title":"Import Eolink",
   "description": "Import Eolink",
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
   "moduleName": "Import Eolink",
   "author": "Eoapi",
-  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
+  "logo": "https://www.eolink.com/assets/images/favicon.ico",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -25,13 +25,13 @@
       "action": "importFunc",
       "label": "Eolink(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406"
+      "icon": "https://www.eolink.com/assets/images/favicon.ico"
     },
     "apimanage.import": {
       "action": "importFunc",
       "label": "Eolink(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406"
+      "icon": "https://www.eolink.com/assets/images/favicon.ico"
     },
     "i18n": {
       "sourceLocale": "en-US",

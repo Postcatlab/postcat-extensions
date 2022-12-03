@@ -1,13 +1,13 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "moduleID": "eoapi-feature-push-eolink",
   "title": "Push to Eolink",
   "moduleName": "Push to Eolink",
-  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
+  "logo": "https://www.eolink.com/assets/images/favicon.ico",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -48,14 +48,14 @@
       "action": "sync_to_remote",
       "label": "Eolink",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
+      "icon": "https://www.eolink.com/assets/images/favicon.ico6",
       "extestion": ""
     },
     "apimanage.sync": {
       "action": "sync_to_remote",
       "label": "Eolink",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
+      "icon": "https://www.eolink.com/assets/images/favicon.ico6",
       "extestion": ""
     },
     "configuration": {
