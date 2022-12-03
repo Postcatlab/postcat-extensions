@@ -1,7 +1,7 @@
 export const setupIframe = () => {
-  // 脚本加载的第一时间是向父窗口发送暗号
+  // 脚本加载的第一时间是向父窗口发送消息
   window.parent.postMessage('EOAPI_EXT_APP', '*')
-  // 如果能接收到父窗口发送特定的暗号，则说明处于 eoapi 环境下
+  // 如果能接收到父窗口发送特定的消息，则说明处于 eoapi 环境下
   window.addEventListener('message', (event) => {
     if (event.data === 'EOAPI_MESSAGE' && !window.__POWERED_BY_EOAPI__) {
       window.__POWERED_BY_EOAPI__ = true
@@ -9,13 +9,18 @@ export const setupIframe = () => {
         {},
         {
           get(_, prop) {
-            return (...rest) => {
+            const totalizer = {
+              namePath: prop
+            }
+            const fn = (...rest) => {
+              // console.log('rest', rest)
+              // console.log('totalizer', totalizer)
               return new Promise((resolve) => {
                 // 消息 ID 一对一精准投放
                 const msgID = Math.random().toString(36).slice(-6)
                 const msg = {
                   msgID,
-                  name: prop,
+                  namePath: totalizer.namePath,
                   data: rest
                 }
                 window.parent.postMessage(msg, '*')
@@ -28,9 +33,22 @@ export const setupIframe = () => {
                 window.addEventListener('message', receiveMessage, false)
               })
             }
+            return createProxy(fn, totalizer)
           }
         }
       )
     }
   })
+
+  const createProxy = (fn, totalizer) => {
+    return new Proxy(fn, {
+      apply(target, thisArg, argumentsList) {
+        return target(...argumentsList)
+      },
+      get(target, prop: string) {
+        totalizer.namePath += `.${prop}`
+        return createProxy(target, totalizer)
+      }
+    })
+  }
 }

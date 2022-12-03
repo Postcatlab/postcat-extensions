@@ -1,19 +1,19 @@
 {
   "name": "eoapi-apispace",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "title": "eoapi-apispace",
   "description": "ApiSpace",
   "author": "APISpace",
   "main": "index.js",
-  "logo": "https://vite-vue3-admin.vercel.app/assets/logo.3503d5cd.png",
+  "logo": "https://data.eolink.com/WXaCEzRe126f0c3fdd801b2b812f35055b091fa7d7b588f",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
   "features": {
     "sidebarView": {
-      "icon": "international",
+      "icon": "https://data.eolink.com/IUuaHGl3cd88bd737feb3f51ceaafb61e8871052885af17",
       "title": "ApiSpace",
-      "url": "http://localhost:3000",
+      "url": "https://www.apispace.com/",
       "debugUrl": "http://localhost:3000",
       "useIframe": true
     },
@@ -30,8 +30,8 @@
           "type": "string",
           "required": false,
           "default": "",
-          "title": "apispace 地址",
-          "label": "apispace 地址"
+          "title": "apispace 调试地址",
+          "label": "apispace 调试地址"
         }
       }
     }
