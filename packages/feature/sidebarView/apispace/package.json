@@ -1,18 +1,19 @@
 {
   "name": "eoapi-apispace",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "title": "APISpace 接口商店",
   "description": "为超过 100 万开发者提供专业的API服务，所有API均提供 免费试用，让您无忧探索广阔的API世界",
   "author": "APISpace",
   "main": "index.js",
   "logo": "https://data.eolink.com/WXaCEzRe126f0c3fdd801b2b812f35055b091fa7d7b588f",
+  "homepage": "https://www.apispace.com/",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
   "features": {
     "sidebarView": {
       "icon": "https://data.eolink.com/IUuaHGl3cd88bd737feb3f51ceaafb61e8871052885af17",
-      "title": "ApiSpace",
+      "title": "APISpace",
       "url": "https://www.apispace.com/",
       "debugUrl": "http://localhost:3000",
       "useIframe": true
