@@ -1,1 +1,3 @@
-export * from './iframe'
+import { setupIframe } from './iframe'
+
+setupIframe()

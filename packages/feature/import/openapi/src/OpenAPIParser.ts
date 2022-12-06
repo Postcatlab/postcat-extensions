@@ -275,7 +275,7 @@ export class OpenAPIParser {
         this.propertiesMap.set(ref, editBody)
         const schema = this.getSchemaBy$ref(ref)
         Object.assign(editBody, {
-          type: type,
+          // type: type,
           children: schema?.properties
             ? this.transformProperties(schema?.properties, schema.required, ref)
             : undefined

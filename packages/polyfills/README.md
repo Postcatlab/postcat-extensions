@@ -16,7 +16,7 @@ yarn add @eoapi/polyfills
 ## 使用
 
 ```bash
-import { setupIframe } from '@eoapi/polyfills'
+import '@eoapi/polyfills'
 ```
 
 ## Polyfills
