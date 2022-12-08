@@ -44,22 +44,49 @@ export class EolinkImporter {
 
   constructor(data) {
     this.eolinkData = data
-    this.eoapiData = this.transformToEoapi([].concat(data))
+    console.log('this.eolinkData', this.eolinkData)
+    this.eoapiData = this.transformToEoapi(
+      [].concat(data?.apiGroupList || data)
+    )
   }
 
   transformToEoapi(data): Collections {
+    const projectName = this.eolinkData?.projectInfo?.projectName
+    const collections = projectName
+      ? [{ name: projectName, children: this.transformItems(data) }]
+      : this.transformItems(data)
     return {
-      collections: this.transformItems(data),
-      environments: []
+      collections,
+      environments: this.transformEnv(this.eolinkData?.env)
     }
+  }
+
+  transformEnv(env: any[] = []) {
+    return env.map((item) => {
+      let params: any[] = []
+      try {
+        params = JSON.parse(item?.globalVariable)
+      } catch (error) {}
+      return {
+        name: item.envName || '',
+        hostUri: item.frontURI || '',
+        parameters: params.map((n) => ({
+          name: n.paramKey,
+          value: n.paramValue,
+          description: ''
+        }))
+      }
+    })
   }
 
   transformItems(items: any[]): Child[] {
     console.log('items', items)
     return items.map((item) => {
+      const groupList =
+        item.childGroupList || item.apiGroupList || item.apiGroupChildList
       const group =
-        Array.isArray(item.childGroupList) && item.childGroupList.length
-          ? this.transformItems(item.childGroupList)
+        Array.isArray(groupList) && groupList.length
+          ? this.transformItems(groupList)
           : []
       const apis =
         item.apiList?.map((apiItem) => {
@@ -76,10 +103,10 @@ export class EolinkImporter {
           return {
             name: baseInfo?.apiName,
             uri: baseInfo?.apiURI,
-            protocol: apiType,
+            protocol: apiType.startsWith('http') ? apiType : 'http',
             method: METHOD_ARR[baseInfo?.apiRequestType || 0],
             requestBodyType: apiBodyTypes[baseInfo.apiRequestParamType],
-            requestBodyJsonType: ['array', 'json'][
+            requestBodyJsonType: ['array', 'object'][
               baseInfo?.apiRequestParamJsonType
             ],
             requestBody: this.handleInfo(requestInfo),
@@ -129,7 +156,8 @@ export class EolinkImporter {
   }
 
   handleStructureData(infoItem) {
-    const { globaldataStructureList, dataStructureList } = this.eolinkData
+    const { globaldataStructureList = [], dataStructureList = [] } =
+      this.eolinkData
 
     const structureList = infoItem.structureID.startsWith?.('S')
       ? globaldataStructureList
@@ -158,22 +186,24 @@ export class EolinkImporter {
   }
 
   handleInfo(info: any[] = []) {
-    return info.flatMap((item) => {
-      // 是否是引用数据结构
-      if (item.structureID) {
-        return this.handleStructureData(item)
-        // 普通数据
-      } else {
-        return {
-          type: tmpParamTypeArr[item.paramType],
-          name: item.paramKey,
-          required: this.isRequired(item.paramNotNull),
-          example: this.getDefaultValue(item),
-          description: item.paramName || '',
-          children: this.handleInfo(item.childList)
+    return info
+      .flatMap((item) => {
+        // 是否是引用数据结构
+        if (item.structureID) {
+          return this.handleStructureData(item)
+          // 普通数据
+        } else {
+          return {
+            type: tmpParamTypeArr[item.paramType],
+            name: item.paramKey,
+            required: this.isRequired(item.paramNotNull),
+            example: this.getDefaultValue(item),
+            description: item.paramName || '',
+            children: this.handleInfo(item.childList)
+          }
         }
-      }
-    })
+      })
+      .filter(Boolean)
   }
 
   handleResponseHeaders(responseHeader: any[] = []): ApiEditHeaders[] {
