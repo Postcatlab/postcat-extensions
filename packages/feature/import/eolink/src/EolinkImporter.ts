@@ -35,6 +35,8 @@ const tmpParamTypeArr = [
   'null'
 ] as const
 
+const protocolSupports = ['http', 'https', 'soap'] as const
+
 const apiBodyTypes = ['formData', 'raw', 'json', 'xml', 'binary'] as const
 
 const responseType = ['json', 'xml', 'raw', 'binary'] as const
@@ -103,7 +105,11 @@ export class EolinkImporter {
           return {
             name: baseInfo?.apiName,
             uri: baseInfo?.apiURI,
-            protocol: apiType.startsWith('http') ? apiType : 'http',
+            protocol: apiType.startsWith('http')
+              ? apiType
+              : protocolSupports.includes(apiType)
+              ? 'http'
+              : apiType,
             method: METHOD_ARR[baseInfo?.apiRequestType || 0],
             requestBodyType: apiBodyTypes[baseInfo.apiRequestParamType],
             requestBodyJsonType: ['array', 'object'][
@@ -127,7 +133,10 @@ export class EolinkImporter {
 
       return {
         name: item.groupName,
-        children: [...group, ...apis]
+        children: [
+          ...group,
+          ...apis.filter((n) => protocolSupports.includes(n.protocol))
+        ]
       }
     })
   }
