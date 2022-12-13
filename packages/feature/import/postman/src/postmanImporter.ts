@@ -23,7 +23,10 @@ import type {
   VariableList
 } from './types/postman-collection'
 import { text2UiData } from '../../../../../shared/src/utils/data-transfer'
-import { whatTextType } from '../../../../../shared/src/utils/common'
+import {
+  whatTextType,
+  safeStringify
+} from '../../../../../shared/src/utils/common'
 
 export class PostmanImporter {
   eoapiData: Collections
@@ -99,7 +102,7 @@ export class PostmanImporter {
       return url
     } else {
       const newUri = this.postmanData.variable?.reduce((prev, curr) => {
-        return prev?.replace(`{{${curr.key}}}`, String(curr.value || ''))
+        return prev?.replace(`{{${curr.key}}}`, safeStringify(curr.value || ''))
       }, url?.raw)
       return uniqueSlash(newUri || url?.raw || '')
     }
@@ -191,7 +194,7 @@ export class PostmanImporter {
       return [].concat(result).flatMap((item) => {
         return Object.entries(item).map(([key, value]) => ({
           description: '',
-          example: String(value),
+          example: safeStringify(value),
           name: key,
           required: true,
           type: getDataType(value),
@@ -210,10 +213,13 @@ export class PostmanImporter {
     return Array()
       .concat(val)
       .flatMap((n) => {
+        if (typeof n !== 'object') {
+          return []
+        }
         return Object.entries<any>(n).map(([key, value]) => {
           return {
             description: '',
-            example: String(value),
+            example: safeStringify(value),
             name: key,
             required: true,
             type: getDataType(value),

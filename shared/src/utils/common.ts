@@ -272,3 +272,14 @@ export const compareVersion = (v1, v2) => {
     ? compareVersion(_v1.splice(1).join('.'), _v2.splice(1).join('.'))
     : _r
 }
+
+export const safeStringify = (val) => {
+  try {
+    if (typeof val === 'string') {
+      return val
+    }
+    return JSON.stringify(val)
+  } catch (error) {
+    return String(val)
+  }
+}
