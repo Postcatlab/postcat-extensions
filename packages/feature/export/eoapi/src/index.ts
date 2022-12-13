@@ -1,3 +1,5 @@
+import { compareVersion } from '../../../../../shared/src/utils/common'
+
 const exportCollects = (apiGroup: any[], apiData: any[], parentID = 0) => {
   const apiGroupFilters = apiGroup.filter(
     (child) => child.parentID === parentID
@@ -12,9 +14,19 @@ const exportCollects = (apiGroup: any[], apiData: any[], parentID = 0) => {
 }
 
 export const export_convert = ({ data = {} }: any) => {
+  //TODO delete after 2023.05.01
+  if (compareVersion(data.version, '1.12.0') < 0) {
+    console.log(data)
+    return {
+      version: data.version,
+      collections: exportCollects(data.group, data.apiData),
+      //TODO data.environment after 2023.05.01
+      environments: data.environments || data.environment
+    }
+  }
   return {
-    version: data.version || '1.0.0',
-    collections: exportCollects(data.group, data.apiData),
-    environments: data.environments
+    status: 0,
+    data,
+    error: []
   }
 }
