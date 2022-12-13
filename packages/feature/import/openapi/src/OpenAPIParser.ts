@@ -13,6 +13,7 @@ import {
   RequestMethod
 } from '../../../../../shared/src/types/eoAPI'
 import { getDataType } from '../../../../../shared/src/utils/is'
+import { safeStringify } from '../../../../../shared/src/utils/common'
 
 export const contentTypeMap = new Map<string, ApiBodyEnum>([
   ['application/json', ApiBodyEnum.JSON],
@@ -182,7 +183,7 @@ export class OpenAPIParser {
           ...curr,
           name: curr.name,
           required: Boolean(curr.required),
-          example: String(curr.example ?? ''),
+          example: safeStringify(curr.example ?? ''),
           description: curr.description || ''
         })
       }
@@ -258,7 +259,7 @@ export class OpenAPIParser {
         // ...other,
         name,
         required: required.includes(name),
-        example: String(defaultValue || example || ''),
+        example: safeStringify(defaultValue || example || ''),
         type:
           value.type || formatType(type!) || getDataType(defaultValue ?? ''),
         description: description || ''
@@ -396,7 +397,7 @@ export class OpenAPIParser {
             ...detail,
             name: name,
             required: Boolean(detail.required),
-            example: String(detail.example ?? ''),
+            example: safeStringify(detail.example ?? ''),
             description: detail.description || ''
           })
         }
