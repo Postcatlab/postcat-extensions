@@ -5,6 +5,7 @@ import {
   eoAPIType
 } from 'shared/src/types/eoAPI'
 import { OpenAPIV3 } from 'openapi-types'
+import { safeStringify } from '../../../../../shared/src/utils/common'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -188,7 +189,7 @@ class EoToOpenApi {
     if (typeof data === 'string') {
       return {
         type: 'string',
-        example: data
+        example: safeStringify(data)
       } as OpenAPIV3.SchemaObject
     } else {
       const schemaType = bodyTypeMap.get(type) || type
@@ -214,7 +215,9 @@ class EoToOpenApi {
                 type as SchemaObjectType,
                 {
                   ...item,
-                  example: item.example || this.children2object(children)
+                  example: safeStringify(
+                    item.example || this.children2object(children)
+                  )
                 }
               )
             } else {
