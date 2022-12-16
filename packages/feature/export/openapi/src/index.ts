@@ -32,7 +32,6 @@ export const export_convert = ({ data = {} }: any) => {
     })
   }
   flatData(data.collections, 0)
-  console.log(groups, apis)
   return {
     status: 0,
     data: new EoToOpenApi({
