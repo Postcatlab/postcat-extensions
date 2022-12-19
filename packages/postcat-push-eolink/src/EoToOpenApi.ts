@@ -3,7 +3,7 @@ import {
   ApiEditBody,
   ApiEditHeaders,
   eoAPIType
-} from '../../../../../shared/src/types/eoAPI'
+} from '../../../shared/src/types/eoAPI'
 import { OpenAPIV3 } from 'openapi-types'
 
 // const parseParamsInUrl = (url): string[] => {
