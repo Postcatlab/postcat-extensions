@@ -1,6 +1,5 @@
 import protoText from 'inline!./src/protos/sensitive.proto'
 
-const pkgName = 'eoapi-opendlp'
 const keyMap = {
   uri: 'API 路径',
   description: '描述',
@@ -89,22 +88,10 @@ export const sercurityCheck = async (model) => {
       opendlpTableEl.innerHTML = '暂无敏感词'
     }
   } else {
-    const modal = window.eo.modalService.create({
+    window.eo.modalService.create({
       nzTitle: '跳转设置页配置 openDLP 服务？',
       nzContent:
-        '您还没有配置 openDLP 服务地址，目前无法使用本插件，是否要跳转到配置页？',
-      nzOkText: '跳转配置',
-      nzOnOk() {
-        window.eo?.navigate(['home/extension/detail'], {
-          queryParams: {
-            type: '',
-            id: pkgName,
-            name: pkgName,
-            tab: 0
-          }
-        })
-        modal.destroy()
-      }
+        '您还没有配置 openDLP 服务地址，目前无法使用本插件，请到插件管理进行配置'
     })
   }
 }
