@@ -5,8 +5,8 @@ export const importFunc = (data) => {
   // const f = eval('(' + reconvert(JSON.stringify(data)) + ')')
   const postmanImporter = new EolinkImporter(data)
   console.log(
-    'EolinkImporter.eoapiData22',
-    JSON.parse(JSON.stringify(postmanImporter.eoapiData))
+    'EolinkImporter.postcatData22',
+    JSON.parse(JSON.stringify(postmanImporter.postcatData))
   )
-  return [postmanImporter.eoapiData, null]
+  return [postmanImporter.postcatData, null]
 }

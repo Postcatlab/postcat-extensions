@@ -1,6 +1,6 @@
 # Push to Eolink
 
-Push Eoapi API data to Eolink with one click;
+Push Postcat API data to Eolink with one click;
 
 ## configure
 

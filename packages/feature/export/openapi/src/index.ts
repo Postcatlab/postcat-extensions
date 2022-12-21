@@ -1,4 +1,4 @@
-import { ApiData, ApiGroup } from '../../../../../shared/src/types/eoAPI'
+import { ApiData, ApiGroup } from '../../../../../shared/src/types/pcAPI'
 import { compareVersion } from '../../../../../shared/src/utils/common'
 import EoToOpenApi from './Eo2OpenAPI'
 

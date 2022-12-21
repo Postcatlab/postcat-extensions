@@ -4,7 +4,7 @@ import {
   Collections,
   Child,
   ApiEditHeaders
-} from '../../../../../shared/src/types/eoapi'
+} from '../../../../../shared/src/types/pcAPI'
 
 const METHOD_ARR = [
   'POST',
@@ -41,18 +41,18 @@ const apiBodyTypes = ['formData', 'raw', 'json', 'xml', 'binary'] as const
 
 const responseType = ['json', 'xml', 'raw', 'binary'] as const
 export class EolinkImporter {
-  eoapiData: Collections
+  postcatData: Collections
   eolinkData
 
   constructor(data) {
     this.eolinkData = data
     console.log('this.eolinkData', this.eolinkData)
-    this.eoapiData = this.transformToEoapi(
+    this.postcatData = this.transformToPostcat(
       [].concat(data?.apiGroupList || data)
     )
   }
 
-  transformToEoapi(data): Collections {
+  transformToPostcat(data): Collections {
     const projectName = this.eolinkData?.projectInfo?.projectName
     const collections = projectName
       ? [{ name: projectName, children: this.transformItems(data) }]

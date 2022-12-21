@@ -11,7 +11,7 @@ import {
   ApiEditBody,
   ApiBodyEnum,
   JsonRootType
-} from './types/eoapi'
+} from '../../../../../shared/src/types/pcAPI'
 import type {
   Items,
   HeaderList,
@@ -29,15 +29,15 @@ import {
 } from '../../../../../shared/src/utils/common'
 
 export class PostmanImporter {
-  eoapiData: Collections
+  postcatData: Collections
   postmanData: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
 
   constructor(data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210) {
     this.postmanData = data
-    this.eoapiData = this.transformToEoapi(data)
+    this.postcatData = this.transformToPostcat(data)
   }
 
-  transformToEoapi(
+  transformToPostcat(
     data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
   ): Collections {
     return {

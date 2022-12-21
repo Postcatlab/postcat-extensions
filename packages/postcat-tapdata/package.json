@@ -1,11 +1,11 @@
 {
-  "name": "eoapi-import-eolink",
-  "version": "1.0.16",
-  "title": "Import Eolink",
-  "description": "Import Eolink",
+  "name": "eoapi-tapdata",
+  "version": "1.0.3",
+  "description": "Import the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
-  "author": "Postcat",
-  "logo": "https://www.eolink.com/assets/images/favicon.ico",
+  "title": "Import Tapdata",
+  "author": "Tapdata",
+  "logo": "https://data.eolink.com/4waW1cweaf7bfd75ed8d3c37a3c77628cfadd6bb60bb2b2",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -21,9 +21,9 @@
   "features": {
     "importAPI": {
       "action": "importFunc",
-      "label": "Eolink(.json)",
+      "label": "OpenAPI(.json)",
       "description": "${function.description}",
-      "icon": "https://www.eolink.com/assets/images/favicon.ico"
+      "icon": "https://data.eolink.com/4waW1cweaf7bfd75ed8d3c37a3c77628cfadd6bb60bb2b2"
     },
     "i18n": {
       "sourceLocale": "en-US",

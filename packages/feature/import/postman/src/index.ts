@@ -12,10 +12,10 @@ export const importFunc = (
   const postmanImporter = new PostmanImporter(data)
   console.log(
     'after PostmanImport',
-    JSON.parse(JSON.stringify(postmanImporter.eoapiData))
+    JSON.parse(JSON.stringify(postmanImporter.postcatData))
   )
 
-  return [postmanImporter.eoapiData, null]
+  return [postmanImporter.postcatData, null]
 }
 
 // const [data] = importFunc(postCollectionJson)

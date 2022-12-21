@@ -1,6 +1,6 @@
 {
   "name": "eoapi-export-eoapi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Export the JSON format file of the Postcat specification",
   "main": "dist/index.js",
   "title": "Export Postcat",
@@ -38,7 +38,7 @@
       "label": "Postcat(.json)",
       "description": "${function.description}",
       "icon": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
-      "filename": "Postcat-export.json"
+      "filename": "Postcat-Export.json"
     },
     "i18n": {
       "sourceLocale": "en-US",

@@ -3,7 +3,7 @@ import {
   ApiEditBody,
   ApiEditHeaders,
   eoAPIType
-} from 'shared/src/types/eoAPI'
+} from 'shared/src/types/pcAPI'
 import { OpenAPIV3 } from 'openapi-types'
 import { safeStringify } from '../../../../../shared/src/utils/common'
 

@@ -1,12 +1,9 @@
 {
   "name": "eoapi-export-openapi",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "moduleID": "eoapi-feature-export-openapi",
-  "moduleName": "eoapi-feature-export-openapi",
-  "moduleType": "feature",
   "title": "Export OpenAPI",
   "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
@@ -16,18 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-extensions.git"
+    "url": "git+https://github.com/eolinker/postcat-extensions.git"
   },
   "keywords": [
     "feature",
-    "eoapi"
+    "postcat"
   ],
   "author": "Postcat",
   "license": "Apache-2.0 License",
   "bugs": {
-    "url": "https://github.com/eolinker/eoapi-extensions/issues"
+    "url": "https://github.com/eolinker/postcat-extensions/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-extensions#readme",
+  "homepage": "https://github.com/eolinker/postcat-extensions#readme",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@types/lodash-es": "*",
@@ -48,13 +45,6 @@
       "description": "${function.description}",
       "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
       "filename": "openapi.json"
-    },
-    "apimanage.export": {
-      "action": "export_convert",
-      "label": "OpenAPI(.json)",
-      "description": "${function.description}",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
-      "filename": "Eoapi-Export-OpenAPI.json"
     },
     "i18n": {
       "sourceLocale": "en-US",

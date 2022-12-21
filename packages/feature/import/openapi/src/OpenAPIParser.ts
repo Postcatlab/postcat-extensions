@@ -11,7 +11,7 @@ import {
   EnvParameters,
   JsonRootType,
   RequestMethod
-} from '../../../../../shared/src/types/eoAPI'
+} from '../../../../../shared/src/types/pcAPI'
 import { getDataType } from '../../../../../shared/src/utils/is'
 import { safeStringify } from '../../../../../shared/src/utils/common'
 
@@ -306,7 +306,7 @@ export class OpenAPIParser {
     })
   }
 
-  schema2eoapiEditBody(
+  schema2PostcatiEditBody(
     schema?: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject
   ): ApiEditBody[] | string {
     if (!schema) return []
@@ -316,7 +316,7 @@ export class OpenAPIParser {
       const schemaObject = this.getSchemaBy$ref(ref)
 
       return schemaObject
-        ? this.schema2eoapiEditBody(schemaObject).concat(
+        ? this.schema2PostcatiEditBody(schemaObject).concat(
             this.transformProperties(
               innerSchema?.properties,
               innerSchema?.required
@@ -350,18 +350,18 @@ export class OpenAPIParser {
     if (this.is$ref(body)) {
       const [ref] = this.get$Ref(body)
       const schemaObject = this.getSchemaBy$ref(ref)
-      return schemaObject ? this.schema2eoapiEditBody(schemaObject) : []
+      return schemaObject ? this.schema2PostcatiEditBody(schemaObject) : []
     } else if (body?.content) {
       const media = Object.values(body.content).at(0)
-      return media?.schema ? this.schema2eoapiEditBody(media?.schema) : []
+      return media?.schema ? this.schema2PostcatiEditBody(media?.schema) : []
     }
-    return this.schema2eoapiEditBody(body)
+    return this.schema2PostcatiEditBody(body)
   }
 
   generateResponseBody(responses: OpenAPIV3.ResponsesObject) {
     const resObj = this.getResponseObject(responses)
     if (resObj?.content) {
-      return this.schema2eoapiEditBody(
+      return this.schema2PostcatiEditBody(
         Object.values(resObj.content).at(0)?.schema
       )
     } else {

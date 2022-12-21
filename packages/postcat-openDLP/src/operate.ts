@@ -50,7 +50,7 @@ export const sercurityCheck = async (model) => {
     }
   })
 
-  const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
+  const serverUrl = window.eo?.getExtensionSettings('opendlp.serverUrl')
   if (serverUrl) {
     const Grpc = window.eo.gRPC
     console.log('params', params)

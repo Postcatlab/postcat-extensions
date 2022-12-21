@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import { whatType, whatTextType } from './common'
-import { ApiBodyType, ApiEditBody, JsonRootType } from '../types/eoAPI'
+import { ApiBodyType, ApiEditBody, JsonRootType } from '../types/pcAPI'
 import { flatData } from './tree.utils'
 
 export const isXML = (data) => {
