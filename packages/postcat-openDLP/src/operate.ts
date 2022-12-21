@@ -1,7 +1,6 @@
 import protoText from 'inline!./src/protos/sensitive.proto'
 
 const pkgName = 'eoapi-opendlp'
-
 const keyMap = {
   uri: 'API 路径',
   description: '描述',
@@ -39,7 +38,6 @@ const strBySensitiveType = {
   COMPANY_NAME: '公司名',
   LOCATION: '地名'
 }
-
 export const sercurityCheck = async (model) => {
   console.log('model', window?.structuredClone?.(model))
   const params = { doc_type: 1 }
@@ -53,7 +51,6 @@ export const sercurityCheck = async (model) => {
   })
 
   const serverUrl = window.eo?.getExtensionSettings(`${pkgName}.serverUrl`)
-  console.log('serverUrl', serverUrl)
   if (serverUrl) {
     const Grpc = window.eo.gRPC
     console.log('params', params)
@@ -64,15 +61,7 @@ export const sercurityCheck = async (model) => {
         maxHeight: '70vh',
         overflow: 'hidden'
       },
-      nzContent: `<div class="opendlp-table">正在扫描中...</div>`,
-      nzFooter: [
-        {
-          label: `取消`,
-          onClick: () => {
-            modal.destroy()
-          }
-        }
-      ]
+      nzContent: `<div class="opendlp-table">正在扫描中...</div>`
     })
 
     const [res, err] = await Grpc.send({
@@ -106,7 +95,6 @@ export const sercurityCheck = async (model) => {
         '您还没有配置 openDLP 服务地址，目前无法使用本插件，是否要跳转到配置页？',
       nzOkText: '跳转配置',
       nzOnOk() {
-        // 'http://localhost:4200/#/home/extension/detail?id=eoapi-extension-samples-vue3&name=eoapi-extension-samples-vue3&tab=0'
         window.eo?.navigate(['home/extension/detail'], {
           queryParams: {
             type: '',

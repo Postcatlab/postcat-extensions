@@ -15,8 +15,7 @@ const exportCollects = (apiGroup: any[], apiData: any[], parentID = 0) => {
 
 export const export_convert = ({ data = {} }: any) => {
   //TODO delete after 2023.05.01
-  if (compareVersion(data.version, '1.12.0') < 0) {
-    console.log(data)
+  if (compareVersion(data.version || '', '1.12.0') < 0) {
     return {
       version: data.version,
       collections: exportCollects(data.group, data.apiData),

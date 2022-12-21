@@ -1,6 +1,6 @@
 {
   "name": "eoapi-push-eolink",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -21,12 +21,12 @@
     "feature",
     "eoapi"
   ],
-  "author": "Eoapi",
+  "author": "Eolink",
   "license": "Apache-2.0 License",
   "bugs": {
     "url": "https://github.com/eolinker/eoapi-extensions/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-extensions#readme",
+  "homepage": "https://eolink.com",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@types/lodash-es": "*",

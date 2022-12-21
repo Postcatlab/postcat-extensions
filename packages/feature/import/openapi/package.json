@@ -6,7 +6,7 @@
   "moduleID": "eoapi-import-openapi",
   "title": "Import OpenAPI/Swagger",
   "moduleName": "Import OpenAPI/Swagger",
-  "author": "Eoapi",
+  "author": "Postcat",
   "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
     "build": "rollup -c rollup.config.js",

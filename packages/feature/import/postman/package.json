@@ -6,7 +6,7 @@
   "moduleID": "eoapi-import-postman",
   "title": "Import Postman",
   "moduleName": "Import Postman",
-  "author": "Eoapi",
+  "author": "Postcat",
   "logo": "https://data.eolink.com/WIC2HqFc1d10cf7198c88467bffcd0b8d063b52dc4cf66d",
   "scripts": {
     "build": "rollup -c rollup.config.js",

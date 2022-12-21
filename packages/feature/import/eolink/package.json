@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "moduleID": "eoapi-import-eolink",
   "moduleName": "Import Eolink",
-  "author": "Eoapi",
+  "author": "Postcat",
   "logo": "https://www.eolink.com/assets/images/favicon.ico",
   "scripts": {
     "build": "rollup -c rollup.config.js",
