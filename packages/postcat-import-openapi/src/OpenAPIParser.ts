@@ -61,7 +61,7 @@ export class OpenAPIParser {
     this.data = {
       collections: [
         {
-          name: info.title,
+          name: info.title || 'Default',
           children: [...Object.values(this.groups), ...this.apiDatas]
         }
       ],
