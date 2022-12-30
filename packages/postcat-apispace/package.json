@@ -15,7 +15,7 @@
       "icon": "https://data.eolink.com/IUuaHGl3cd88bd737feb3f51ceaafb61e8871052885af17",
       "title": "APISpace",
       "url": "https://www.apispace.com/explore/service/?utm_source=postcat",
-      "debugUrl": "http://localhost:3000",
+      "debugUrl": "https://www.apispace.com/explore/service/?utm_source=postcat",
       "useIframe": true
     },
     "i18n": {

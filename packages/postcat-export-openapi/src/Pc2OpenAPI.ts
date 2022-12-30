@@ -42,10 +42,10 @@ export const parametersInMap = new Map([
 
 class PcToOpenAPI {
   data: OpenAPIV3.Document
-  eoapiData: eoAPIType
-  constructor(eoapiData: eoAPIType) {
-    this.eoapiData = eoapiData
-    const { version, project } = this.eoapiData
+  postcatData: eoAPIType
+  constructor(postcatData: eoAPIType) {
+    this.postcatData = postcatData
+    const { version, project } = this.postcatData
 
     this.data = {
       openapi: '3.0.1',
@@ -71,7 +71,7 @@ class PcToOpenAPI {
     }
   }
   generatePaths(): OpenAPIV3.PathsObject {
-    const { apiData, group } = this.eoapiData
+    const { apiData, group } = this.postcatData
 
     return apiData.reduce<OpenAPIV3.PathsObject>((paths, item) => {
       const { uri, name, method, groupID } = item
@@ -266,7 +266,7 @@ class PcToOpenAPI {
   }
 
   generateTags(): OpenAPIV3.TagObject[] {
-    return this.eoapiData.group.map(({ name }) => ({
+    return this.postcatData.group.map(({ name }) => ({
       name,
       description: name
     }))

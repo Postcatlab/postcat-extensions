@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { OpenAPIV3 } from 'openapi-types'
 import {
   ApiBodyEnum,
@@ -11,9 +10,9 @@ import {
   EnvParameters,
   JsonRootType,
   RequestMethod
-} from '../../../../../shared/src/types/pcAPI'
-import { getDataType } from '../../../../../shared/src/utils/is'
-import { safeStringify } from '../../../../../shared/src/utils/common'
+} from '../../../shared/src/types/pcAPI'
+import { getDataType } from '../../../shared/src/utils/is'
+import { safeStringify } from '../../../shared/src/utils/common'
 
 export const contentTypeMap = new Map<string, ApiBodyEnum>([
   ['application/json', ApiBodyEnum.JSON],

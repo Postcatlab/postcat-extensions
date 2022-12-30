@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { isString, isObject, uniqueSlash, getDataType } from './utils'
 
 import {
@@ -11,7 +9,7 @@ import {
   ApiEditBody,
   ApiBodyEnum,
   JsonRootType
-} from '../../../../../shared/src/types/pcAPI'
+} from '../../../shared/src/types/pcAPI'
 import type {
   Items,
   HeaderList,
@@ -22,11 +20,8 @@ import type {
   HttpsSchemaGetpostmanComJsonDraft07CollectionV210,
   VariableList
 } from './types/postman-collection'
-import { text2UiData } from '../../../../../shared/src/utils/data-transfer'
-import {
-  whatTextType,
-  safeStringify
-} from '../../../../../shared/src/utils/common'
+import { text2UiData } from '../../../shared/src/utils/data-transfer'
+import { whatTextType, safeStringify } from '../../../shared/src/utils/common'
 
 export class PostmanImporter {
   postcatData: Collections
@@ -43,7 +38,7 @@ export class PostmanImporter {
     return {
       collections: this.transformItems([
         {
-          name: data.info?.name || 'postman collection name',
+          name: data.info?.name || 'Import postman collection',
           item: data.item
         }
       ]),
