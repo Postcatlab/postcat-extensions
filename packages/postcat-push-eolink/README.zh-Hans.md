@@ -10,9 +10,9 @@
 
 ## 使用
 
-进入到主页面的概况页，可以看到推送功能，点击该区域打开相应弹窗，即可看到推送类插件的名称。请选择想要的推送平台，点击【确定】按钮即可完成推送。
+进入到主页面的设置，可以看到推送功能，点击该区域打开相应弹窗，即可看到推送类插件的名称。请选择想要的推送平台，点击【确定】按钮即可完成推送。
 
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-push-eolink/assets/images/image-20220512173000566.png)
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/shared/assets/images/overview-zh.png)
 
 ![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-push-eolink/assets/images/image-20220512173054947.png)
 

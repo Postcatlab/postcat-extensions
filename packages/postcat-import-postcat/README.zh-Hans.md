@@ -10,4 +10,4 @@
 
 请选择想要入的文件格式，拖入文件点击确定按钮即可完成导入。
 
-<img src="https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/feature/import/eolink/assets/images/import_dialog.png" style="width: 100%" />
+<img src="https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-import-postcat/assets/images/import_dialog.png" style="width: 100%" />

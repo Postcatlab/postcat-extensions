@@ -1,6 +1,6 @@
 {
   "name": "postcat-import-openapi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Import the JSON format file of the OpenAPI/Swagger specification",
   "main": "dist/index.js",
   "title": "Import OpenAPI/Swagger",
