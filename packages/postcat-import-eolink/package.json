@@ -1,6 +1,6 @@
 {
   "name": "postcat-import-eolink",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Import Eolink",
   "description": "Import Eolink",
   "main": "dist/index.js",

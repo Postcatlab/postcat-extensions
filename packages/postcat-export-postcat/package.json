@@ -1,6 +1,6 @@
 {
   "name": "postcat-export-postcat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Export the JSON format file of the Postcat specification",
   "main": "dist/index.js",
   "title": "Export Postcat",
