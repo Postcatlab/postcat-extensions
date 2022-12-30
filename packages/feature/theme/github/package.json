@@ -1,0 +1,22 @@
+{
+  "name": "postcat-github-theme",
+  "title": "Github Theme",
+  "version": "0.0.1",
+  "description": "Github theme",
+  "author": {
+    "name": "Postcat"
+  },
+  "logo": "https://raw.githubusercontent.com/primer/github-vscode-theme/main/icon.png",
+  "engines": {
+    "postcat": "^0.0.1"
+  },
+  "features": {
+    "theme": [
+      {
+        "label": "Github Default",
+        "uiTheme": "pc",
+        "path": "./themes/light-default.json"
+      }
+    ]
+  }
+}
