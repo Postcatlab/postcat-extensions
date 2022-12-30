@@ -1,6 +1,6 @@
 {
-  "name": "eoapi-import-eoapi",
-  "version": "1.0.3",
+  "name": "postcat-import-postcat",
+  "version": "1.0.0",
   "title": "Import Postcat",
   "description": "The import extension of Postcat",
   "main": "dist/index.js",

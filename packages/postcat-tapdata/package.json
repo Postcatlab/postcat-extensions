@@ -1,6 +1,6 @@
 {
-  "name": "eoapi-tapdata",
-  "version": "1.0.3",
+  "name": "postcat-tapdata",
+  "version": "1.0.0",
   "description": "Import the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "title": "Import Tapdata",

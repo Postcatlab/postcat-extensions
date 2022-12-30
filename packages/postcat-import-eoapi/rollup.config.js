@@ -2,10 +2,10 @@ export default [
   {
     input: 'index.js',
     output: {
-      name:'eoapi-import-eoapi',
+      name: 'postcat-import-postcat',
       format: 'umd',
       file: 'dist/index.js',
-      sourcemap: 'inline',
+      sourcemap: 'inline'
     }
   }
 ]

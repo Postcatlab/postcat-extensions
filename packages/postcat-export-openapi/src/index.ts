@@ -1,12 +1,7 @@
-import { ApiData, ApiGroup } from '../../../../../shared/src/types/pcAPI'
-import { compareVersion } from '../../../../../shared/src/utils/common'
-import EoToOpenApi from './Eo2OpenAPI'
+import { ApiData, ApiGroup } from '../../../shared/src/types/pcAPI'
+import PcToOpenAPI from './Pc2OpenAPI'
 
 export const export_convert = ({ data = {} }: any) => {
-  //TODO delete after 2023.05.01
-  if (compareVersion(data.version || '1.0.0', '1.12.0') < 0) {
-    return new EoToOpenApi(data).data
-  }
   const groups: any | ApiGroup[] = []
   const apis: ApiData[] = []
   let groupIndex = 1
@@ -34,7 +29,7 @@ export const export_convert = ({ data = {} }: any) => {
   flatData(data.collections, 0)
   return {
     status: 0,
-    data: new EoToOpenApi({
+    data: new PcToOpenAPI({
       version: data.version,
       project: data.project,
       environment: data.environments,

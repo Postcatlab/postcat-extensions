@@ -1,6 +1,6 @@
 import { ApiData, ApiGroup } from '../../../shared/src/types/pcAPI'
 import { compareVersion } from '../../../shared/src/utils/common'
-import EoToOpenApi from '../../feature/export/openapi/src/Eo2OpenAPI'
+import PcToOpenAPI from '../../postcat-export-openapi/src/Pc2OpenAPI'
 
 const url =
   'https://apis.eolink.com/api/v2/api_studio/management/api/importOpenApi'
@@ -15,7 +15,7 @@ export const sync_to_remote = async (data) => {
   }
   let projectData = data
   if (compareVersion(data.version || '1.0.0', '1.12.0') < 0) {
-    projectData = new EoToOpenApi(projectData).data
+    projectData = new PcToOpenAPI(projectData).data
   } else {
     const groups: any | ApiGroup[] = []
     const apis: ApiData[] = []
@@ -42,7 +42,7 @@ export const sync_to_remote = async (data) => {
       })
     }
     flatData(projectData.collections, 0)
-    projectData = new EoToOpenApi({
+    projectData = new PcToOpenAPI({
       version: data.version,
       project: data.project,
       environment: data.environments,

@@ -1,6 +1,6 @@
 {
-  "name": "eoapi-import-postman",
-  "version": "1.0.10",
+  "name": "postcat-import-postman",
+  "version": "1.0.0",
   "description": "Import Postman Collections v2.1",
   "main": "dist/index.js",
   "title": "Import Postman",

@@ -1,8 +1,8 @@
 {
-  "name": "@eoapi/polyfills",
-  "version": "0.0.4",
-  "title": "Eoapi polyfills",
-  "description": "The polyfills for eoapi extensions",
+  "name": "@postcat/polyfills",
+  "version": "0.0.1",
+  "title": "Postcat polyfills",
+  "description": "The polyfills for postcat extensions",
   "author": "Postcat",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",

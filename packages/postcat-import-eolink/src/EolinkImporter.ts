@@ -1,10 +1,10 @@
-import { isObject } from '../../../../../shared/src/utils/is'
+import { isObject } from '../../../shared/src/utils/is'
 
 import {
   Collections,
   Child,
   ApiEditHeaders
-} from '../../../../../shared/src/types/pcAPI'
+} from '../../../shared/src/types/pcAPI'
 
 const METHOD_ARR = [
   'POST',

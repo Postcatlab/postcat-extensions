@@ -7,7 +7,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      name: 'eoapi-export-eoapi',
+      name: 'postcat-export-openapi',
       format: 'umd',
       file: 'dist/index.js',
       sourcemap: 'inline',

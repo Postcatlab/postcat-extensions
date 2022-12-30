@@ -5,7 +5,7 @@ import {
   eoAPIType
 } from 'shared/src/types/pcAPI'
 import { OpenAPIV3 } from 'openapi-types'
-import { safeStringify } from '../../../../../shared/src/utils/common'
+import { safeStringify } from '../../../shared/src/utils/common'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -40,7 +40,7 @@ export const parametersInMap = new Map([
   ['requestHeaders', 'header']
 ] as const)
 
-class EoToOpenApi {
+class PcToOpenAPI {
   data: OpenAPIV3.Document
   eoapiData: eoAPIType
   constructor(eoapiData: eoAPIType) {
@@ -273,4 +273,4 @@ class EoToOpenApi {
   }
 }
 
-export default EoToOpenApi
+export default PcToOpenAPI

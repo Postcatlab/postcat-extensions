@@ -6,7 +6,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      name: 'eoapi-import-postman',
+      name: 'postcat-import-eolink',
       format: 'umd',
       file: 'dist/index.js',
       sourcemap: 'inline'
