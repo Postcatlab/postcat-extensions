@@ -1,4 +1,4 @@
-# eoapi-i18n
+# Postcat-i18n
 
 ## 1.0.1
 
