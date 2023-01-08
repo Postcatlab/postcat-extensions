@@ -1,5 +1,5 @@
 {
-  "name": "postcat-github-theme",
+  "name": "github-postcat-theme",
   "title": "Github Theme",
   "version": "0.0.1",
   "description": "Github theme",
@@ -14,7 +14,8 @@
     "theme": [
       {
         "label": "Github Default",
-        "uiTheme": "pc",
+        "baseTheme": "pc",
+        "id": "github-default",
         "path": "./themes/light-default.json"
       }
     ]
