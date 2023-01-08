@@ -1,13 +1,10 @@
 {
-  "name": "eoapi-push-eolink",
-  "version": "1.0.27",
+  "name": "postcat-push-eolink",
+  "version": "0.0.1",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "moduleID": "eoapi-feature-push-eolink",
   "title": "Push to Eolink",
-  "moduleName": "Push to Eolink",
-  "logo": "https://www.eolink.com/assets/images/favicon.ico",
+  "logo": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -15,18 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/eoapi-extensions.git"
+    "url": "git+https://github.com/eolinker/postcat-extensions.git"
   },
   "keywords": [
     "feature",
-    "eoapi"
+    "postcat"
   ],
-  "author": "Eoapi",
+  "author": "Eolink",
   "license": "Apache-2.0 License",
   "bugs": {
-    "url": "https://github.com/eolinker/eoapi-extensions/issues"
+    "url": "https://github.com/eolinker/postcat-extensions/issues"
   },
-  "homepage": "https://github.com/eolinker/eoapi-extensions#readme",
+  "homepage": "https://eolink.com",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@types/lodash-es": "*",
@@ -48,32 +45,23 @@
       "action": "sync_to_remote",
       "label": "Eolink",
       "description": "${function.description}",
-      "icon": "https://www.eolink.com/assets/images/favicon.icon",
-      "extestion": ""
-    },
-    "apimanage.sync": {
-      "action": "sync_to_remote",
-      "label": "Eolink",
-      "description": "${function.description}",
-      "icon": "https://www.eolink.com/assets/images/favicon.icon",
+      "icon": "https://data.eolink.com/sMhVC6D622a2f1c2bc2147d54d45b24ad14bcc0c900d406",
       "extestion": ""
     },
     "configuration": {
       "type": "object",
       "properties": {
-        "token": {
+        "eolink.token": {
           "type": "string",
           "required": false,
           "default": "",
-          "title": "Token",
           "label": "Token",
           "description": "${configuration.token.description}"
         },
-        "projectId": {
+        "eolink.projectID": {
           "type": "string",
           "required": false,
-          "default": "ProjectID",
-          "title": "ProjectID",
+          "default": "",
           "label": "ProjectID",
           "description": "${configuration.projectId.description}"
         }

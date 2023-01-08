@@ -263,7 +263,7 @@ export const reconvert = (str: string) => {
   return str.replace(/\s/g, '')
 }
 
-export const compareVersion = (v1, v2) => {
+export const compareVersion = (v1 = '', v2 = '') => {
   const _v1 = v1.split('.')
   const _v2 = v2.split('.')
   const _r = parseInt(_v1[0] || 0, 10) - parseInt(_v2[0] || 0, 10)

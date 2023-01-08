@@ -1,10 +1,10 @@
 export const setupIframe = () => {
   // 脚本加载的第一时间是向父窗口发送消息
-  window.parent.postMessage('EOAPI_EXT_APP', '*')
+  window.parent.postMessage('POSTCAT_EXT_APP', '*')
   // 如果能接收到父窗口发送特定的消息，则说明处于 eoapi 环境下
   window.addEventListener('message', (event) => {
-    if (event.data === 'EOAPI_MESSAGE' && !window.__POWERED_BY_EOAPI__) {
-      window.__POWERED_BY_EOAPI__ = true
+    if (event.data === 'POSTCAT_MESSAGE' && !window.__POWERED_BY_POSTCAT__) {
+      window.__POWERED_BY_POSTCAT__ = true
       window.eo = new Proxy(
         {},
         {

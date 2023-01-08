@@ -1,19 +1,20 @@
 # Push to Eolink
 
-Push Eoapi API data to Eolink with one click;
+Push Postcat API data to Eolink with one click;
+
 ## configure
 
 Here we take the [**Push to Eolink**] plugin as an example. After the plugin is successfully installed, enter the configuration page to configure the token and remote address.
 
-![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/images/image-05-20_17-09-50.jpg)
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-push-eolink/assets/images/image-05-20_17-09-50.jpg)
 
- p ## usage
+## usage
 
 Go to the overview page of the main page, you can see the push function, click this area to open the corresponding pop-up window, you can see the name of the push plug-in, it will not be displayed if it is not installed. Please select the desired push platform and click the [OK] button to complete the push.
 
-![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/images/image-20220512173000566.png)
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/shared/assets/images/overview-en.png)
 
-![](https://raw.githubusercontent.com/eolinker/eoapi-extensions/main/packages/feature/push/eolink/assets/images/image-20220512173054947.png)
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-push-eolink/assets/images/image-20220512173054947.png)
 
 ## push results
 

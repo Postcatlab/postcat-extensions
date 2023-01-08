@@ -1,7 +1,7 @@
 {
-  "name": "eoapi-opendlp",
+  "name": "postcat-opendlp",
   "title": "OpenDLP sercurity check",
-  "version": "0.0.12",
+  "version": "0.0.1",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
@@ -19,7 +19,7 @@
       "rightExtra": [
         {
           "name": "API Sercurity Check",
-          "icon": "file-text-one",
+          "icon": "file-text",
           "tooltip": "扫描 API 敏感词",
           "events": [
             {
@@ -38,9 +38,9 @@
     },
     "configuration": {
       "type": "object",
-      "title": "API Sercurity",
       "properties": {
-        "serverUrl": {
+        "type": "object",
+        "postcat-opendlp.serverUrl": {
           "type": "string",
           "required": true,
           "default": "",
