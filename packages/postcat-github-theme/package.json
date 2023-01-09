@@ -1,0 +1,29 @@
+{
+  "name": "github-postcat-theme",
+  "title": "Github Theme",
+  "version": "0.0.1",
+  "description": "Github theme",
+  "author": {
+    "name": "Postcat"
+  },
+  "logo": "https://data.eolink.com/Ze18RH80f3caa9ac0ff78ff5055aee2ab54e690d0e1c6c4",
+  "engines": {
+    "postcat": "^0.0.1"
+  },
+  "features": {
+    "theme": [
+      {
+        "label": "${theme.defaultLabel}",
+        "baseTheme": "pc",
+        "id": "github-default",
+        "path": "./themes/light-default.json"
+      }
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  }
+}

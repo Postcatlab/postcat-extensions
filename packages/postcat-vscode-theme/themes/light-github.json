@@ -1,0 +1,26 @@
+{
+  "colors": {
+    "icon": "#57606a",
+    "text": "#24292f",
+    "primary": "#2da44e",
+    "primaryHover": "#2c974b",
+    "textLink": "#0969da",
+    "barBackground": "#f6f8fa",
+    "border": "rgb(208, 215, 222)",
+    "itemHoverBackground": "rgba(234, 238, 242, 0.5)",
+    "itemActiveBackground": "rgba(175, 184, 193, 0.2)",
+    "layoutSiderBackground": "rgb(255, 255, 255)",
+    "layoutSiderText": "rgb(87, 96, 106)",
+    "treeBackground": "rgb(246, 248, 250)",
+    "buttonBorder": "transparent",
+    "buttonDefaultBorder": "rgb(208, 215, 222)",
+    "buttonDefaultHoverBackground": "#2da44e",
+    "buttonDefaultHoverText": "#fff",
+    "tabsCardItemBackground": "rgb(246, 248, 250)",
+    "tabsCardItemActive": "#fd8c73",
+    "hoverBorder": "#0969da",
+    "activeBorder": "#0969da",
+    "checkboxCheckedBackground": "#0275ff",
+    "radioCheckedBackground": "#0275ff"
+  }
+}
