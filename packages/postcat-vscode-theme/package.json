@@ -1,23 +1,35 @@
 {
-  "name": "github-vscode-theme",
+  "name": "postcat-vscode-theme",
   "title": "VSCode Theme",
   "version": "0.0.1",
   "description": "VSCode theme",
   "author": {
     "name": "Postcat"
   },
-  "logo": "https://raw.githubusercontent.com/primer/github-vscode-theme/main/icon.png",
+  "logo": "https://data.eolink.com/FZHdCXg2b7ff4cbf38c0b824f66bbad7a20a07cf2ce1b36",
   "engines": {
     "postcat": "^0.0.1"
   },
   "features": {
     "theme": [
       {
-        "label": "VSCode Default",
+        "label": "${theme.darkLabel}",
+        "baseTheme": "pc-dark",
+        "id": "vscode-dark",
+        "path": "./themes/dark-default.json"
+      },
+      {
+        "label": "${theme.githubLabel}",
         "baseTheme": "pc",
-        "id": "vscode-default",
-        "path": "./themes/light-default.json"
+        "id": "vscode-github",
+        "path": "./themes/light-github.json"
       }
-    ]
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
   }
 }

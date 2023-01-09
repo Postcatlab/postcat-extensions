@@ -4,9 +4,7 @@
   "description": "The i18n example extension of eoapi",
   "author": "scar",
   "main": "dist/index.js",
-  "moduleID": "eoapi-i18n",
-  "moduleName": "eoapi-i18n",
-  "moduleType": "feature",
+  "title": "eoapi-i18n",
   "logo": "http://dummyimage.com/125x125",
   "scripts": {
     "build": "rollup -c rollup.config.js",
@@ -16,7 +14,7 @@
     "rollup": "^2.70.2"
   },
   "features": {
-    "apimanage.export": {
+    "exportAPI": {
       "action": "exportFunc",
       "label": "${function.label}",
       "description": "${function.description}",
