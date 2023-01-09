@@ -1,0 +1,23 @@
+{
+  "name": "github-vscode-theme",
+  "title": "VSCode Theme",
+  "version": "0.0.1",
+  "description": "VSCode theme",
+  "author": {
+    "name": "Postcat"
+  },
+  "logo": "https://raw.githubusercontent.com/primer/github-vscode-theme/main/icon.png",
+  "engines": {
+    "postcat": "^0.0.1"
+  },
+  "features": {
+    "theme": [
+      {
+        "label": "VSCode Default",
+        "baseTheme": "pc",
+        "id": "vscode-default",
+        "path": "./themes/light-default.json"
+      }
+    ]
+  }
+}
