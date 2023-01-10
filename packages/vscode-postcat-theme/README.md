@@ -1,3 +1,3 @@
-# Github Theme
+# VSCode Theme
 
-Postcat Github Theme
+Postcat VSCode Theme
