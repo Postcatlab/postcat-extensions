@@ -1,11 +1,12 @@
 {
   "name": "vscode-postcat-tomorrow",
   "title": "VSCode Theme Tomorrow Light Blue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "VSCode Tomorrow theme",
   "author": {
     "name": "Postcat"
   },
+  "logo": "https://data.eolink.com/5Q6Nfihc8bdf13f684e2a959eddac9605f52681292f5104",
   "engines": {
     "postcat": "^0.0.1"
   },

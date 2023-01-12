@@ -1,15 +1,15 @@
 {
-  "name": "vscode-postcat-purple",
-  "title": "VSCode Theme purple Dark",
+  "name": "vscode-postcat-dracula",
+  "title": "Dracula Official Theme",
   "version": "0.0.2",
-  "description": "VSCode purple theme",
+  "description": "VSCode Dracula Official theme",
   "author": {
     "name": "Postcat"
   },
-  "logo": "https://data.eolink.com/rY8wmbTcdf1919bbf696a8f1feeb0950446ad3690a337d7",
   "engines": {
     "postcat": "^0.0.1"
   },
+  "logo": "https://data.eolink.com/Q3KxMRJdf30c17f31607f0618109545612af625f5146a7d",
   "categories": [
     "Themes"
   ],
@@ -17,8 +17,8 @@
     "theme": [
       {
         "label": "${theme.label}",
-        "baseTheme": "pc",
-        "id": "vscode-purple",
+        "baseTheme": "pc-dark",
+        "id": "vscode-dracula",
         "path": "./themes/default.json"
       }
     ],

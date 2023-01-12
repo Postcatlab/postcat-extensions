@@ -1,12 +1,12 @@
 {
-  "name": "vscode-postcat-purple",
-  "title": "VSCode Theme purple Dark",
-  "version": "0.0.2",
-  "description": "VSCode purple theme",
+  "name": "vscode-postcat-hc",
+  "title": "VSCode Theme High Contrast",
+  "version": "0.0.1",
+  "description": "VSCode High Contrast",
   "author": {
     "name": "Postcat"
   },
-  "logo": "https://data.eolink.com/rY8wmbTcdf1919bbf696a8f1feeb0950446ad3690a337d7",
+  "logo": "https://data.eolink.com/Cu2EcJy2c345ebf0c210bac9dc1157242c51991862b8f99",
   "engines": {
     "postcat": "^0.0.1"
   },
@@ -18,7 +18,7 @@
       {
         "label": "${theme.label}",
         "baseTheme": "pc",
-        "id": "vscode-purple",
+        "id": "vscode-hc",
         "path": "./themes/default.json"
       }
     ],

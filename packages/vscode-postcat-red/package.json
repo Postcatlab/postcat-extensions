@@ -1,11 +1,12 @@
 {
   "name": "vscode-postcat-red",
   "title": "VSCode Theme Red",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "VSCode red theme",
   "author": {
     "name": "Postcat"
   },
+  "logo": "https://data.eolink.com/fa2nGFQfc81a9107c056443272f793839b7768713f0b12d",
   "engines": {
     "postcat": "^0.0.1"
   },

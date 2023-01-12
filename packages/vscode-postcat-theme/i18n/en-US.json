@@ -1,4 +1,5 @@
 {
   "theme.darkLabel": "VSCode Dark",
-  "theme.githubLabel": "VSCode Github"
+  "theme.githubLabel": "VSCode Github",
+  "theme.lightLabel": "VSCode Light"
 }
