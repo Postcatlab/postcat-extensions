@@ -1,11 +1,14 @@
 {
   "name": "vscode-postcat-theme",
   "title": "VSCode Theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "VSCode theme",
   "author": {
     "name": "Postcat"
   },
+  "categories": [
+    "Themes"
+  ],
   "logo": "https://data.eolink.com/FZHdCXg2b7ff4cbf38c0b824f66bbad7a20a07cf2ce1b36",
   "engines": {
     "postcat": "^0.0.1"

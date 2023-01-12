@@ -22,7 +22,7 @@
     "buttonDefaultHoverText": "#0969da",
     "dropdownItemHoverBackground": "#0969da",
     "dropdownItemHoverText": "#fff",
-    "layoutSiderText": "#24292f",
+    "layoutSidebarText": "#24292f",
     "alertInfoBackground": "#ddf4ff",
     "alertInfoText": "#24292f",
     "buttonTextHoverBackground": "transparent",

@@ -1,8 +1,8 @@
 {
-  "name": "vscode-postcat-theme-red",
-  "title": "VSCode Theme Red",
+  "name": "vscode-postcat-abyss",
+  "title": "VSCode Theme Abyss Dark",
   "version": "0.0.1",
-  "description": "VSCode red theme",
+  "description": "VSCode Abyss theme",
   "author": {
     "name": "Postcat"
   },
@@ -10,12 +10,15 @@
   "engines": {
     "postcat": "^0.0.1"
   },
+  "categories": [
+    "Themes"
+  ],
   "features": {
     "theme": [
       {
         "label": "${theme.label}",
         "baseTheme": "pc-dark",
-        "id": "vscode-theme-red",
+        "id": "vscode-abyss",
         "path": "./themes/default.json"
       }
     ],

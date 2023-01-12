@@ -1,0 +1,32 @@
+{
+  "name": "vscode-postcat-solarized",
+  "title": "VSCode Theme Solarized Dark",
+  "version": "0.0.1",
+  "description": "VSCode Solarized theme",
+  "author": {
+    "name": "Postcat"
+  },
+  "logo": "https://data.eolink.com/FZHdCXg2b7ff4cbf38c0b824f66bbad7a20a07cf2ce1b36",
+  "engines": {
+    "postcat": "^0.0.1"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "features": {
+    "theme": [
+      {
+        "label": "${theme.label}",
+        "baseTheme": "pc-dark",
+        "id": "vscode-solarized",
+        "path": "./themes/default.json"
+      }
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  }
+}

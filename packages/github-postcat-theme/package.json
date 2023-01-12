@@ -1,7 +1,7 @@
 {
   "name": "github-postcat-theme",
   "title": "Github Theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Github theme",
   "author": {
     "name": "Postcat"
@@ -10,6 +10,9 @@
   "engines": {
     "postcat": "^0.0.1"
   },
+  "categories": [
+    "Themes"
+  ],
   "features": {
     "theme": [
       {

@@ -1,0 +1,32 @@
+{
+  "name": "vscode-postcat-red",
+  "title": "VSCode Theme Red",
+  "version": "0.0.1",
+  "description": "VSCode red theme",
+  "author": {
+    "name": "Postcat"
+  },
+  "logo": "https://data.eolink.com/FZHdCXg2b7ff4cbf38c0b824f66bbad7a20a07cf2ce1b36",
+  "engines": {
+    "postcat": "^0.0.1"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "features": {
+    "theme": [
+      {
+        "label": "${theme.label}",
+        "baseTheme": "pc-dark",
+        "id": "vscode-red",
+        "path": "./themes/default.json"
+      }
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  }
+}
