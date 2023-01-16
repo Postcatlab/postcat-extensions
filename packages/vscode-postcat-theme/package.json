@@ -1,7 +1,7 @@
 {
   "name": "vscode-postcat-theme",
   "title": "VSCode Theme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "VSCode theme",
   "author": {
     "name": "Postcat"
@@ -16,16 +16,16 @@
   "features": {
     "theme": [
       {
-        "label": "${theme.darkLabel}",
-        "baseTheme": "pc-dark",
-        "id": "vscode-dark",
-        "path": "./themes/dark-default.json"
-      },
-      {
         "label": "${theme.lightLabel}",
         "baseTheme": "pc",
         "id": "vscode-light",
         "path": "./themes/light-default.json"
+      },
+      {
+        "label": "${theme.darkLabel}",
+        "baseTheme": "pc-dark",
+        "id": "vscode-dark",
+        "path": "./themes/dark-default.json"
       },
       {
         "label": "${theme.githubLabel}",

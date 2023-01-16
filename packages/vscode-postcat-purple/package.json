@@ -1,12 +1,12 @@
 {
   "name": "vscode-postcat-purple",
   "title": "VSCode Theme purple Dark",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "VSCode purple theme",
   "author": {
     "name": "Postcat"
   },
-  "logo": "https://data.eolink.com/rY8wmbTcdf1919bbf696a8f1feeb0950446ad3690a337d7",
+  "logo": "https://data.eolink.com/wZtKmRTc080a64ba9403250d9c7853ad6883215a4d89f45",
   "engines": {
     "postcat": "^0.0.1"
   },

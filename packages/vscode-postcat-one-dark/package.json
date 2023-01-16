@@ -1,7 +1,7 @@
 {
   "name": "vscode-postcat-one-dark",
   "title": "VSCode Theme One dark Dark",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "VSCode One dark theme",
   "author": {
     "name": "Postcat"
@@ -9,7 +9,7 @@
   "engines": {
     "postcat": "^0.0.1"
   },
-  "logo": "https://data.eolink.com/gxKS8gkbd08c9e6499c7aee63944ee45b83f31901f7295b",
+  "logo": "https://data.eolink.com/EpVbx2800dc77ea235c72fc6a139419c3ea0504f403be3e",
   "categories": [
     "Themes"
   ],

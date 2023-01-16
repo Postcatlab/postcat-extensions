@@ -1,12 +1,12 @@
 {
   "name": "vscode-postcat-brown",
   "title": "VSCode Theme brown Dark",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "VSCode brown theme",
   "author": {
     "name": "Postcat"
   },
-  "logo": "https://data.eolink.com/DXTMNhH45526a9c5690f526d33eeb0be3942a1dc918fb64",
+  "logo": "https://data.eolink.com/ZYFlldr6d20793b20e72afa0e292cc9c00c2ee4fa1b6e8e",
   "engines": {
     "postcat": "^0.0.1"
   },

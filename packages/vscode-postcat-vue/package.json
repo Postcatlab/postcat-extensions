@@ -1,7 +1,7 @@
 {
   "name": "vscode-postcat-vue",
   "title": "Vue Theme",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Vue Theme",
   "author": {
     "name": "Postcat"
@@ -9,6 +9,7 @@
   "engines": {
     "postcat": "^0.0.1"
   },
+  "logo": "https://data.eolink.com/PIUqaxjd96118c7fd63cef8923071555e8a69371a3e493e",
   "categories": [
     "Themes"
   ],
