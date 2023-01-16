@@ -10,6 +10,8 @@
     "danger": "#be1100",
     "barBackground": "#330000",
     "border": "transparent",
+    "tabsBadge": "rgba(255, 255, 255, 0.5)",
+    "tabsActiveBadge": "#ffffff",
     "inputIcon": "#cccccc",
     "inputBorder": "rgba(204, 204, 204, 0.2)",
     "selectBorder": "rgba(204, 204, 204, 0.2)",
