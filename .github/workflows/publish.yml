@@ -34,7 +34,7 @@ jobs:
       - name: build
         run: |
           pnpm install
-          pnpm build
+          pnpm --filter "postcat-export-openapi" build
 
       - name: Publish
         if: success()
