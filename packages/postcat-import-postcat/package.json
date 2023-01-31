@@ -1,6 +1,6 @@
 {
   "name": "postcat-import-postcat",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": "Import Postcat",
   "description": "The import extension of Postcat",
   "main": "dist/index.js",
