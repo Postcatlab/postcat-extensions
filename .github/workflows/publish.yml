@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: [main]
+    branches: [refactor/import_export]
 
 jobs:
   build:

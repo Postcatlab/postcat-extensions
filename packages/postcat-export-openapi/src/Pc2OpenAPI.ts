@@ -6,12 +6,14 @@ import {
 } from 'shared/src/types/pcAPI'
 import { OpenAPIV3 } from 'openapi-types'
 import { safeJSONParse, safeStringify } from '../../../shared/src/utils/common'
-import type {
+import {
   ProjectInfo,
   ApiList,
   RequestParams,
   ResponseParams,
-  BodyParam
+  BodyParam,
+  CollectionTypeEnum,
+  Collection
 } from './types'
 import {
   ApiBodyType,
@@ -88,13 +90,13 @@ class PcToOpenAPI {
   postcatData: ProjectInfo
   constructor(postcatData: ProjectInfo) {
     this.postcatData = postcatData
-    const { postcatVersion, name } = this.postcatData
+    const { postcatVersion, name, description, collections } = this.postcatData
 
     this.data = {
       openapi: '3.0.1',
       info: {
         title: name!,
-        description: name || '',
+        description: description || name || '',
         termsOfService: '',
         contact: {},
         license: {
@@ -108,34 +110,25 @@ class PcToOpenAPI {
         url: 'http://swagger.io'
       },
       servers: [],
-      paths: this.generatePaths(),
-      tags: this.generateTags(),
+      paths: this.generatePaths(collections),
+      tags: this.generateTags(collections),
       components: {}
     }
   }
-  flattenGroupList(groupList: ProjectInfo['groupList'] = [], arr: any[] = []) {
-    return groupList.reduce((prev, curr) => {
-      prev.push(curr)
-      if (curr?.children?.length) {
-        this.flattenGroupList(curr.children, prev)
-      }
-      return prev
-    }, arr)
-  }
-  generatePaths(): OpenAPIV3.PathsObject {
-    const { apiList = [], groupList = [] } = this.postcatData
+  
+  generatePaths(collections: ProjectInfo['collections'] = [], parentGroup?: Collection, defaultPaths = {}): OpenAPIV3.PathsObject {
 
-    const flatGroupList = this.flattenGroupList(groupList)
+    // const flatGroupList = this.flattenGroupList(groupList)
 
-    return apiList.reduce<OpenAPIV3.PathsObject>((paths, item) => {
-      const { uri, name, apiAttrInfo, groupId } = item!
-      const groupName = flatGroupList.find((n) => n.id === groupId)?.name
+    return collections.reduce<OpenAPIV3.PathsObject>((paths, item) => {
+      if (item?.collectionType === CollectionTypeEnum.API_DATA) {
+        const { uri, name, apiAttrInfo } = item!
       const method = requestMethodMap[apiAttrInfo?.requestMethod!]
 
       const httpMethod = method.toLowerCase() as OpenAPIV3.HttpMethods
       paths[uri!] ??= {}
       paths[uri!]![httpMethod] = {
-        tags: groupName ? [groupName] : [],
+        tags: parentGroup?.name ? [parentGroup?.name] : [],
         summary: name,
         description: name,
         operationId: name,
@@ -144,9 +137,12 @@ class PcToOpenAPI {
         responses: this.generateResponseBody(item!),
         security: []
       }
+      } else if (item?.collectionType === CollectionTypeEnum.GROUP && item.children?.length) {
+        this.generatePaths(item.children, item, paths)
+      }
 
       return paths
-    }, {})
+    }, defaultPaths)
   }
   generateParameters(
     apiData: ApiList
@@ -361,11 +357,19 @@ class PcToOpenAPI {
     return requireds.length ? requireds : undefined
   }
 
-  generateTags(): OpenAPIV3.TagObject[] {
-    return this.postcatData.groupList!.map((item) => ({
-      name: item?.name!,
-      description: item?.name!
-    }))
+  generateTags(collections: ProjectInfo['collections'] = [], arr: any[] = []): OpenAPIV3.TagObject[] {
+    return collections.reduce((prev, curr) => {
+      if (curr?.collectionType === CollectionTypeEnum.GROUP) {
+        prev.push({
+          name: curr?.name!,
+          description: curr?.name!
+        })
+        if (curr.children?.length) {
+          this.generateTags(curr.children, prev)
+        }
+      }
+      return prev
+    }, arr)
   }
 }
 

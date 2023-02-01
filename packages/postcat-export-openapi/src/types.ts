@@ -4,602 +4,475 @@ type DeepPartial<T> = T extends object
     }
   : T
 
-export type ProjectInfo = DeepPartial<{
-  environmentList: EnvironmentList[]
-  apiList: ApiList[]
-  groupList: GroupList[]
-  id: number
-  groupId: number
-  spaceId: number
-  name: string
-  description: string
-  type: number
-  isArchive: number
-  version: string
-  postcatVersion: string
-  hashkey: string
-  status: number
-  createType: number
-  secretKey: string
-  mockApiSetting: string
-  duplicateCheckSetting: string
-  synchronizeSetting: string
-  noticeApiManagerSetting: number
-  requestSetting: string
-  timeoutLimit: number
-  timeoutLimitType: string
-  taskId: number
-  projectIcon: string
-  updateUserId: number
-  createUserId: number
-  createTime: number
-  updateTime: number
-  projectUuid: string
-}>
+  export enum CollectionTypeEnum {
+    GROUP = 0,
+    API_DATA = 1
+  }
 
-export type EnvironmentList = DeepPartial<{
-  id: number
-  name: string
-  createTime: number
-  updateTime: number
-  hostUri: string
-  parameters: string
-  projectUuid: string
-}>
-
-export type ApiList = DeepPartial<{
-  id: number
-  apiUuid: string
-  groupId: number
-  projectId: number
-  lifecycle: number
-  name: string
-  uri: string
-  protocol: number
-  status: number
-  starred: number
-  encoding: string
-  isShared: number
-  tag: string
-  orderNum: number
-  hashkey: string
-  managerId: number
-  updateUserId: number
-  createUserId: number
-  createTime: number
-  updateTime: number
-  introduction: Introduction
-  relation: Relation
-  apiAttrInfo: ApiAttrInfo
-  dubboApiAttrInfo: DubboApiAttrInfo
-  soapApiAttrInfo: SoapApiAttrInfo
-  grpcApiAttrInfo: GrpcApiAttrInfo
-  requestParams: RequestParams
-  responseList: ResponseList[]
-  resultList: ResultList[]
-}>
-
-export type Introduction = DeepPartial<{
-  id: number
-  apiUuid: string
-  noteType: number
-  noteRaw: string
-  note: string
-  createUserId: number
-  updateUserId: number
-  createTime: number
-  updateTime: number
-}>
-
-export type Relation = DeepPartial<{
-  id: number
-  apiUuid: string
-  bindAmtApiId: number
-  swaggerId: string
-  fileName: string
-  fileUrl: string
-  fileId: string
-  createTime: number
-  updateTime: number
-}>
-
-export type ApiAttrInfo = DeepPartial<{
-  id: number
-  apiUuid: string
-  beforeInject: string
-  afterInject: string
-  authInfo: string
-  requestMethod: number
-  contentType: number
-  updateUserId: number
-  createUserId: number
-}>
-
-export interface DubboApiAttrInfo {
-  id: number
-  apiUuid: string
-  serverHost: string
-  interfaceName: string
-  methodName: string
-  appName: string
-  group: string
-  version: string
-  apiNumber: number
-  createUserId: number
-  updateUserId: number
-}
-
-export interface SoapApiAttrInfo {
-  id: number
-  apiUuid: string
-  beforeInject: string
-  afterInject: string
-  authInfo: string
-  requestMethod: number
-  contentType: number
-  wsdlContent: string
-  testData: string
-  soapOperation: string
-  soapAction: string
-  soapBinding: string
-  soapService: string
-  createUserId: number
-  updateUserId: number
-}
-
-export interface GrpcApiAttrInfo {
-  id: number
-  apiUuid: string
-  authInfo: string
-  serverHost: string
-  interfaceName: string
-  methodName: string
-  appName: string
-  group: string
-  version: string
-  proto: string
-  apiRequestMetadata: string
-  responseMetadata: string
-  responseTrailingMetadata: string
-  createUserId: number
-  updateUserId: number
-}
-
-export type RequestParams = DeepPartial<{
-  headerParams: HeaderParam[]
-  bodyParams: BodyParam[]
-  queryParams: QueryParam[]
-  restParams: RestParam[]
-}>
-
-export type HeaderParam = DeepPartial<{
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr
-  childList: any[]
-}>
-
-export type ParamAttr = DeepPartial<{
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue
-  maxValue: MaxValue
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}>
-
-export interface MinValue {}
-
-export interface MaxValue {}
-
-export type BodyParam = DeepPartial<{
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr2
-  childList: any[]
-}>
-
-export type ParamAttr2 = DeepPartial<{
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue2
-  maxValue: MaxValue2
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}>
-
-export interface MinValue2 {}
-
-export interface MaxValue2 {}
-
-export type QueryParam = DeepPartial<{
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr3
-  childList: any[]
-}>
-
-export type ParamAttr3 = DeepPartial<{
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue3
-  maxValue: MaxValue3
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}>
-
-export interface MinValue3 {}
-
-export interface MaxValue3 {}
-
-export type RestParam = DeepPartial<{
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr4
-  childList: any[]
-}>
-
-export type ParamAttr4 = DeepPartial<{
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue4
-  maxValue: MaxValue4
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}>
-
-export interface MinValue4 {}
-
-export interface MaxValue4 {}
-
-export type ResponseList = DeepPartial<{
-  id: number
-  responseUuid: string
-  apiUuid: string
-  oldId: number
-  name: string
-  httpCode: string
-  contentType: number
-  isDefault: number
-  updateUserId: number
-  createUserId: number
-  createTime: number
-  updateTime: number
-  responseParams: ResponseParams
-}>
-
-export type ResponseParams = DeepPartial<{
-  headerParams: HeaderParam2[]
-  bodyParams: BodyParam2[]
-  queryParams: QueryParam2[]
-  restParams: RestParam2[]
-}>
-
-export type HeaderParam2 = DeepPartial<{
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr5
-  childList: any[]
-}>
-
-export interface ParamAttr5 {
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue5
-  maxValue: MaxValue5
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}
-
-export interface MinValue5 {}
-
-export interface MaxValue5 {}
-
-export interface BodyParam2 {
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr6
-  childList: any[]
-}
-
-export interface ParamAttr6 {
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue6
-  maxValue: MaxValue6
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}
-
-export interface MinValue6 {}
-
-export interface MaxValue6 {}
-
-export interface QueryParam2 {
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr7
-  childList: any[]
-}
-
-export interface ParamAttr7 {
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue7
-  maxValue: MaxValue7
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}
-
-export interface MinValue7 {}
-
-export interface MaxValue7 {}
-
-export interface RestParam2 {
-  id: number
-  parentId: number
-  apiUuid: string
-  responseUuid: string
-  name: string
-  paramType: number
-  partType: number
-  dataType: number
-  dataTypeValue: string
-  structureId: number
-  structureParamId: string
-  contentType: string
-  isRequired: number
-  binaryRawData: string
-  description: string
-  orderNo: number
-  isDefault: number
-  paramAttr: ParamAttr8
-  childList: any[]
-}
-
-export interface ParamAttr8 {
-  id: number
-  apiParamId: number
-  minLength: number
-  maxLength: number
-  minValue: MinValue8
-  maxValue: MaxValue8
-  paramLimit: string
-  paramValueList: string
-  paramMock: string
-  attr: string
-  structureIsHide: number
-  example: string
-  dbArr: string
-  paramNote: string
-}
-
-export interface MinValue8 {}
-
-export interface MaxValue8 {}
-
-export interface ResultList {
-  id: number
-  apiUuid: string
-  name: string
-  httpCode: string
-  httpContentType: string
-  type: number
-  content: string
-  createUserId: number
-  updateUserId: number
-  createTime: number
-  updateTime: number
-}
-
-export type GroupList = DeepPartial<{
-  id: number
-  moduleGroupId: number
-  module: string
-  type: number
-  name: string
-  path: string
-  depth: number
-  parentId: number
-  sort: number
-  createTime: number
-  updateTime: number
-  relationInfos: RelationInfo[]
-  children: any[]
-}>
-
-export interface RelationInfo {
-  apiUuid: string
-  apiId: number
-  id: number
-  lifecycle: number
-  name: string
-  uri: string
-  tag: string
-  status: number
-  starred: number
-  groupId: number
-  groupName: string
-  projectId: number
-  isShared: number
-  managerId: number
-  updateUserId: number
-  createUserId: number
-  managerName: string
-  updateUserName: string
-  createUserName: string
-  protocol: number
-  requestMethod: number
-  contentType: number
-  testCaseNum: number
-  testSuccessRate: TestSuccessRate
-  testStatus: number
-  apiCreateTime: number
-  apiUpdateTime: number
-  createTime: number
-  updateTime: number
-  orderNum: number
-}
-
-export interface TestSuccessRate {}
+  export type ProjectInfo = DeepPartial<{
+    workSpaceUuid: string
+    name: string
+    description?: string
+    postcatVersion?: string
+    projectUuid: string
+    environmentList: EnvironmentList[]
+    collections: Collection[]
+  }>
+  
+  export type EnvironmentList =DeepPartial<{
+    name: string
+    hostUri: string
+    parameters: string
+    projectUuid: string
+    workSpaceUuid: string
+  }>
+  
+  export type Collection =DeepPartial<{
+    collectionType: number
+    id: string
+    moduleGroupId?: string
+    module?: string
+    type?: string
+    name: string
+    path?: string
+    depth?: string
+    parentId?: string
+    sort?: string
+    createTime: string
+    updateTime: string
+    children?: Collection[]
+    groupId?: string
+    groupName?: string
+    projectId?: string
+    lifecycle?: string
+    uri?: string
+    protocol?: string
+    status?: string
+    starred?: string
+    encoding?: string
+    isShared?: string
+    tag?: string
+    orderNum?: string
+    hashkey?: string
+    managerId?: string
+    managerName?: string
+    updateUserId?: string
+    updateUserName?: string
+    createUserId?: string
+    createUserName?: string
+    introduction?: Introduction
+    relation?: Relation
+    apiAttrInfo?: ApiAttrInfo
+    dubboApiAttrInfo?: DubboApiAttrInfo
+    soapApiAttrInfo?: SoapApiAttrInfo
+    grpcApiAttrInfo?: GrpcApiAttrInfo
+    requestParams?: RequestParams
+    responseList?: ResponseList[]
+    resultList?: ResultList[]
+  }>
+  
+  export type Introduction =DeepPartial<{
+    apiUuid: string
+    noteType: string
+    noteRaw: string
+    note: string
+    createTime: string
+    updateTime: string
+  }>
+  
+  export type Relation =DeepPartial<{
+    apiUuid: string
+    bindAmtApiId: string
+    swaggerId: string
+    fileName: string
+    fileUrl: string
+    fileId: string
+  }>
+  
+  export type ApiAttrInfo =DeepPartial<{
+    beforeInject: string
+    afterInject: string
+    authInfo: string
+    requestMethod: string
+    contentType: string
+    createTime: string
+    updateTime: string
+  }>
+  
+  export type DubboApiAttrInfo =DeepPartial<{
+    serverHost: string
+    interfaceName: string
+    methodName: string
+    appName: string
+    group: string
+    version: string
+    apiNumber: string
+    createTime: string
+    updateTime: string
+  }>
+  
+  export type SoapApiAttrInfo =DeepPartial<{
+    beforeInject: string
+    afterInject: string
+    authInfo: string
+    requestMethod: string
+    contentType: string
+    wsdlContent: string
+    testData: string
+    soapOperation: string
+    soapAction: string
+    soapBinding: string
+    soapService: string
+    createTime: string
+    updateTime: string
+  }>
+  
+  export type GrpcApiAttrInfo =DeepPartial<{
+    authInfo: string
+    serverHost: string
+    interfaceName: string
+    methodName: string
+    appName: string
+    group: string
+    version: string
+    proto: string
+    apiRequestMetadata: string
+    responseMetadata: string
+    responseTrailingMetadata: string
+    createTime: string
+    updateTime: string
+  }>
+  
+  export type RequestParams =DeepPartial<{
+    headerParams: HeaderParam[]
+    bodyParams: BodyParam[]
+    queryParams: QueryParam[]
+    restParams: RestParam[]
+  }>
+  
+  export type HeaderParam =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr
+    childList: string
+  }>
+  
+  export type ParamAttr =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type BodyParam =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: number
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr2
+    childList: BodyParam[]
+  }>
+  
+  export type ParamAttr2 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type QueryParam =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr3
+    childList: QueryParam[]
+  }>
+  
+  export type ParamAttr3 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type RestParam =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr4
+    childList: RestParam[]
+  }>
+  
+  export type ParamAttr4 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type ResponseList =DeepPartial<{
+    apiUuid: string
+    oldId: string
+    name: string
+    httpCode: string
+    contentType: string
+    isDefault: string
+    createTime: string
+    updateTime: string
+    responseParams: ResponseParams
+  }>
+  
+  export type ResponseParams =DeepPartial<{
+    headerParams: HeaderParam2[]
+    bodyParams: BodyParam2[]
+    queryParams: QueryParam2[]
+    restParams: RestParam2[]
+  }>
+  
+  export type HeaderParam2 =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr5
+    childList: HeaderParam2[]
+  }>
+  
+  export type ParamAttr5 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type BodyParam2 =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr6
+    childList: BodyParam2[]
+  }>
+  
+  export type ParamAttr6 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type QueryParam2 =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr7
+    childList: QueryParam2[]
+  }>
+  
+  export type ParamAttr7 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type RestParam2 =DeepPartial<{
+    responseUuid: string
+    name: string
+    paramType: string
+    partType: string
+    dataType: string
+    dataTypeValue: string
+    structureId: string
+    structureParamId: string
+    contentType: string
+    isRequired: string
+    binaryRawData: string
+    description: string
+    orderNo: string
+    createTime: string
+    updateTime: string
+    paramAttr: ParamAttr8
+    childList: RestParam2[]
+  }>
+  
+  export type ParamAttr8 =DeepPartial<{
+    minLength: string
+    maxLength: string
+    minValue: string
+    maxValue: string
+    paramLimit: string
+    paramValueList: string
+    paramMock: string
+    attr: string
+    structureIsHide: string
+    example: string
+    createTime: string
+    updateTime: string
+    dbArr: string
+    paramNote: string
+  }>
+  
+  export type ResultList =DeepPartial<{
+    id: string
+    name: string
+    httpCode: string
+    httpContentType: string
+    type: string
+    content: string
+    createTime: string
+    updateTime: string
+  }>
+  
