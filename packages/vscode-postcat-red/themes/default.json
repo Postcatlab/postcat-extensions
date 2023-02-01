@@ -50,6 +50,8 @@
     "scrollbarThumbBackground": "rgba(121, 121, 121, 0.4)",
     "dropdownBackground": "#580000",
     "dropdownItemHoverBackground": "#880000",
-    "dropdownItemHoverText": "#ffffff"
+    "dropdownItemHoverText": "#ffffff",
+    "itemActiveBackground": "#880000",
+    "itemHoverBackground": "#880000"
   }
 }
