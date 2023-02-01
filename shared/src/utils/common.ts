@@ -283,3 +283,14 @@ export const safeStringify = (val) => {
     return String(val)
   }
 }
+
+export const safeJSONParse = (val) => {
+  try {
+    if (typeof val !== 'string') {
+      return val
+    }
+    return JSON.parse(val)
+  } catch (error) {
+    return val
+  }
+}

@@ -5,7 +5,22 @@ import {
   eoAPIType
 } from 'shared/src/types/pcAPI'
 import { OpenAPIV3 } from 'openapi-types'
-import { safeStringify } from '../../../shared/src/utils/common'
+import { safeJSONParse, safeStringify } from '../../../shared/src/utils/common'
+import type {
+  ProjectInfo,
+  ApiList,
+  RequestParams,
+  ResponseParams,
+  BodyParam
+} from './types'
+import {
+  ApiBodyType,
+  apiBodyTypeMap,
+  ApiParamsType,
+  apiParamsTypeMap,
+  ContentType,
+  requestMethodMap
+} from '../../../shared/src/types/api.model'
 
 // const parseParamsInUrl = (url): string[] => {
 //   return url.match(/(?<={)(\S)+?(?=})/g) || []
@@ -20,45 +35,73 @@ type SchemaObjectType =
   | OpenAPIV3.ArraySchemaObjectType
   | OpenAPIV3.NonArraySchemaObjectType
 
-const bodyTypeMap = new Map([
-  ['json', 'object'],
-  ['raw', 'string'],
-  ['int', 'integer']
-])
-
 export const contentTypeMap = new Map([
-  ['json', 'application/json'],
-  ['xml', 'application/xml'],
-  ['formData', 'application/x-www-form-urlencode'],
-  ['binary', 'multipart/form-data'],
-  ['raw', 'text/plain']
+  [ContentType.JSON_ARRAY, 'application/json'],
+  [ContentType.JSON_OBJECT, 'application/json'],
+  [ContentType.XML, 'application/xml'],
+  [ContentType.FROM_DATA, 'application/x-www-form-urlencode'],
+  [ContentType.BINARY, 'multipart/form-data'],
+  [ContentType.RAW, 'text/plain']
 ] as const)
 
 export const parametersInMap = new Map([
   ['queryParams', 'query'],
   ['restParams', 'path'],
-  ['requestHeaders', 'header']
+  ['headerParams', 'header']
 ] as const)
+
+const allowedValues = [
+  'array',
+  'boolean',
+  'integer',
+  'number',
+  'object',
+  'string'
+]
+const getDataType = (
+  dataType: ApiParamsType
+): OpenAPIV3.NonArraySchemaObjectType | OpenAPIV3.ArraySchemaObjectType => {
+  const type = apiParamsTypeMap[dataType]
+  if (allowedValues.includes(type)) {
+    return type
+  }
+  if (type?.includes('json')) {
+    return 'object'
+  }
+  return 'string'
+}
+
+const getDataTypeByContentType = (contentType: number) => {
+  if (ApiBodyType.Binary === contentType) {
+    return ApiParamsType.file
+  } else if (ApiBodyType.Raw === contentType) {
+    return ApiParamsType.string
+  } else if (ApiBodyType.JSONArray === contentType) {
+    return ApiParamsType.array
+  } else {
+    return ApiParamsType.json
+  }
+}
 
 class PcToOpenAPI {
   data: OpenAPIV3.Document
-  postcatData: eoAPIType
-  constructor(postcatData: eoAPIType) {
+  postcatData: ProjectInfo
+  constructor(postcatData: ProjectInfo) {
     this.postcatData = postcatData
-    const { version, project } = this.postcatData
+    const { postcatVersion, name } = this.postcatData
 
     this.data = {
       openapi: '3.0.1',
       info: {
-        title: project.name,
-        description: project.name || '',
+        title: name!,
+        description: name || '',
         termsOfService: '',
         contact: {},
         license: {
           name: 'Apache 2.0',
           url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
         },
-        version: version || '1.0.0'
+        version: postcatVersion || '0.0.0'
       },
       externalDocs: {
         description: 'Find out more about Swagger',
@@ -70,22 +113,35 @@ class PcToOpenAPI {
       components: {}
     }
   }
+  flattenGroupList(groupList: ProjectInfo['groupList'] = [], arr: any[] = []) {
+    return groupList.reduce((prev, curr) => {
+      prev.push(curr)
+      if (curr?.children?.length) {
+        this.flattenGroupList(curr.children, prev)
+      }
+      return prev
+    }, arr)
+  }
   generatePaths(): OpenAPIV3.PathsObject {
-    const { apiData, group } = this.postcatData
+    const { apiList = [], groupList = [] } = this.postcatData
 
-    return apiData.reduce<OpenAPIV3.PathsObject>((paths, item) => {
-      const { uri, name, method, groupID } = item
-      const groupName = group.find((n) => n.uuid === groupID)?.name
+    const flatGroupList = this.flattenGroupList(groupList)
+
+    return apiList.reduce<OpenAPIV3.PathsObject>((paths, item) => {
+      const { uri, name, apiAttrInfo, groupId } = item!
+      const groupName = flatGroupList.find((n) => n.id === groupId)?.name
+      const method = requestMethodMap[apiAttrInfo?.requestMethod!]
+
       const httpMethod = method.toLowerCase() as OpenAPIV3.HttpMethods
-      paths[uri] ??= {}
-      paths[uri]![httpMethod] = {
+      paths[uri!] ??= {}
+      paths[uri!]![httpMethod] = {
         tags: groupName ? [groupName] : [],
         summary: name,
         description: name,
         operationId: name,
-        parameters: this.generateParameters(item),
-        requestBody: this.generateRequestBody(item),
-        responses: this.generateResponseBody(item),
+        parameters: this.generateParameters(item!),
+        requestBody: this.generateRequestBody(item!),
+        responses: this.generateResponseBody(item!),
         security: []
       }
 
@@ -93,21 +149,24 @@ class PcToOpenAPI {
     }, {})
   }
   generateParameters(
-    apiData: ApiData
+    apiData: ApiList
   ): OpenAPIV3.ParameterObject[] | undefined {
     return [...parametersInMap.keys()].reduce<OpenAPIV3.ParameterObject[]>(
       (prev, key) => {
-        const item = apiData[key]
+        const item = apiData?.requestParams?.[key]
         if (item && item.length) {
           item.forEach((n) => {
-            n.name &&
+            if (n?.name) {
               prev.push({
-                ...n,
+                ...this.createBaseSchemaObject(n),
+                required: Boolean(n.isRequired),
                 in: parametersInMap.get(key)!,
                 schema: {
-                  type: typeof n.example as OpenAPIV3.NonArraySchemaObjectType
+                  type: typeof n?.paramAttr
+                    ?.example as OpenAPIV3.NonArraySchemaObjectType
                 }
               })
+            }
           })
         }
         return prev
@@ -115,15 +174,23 @@ class PcToOpenAPI {
       []
     )
   }
+
   generateRequestBody(
-    apiData: ApiData
+    apiData: ApiList
   ): OpenAPIV3.RequestBodyObject | undefined {
-    const { method, requestBodyJsonType, requestBodyType, requestBody } =
-      apiData
-    const contentType = contentTypeMap.get(requestBodyType!)
+    if (!apiData?.requestParams?.bodyParams) {
+      return
+    }
+    const { apiAttrInfo = {}, requestParams = {} } = apiData
+    const { contentType: requestContentType, requestMethod } = apiAttrInfo
+    const method = requestMethodMap[requestMethod!]
+
+    const contentType = contentTypeMap.get(requestContentType!)
+
+    const requestBodyJsonType = apiBodyTypeMap[requestContentType!]
 
     if (!contentType) {
-      console.log('contentType', contentType, requestBodyType)
+      console.log('contentType', contentType, requestBodyJsonType)
       console.error(`Can't parser the content type`)
       return
     }
@@ -136,25 +203,36 @@ class PcToOpenAPI {
       content: {
         [contentType]: {
           schema: this.parseToSchema(
-            apiData.requestBody,
-            requestBodyJsonType as SchemaObjectType
+            requestParams.bodyParams,
+            getDataTypeByContentType(requestContentType!)
           )
         }
       },
-      required: requestBodyType === 'json' && requestBody?.length > 0
+      required:
+        requestBodyJsonType.includes('JSON') &&
+        Boolean(requestParams?.bodyParams?.length)
     }
   }
-  generateResponseBody(apiData: ApiData): OpenAPIV3.ResponsesObject {
+
+  generateResponseBody(apiData: ApiList): OpenAPIV3.ResponsesObject {
+    if (!apiData?.responseList?.[0]?.responseParams?.bodyParams?.length) {
+      return {}
+    }
     const {
-      responseBodyJsonType,
-      responseBodyType,
-      responseBody,
-      responseHeaders
+      // responseBodyJsonType,
+      // responseBodyType,
+      // responseBody,
+      // responseHeaders,
+      responseList = [{}]
     } = apiData
-    const contentType = contentTypeMap.get(responseBodyType!)
+    const { contentType: responseContentType, responseParams } =
+      responseList?.[0]!
+    const { headerParams, bodyParams } = responseParams || {}
+
+    const contentType = contentTypeMap.get(responseContentType!)
 
     if (!contentType) {
-      console.log('contentType', contentType, responseBodyJsonType)
+      console.log('contentType', contentType, responseContentType)
       console.error(`Can't parser the content type`)
       return {}
     }
@@ -162,16 +240,24 @@ class PcToOpenAPI {
     return {
       '200': {
         description: 'OK',
-        headers: this.generateResponseHeaders(responseHeaders),
+        headers: this.generateResponseHeaders(headerParams),
         content: {
           [contentType]: {
             schema: this.parseToSchema(
-              responseBody!,
-              responseBodyJsonType as SchemaObjectType
+              bodyParams!,
+              getDataTypeByContentType(responseContentType!)
             )
           }
         }
       }
+    }
+  }
+
+  createBaseSchemaObject(param: BodyParam) {
+    return {
+      name: param.name!,
+      description: param.description!,
+      example: param?.paramAttr?.example!
     }
   }
 
@@ -182,8 +268,8 @@ class PcToOpenAPI {
    * @returns
    */
   parseToSchema(
-    data: ApiEditBody[] | string,
-    type: SchemaObjectType,
+    data: RequestParams['bodyParams'],
+    dataType: number,
     rest = {}
   ): OpenAPIV3.ArraySchemaObject | OpenAPIV3.NonArraySchemaObject {
     if (typeof data === 'string') {
@@ -192,42 +278,41 @@ class PcToOpenAPI {
         example: safeStringify(data)
       } as OpenAPIV3.SchemaObject
     } else {
-      const schemaType = bodyTypeMap.get(type) || type
+      const schemaType = getDataType(dataType)
       if (schemaType === 'array') {
         return {
-          ...rest,
+          ...this.createBaseSchemaObject(rest),
           type: schemaType,
           required: this.getRequired(data),
-          items: this.parseToSchema(data, 'object')
+          items: this.parseToSchema(data, ApiParamsType.object)
         } as OpenAPIV3.ArraySchemaObject
       } else {
+        type Properties = NonNullable<OpenAPIV3.BaseSchemaObject['properties']>
         return {
-          ...rest,
+          ...this.createBaseSchemaObject(rest),
           type: schemaType as OpenAPIV3.NonArraySchemaObjectType,
           required: this.getRequired(data),
-          properties: data?.reduce<
-            NonNullable<OpenAPIV3.BaseSchemaObject['properties']>
-          >((prev, curr) => {
-            const { type, name, children, required, ...item } = curr
-            if (children?.length) {
-              prev[name] = this.parseToSchema(
-                children,
-                type as SchemaObjectType,
-                {
-                  ...item,
-                  example: safeStringify(
-                    item.example || this.children2object(children)
-                  )
-                }
-              )
-            } else {
-              prev[name] = {
+          properties: data?.reduce<Properties>((prev, curr) => {
+            const { name, childList, isRequired, dataType, ...item } = curr!
+
+            if (childList?.length) {
+              prev[name!] = this.parseToSchema(childList, dataType!, {
                 ...item,
+                example: safeStringify(
+                  item.paramAttr?.example || this.children2object(childList)
+                )
+              })
+            } else {
+              const type =  getDataType(dataType!)
+
+              prev[name!] = {
+                ...this.createBaseSchemaObject(item),
                 type: type as any,
-                enum: curr.enum?.length
-                  ? curr.enum.map((n) => n.value)
-                  : undefined,
-                items: type === 'array' ? {} : undefined
+                enum:
+                  curr?.paramAttr?.paramValueList === undefined
+                    ? undefined
+                    : [].concat(safeJSONParse(curr?.paramAttr?.paramValueList)),
+                items: dataType === ApiParamsType.array ? {} : undefined
               }
             }
 
@@ -251,24 +336,35 @@ class PcToOpenAPI {
     }, initObj)
   }
 
-  generateResponseHeaders(headers?: ApiEditHeaders[]) {
-    return headers?.reduce((prev, curr) => {
-      prev[curr.name] = curr
-      return prev
-    }, {})
+  generateResponseHeaders(
+    headers: ResponseParams['headerParams'] = []
+  ): OpenAPIV3.ResponseObject['headers'] {
+    return headers?.reduce<Record<string, OpenAPIV3.HeaderObject>>(
+      (prev, curr) => {
+        prev[curr!.name!] = {
+          description: curr!.description,
+          required: Boolean(curr!.isRequired),
+          example: curr?.paramAttr?.example
+        }
+        return prev
+      },
+      {}
+    )
   }
 
-  getRequired(data: ApiEditBody[]) {
+  getRequired(data: RequestParams['bodyParams']) {
     const requireds = [
-      ...new Set(data?.filter((it) => it.required).map((it) => it.name) || [])
+      ...new Set(
+        data?.filter((it) => it?.isRequired).map((it) => it?.name) || []
+      )
     ]
     return requireds.length ? requireds : undefined
   }
 
   generateTags(): OpenAPIV3.TagObject[] {
-    return this.postcatData.group.map(({ name }) => ({
-      name,
-      description: name
+    return this.postcatData.groupList!.map((item) => ({
+      name: item?.name!,
+      description: item?.name!
     }))
   }
 }
