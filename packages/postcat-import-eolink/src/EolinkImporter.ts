@@ -1,10 +1,7 @@
+import { ContentType, mui, Protocol, RequestMethod } from '../../../shared/src/types/api.model'
+import { ApiData, BodyParam, HeaderParam } from '../../../shared/src/types/apiData'
+import { Collection, CollectionTypeEnum, ImportProjectDto } from '../../../shared/src/types/pcAPI'
 import { isObject } from '../../../shared/src/utils/is'
-
-import {
-  Collections,
-  Child,
-  ApiEditHeaders
-} from '../../../shared/src/types/pcAPI'
 
 const METHOD_ARR = [
   'POST',
@@ -35,13 +32,13 @@ const tmpParamTypeArr = [
   'null'
 ] as const
 
-const protocolSupports = ['http', 'https', 'soap'] as const
+const protocolSupports = [Protocol.HTTP, Protocol.HTTPS, Protocol.SOAP] as const
 
 const apiBodyTypes = ['formData', 'raw', 'json', 'xml', 'binary'] as const
 
 const responseType = ['json', 'xml', 'raw', 'binary'] as const
 export class EolinkImporter {
-  postcatData: Collections
+  postcatData: ImportProjectDto
   eolinkData
 
   constructor(data) {
@@ -52,14 +49,20 @@ export class EolinkImporter {
     )
   }
 
-  transformToPostcat(data): Collections {
+  transformToPostcat(data): ImportProjectDto {
     const projectName = this.eolinkData?.projectInfo?.projectName
     const collections = projectName
-      ? [{ name: projectName, children: this.transformItems(data) }]
+      ? [
+          { 
+            name: projectName,
+            collectionType: CollectionTypeEnum.GROUP,
+            children: this.transformItems(data) 
+          }
+      ]
       : this.transformItems(data)
     return {
       collections,
-      environments: this.transformEnv(this.eolinkData?.env)
+      environmentList: this.transformEnv(this.eolinkData?.env)
     }
   }
 
@@ -81,8 +84,7 @@ export class EolinkImporter {
     })
   }
 
-  transformItems(items: any[]): Child[] {
-    console.log('items', items)
+  transformItems(items: any[]): ImportProjectDto['collections'] {
     return items.map((item) => {
       const groupList =
         item.childGroupList || item.apiGroupList || item.apiGroupChildList
@@ -102,37 +104,47 @@ export class EolinkImporter {
             restfulParam
           } = apiItem
 
+          const protocol = apiType.startsWith('http')
+          ? apiType
+          : protocolSupports.includes(apiType)
+          ? 'http'
+          : apiType
+
           return {
+            collectionType: CollectionTypeEnum.API_DATA,
             name: baseInfo?.apiName,
             uri: baseInfo?.apiURI,
-            protocol: apiType.startsWith('http')
-              ? apiType
-              : protocolSupports.includes(apiType)
-              ? 'http'
-              : apiType,
+            protocol: Protocol[protocol.toUpperCase()],
             method: METHOD_ARR[baseInfo?.apiRequestType || 0],
-            requestBodyType: apiBodyTypes[baseInfo.apiRequestParamType],
-            requestBodyJsonType: ['array', 'object'][
-              baseInfo?.apiRequestParamJsonType
-            ],
-            requestBody: this.handleInfo(requestInfo),
-            queryParams: this.handleInfo(urlParam),
-            restParams: this.handleInfo(restfulParam || []),
-            requestHeaders: this.handleResponseHeaders(headerInfo || []),
-            responseHeaders: this.handleResponseHeaders(
-              apiItem.responseHeader || []
-            ),
-            responseBodyType:
-              responseType[resultInfo?.[0]?.responseType] || 'json',
-            responseBodyJsonType: ['object', 'array'][
-              resultInfo?.[0]?.paramJsonType || 0
-            ],
-            responseBody: this.handleInfo(resultInfo?.[0]?.paramList || [])
-          }
+            apiAttrInfo: {
+              requestMethod: RequestMethod[METHOD_ARR[baseInfo?.apiRequestType || 0]],
+              contentType: baseInfo.apiRequestParamType
+            },
+            requestParams: {
+              headerParams:this.handleResponseHeaders(headerInfo || []),
+              queryParams: this.handleInfo(urlParam, 'queryParams'),
+              restParams: this.handleInfo(restfulParam || [], 'restParams'),
+              bodyParams: this.handleInfo(requestInfo, 'bodyParams')
+            },
+            responseList: [
+              {
+                isDefault: 1,
+                contentType: this.getResponseContentType(apiItem),
+                responseParams: {
+                  headerParams: this.handleResponseHeaders(
+                    apiItem.responseHeader || []
+                  ),
+                  bodyParams: this.handleResponseBody(apiItem)
+                }
+              }
+            ] , 
+          } as Collection
         }) || []
+
 
       return {
         name: item.groupName,
+        collectionType: CollectionTypeEnum.GROUP,
         children: [
           ...group,
           ...apis.filter((n) => protocolSupports.includes(n.protocol))
@@ -149,7 +161,7 @@ export class EolinkImporter {
     )
   }
 
-  handleRequestHeader(headerList): ApiEditHeaders[] {
+  handleRequestHeader(headerList): HeaderParam[] {
     return (
       headerList.map((n) => ({
         name: n.headerName,
@@ -164,7 +176,7 @@ export class EolinkImporter {
     return paramNotNull === '0'
   }
 
-  handleStructureData(infoItem) {
+  handleStructureData(infoItem, _in?: keyof typeof mui) {
     const { globaldataStructureList = [], dataStructureList = [] } =
       this.eolinkData
 
@@ -183,44 +195,79 @@ export class EolinkImporter {
           }
         }
         return {
-          type: tmpParamTypeArr[s.paramType],
+          partType: mui[_in!],
+          dataType: Number(s.paramType),
           name: s.paramKey,
-          required: this.isRequired(s.paramNotNull),
-          example: this.getDefaultValue(s),
+          isRequired: Number(this.isRequired(s.paramNotNull)),
+          paramAttr: {
+            example: this.getDefaultValue(s),
+          },
           description: s.paramName || '',
-          children: this.handleInfo(s.childList)
-        }
+          childList: this.handleInfo(s.childList,_in)
+        } as BodyParam
       })
     }
   }
 
-  handleInfo(info: any[] = []) {
+  handleInfo(info: any[] = [], _in?: keyof typeof mui): BodyParam[] {
     return info
-      .flatMap((item) => {
+      .flatMap<BodyParam>((item) => {
         // 是否是引用数据结构
         if (item.structureID) {
-          return this.handleStructureData(item)
+          return this.handleStructureData(item, _in)
           // 普通数据
         } else {
           return {
-            type: tmpParamTypeArr[item.paramType],
+            partType: mui[_in!],
+            dataType: Number(item.paramType),
             name: item.paramKey,
-            required: this.isRequired(item.paramNotNull),
-            example: this.getDefaultValue(item),
+            isRequired: Number(this.isRequired(item.paramNotNull)),
+            paramAttr: {
+              example: this.getDefaultValue(item),
+            },
             description: item.paramName || '',
-            children: this.handleInfo(item.childList)
+            childList: this.handleInfo(item.childList, _in)
           }
         }
       })
       .filter(Boolean)
   }
 
-  handleResponseHeaders(responseHeader: any[] = []): ApiEditHeaders[] {
+  handleResponseBody(api) {
+    const { apiSuccessMock, apiFailureMock, resultInfo } = api.baseInfo
+    if (resultInfo?.[0]?.paramList?.length) {
+     return this.handleInfo(resultInfo?.[0]?.paramList)
+    } else if (apiSuccessMock || apiFailureMock) {
+      return [
+        {
+          name: '',
+          isRequired: 1,
+          binaryRawData: apiSuccessMock || apiFailureMock,
+          paramAttr: {}
+        }
+      ]
+    } else {
+      return []
+    }
+  }
+
+  getResponseContentType(apiItem){
+    if (apiItem.resultInfo?.[0]?.paramList?.length) {
+    return ContentType[responseType[apiItem.resultInfo?.[0]?.responseType]] || ContentType.JSON_OBJECT
+    } else {
+      return ContentType.RAW
+    }
+  }
+
+  handleResponseHeaders(responseHeader: any[] = []): HeaderParam[] {
     return responseHeader.map((n) => ({
       name: n.headerName || '',
-      required: n.paramNotNull === '0',
-      example: this.getDefaultValue(n),
-      description: n.paramName || ''
+      partType: mui.headerParams,
+      isRequired: Number(n.paramNotNull === '0'), 
+      description: n.paramName || '',
+      paramAttr: {
+        example: this.getDefaultValue(n),
+      }
     }))
   }
 }

@@ -1,4 +1,4 @@
-import { ApiBodyType, RequestMethod } from "./api.model";
+import { ApiBodyType, ContentType, RequestMethod } from "./api.model";
 
 export interface ApiData {
   id?: number;
@@ -220,7 +220,7 @@ export interface ResponseList {
   apiUuid?: string;
   name?: string;
   httpCode?: string;
-  contentType?: number;
+  contentType?: ContentType;
   isDefault: number;
   createTime?: number;
   updateTime?: number;
