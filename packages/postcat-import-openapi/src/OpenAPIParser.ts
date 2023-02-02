@@ -11,6 +11,7 @@ import { safeStringify } from '../../../shared/src/utils/common'
 import {
   ApiParamsType,
   ContentType,
+  mui,
   Protocol,
   RequestMethod
 } from '../../../shared/src/types/api.model'
@@ -42,11 +43,11 @@ const typeMap = {
   integer: 'int'
 }
 
-const mui = {
-  header: 0,
-  body: 1,
-  query: 2,
-  path: 3
+const partTypeMap = {
+  header: mui.headerParams,
+  body: mui.bodyParams,
+  query: mui.queryParams,
+  path: mui.restParams
 }
 
 const formatType = (type: string) => {
@@ -205,7 +206,7 @@ export class OpenAPIParser {
       if (this.is$ref(curr)) {
       } else if (_in === curr.in) {
         prev.push(this.genParams( curr, { 
-          partType: mui[_in],
+          partType: partTypeMap[_in],
           orderNo: index
         }))
       }
@@ -283,7 +284,7 @@ export class OpenAPIParser {
         // ...other, 
         name,
         isRequired: Number(required.includes(name)),
-        partType: mui.body,
+        partType: partTypeMap.body,
         dataType: ~~ApiParamsType[
             value.type || formatType(type!) || getDataType(defaultValue ?? '')
           ],
@@ -424,7 +425,7 @@ export class OpenAPIParser {
           prev.push(
             this.genParams( detail, {
               name,
-              partType: mui.header,
+              partType: partTypeMap.header,
               orderNo: index
             })
           )
