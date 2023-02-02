@@ -98,7 +98,6 @@ export class EolinkImporter {
             baseInfo,
             apiType,
             requestInfo,
-            resultInfo,
             headerInfo,
             urlParam,
             restfulParam
