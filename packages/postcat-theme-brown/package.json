@@ -1,7 +1,7 @@
 {
   "name": "vscode-postcat-brown",
   "title": "VSCode Theme brown Dark",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "VSCode brown theme",
   "author": {
     "name": "Postcat"
@@ -17,7 +17,7 @@
     "theme": [
       {
         "label": "${theme.label}",
-        "baseTheme": "pc-dark",
+        "baseTheme": "pc",
         "id": "vscode-brown",
         "path": "./themes/default.json"
       }
