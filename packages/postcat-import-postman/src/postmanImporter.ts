@@ -1,14 +1,8 @@
 import { isString, isObject, uniqueSlash, getDataType } from './utils'
 
 import {
-  Collections,
-  Environment,
-  Child,
-  ApiData,
-  ApiEditHeaders,
-  ApiEditBody,
-  ApiBodyEnum,
-  JsonRootType
+  CollectionTypeEnum,
+  ImportProjectDto
 } from '../../../shared/src/types/pcAPI'
 import type {
   Items,
@@ -21,10 +15,13 @@ import type {
   VariableList
 } from './types/postman-collection'
 import { text2UiData } from '../../../shared/src/utils/data-transfer'
-import { whatTextType, safeStringify } from '../../../shared/src/utils/common'
+import { whatTextType, safeStringify, safeJSONParse } from '../../../shared/src/utils/common'
+import { Group } from '../../../shared/src/types/group'
+import { ApiData, BodyParam, HeaderParam, QueryParam, RequestParams, ResponseParams } from '../../../shared/src/types/apiData'
+import { ApiBodyType, ApiParamsType, ContentType, mui, Protocol, RequestMethod } from '../../../shared/src/types/api.model'
 
 export class PostmanImporter {
-  postcatData: Collections
+  postcatData: ImportProjectDto
   postmanData: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
 
   constructor(data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210) {
@@ -34,7 +31,7 @@ export class PostmanImporter {
 
   transformToPostcat(
     data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
-  ): Collections {
+  ): ImportProjectDto {
     return {
       collections: this.transformItems([
         {
@@ -42,44 +39,55 @@ export class PostmanImporter {
           item: data.item
         }
       ]),
-      environments: this.transformEnv(data.variable)
+      environmentList: this.transformEnv(data.variable)
     }
   }
 
-  transformItems(items: Items[]): Child[] {
+  transformItems(items: Items[]): ImportProjectDto['collections'] {
     return items.map((item) => {
       if (!item.request) {
         return {
           name: item.name,
+          collectionType: CollectionTypeEnum.GROUP,
           children:
             Array.isArray(item.item) && item.item.length
               ? this.transformItems(item.item)
               : []
-        }
+        } as Group
       }
       const request = item.request as Request1
       const response = item.response as Response[]
 
       return {
+        collectionType: CollectionTypeEnum.API_DATA,
         name: item.name,
         uri: this.handleUrl(request?.url),
-        protocol: 'http',
-        method: request?.method,
-        requestBodyType: this.handleRequestBodyType(request?.body),
-        requestBodyJsonType: this.handleJsonRootType(request?.body),
-        requestBody: this.handleRequestBody(request?.body),
-        queryParams: this.handleQueryParams(request?.url),
-        restParams: [],
-        requestHeaders: this.handleRequestHeader(request?.header),
-        responseHeaders: this.handleResponseHeaders(response),
-        responseBodyType: this.handleResponseBodyType(response),
-        responseBodyJsonType: 'object',
-        responseBody: this.handleResponseBody(response)
-      }
+        protocol: Protocol.HTTP,
+        apiAttrInfo: {
+          requestMethod: RequestMethod[request?.method?.toUpperCase() || 'GET'],
+          contentType: this.handleRequestBodyType(request?.body)
+        },
+        requestParams: {
+          headerParams: this.handleRequestHeader(request?.header),
+          queryParams: this.handleQueryParams(request?.url),
+          restParams: [],
+          bodyParams: this.handleRequestBody(request?.body),
+        },
+        responseList: [
+          {
+            isDefault: 1,
+            contentType: this.handleResponseBodyType(response),
+            responseParams: {
+              headerParams: this.handleResponseHeaders(response),
+              bodyParams: this.handleResponseBody(response)
+            }
+          }
+        ], 
+      } as ApiData
     })
   }
 
-  transformEnv(postmanEnv: VariableList = []): Environment[] {
+  transformEnv(postmanEnv: VariableList = []): ImportProjectDto['environmentList'] {
     return [
       {
         name: 'postImport',
@@ -103,57 +111,70 @@ export class PostmanImporter {
     }
   }
 
-  handleQueryParams(url: Url = ''): ApiData['queryParams'] {
+  handleQueryParams(url: Url = ''): RequestParams['queryParams'] {
     if (isString(url)) {
       return []
     } else {
       return (
         url.query?.map((n) => ({
           name: n.key || '',
-          example: n.value || '',
-          required: false,
-          description: n.description as string
+          partType: mui.queryParams,
+          dataType: ApiParamsType[typeof n.value],
+          isRequired: 0,
+          description: n.description as string,
+          paramAttr: {
+            example: n.value || '',
+          },
         })) || []
       )
     }
   }
 
-  handleRequestHeader(headerList: HeaderList | string = []): ApiEditHeaders[] {
+  handleRequestHeader(headerList: HeaderList | string = []): HeaderParam[] {
     if (isString(headerList)) {
       return []
     } else {
       return (
         headerList.map((n) => ({
           name: n.key,
-          example: n.value,
-          required: true,
-          description: n.description as string
+          partType: mui.headerParams,
+          isRequired: 0,
+          description: n.description as string,
+          paramAttr: {
+            example: n.value,
+          }
         })) || []
       )
     }
   }
 
-  handleRequestBodyType(body: Request1['body']): ApiBodyEnum {
+  handleRequestBodyType(body: Request1['body']): ContentType {
     switch (body?.mode) {
-      case ApiBodyEnum.Raw:
+      case 'raw':
         const type = whatTextType(body.raw)
-        return ['xml', 'json'].includes(type) ? type : ApiBodyEnum.Raw
+        if (type === 'xml') {
+          return ContentType.XML
+        } else if (type === 'json') {
+          return Array.isArray(safeJSONParse(body.raw)) ? ContentType.JSON_ARRAY : ContentType.JSON_OBJECT
+        } else {
+          return  ContentType.RAW
+        }
       case 'file':
-        return ApiBodyEnum.Binary
+        return ContentType.BINARY
       case 'formdata':
-        return ApiBodyEnum['Form-data']
+        return ContentType.FROM_DATA
       case 'urlencoded':
-        return ApiBodyEnum['Form-data']
+        return ContentType.FROM_DATA
       default:
-        return ApiBodyEnum.JSON
+        return ContentType.JSON_OBJECT
     }
   }
 
-  handleResponseBodyType(res: Response[] = []): ApiBodyEnum {
+  handleResponseBodyType(res: Response[] = []): ContentType {
     return this.handleRequestBodyType(res[0]?.body as Request1['body'])
   }
 
-  handleRequestBody(body: Request1['body']): ApiEditBody[] | string {
+  handleRequestBody(body: Request1['body']): RequestParams['bodyParams'] {
     if (Object.is(body, null)) {
       return []
     } else if (body?.mode === 'raw') {
@@ -164,7 +185,14 @@ export class PostmanImporter {
         return text2UiData(body.raw || '').data
       } catch (error) {
         console.error(error)
-        return body.raw || ''
+        return [
+          {
+            name: '',
+            isRequired: 1,
+            binaryRawData: body.raw || '',
+            paramAttr: {}
+          }
+        ] 
       }
     } else if (['formdata', 'urlencoded'].includes(body?.mode!)) {
       const data = body?.[body.mode!] as NonNullable<
@@ -172,53 +200,68 @@ export class PostmanImporter {
       >['formdata']
       return (
         data?.map((n) => ({
-          type: n.type === 'file' ? 'file' : 'string',
+          dataType: n.type === 'file' ? ApiParamsType.file : ApiParamsType.string,
           name: n.key,
-          required: true,
-          example: n.value as string,
-          description: n.description as string
+          partType: mui.bodyParams,
+          isRequired: 0,
+          description: n.description as string,
+          paramAttr: {
+            example: n.value as string,
+          },
         })) || []
       )
     }
     return []
   }
 
-  handleResponseBody(res: Response[] = []): ApiEditBody[] | string {
+  handleResponseBody(res: Response[] = []): ResponseParams['bodyParams'] {
     try {
-      const result = JSON.parse(res[0].body.replace(/\s/g, ''))
+      const result = JSON.parse(res[0].body?.replace(/\s/g, '')!)
       return [].concat(result).flatMap((item) => {
-        return Object.entries(item).map(([key, value]) => ({
+        return Object.entries(item).map<BodyParam>(([key, value]) => ({
           description: '',
-          example: safeStringify(value),
           name: key,
-          required: true,
-          type: getDataType(value),
-          children:
+          isRequired: 0,
+          dataType: ApiParamsType[getDataType(value)],
+          paramAttr: {
+            example: safeStringify(value),
+          },
+          childList:
             value && typeof value === 'object'
               ? this.transformBodyData(value)
               : undefined
         }))
       })
     } catch (error) {
-      return res[0]?.body ?? []
+      return [
+        {
+          name: '',
+          isRequired: 1,
+          binaryRawData: res[0]?.body ?? '',
+          paramAttr: {}
+        }
+      ]
     }
   }
 
-  transformBodyData(val: Record<string, any>[]): ApiEditBody[] {
+  transformBodyData(val: Record<string, any>[]): BodyParam[] {
     return Array()
       .concat(val)
       .flatMap((n) => {
         if (typeof n !== 'object') {
           return []
         }
-        return Object.entries<any>(n).map(([key, value]) => {
+        return Object.entries<any>(n).map<BodyParam>(([key, value], index) => {
           return {
             description: '',
-            example: safeStringify(value),
             name: key,
-            required: true,
-            type: getDataType(value),
-            children:
+            isRequired: 0,
+            orderNo: index,
+            dataType: ApiParamsType[getDataType(value)],
+            paramAttr: {
+              example: safeStringify(value),
+            },
+            childList:
               value && typeof value === 'object'
                 ? this.transformBodyData(value)
                 : undefined
@@ -227,14 +270,16 @@ export class PostmanImporter {
       })
   }
 
-  handleResponseHeaders(res: Response[] = []): ApiEditHeaders[] {
+  handleResponseHeaders(res: Response[] = []): HeaderParam[] {
     if (Array.isArray(res[0]?.header)) {
       return res[0].header
         .filter((n): n is Header => !isString(n))
         .map((n) => ({
           name: n.key,
-          required: Boolean(n.disabled),
-          example: n.value,
+          isRequired: 0,
+          paramAttr: {
+            example: n.value,
+          },
           description: n.description as string
         }))
     } else {
@@ -242,7 +287,7 @@ export class PostmanImporter {
     }
   }
 
-  handleJsonRootType(body: Request1['body']): JsonRootType {
+  handleJsonRootType(body: Request1['body']): ContentType {
     let _body = body?.raw
 
     if (isString(_body)) {
@@ -252,9 +297,9 @@ export class PostmanImporter {
     }
 
     if (Array.isArray(_body)) {
-      return JsonRootType.Array
+      return ContentType.JSON_ARRAY
     } else {
-      return JsonRootType.Object
+      return ContentType.JSON_OBJECT
     }
   }
 }
