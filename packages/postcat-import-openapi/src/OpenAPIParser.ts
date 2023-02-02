@@ -78,7 +78,7 @@ export class OpenAPIParser {
     this.data = {
       collections: [
         {
-          name: info.title || 'Default',
+          name: info.title || 'Import openapi collection',
           collectionType: CollectionTypeEnum.GROUP,
           children: [...Object.values(this.groups), ...this.apiDatas]
         }
