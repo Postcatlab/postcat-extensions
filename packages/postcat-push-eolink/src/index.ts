@@ -8,6 +8,7 @@ const url =
 export const sync_to_remote = async (data) => {
   const projectId = window.eo.getExtensionSettings?.('eolink.projectID')
   const secretKey = window.eo.getExtensionSettings?.('eolink.token')
+
   if (!(projectId && secretKey)) {
     return {
       status: 1,
@@ -46,7 +47,7 @@ export const sync_to_remote = async (data) => {
     projectData = new PcToOpenAPI({
       version: data.version,
       environmentList: data.environments,
-      collections: [...groups, apis],
+      collections: [...groups, ...apis],
     }).data
   }
   const formData = new FormData()
