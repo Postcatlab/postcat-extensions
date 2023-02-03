@@ -1,7 +1,7 @@
 export const importFunc = (data = {}) => {
-  data.collections=[{
-    name:"Default",
-    children:data.collections
-  }]
+  // data.collections=[{
+  //   name:"Default",
+  //   children:data.collections
+  // }]
   return [data, null]
 }

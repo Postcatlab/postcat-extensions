@@ -1,4 +1,5 @@
-import { ApiData, ApiGroup } from '../../../shared/src/types/pcAPI'
+import { ApiData } from 'shared/src/types/apiData'
+import { Group } from '../../../shared/src/types/group'
 import { compareVersion } from '../../../shared/src/utils/common'
 import PcToOpenAPI from '../../postcat-export-openapi/src/Pc2OpenAPI'
 
@@ -17,7 +18,7 @@ export const sync_to_remote = async (data) => {
   if (compareVersion(data.version || '1.0.0', '1.12.0') < 0) {
     projectData = new PcToOpenAPI(projectData).data
   } else {
-    const groups: any | ApiGroup[] = []
+    const groups: any | Group[] = []
     const apis: ApiData[] = []
     let groupIndex = 1
     const flatData = (arr, groupID) => {
@@ -44,10 +45,8 @@ export const sync_to_remote = async (data) => {
     flatData(projectData.collections, 0)
     projectData = new PcToOpenAPI({
       version: data.version,
-      project: data.project,
-      environment: data.environments,
-      apiData: apis,
-      group: groups
+      environmentList: data.environments,
+      collections: [...groups, apis],
     }).data
   }
   const formData = new FormData()

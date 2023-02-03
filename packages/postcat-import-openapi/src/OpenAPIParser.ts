@@ -1,35 +1,53 @@
 import type { OpenAPIV3 } from 'openapi-types'
 import {
-  ApiBodyEnum,
-  ApiData,
-  ApiEditBody,
-  ApiGroup,
-  BasiApiEditParams,
-  Collections,
+  Collection,
+  CollectionTypeEnum,
   Environment,
   EnvParameters,
-  JsonRootType,
-  RequestMethod
+  ImportProjectDto
 } from '../../../shared/src/types/pcAPI'
 import { getDataType } from '../../../shared/src/utils/is'
 import { safeStringify } from '../../../shared/src/utils/common'
+import {
+  ApiParamsType,
+  ContentType,
+  mui,
+  Protocol,
+  RequestMethod
+} from '../../../shared/src/types/api.model'
+import { Group } from '../../../shared/src/types/group'
+import {
+  ApiData,
+  BodyParam,
+  HeaderParam
+} from '../../../shared/src/types/apiData'
 
-export const contentTypeMap = new Map<string, ApiBodyEnum>([
-  ['application/json', ApiBodyEnum.JSON],
-  ['application/xml', ApiBodyEnum.XML],
-  ['application/x-www-form-urlencode', ApiBodyEnum['Form-data']],
-  ['multipart/form-data', ApiBodyEnum['Form-data']],
-  ['text/plain', ApiBodyEnum.Raw]
-])
+export const contentTypeMap = new Map([
+  ['application/json', ContentType.JSON_OBJECT],
+  ['application/xml', ContentType.XML],
+  ['application/x-www-form-urlencode', ContentType.FROM_DATA],
+  ['multipart/form-data', ContentType.BINARY],
+  ['text/plain', ContentType.RAW]
+] as const)
+
+const contentTypeMapKeys = [...contentTypeMap.keys()]
+type ContentTypeMapKey  = (typeof contentTypeMapKeys)[number]
 
 export const parametersInMap = new Map([
   ['query', 'queryParams'],
   ['path', 'restParams'],
-  ['header', 'requestHeaders']
+  ['header', 'headerParams']
 ])
 
 const typeMap = {
   integer: 'int'
+}
+
+const partTypeMap = {
+  header: mui.headerParams,
+  body: mui.bodyParams,
+  query: mui.queryParams,
+  path: mui.restParams
 }
 
 const formatType = (type: string) => {
@@ -37,9 +55,9 @@ const formatType = (type: string) => {
 }
 
 export class OpenAPIParser {
-  data: Collections
+  data: ImportProjectDto
   openAPI: OpenAPIV3.Document
-  groups: { [name: string]: ApiGroup } = {}
+  groups: { [name: string]: Group } = {}
   apiDatas: ApiData[] = []
   environments: Environment[] = []
   structMap = new Map<string, OpenAPIV3.SchemaObject>()
@@ -61,11 +79,12 @@ export class OpenAPIParser {
     this.data = {
       collections: [
         {
-          name: info.title || 'Default',
+          name: info.title || 'Import openapi collection',
+          collectionType: CollectionTypeEnum.GROUP,
           children: [...Object.values(this.groups), ...this.apiDatas]
         }
       ],
-      environments: this.environments
+      environmentList: this.environments
     }
   }
 
@@ -101,13 +120,13 @@ export class OpenAPIParser {
   }
 
   generateGroups(
-    tags: OpenAPIV3.TagObject[] | OpenAPIV3.OperationObject['tags']
+    tags: OpenAPIV3.TagObject[] | OpenAPIV3.OperationObject['tags'] = []
   ) {
     return tags?.reduce<typeof this.groups>((prev, curr) => {
       if (typeof curr === 'string') {
-        prev[curr] ??= { name: curr, children: [] }
+        prev[curr] ??= { name: curr, collectionType: CollectionTypeEnum.GROUP, children: [] }
       } else {
-        prev[curr.name] ??= { name: curr.name, children: [] }
+        prev[curr.name] ??= { name: curr.name, collectionType: CollectionTypeEnum.GROUP, children: [] }
       }
       return prev
     }, this.groups)
@@ -129,28 +148,36 @@ export class OpenAPIParser {
 
             const apiData: ApiData = {
               ...obj,
+              collectionType: CollectionTypeEnum.API_DATA,
               name: obj.summary || obj.operationId || path,
               uri: path,
-              method: method.toUpperCase(),
-              protocol,
-              requestHeaders: this.generateEditParams('header', obj.parameters),
-              restParams: this.generateEditParams('path', obj.parameters),
-              queryParams: this.generateEditParams('query', obj.parameters),
-              requestBody: this.generateBody(obj.requestBody),
-              requestBodyJsonType: this.getBodyJsonType(obj.requestBody),
-              requestBodyType: this.getBodyType(
-                obj.requestBody as OpenAPIV3.RequestBodyObject
-              ),
-              responseHeaders: this.generateResponseHeaders(
-                this.getResponseObject(obj.responses)?.headers
-              ),
-              responseBody: this.generateResponseBody(obj.responses),
-              responseBodyJsonType: this.getBodyJsonType(
-                this.getResponseObject(obj.responses)
-              ),
-              responseBodyType: contentTypeMap.get(
-                this.getResponseContentType(obj.responses)
-              )
+              protocol: Protocol[protocol.toUpperCase()],
+              apiAttrInfo: {
+                requestMethod: RequestMethod[method.toUpperCase()],
+                contentType: this.getBodyType(
+                  obj.requestBody as OpenAPIV3.RequestBodyObject
+                )
+              },
+              requestParams: {
+                headerParams: this.generateEditParams('header', obj.parameters),
+                queryParams: this.generateEditParams('query', obj.parameters),
+                restParams: this.generateEditParams('path', obj.parameters),
+                bodyParams: this.generateBody(obj.requestBody)
+              },
+              responseList: [
+                {
+                  isDefault: 1,
+                  contentType: contentTypeMap.get(
+                      this.getResponseContentType(obj.responses)
+                    ),
+                  responseParams: {
+                    headerParams: this.generateResponseHeaders(
+                        this.getResponseObject(obj.responses)?.headers
+                      ),
+                    bodyParams: this.generateResponseBody(obj.responses)
+                  }
+                }
+              ] 
             }
 
             if (obj.tags?.length) {
@@ -175,16 +202,13 @@ export class OpenAPIParser {
     parameters?: (OpenAPIV3.ReferenceObject | OpenAPIV3.ParameterObject)[]
   ) {
     if (!parameters) return []
-    return parameters.reduce<BasiApiEditParams[]>((prev, curr) => {
+    return parameters.reduce<HeaderParam[]>((prev, curr, index) => {
       if (this.is$ref(curr)) {
       } else if (_in === curr.in) {
-        prev.push({
-          ...curr,
-          name: curr.name,
-          required: Boolean(curr.required),
-          example: safeStringify(curr.example ?? ''),
-          description: curr.description || ''
-        })
+        prev.push(this.genParams( curr, { 
+          partType: partTypeMap[_in],
+          orderNo: index
+        }))
       }
 
       return prev
@@ -212,15 +236,17 @@ export class OpenAPIParser {
         type = media?.schema?.type
       }
     }
-    return type === 'array' ? JsonRootType.Array : JsonRootType.Object
+    return type === 'array' ? ContentType.JSON_ARRAY : ContentType.JSON_OBJECT
   }
 
   getBodyType(body?: OpenAPIV3.RequestBodyObject) {
     if (!body?.content) {
-      return ApiBodyEnum.JSON
+      return ContentType.JSON_OBJECT
     }
-    const contentType = Object.keys(body.content).at(0)
-    return contentType ? contentTypeMap.get(contentType) : ApiBodyEnum.JSON
+    const contentType = Object.keys(body.content).at(0) as any
+    return contentType && contentTypeMap.has(contentType)
+      ? contentTypeMap.get(contentType)!
+      : ContentType.JSON_OBJECT
   }
 
   is$ref(schema: any = {}): schema is OpenAPIV3.ReferenceObject {
@@ -240,7 +266,7 @@ export class OpenAPIParser {
     properties: OpenAPIV3.BaseSchemaObject['properties'] = {},
     required: string[] = [],
     lastRef = ''
-  ) {
+  ): BodyParam[] {
     return Object.entries(properties).map(([name, value]) => {
       const [ref] = this.get$Ref(value)
       const schemaObject = ref
@@ -254,14 +280,18 @@ export class OpenAPIParser {
       const { type, description, default: defaultValue, example } = schemaObject
       // const ref = this.get$Ref(schemaObject)
 
-      const editBody = {
-        // ...other,
+      const editBody: BodyParam = {
+        // ...other, 
         name,
-        required: required.includes(name),
-        example: safeStringify(defaultValue || example || ''),
-        type:
-          value.type || formatType(type!) || getDataType(defaultValue ?? ''),
-        description: description || ''
+        isRequired: Number(required.includes(name)),
+        partType: partTypeMap.body,
+        dataType: ~~ApiParamsType[
+            value.type || formatType(type!) || getDataType(defaultValue ?? '')
+          ],
+        description: description || '',
+        paramAttr: {
+          example: safeStringify(defaultValue || example || '')
+        }
       }
 
       if (ref === lastRef || this.propertiesMap.get(ref)) {
@@ -276,7 +306,7 @@ export class OpenAPIParser {
         const schema = this.getSchemaBy$ref(ref)
         Object.assign(editBody, {
           // type: type,
-          children: schema?.properties
+          childList: schema?.properties
             ? this.transformProperties(schema?.properties, schema.required, ref)
             : undefined
         })
@@ -286,7 +316,7 @@ export class OpenAPIParser {
       ) {
         const items = schemaObject?.items as OpenAPIV3.SchemaObject
         Object.assign(editBody, {
-          children: this.transformProperties(
+          childList: this.transformProperties(
             items?.properties,
             items.required,
             ref
@@ -294,7 +324,7 @@ export class OpenAPIParser {
         })
       } else if (type === 'object' && schemaObject?.properties) {
         Object.assign(editBody, {
-          children: this.transformProperties(
+          childList: this.transformProperties(
             schemaObject?.properties,
             schemaObject.required,
             ref
@@ -307,7 +337,7 @@ export class OpenAPIParser {
 
   schema2PostcatiEditBody(
     schema?: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject
-  ): ApiEditBody[] | string {
+  ): BodyParam[] {
     if (!schema) return []
 
     if (this.is$ref(schema)) {
@@ -328,7 +358,7 @@ export class OpenAPIParser {
     } else if (schema.type === 'object') {
       return this.transformProperties(schema?.properties, schema.required)
     } else {
-      return schema.example
+      return []
     }
   }
 
@@ -342,7 +372,7 @@ export class OpenAPIParser {
       | OpenAPIV3.ReferenceObject
       | OpenAPIV3.RequestBodyObject
       | OpenAPIV3.ResponseObject
-  ): ApiEditBody[] | string {
+  ): [] | BodyParam[] {
     if (!body) {
       return []
     }
@@ -368,10 +398,10 @@ export class OpenAPIParser {
     }
   }
 
-  getResponseContentType(responses: OpenAPIV3.ResponsesObject) {
+  getResponseContentType(responses: OpenAPIV3.ResponsesObject): ContentTypeMapKey {
     const resObj = this.getResponseObject(responses)
     if (resObj?.content) {
-      return Object.keys(resObj?.content).at(0) || 'application/json'
+      return Object.keys(resObj?.content).at(0) as ContentTypeMapKey || 'application/json'
     } else {
       return 'application/json'
     }
@@ -389,21 +419,36 @@ export class OpenAPIParser {
   }
 
   generateResponseHeaders(headers: OpenAPIV3.ResponseObject['headers'] = {}) {
-    return Object.entries(headers).reduce<BasiApiEditParams[]>(
-      (prev, [name, detail]) => {
+    return Object.entries(headers).reduce<BodyParam[]>(
+      (prev, [name, detail], index) => {
         if (!this.is$ref(detail)) {
-          prev.push({
-            ...detail,
-            name: name,
-            required: Boolean(detail.required),
-            example: safeStringify(detail.example ?? ''),
-            description: detail.description || ''
-          })
+          prev.push(
+            this.genParams( detail, {
+              name,
+              partType: partTypeMap.header,
+              orderNo: index
+            })
+          )
         }
-
         return prev
       },
       []
     )
+  }
+
+  genParams(
+    obj: OpenAPIV3.ParameterBaseObject,
+    opts?: BodyParam
+  ): BodyParam {
+    return {
+      ...obj,
+      dataType: ~~ApiParamsType[obj?.type],
+      isRequired: Number(obj.required),
+      description: obj.description || '',
+      paramAttr: {
+        example: safeStringify(obj.example ?? '')
+      },
+      ...opts
+    }
   }
 }
