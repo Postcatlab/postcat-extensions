@@ -358,7 +358,7 @@ export class OpenAPIParser {
     } else if (schema.type === 'object') {
       return this.transformProperties(schema?.properties, schema.required)
     } else {
-      return schema.example
+      return []
     }
   }
 
