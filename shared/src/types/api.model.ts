@@ -215,3 +215,12 @@ export const IMPORT_MUI = {
   0: 'formData',
   6: 'json'
 }
+
+
+
+export const mui = {
+  headerParams: 0,
+  bodyParams: 1,
+  queryParams: 2,
+  restParams: 3
+};

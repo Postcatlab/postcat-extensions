@@ -1,6 +1,6 @@
 {
   "name": "postcat-export-openapi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "title": "Export OpenAPI",
