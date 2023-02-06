@@ -13,7 +13,7 @@
     "inputBorder": "rgba(51, 51, 51, 0.2)",
     "selectBorder": "rgba(51, 51, 51, 0.2)",
     "inputPlaceholder": "#767676",
-    "selectItemSelectedText": "#616161",
+    "selectItemSelectedText": "#fff",
     "selectItemSelectedBackground": "#0060c0",
     "layoutHeaderBackground": "rgb(221, 221, 221)",
     "layoutSidebarBackground": "rgb(44, 44, 44)",
