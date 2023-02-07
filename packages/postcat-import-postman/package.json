@@ -1,6 +1,6 @@
 {
   "name": "postcat-import-postman",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Import Postman Collections v2.1",
   "main": "dist/index.js",
   "title": "Import Postman",
@@ -19,6 +19,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.1"
   },
+  "categories": ["Data Migration"],
   "features": {
     "importAPI": {
       "action": "importFunc",

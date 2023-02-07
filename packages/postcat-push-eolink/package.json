@@ -1,6 +1,6 @@
 {
   "name": "postcat-push-eolink",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "title": "Push to Eolink",
@@ -40,6 +40,7 @@
     "lodash-es": "^4.17.21",
     "openapi-types": "^12.0.2"
   },
+  "categories": ["Data Migration"],
   "features": {
     "syncAPI": {
       "action": "sync_to_remote",

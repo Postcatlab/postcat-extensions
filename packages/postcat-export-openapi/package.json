@@ -1,6 +1,6 @@
 {
   "name": "postcat-export-openapi",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "title": "Export OpenAPI",
@@ -37,6 +37,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.6.3"
   },
+  "categories": ["Data Migration"],
   "features": {
     "exportAPI": {
       "action": "export_convert",
