@@ -1,7 +1,7 @@
 {
   "name": "postcat-opendlp",
   "title": "OpenDLP sercurity check",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
