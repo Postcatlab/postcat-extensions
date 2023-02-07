@@ -40,7 +40,6 @@
     "configuration": {
       "type": "object",
       "properties": {
-        "type": "object",
         "postcat-opendlp.serverUrl": {
           "type": "string",
           "required": true,
