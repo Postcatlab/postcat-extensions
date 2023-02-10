@@ -1,19 +1,21 @@
 {
   "name": "postcat-apispace",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "title": "APISpace 接口商店",
   "description": "无需海外账号，免费试用 ChatGPT 3.5 API；进入 APISapce，海量 API 免费试用",
   "author": "APISpace",
   "main": "index.js",
-  "logo": "https://data.eolink.com/WXaCEzRe126f0c3fdd801b2b812f35055b091fa7d7b588f",
+  "logo": "https://data.eolinker.com/course/2cGRnzJ5bb4ddb9acd6fdcafc096b14d680fdb4a1af24a8",
   "homepage": "https://www.apispace.com/",
   "scripts": {},
   "dependencies": {},
   "devDependencies": {},
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "features": {
     "sidebarView": {
-      "icon": "https://data.eolinker.com/course/2cGRnzJ5bb4ddb9acd6fdcafc096b14d680fdb4a1af24a8",
+      "icon": "https://data.eolink.com/IUuaHGl3cd88bd737feb3f51ceaafb61e8871052885af17",
       "title": "APISpace",
       "url": "https://www.apispace.com/explore/service/?utm_source=postcat",
       "debugUrl": "https://www.apispace.com/explore/service/?utm_source=postcat",
