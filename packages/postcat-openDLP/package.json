@@ -1,7 +1,7 @@
 {
   "name": "postcat-opendlp",
   "title": "OpenDLP sercurity check",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
     "url": "https://github.com/hitsz-ids/openDLP"
@@ -14,7 +14,9 @@
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
   },
-  "categories": ["API Security"],
+  "categories": [
+    "API Security"
+  ],
   "features": {
     "apiPreviewTab": {
       "rightExtra": [

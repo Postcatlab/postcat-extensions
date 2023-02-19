@@ -28,9 +28,9 @@ Postcat 中的 openDLP 插件基于 [openDLP](https://github.com/hitsz-ids/openD
 
 ### openDLP 部署
 
-1. 从 Dockerhub 上拉取镜像：docker push longice/opendlp-eoapi:1.0.0
+1. 从 Dockerhub 上拉取镜像：docker pull longice/opendlp-eoapi:1.0.0
 
-2. Docker 部署镜像。
+2. Docker 部署镜像: docker run longice/opendlp-eoapi:1.0.0
 
 ### 插件使用
 
