@@ -1,4 +1,8 @@
-interface Window {
-  eo: any
-  pc: any
+export {};
+
+declare global {
+  interface Window {
+    eo: any;
+    pc: any;
+  }
 }

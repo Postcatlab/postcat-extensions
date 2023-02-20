@@ -1,6 +1,6 @@
 {
-  "name": "postcat-export-postcat",
-  "version": "1.0.3",
+  "name": "postcat-sync-swagger",
+  "version": "0.0.1",
   "description": "Export the JSON format file of the Postcat specification",
   "main": "dist/index.js",
   "title": "Export Postcat",
@@ -34,13 +34,35 @@
   },
   "categories": ["Data Migration"],
   "features": {
-    "exportAPI": {
-      "action": "export_convert",
-      "label": "Postcat(.json)",
-      "description": "${function.description}",
-      "icon": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
-      "filename": "Postcat-Export.json"
-    },
+    "updateAPI": {
+      "action": "updateAPI",
+      "configuration": {
+           "type": "object",
+           "properties": {
+             "server.url": {
+               "type": "string",
+               "required": false,
+               "default": "",
+               "label": "Url",
+               "description": ""
+             },
+             "server.key": {
+               "type": "string",
+               "required": false,
+               "default": "",
+               "label": "Key",
+               "description": ""
+             },
+             "server.value": {
+               "type": "string",
+               "required": false,
+               "default": "",
+               "label": "Value",
+               "description": ""
+             }
+           }
+        }
+     },
     "i18n": {
       "sourceLocale": "en-US",
       "locales": [
