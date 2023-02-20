@@ -1,7 +1,7 @@
-import { importFunc } from "../../postcat-import-openapi/"
+import { importFunc } from "../../postcat-import-openapi/src/"
 
 export const syncFunc = async () => {
-  const { url, key, value } = globalThis.pc.getProjectSettings()
+  const { url,  } = globalThis.pc.getProjectSettings()
 
   let swaggerJson
 
