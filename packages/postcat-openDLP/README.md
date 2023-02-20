@@ -30,11 +30,11 @@ Postcat 中的 openDLP 插件基于 [openDLP](https://github.com/hitsz-ids/openD
 
 1. 从 Dockerhub 上拉取镜像：docker pull longice/opendlp-eoapi:1.0.0
 
-2. Docker 部署镜像: docker run longice/opendlp-eoapi:1.0.0
+2. Docker 部署镜像: docker run -itd -p 50051:40051 longice/opendlp-eoapi:v1.0.0
 
 ### 插件使用
 
-1. 配置 OpenDLP 服务地址
+1. 配置 OpenDLP 服务地址，一般是`${服务器地址}:50051`
    ![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-openDLP/assets/images/2022-11-17-18-49-22.png)
 2. 在 API 详情页点击扫描 API 敏感词
    ![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-openDLP/assets/images/2022-11-17-18-50-30.png)
