@@ -1,6 +1,6 @@
 {
   "name": "postcat-push-eolink",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Export OpenAPI data to Eolink",
   "main": "dist/index.js",
   "title": "Push to Eolink",

@@ -90,12 +90,12 @@ export const sercurityCheck = async (model) => {
     }
   })
 
-  const serverUrl = window.pc?.getExtensionSettings('postcat-opendlp.serverUrl')
+  const serverUrl = pc?.getExtensionSettings('postcat-opendlp.serverUrl')
   if (serverUrl) {
-    const Grpc = window.pc.gRPC
+    const Grpc = pc.gRPC
     console.log('params', params)
 
-    const modal = window.pc?.modalService.create({
+    const modal = pc?.modalService.create({
       nzTitle: 'API 敏感词',
       nzBodyStyle: {
         maxHeight: '70vh',
@@ -129,7 +129,7 @@ export const sercurityCheck = async (model) => {
       opendlpTableEl.innerHTML = '暂无敏感词'
     }
   } else {
-    window.pc?.modalService.create({
+    pc?.modalService.create({
       nzTitle: '跳转设置页配置 openDLP 服务？',
       nzContent:
         '您还没有配置 openDLP 服务地址，目前无法使用本插件，请到插件管理进行配置'
