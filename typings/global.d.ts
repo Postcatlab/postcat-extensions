@@ -6,3 +6,4 @@ declare global {
     pc: any;
   }
 }
+declare var pc: any

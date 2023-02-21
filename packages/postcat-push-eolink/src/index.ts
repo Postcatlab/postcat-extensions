@@ -6,8 +6,8 @@ import PcToOpenAPI from '../../postcat-export-openapi/src/Pc2OpenAPI'
 const url =
   'https://apis.eolink.com/api/v2/api_studio/management/api/importOpenApi'
 export const sync_to_remote = async (data) => {
-  const projectId = window.eo.getExtensionSettings?.('eolink.projectID')
-  const secretKey = window.eo.getExtensionSettings?.('eolink.token')
+  const projectId = pc.getExtensionSettings?.('eolink.projectID')
+  const secretKey = pc.getExtensionSettings?.('eolink.token')
 
   if (!(projectId && secretKey)) {
     return {
@@ -47,7 +47,7 @@ export const sync_to_remote = async (data) => {
     projectData = new PcToOpenAPI({
       version: data.version,
       environmentList: data.environments,
-      collections: [...groups, ...apis],
+      collections: [...groups, ...apis]
     }).data
   }
   const formData = new FormData()
