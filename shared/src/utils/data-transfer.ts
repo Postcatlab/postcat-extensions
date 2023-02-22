@@ -419,3 +419,22 @@ export const uiData2Json = function (eoapiArr: ApiEditBody[], inputOptions) {
   loopFun(eoapiArr, result)
   return result
 }
+
+
+
+const fields = ['createUserId', 'updateUserId', 'managerId', 'id', 'groupId', 'projectId']
+
+export const filterFieds = (data:any[] = []) => {
+  data.forEach(item => {
+    fields.forEach(k => Reflect.deleteProperty(item, k))
+    if (item.children?.length || item.childList?.length) {
+      filterFieds(item.children || item.childList)
+    }
+    if (item.responseList?.length) {
+      filterFieds(item.responseList)
+    }
+    if (item.apiAttrInfo) {
+      fields.forEach(k => Reflect.deleteProperty(item.apiAttrInfo, k))
+    }
+  })
+}
