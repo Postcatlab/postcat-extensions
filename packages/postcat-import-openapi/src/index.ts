@@ -17,6 +17,5 @@ export const importFunc = (openapi: OpenAPIV3.Document) => {
   }
 
   const data = new OpenAPIParser(openapi).data
-  console.log('openapi import res', window.structuredClone?.(data))
   return [data, null]
 }
