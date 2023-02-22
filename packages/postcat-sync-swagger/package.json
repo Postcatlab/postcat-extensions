@@ -1,7 +1,7 @@
 {
   "name": "postcat-sync-swagger",
   "version": "0.0.1",
-  "description": "Export the JSON format file of the Postcat specification",
+  "description": "Sync API from URL",
   "main": "dist/index.js",
   "title": "Sync Swagger",
   "logo": "https://ng.ant.design/assets/img/logo.svg",
