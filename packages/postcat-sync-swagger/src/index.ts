@@ -10,16 +10,20 @@ export const updateAPI = async () => {
   let swaggerJson
 
   try {
-     swaggerJson = await fetch(data.url).then(res => res.json())
+     const response = await fetch(data.url)
+     if (response.status >= 400) {
+      return [null, response.statusText]
+     }
+     swaggerJson = await response.json()
   } catch (error) {
     return [null, error]
   }
 
-  const [apiDatas, importErr] = importFunc(swaggerJson)
+  const [result, importErr] = importFunc(swaggerJson) as any
 
   if (importErr) {
-    return [apiDatas, importErr]
+    return [result, importErr]
   }
 
- return globalThis.pc.updateAPIData(apiDatas)
+ return globalThis.pc.updateAPIData(result?.collections)
 }
