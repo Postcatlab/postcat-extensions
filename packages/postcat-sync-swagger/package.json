@@ -1,6 +1,7 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "name": "postcat-sync-swagger",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Sync API from URL",
   "main": "dist/index.js",
   "title": "Sync Swagger",
@@ -48,15 +49,48 @@
             "label": "Swagger URL",
             "required": true
           },
-          "key": {
-            "type": "string",
-            "label": "Basic Auth Key"
-          },
-          "value": {
-            "type": "string",
-            "label": "Basic Auth Value"
+          "basicAuth": {
+            "type": "boolean",
+            "label": "Basic Auth",
+            "span": 4,
+            "default": false
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "basicAuth": {
+                  "const": true
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "label": "Basic Auth Key"
+                },
+                "value": {
+                  "type": "string",
+                  "label": "Basic Auth Value"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "basicAuth": {
+                  "const": false
+                }
+              }
+            },
+            "then": {
+              "properties": {}
+            }
+          }
+        ]
       }
     },
     "i18n": {
