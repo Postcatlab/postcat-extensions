@@ -1,6 +1,6 @@
 {
   "name": "postcat-sync-swagger",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Sync API from URL",
   "main": "dist/index.js",
   "title": "Sync Swagger",
