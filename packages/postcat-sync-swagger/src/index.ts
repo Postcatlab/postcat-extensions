@@ -2,20 +2,13 @@ import { importFunc } from "../../postcat-import-openapi/src"
 import pkgInfo from '../package.json'  
 
 function b64EncodeUnicode(str) {
-  return btoa(
-    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-      // @ts-ignore
-      return String.fromCharCode(`0x${p1}`);
-    })
-  );
+  return btoa(unescape(encodeURIComponent(str)))
 }
 
 export const pullAPI = async () => {
   const data = await pc.getProjectSettings(pkgInfo.name)
   const { url, basicAuth, basicAuthKey, basicAuthValue } = data
   
- 
-
   let swaggerJson
 
   try {
@@ -23,17 +16,13 @@ export const pullAPI = async () => {
     if (basicAuth && basicAuthKey && basicAuthValue) {
       headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthKey}`)}`
     }
-    console.log('headers', headers, data, url)
-    // @ts-ignore
-      // const response = await (fetch ? fetch(url, {headers}) : nodeFetch?.(url, {headers}))
-      console.log('nodeFetch', fetch)
+    console.log('headers', headers, data, url) 
       const response = await globalThis.fetch?.(url, {headers})
 
       if (response.status >= 400) {
         return [null, response.statusText]
        }
-      swaggerJson = await response.json()
-      console.log('swaggerJson',swaggerJson)
+      swaggerJson = await response.json() 
   } catch (error) {
     return [null, error]
   }
