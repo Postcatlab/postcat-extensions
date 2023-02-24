@@ -25,7 +25,9 @@ export const pullAPI = async () => {
     }
     console.log('headers', headers, data, url)
     // @ts-ignore
-      const response = await (fetch ? fetch(url, {headers}) : nodeFetch?.(url, {headers}))
+      // const response = await (fetch ? fetch(url, {headers}) : nodeFetch?.(url, {headers}))
+      const response = await  nodeFetch?.(url, {headers})
+
       if (response.status >= 400) {
         return [null, response.statusText]
        }
