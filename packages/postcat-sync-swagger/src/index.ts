@@ -23,11 +23,12 @@ export const updateAPI = async () => {
     if (basicAuth && basicAuthKey && basicAuthValue) {
       headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthKey}`)}`
     }
+    console.log('headers', headers,basicAuth ,basicAuthKey, basicAuthValue)
       const result = await axios.get(url, {headers}) 
       if (result.status >= 400) {
         return [null, result.statusText]
        }
-       swaggerJson = result.data
+      swaggerJson = result.data
       console.log('swaggerJson',swaggerJson)
   } catch (error) {
     return [null, error]
