@@ -2,7 +2,7 @@ import { importFunc } from "../../postcat-import-openapi/src"
 import pkgInfo from '../package.json'  
 
 function b64EncodeUnicode(str) {
-  return window.btoa(unescape(encodeURIComponent(str)))
+  return btoa(unescape(encodeURIComponent(str)))
 }
 
 export const pullAPI = async () => {
