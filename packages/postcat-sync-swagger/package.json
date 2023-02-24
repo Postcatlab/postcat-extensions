@@ -1,6 +1,6 @@
 {
   "name": "postcat-sync-swagger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Sync API from URL",
   "main": "dist/index.js",
   "title": "Sync Swagger",
@@ -37,8 +37,8 @@
     "Data Migration"
   ],
   "features": {
-    "updateAPI": {
-      "action": "updateAPI",
+    "pullAPI": {
+      "action": "pullAPI",
       "label": "Swagger 3.0",
       "configuration": {
         "type": "object",

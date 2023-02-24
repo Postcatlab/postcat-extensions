@@ -11,7 +11,7 @@ function b64EncodeUnicode(str) {
   );
 }
 
-export const updateAPI = async () => {
+export const pullAPI = async () => {
   const data = await pc.getProjectSettings(pkgInfo.name)
   const { url, basicAuth, basicAuthKey, basicAuthValue } = data
   
@@ -24,7 +24,7 @@ export const updateAPI = async () => {
     if (basicAuth && basicAuthKey && basicAuthValue) {
       headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthKey}`)}`
     }
-    console.log('headers', headers, data)
+    console.log('headers', headers, data, url)
       const result = await axios.get(url, {headers}) 
       if (result.status >= 400) {
         return [null, result.statusText]
