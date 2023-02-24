@@ -1,6 +1,5 @@
 import { importFunc } from "../../postcat-import-openapi/src"
-import pkgInfo from '../package.json' 
-import axios, { AxiosHeaders } from 'axios'
+import pkgInfo from '../package.json'  
 
 function b64EncodeUnicode(str) {
   return btoa(
@@ -20,16 +19,17 @@ export const pullAPI = async () => {
   let swaggerJson
 
   try {
-    const headers = {} as AxiosHeaders 
+    const headers = {} as Record<string, any> 
     if (basicAuth && basicAuthKey && basicAuthValue) {
       headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthKey}`)}`
     }
     console.log('headers', headers, data, url)
-      const result = await axios.get(url, {headers}) 
-      if (result.status >= 400) {
-        return [null, result.statusText]
+    // @ts-ignore
+      const response = await (fetch ? fetch(url, {headers}) : nodeFetch?.(url, {headers}))
+      if (response.status >= 400) {
+        return [null, response.statusText]
        }
-      swaggerJson = result.data
+      swaggerJson = await response.json()
       console.log('swaggerJson',swaggerJson)
   } catch (error) {
     return [null, error]
