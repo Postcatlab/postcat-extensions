@@ -5,8 +5,8 @@ function b64EncodeUnicode(str) {
   return btoa(unescape(encodeURIComponent(str)))
 }
 
-export const pullAPI = async () => {
-  const data = await pc.getProjectSettings(pkgInfo.name)
+export const pullAPI = async (params) => {
+  const data = params ?? await pc.getProjectSettings(pkgInfo.name)
   const { url, basicAuth, basicAuthKey, basicAuthValue } = data
   
   let swaggerJson
@@ -17,7 +17,7 @@ export const pullAPI = async () => {
       headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthValue}`)}`
     }
     console.log('headers', headers, data, url) 
-      const response = await globalThis.fetch?.(url, {headers})
+      const response = await globalThis.fetch?.(url, { headers })
 
       if (response.status >= 400) {
         return [null, response.statusText]
