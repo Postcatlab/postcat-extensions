@@ -1,4 +1,4 @@
-# Synchronize Swagger URL plugin
+# Synchronize Swagger URL extensions
 
 Support incremental synchronization of API data from Swagger URL to Postcat.
 
