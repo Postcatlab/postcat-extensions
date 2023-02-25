@@ -1,18 +1,18 @@
-# 导入 Postcat 插件
+# 同步 Swagger URL 插件
 
-支持导出 Postcat JSON 文件。
+支持从 Swagger URL 增量同步 API 数据到 Postcat。
 
 ## 使用
 
-进入空间页面，可以看到导出功能，点击该区域打开相应弹窗，即可看到已安装的导出类插件的关键字。
+进入 API 模块，鼠标移动到主按钮加号，下拉看到从 Swagger 同步 URL 的选项。
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-sync-swagger/assets/images/2023-02-25-11-18-47.png)
 
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/shared/assets/images/overview-zh.png)
+填写完配置点击立即同步即可同步 API 数据。
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-sync-swagger/assets/images/2023-02-25-18-10-36.png)
 
-请选择想要导出的文件格式，点击确定按钮即可完成导出。
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-export-postcat/assets/images/2022-08-23-15-45-40.png)
+## 同步规则
 
-## 导出结果
+新的数据覆盖旧的数据
 
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-export-postcat/assets/images/2022-08-23-15-46-23.png)
-
-导出成功后可以看到提示成功的消息，表示导出过程无异常。如果导出异常，会弹出失败消息，请联系插件开发者协助排查。
+- API Path 和请求方式相同视为同一 API
+- 同名同层级的分组视为同一分组

@@ -1,17 +1,18 @@
-# Export Postcat Extension
+# Synchronize Swagger URL plugin
 
-Supports exporting Postcat JSON files.
+Support incremental synchronization of API data from Swagger URL to Postcat.
 
-## usage
+## use
 
-It can also be exported on the space page:
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/shared/assets/images/overview-en.png)
+Enter the API module, move the mouse to the plus sign of the main button, and pull down to see the option to synchronize the URL from Swagger.
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-sync-swagger/assets/images/2023-02-25-11-18-47.png)
 
-Please select the file format you want to export, and click the OK button to complete the export.
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-export-postcat/assets/images/2022-08-23-15-47-08.png)
+After completing the configuration, click Sync Now to synchronize API data.
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-sync-swagger/assets/images/2023-02-25-18-10-36.png)
 
-## export result
+## Synchronization rules
 
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-export-postcat/assets/images/2022-08-23-15-47-38.png)
+New data overwrites old data
 
-After the export is successful, you can see a message indicating that the export is successful, indicating that there is no abnormality in the export process. If the export is abnormal, a failure message will pop up. Please contact the plugin developer for assistance in troubleshooting.
+- The API Path and the request method are the same as the same API
+- Groups with the same name and same level are regarded as the same group
