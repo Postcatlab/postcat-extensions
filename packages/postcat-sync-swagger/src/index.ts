@@ -1,36 +1,28 @@
 import { importFunc } from "../../postcat-import-openapi/src"
-import pkgInfo from '../package.json' 
-import axios, { AxiosHeaders } from 'axios'
+import pkgInfo from '../package.json'  
 
 function b64EncodeUnicode(str) {
-  return btoa(
-    encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-      // @ts-ignore
-      return String.fromCharCode(`0x${p1}`);
-    })
-  );
+  return btoa(unescape(encodeURIComponent(str)))
 }
 
-export const pullAPI = async () => {
-  const data = await pc.getProjectSettings(pkgInfo.name)
+export const pullAPI = async (params) => {
+  const data = params ?? await pc.getProjectSettings(pkgInfo.name)
   const { url, basicAuth, basicAuthKey, basicAuthValue } = data
   
- 
-
   let swaggerJson
 
   try {
-    const headers = {} as AxiosHeaders 
+    const headers = {} as Record<string, any> 
     if (basicAuth && basicAuthKey && basicAuthValue) {
-      headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthKey}`)}`
+      headers.Authorization = `Basic ${b64EncodeUnicode(`${basicAuthKey}:${basicAuthValue}`)}`
     }
-    console.log('headers', headers, data, url)
-      const result = await axios.get(url, {headers}) 
-      if (result.status >= 400) {
-        return [null, result.statusText]
+    console.log('headers', headers, data, url) 
+      const response = await globalThis.fetch?.(url, { headers })
+
+      if (response.status >= 400) {
+        return [null, response.statusText]
        }
-      swaggerJson = result.data
-      console.log('swaggerJson',swaggerJson)
+      swaggerJson = await response.json() 
   } catch (error) {
     return [null, error]
   }

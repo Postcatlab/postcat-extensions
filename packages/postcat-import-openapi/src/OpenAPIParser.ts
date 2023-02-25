@@ -79,7 +79,7 @@ export class OpenAPIParser {
     this.data = {
       collections: [
         {
-          name: info.title || 'Import openapi collection',
+          name: info.title?.slice?.(0, 100) || 'Import openapi collection',
           collectionType: CollectionTypeEnum.GROUP,
           children: [...Object.values(this.groups), ...this.apiDatas]
         }
@@ -103,14 +103,14 @@ export class OpenAPIParser {
           (m) => m.hostUri === n.url
         ) || {
           hostUri: n.url,
-          name: n.description,
+          name: n.description?.slice?.(0, 100),
           parameters: [] as EnvParameters[]
         }
 
         if (n.variables) {
           Object.entries(n.variables).forEach(([key, val]) => {
             targetEnv.parameters?.push({
-              name: key,
+              name: key?.slice?.(0, 100),
               value: val.default || val.enum?.at(0) || ''
             })
           })
@@ -124,9 +124,9 @@ export class OpenAPIParser {
   ) {
     return tags?.reduce<typeof this.groups>((prev, curr) => {
       if (typeof curr === 'string') {
-        prev[curr] ??= { name: curr, collectionType: CollectionTypeEnum.GROUP, children: [] }
+        prev[curr] ??= { name: curr?.slice?.(0, 100), collectionType: CollectionTypeEnum.GROUP, children: [] }
       } else {
-        prev[curr.name] ??= { name: curr.name, collectionType: CollectionTypeEnum.GROUP, children: [] }
+        prev[curr.name] ??= { name: curr.name?.slice?.(0, 100), collectionType: CollectionTypeEnum.GROUP, children: [] }
       }
       return prev
     }, this.groups)
@@ -149,7 +149,7 @@ export class OpenAPIParser {
             const apiData: ApiData = {
               ...obj,
               collectionType: CollectionTypeEnum.API_DATA,
-              name: obj.summary || obj.operationId || path,
+              name: (obj.summary || obj.operationId || path)?.slice?.(0, 100),
               uri: path,
               protocol: Protocol[protocol.toUpperCase()],
               apiAttrInfo: {
@@ -282,13 +282,13 @@ export class OpenAPIParser {
 
       const editBody: BodyParam = {
         // ...other, 
-        name,
-        isRequired: Number(required.includes(name)),
+        name:name?.slice?.(0, 100),
+        isRequired: ~~(required.includes(name)),
         partType: partTypeMap.body,
         dataType: ~~ApiParamsType[
             value.type || formatType(type!) || getDataType(defaultValue ?? '')
           ],
-        description: description || '',
+        description: description?.slice?.(0, 100) || '',
         paramAttr: {
           example: safeStringify(defaultValue || example || '')
         }
@@ -424,7 +424,7 @@ export class OpenAPIParser {
         if (!this.is$ref(detail)) {
           prev.push(
             this.genParams( detail, {
-              name,
+              name: name?.slice?.(0, 100),
               partType: partTypeMap.header,
               orderNo: index
             })
@@ -443,8 +443,8 @@ export class OpenAPIParser {
     return {
       ...obj,
       dataType: ~~ApiParamsType[obj?.type],
-      isRequired: Number(obj.required),
-      description: obj.description || '',
+      isRequired: ~~(obj.required),
+      description: obj.description?.slice?.(0, 100) || '',
       paramAttr: {
         example: safeStringify(obj.example ?? '')
       },

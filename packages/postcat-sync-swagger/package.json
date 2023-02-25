@@ -1,10 +1,10 @@
 {
   "name": "postcat-sync-swagger",
-  "version": "0.0.8",
+  "version": "0.0.17",
   "description": "Sync API from URL",
   "main": "dist/index.js",
-  "title": "Sync Swagger",
-  "logo": "https://ng.ant.design/assets/img/logo.svg",
+  "title": "Sync Swagger URL",
+  "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -100,7 +100,6 @@
     }
   },
   "dependencies": {
-    "axios": "^1.3.4",
     "lodash": "*",
     "lodash-es": "^4.17.21"
   }
