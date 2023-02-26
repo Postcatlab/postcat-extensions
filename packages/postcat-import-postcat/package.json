@@ -5,6 +5,10 @@
   "description": "The import extension of Postcat",
   "main": "dist/index.js",
   "logo": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "author": "Postcat",
   "scripts": {
     "build": "rollup -c rollup.config.js",
@@ -14,7 +18,9 @@
     "esbuild": "^0.14.38",
     "rollup": "^2.70.2"
   },
-  "categories": ["Data Migration"],
+  "categories": [
+    "Data Migration"
+  ],
   "features": {
     "importAPI": {
       "action": "importFunc",

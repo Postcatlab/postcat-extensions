@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/postcat-extensions.git"
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
   "keywords": [
     "feature",

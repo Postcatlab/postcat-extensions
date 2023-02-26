@@ -6,6 +6,10 @@
   "author": {
     "name": "Postcat"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "categories": [
     "Themes"
   ],

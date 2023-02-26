@@ -10,6 +10,10 @@
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "devDependencies": {
     "esbuild": "^0.14.38",
     "rollup": "^2.70.2",
@@ -18,7 +22,9 @@
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.1"
   },
-  "categories": ["Data Migration"],
+  "categories": [
+    "Data Migration"
+  ],
   "features": {
     "importAPI": {
       "action": "importFunc",

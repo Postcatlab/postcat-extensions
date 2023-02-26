@@ -4,7 +4,8 @@
   "version": "0.0.6",
   "description": "OpenDLP detect API sensitive words to make your API more secure",
   "repository": {
-    "url": "https://github.com/hitsz-ids/openDLP"
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
   "main": "dist/operate.js",
   "node": "src/main.js",

@@ -9,6 +9,10 @@
   "engines": {
     "postcat": "^0.0.1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "logo": "https://data.eolink.com/PXMbLGmc2f0b29596764f7456eefb75478ed77b4fd172d9",
   "categories": [
     "Themes"

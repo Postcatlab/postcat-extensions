@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eolinker/postcat-extensions.git"
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
   "author": "Postcat",
   "license": "Apache-2.0 License",
@@ -32,7 +32,9 @@
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.6.3"
   },
-  "categories": ["Data Migration"],
+  "categories": [
+    "Data Migration"
+  ],
   "features": {
     "exportAPI": {
       "action": "export_convert",

@@ -6,6 +6,10 @@
   "author": {
     "name": "Postcat"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "logo": "https://data.eolink.com/fa2nGFQfc81a9107c056443272f793839b7768713f0b12d",
   "engines": {
     "postcat": "^0.0.1"

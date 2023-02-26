@@ -13,6 +13,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
   "features": {
     "sidebarView": {
       "icon": "https://data.eolink.com/IUuaHGl3cd88bd737feb3f51ceaafb61e8871052885af17",
