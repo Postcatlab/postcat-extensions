@@ -17,15 +17,17 @@ APISpace 已为爱普生、普华永道、三一重工、清华大学等众多�
 
 # 最新福利
 
-![](https://data.eolinker.com/course/8M9Nsta08eb9077dea6de7d84d7e55676e5aed1ba6a67b9)
+![](https://data.eolinker.com/course/pXHHk6n1f67df2cafef630027da2cd613ea9ac605ff5a58)
 
 OpenAI 的 ChatGPT 官网注册麻烦，接入繁琐，且需要海外信用卡才能支付。
 
-**为了方便广大国内开发者体验最新的 ChatGPT 能力，APISpace 通过官方渠道直接接入 OpenAI，本接口的费用与 OpenAI 官方永久保持一致。**
-
-目前 OpenAI 收费标准：0.12 美元/1000Token（1 token=0.5 个汉字=2 个英文字符）。
+**为了方便广大国内开发者体验最新的 ChatGPT 能力，APISpace 通过官方渠道直接接入 OpenAI 的 Davinci 模型 GPT-3.5 的 API 和 ChatGPT 3.5 Turbo 模型 API。**
 
 注册 APISpace 即可免费获得一定额度的调用次数，并且无需注册 OpenAI 海外账号、无需海外信用卡、快速测试、快速接入。
+
+点击试用：[达文西 GPT 3.5 API](https://www.apispace.com/eolink/api/chatgpt/introduction/?utm_source=postcat "达文西 GPT 3.5 API")
+
+点击试用：[ChatGPT 3.5 Turbo API](https://www.apispace.com/eolink/api/chatgpt-turbo/introduction/?utm_source=postcat "ChatGPT 3.5 Turbo API")
 
 # 为什么选择我们
 
