@@ -15,10 +15,28 @@ import type {
   VariableList
 } from './types/postman-collection'
 import { text2UiData } from '../../../shared/src/utils/data-transfer'
-import { whatTextType, safeStringify, safeJSONParse } from '../../../shared/src/utils/common'
+import {
+  whatTextType,
+  safeStringify,
+  safeJSONParse
+} from '../../../shared/src/utils/common'
 import { Group } from '../../../shared/src/types/group'
-import { ApiData, BodyParam, HeaderParam, QueryParam, RequestParams, ResponseParams } from '../../../shared/src/types/apiData'
-import { ApiBodyType, ApiParamsType, ContentType, mui, Protocol, RequestMethod } from '../../../shared/src/types/api.model'
+import {
+  ApiData,
+  BodyParam,
+  HeaderParam,
+  QueryParam,
+  RequestParams,
+  ResponseParams
+} from '../../../shared/src/types/apiData'
+import {
+  ApiBodyType,
+  ApiParamsType,
+  ContentType,
+  mui,
+  Protocol,
+  RequestMethod
+} from '../../../shared/src/types/api.model'
 
 export class PostmanImporter {
   postcatData: ImportProjectDto
@@ -71,7 +89,7 @@ export class PostmanImporter {
           headerParams: this.handleRequestHeader(request?.header),
           queryParams: this.handleQueryParams(request?.url),
           restParams: [],
-          bodyParams: this.handleRequestBody(request?.body),
+          bodyParams: this.handleRequestBody(request?.body)
         },
         responseList: [
           {
@@ -82,20 +100,24 @@ export class PostmanImporter {
               bodyParams: this.handleResponseBody(response)
             }
           }
-        ], 
+        ]
       } as ApiData
     })
   }
 
-  transformEnv(postmanEnv: VariableList = []): ImportProjectDto['environmentList'] {
+  transformEnv(
+    postmanEnv: VariableList = []
+  ): ImportProjectDto['environmentList'] {
     return [
       {
         name: 'postImport',
         hostUri: 'http://localhost',
-        parameters: postmanEnv.map((item) => ({
-          name: item.key!,
-          value: item.value as unknown as string
-        }))
+        parameters: JSON.stringify(
+          postmanEnv.map((item) => ({
+            name: item.key!,
+            value: item.value as unknown as string
+          }))
+        )
       }
     ]
   }
@@ -123,8 +145,8 @@ export class PostmanImporter {
           isRequired: 0,
           description: n.description as string,
           paramAttr: {
-            example: n.value || '',
-          },
+            example: n.value || ''
+          }
         })) || []
       )
     }
@@ -141,7 +163,7 @@ export class PostmanImporter {
           isRequired: 0,
           description: n.description as string,
           paramAttr: {
-            example: n.value,
+            example: n.value
           }
         })) || []
       )
@@ -155,9 +177,11 @@ export class PostmanImporter {
         if (type === 'xml') {
           return ContentType.XML
         } else if (type === 'json') {
-          return Array.isArray(safeJSONParse(body.raw)) ? ContentType.JSON_ARRAY : ContentType.JSON_OBJECT
+          return Array.isArray(safeJSONParse(body.raw))
+            ? ContentType.JSON_ARRAY
+            : ContentType.JSON_OBJECT
         } else {
-          return  ContentType.RAW
+          return ContentType.RAW
         }
       case 'file':
         return ContentType.BINARY
@@ -192,7 +216,7 @@ export class PostmanImporter {
             binaryRawData: body.raw || '',
             paramAttr: {}
           }
-        ] 
+        ]
       }
     } else if (['formdata', 'urlencoded'].includes(body?.mode!)) {
       const data = body?.[body.mode!] as NonNullable<
@@ -200,14 +224,15 @@ export class PostmanImporter {
       >['formdata']
       return (
         data?.map((n) => ({
-          dataType: n.type === 'file' ? ApiParamsType.file : ApiParamsType.string,
+          dataType:
+            n.type === 'file' ? ApiParamsType.file : ApiParamsType.string,
           name: n.key,
           partType: mui.bodyParams,
           isRequired: 0,
           description: n.description as string,
           paramAttr: {
-            example: n.value as string,
-          },
+            example: n.value as string
+          }
         })) || []
       )
     }
@@ -224,7 +249,7 @@ export class PostmanImporter {
           isRequired: 0,
           dataType: ApiParamsType[getDataType(value)],
           paramAttr: {
-            example: safeStringify(value),
+            example: safeStringify(value)
           },
           childList:
             value && typeof value === 'object'
@@ -259,7 +284,7 @@ export class PostmanImporter {
             orderNo: index,
             dataType: ApiParamsType[getDataType(value)],
             paramAttr: {
-              example: safeStringify(value),
+              example: safeStringify(value)
             },
             childList:
               value && typeof value === 'object'
@@ -278,7 +303,7 @@ export class PostmanImporter {
           name: n.key,
           isRequired: 0,
           paramAttr: {
-            example: n.value,
+            example: n.value
           },
           description: n.description as string
         }))
