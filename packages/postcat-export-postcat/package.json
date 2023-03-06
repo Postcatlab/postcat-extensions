@@ -4,7 +4,7 @@
   "description": "Export the JSON format file of the Postcat specification",
   "main": "dist/index.js",
   "title": "Export Postcat",
-  "logo": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
+  "logo": "https://data.eolink.com/XdEtNDhacf42e8e675d67d7b6b53120ed78b52a74071362",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -40,7 +40,7 @@
       "action": "export_convert",
       "label": "Postcat(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
+      "icon": "https://data.eolink.com/XdEtNDhacf42e8e675d67d7b6b53120ed78b52a74071362",
       "filename": "Postcat-Export.json"
     },
     "i18n": {

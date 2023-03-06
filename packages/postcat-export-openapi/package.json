@@ -4,7 +4,7 @@
   "description": "Export the JSON format file of the OpenAPI specification",
   "main": "dist/index.js",
   "title": "Export OpenAPI",
-  "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+  "logo": "https://data.eolink.com/JNzS1Wdc8fe006bb7377ca2ac2c7419c42f4fdd737d486e",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",
@@ -45,7 +45,7 @@
       "action": "export_convert",
       "label": "OpenAPI(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+      "icon": "https://data.eolink.com/JNzS1Wdc8fe006bb7377ca2ac2c7419c42f4fdd737d486e",
       "filename": "openapi.json"
     },
     "i18n": {

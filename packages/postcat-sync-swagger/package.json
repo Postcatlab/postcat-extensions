@@ -4,7 +4,7 @@
   "description": "Sync API from URL",
   "main": "dist/index.js",
   "title": "Sync Swagger URL",
-  "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+  "logo": "https://data.eolink.com/6RB5EMNf1c3c2aa943617b896940863f3e93877b527a0da",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js",

@@ -4,7 +4,7 @@
   "title": "Import Postcat",
   "description": "The import extension of Postcat",
   "main": "dist/index.js",
-  "logo": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15",
+  "logo": "https://data.eolink.com/ZGamXgU3feaa571c54beb2e5190fb404225a1303894a895",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
@@ -26,7 +26,7 @@
       "action": "importFunc",
       "label": "Postcat(.json)",
       "description": "",
-      "icon": "https://data.eolink.com/hYftLZXaa924b3e221fec240ac7ffcad1bd0bbce6799c15"
+      "icon": "https://data.eolink.com/ZGamXgU3feaa571c54beb2e5190fb404225a1303894a895"
     },
     "i18n": {
       "sourceLocale": "en-US",

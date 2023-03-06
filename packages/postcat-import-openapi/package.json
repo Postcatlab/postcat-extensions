@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "title": "Import OpenAPI/Swagger",
   "author": "Postcat",
-  "logo": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da",
+  "logo": "https://data.eolink.com/bxBDitte0fdc7007f09f0f85e91b48792c52b7affad5b1d",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -w -c rollup.config.js"
@@ -31,7 +31,7 @@
       "action": "importFunc",
       "label": "OpenAPI(.json)",
       "description": "${function.description}",
-      "icon": "https://data.eolink.com/1eBQg8B47dfbbfcfd73d542fae45a95309a073dfcdec3da"
+      "icon": "https://data.eolink.com/bxBDitte0fdc7007f09f0f85e91b48792c52b7affad5b1d"
     },
     "i18n": {
       "sourceLocale": "en-US",
