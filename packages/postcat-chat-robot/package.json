@@ -1,11 +1,12 @@
 {
   "name": "postcat-chat-robot",
   "title": "ChatGPT Robot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ChatGPT Robot",
   "author": {
     "name": "Postcat"
   },
+  "browser": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
