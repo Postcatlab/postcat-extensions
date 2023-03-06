@@ -1,0 +1,30 @@
+{
+  "name": "postcat-chat-robot",
+  "title": "ChatGPT Robot",
+  "version": "0.0.1",
+  "description": "ChatGPT Robot",
+  "author": {
+    "name": "Postcat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
+  "engines": {
+    "postcat": "^0.3.1"
+  },
+  "logo": "https://data.eolink.com/PIUqaxjd96118c7fd63cef8923071555e8a69371a3e493e",
+  "features": {
+    "featureControl": [
+      {
+        "id": "chatRobot"
+      }
+    ],
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  }
+}
