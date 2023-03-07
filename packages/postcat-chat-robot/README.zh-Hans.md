@@ -5,4 +5,4 @@
 ## 使用步骤
 
 安装插件后，点击底部工具栏的小机器人，就可以直接开始对话啦！
-![]([..](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/postcat-chat-robot/assets/images/2023-03-08-00-33-11.png)
+![](https://raw.githubusercontent.com/Postcatlab/postcat-extensions/main/packages/postcat-chat-robot/assets/images/2023-03-08-00-33-11.png)
