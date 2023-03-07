@@ -2,10 +2,13 @@
   "name": "postcat-chat-robot",
   "title": "ChatGPT Robot",
   "version": "0.0.3",
-  "description": "ChatGPT Robot",
+  "description": "This extension allows you to chat with ChatGPT in Postcat. ChatGPT is a language model product developed by OpenAl, which can simulate human language behavior and interact naturally with users.",
   "author": {
     "name": "Postcat"
   },
+  "categories": [
+    "Other"
+  ],
   "browser": "index.js",
   "repository": {
     "type": "git",
