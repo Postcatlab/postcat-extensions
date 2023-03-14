@@ -1,5 +1,10 @@
-export const authAPI = (config) => {
-  return `
-    pc.request.headers.add('Authorization', 'JWT'${config.username}:${config.password}')
-    `
+module.exports = {
+  authAPI: (config) => {
+    const headerValue = `Basic ${Buffer.from(config.username || '')}:${
+      config.password
+    }`
+    return `pc.request.query.add({
+      key:'Authorization', value:'${headerValue}'
+    })`
+  }
 }
