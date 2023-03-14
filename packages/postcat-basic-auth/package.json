@@ -1,7 +1,7 @@
 {
   "name": "postcat-basic-auth",
   "title": "Basic Authorization",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Basic Authorization",
   "author": {
     "name": "Postcat"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
-  "logo": "https://data.eolink.com/ZYFlldr6d20793b20e72afa0e292cc9c00c2ee4fa1b6e8e",
+  "logo": "https://data.eolink.com/pGtIXHG6c0ebf5254f4046ff96239cc3676784985bd4d94",
   "engines": {
     "postcat": "^0.4.0"
   },
