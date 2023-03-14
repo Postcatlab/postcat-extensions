@@ -1,3 +1,4 @@
 {
-  "title": "Basic Auth 鉴权"
+  "title": "Basic Auth 鉴权",
+  "description": "Basic Auth 是基于 HTTP 的安全认证机制，会在请求头部加入 Authorization 字段。"
 }
