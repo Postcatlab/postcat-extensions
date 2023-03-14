@@ -1,0 +1,47 @@
+{
+  "name": "postcat-basic-auth",
+  "title": "Basic Authorization",
+  "version": "0.0.1",
+  "description": "Basic Authorization",
+  "author": {
+    "name": "Postcat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
+  "logo": "https://data.eolink.com/ZYFlldr6d20793b20e72afa0e292cc9c00c2ee4fa1b6e8e",
+  "engines": {
+    "postcat": "^0.4.0"
+  },
+  "categories": [
+    "API Testing"
+  ],
+  "features": {
+    "authAPI": {
+      "action": "authAPI",
+      "label": "Basic Auth",
+      "configuration": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "label": "UserName",
+            "required": true
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "label": "password"
+          }
+        }
+      }
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  }
+}
