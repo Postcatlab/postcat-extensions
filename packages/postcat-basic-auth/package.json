@@ -26,13 +26,13 @@
         "properties": {
           "username": {
             "type": "string",
-            "label": "UserName",
+            "label": "Username",
             "required": true
           },
           "password": {
             "type": "string",
             "format": "password",
-            "label": "password"
+            "label": "Password"
           }
         }
       }

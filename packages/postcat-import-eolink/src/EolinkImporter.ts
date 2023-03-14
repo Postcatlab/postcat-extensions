@@ -1,6 +1,19 @@
-import { ContentType, mui, Protocol, RequestMethod } from '../../../shared/src/types/api.model'
-import { ApiData, BodyParam, HeaderParam } from '../../../shared/src/types/apiData'
-import { Collection, CollectionTypeEnum, ImportProjectDto } from '../../../shared/src/types/pcAPI'
+import {
+  ContentType,
+  mui,
+  Protocol,
+  RequestMethod
+} from '../../../shared/src/types/api.model'
+import {
+  ApiData,
+  BodyParam,
+  HeaderParam
+} from '../../../shared/src/types/apiData'
+import {
+  Collection,
+  CollectionTypeEnum,
+  ImportProjectDto
+} from '../../../shared/src/types/pcAPI'
 import { isObject } from '../../../shared/src/utils/is'
 
 const METHOD_ARR = [
@@ -53,12 +66,12 @@ export class EolinkImporter {
     const projectName = this.eolinkData?.projectInfo?.projectName
     const collections = projectName
       ? [
-          { 
+          {
             name: projectName,
             collectionType: CollectionTypeEnum.GROUP,
-            children: this.transformItems(data) 
+            children: this.transformItems(data)
           }
-      ]
+        ]
       : this.transformItems(data)
     return {
       collections,
@@ -75,11 +88,13 @@ export class EolinkImporter {
       return {
         name: item.envName || '',
         hostUri: item.frontURI || '',
-        parameters: params.map((n) => ({
-          name: n.paramKey,
-          value: n.paramValue,
-          description: ''
-        }))
+        parameters: JSON.stringify(
+          params.map((n) => ({
+            name: n.paramKey,
+            value: n.paramValue,
+            description: ''
+          }))
+        )
       }
     })
   }
@@ -104,10 +119,10 @@ export class EolinkImporter {
           } = apiItem
 
           const protocol = apiType.startsWith('http')
-          ? apiType
-          : protocolSupports.includes(apiType)
-          ? 'http'
-          : apiType
+            ? apiType
+            : protocolSupports.includes(apiType)
+            ? 'http'
+            : apiType
 
           return {
             collectionType: CollectionTypeEnum.API_DATA,
@@ -116,11 +131,12 @@ export class EolinkImporter {
             protocol: Protocol[protocol.toUpperCase()],
             method: METHOD_ARR[baseInfo?.apiRequestType || 0],
             apiAttrInfo: {
-              requestMethod: RequestMethod[METHOD_ARR[baseInfo?.apiRequestType || 0]],
+              requestMethod:
+                RequestMethod[METHOD_ARR[baseInfo?.apiRequestType || 0]],
               contentType: baseInfo.apiRequestParamType
             },
             requestParams: {
-              headerParams:this.handleResponseHeaders(headerInfo || []),
+              headerParams: this.handleResponseHeaders(headerInfo || []),
               queryParams: this.handleInfo(urlParam, 'queryParams'),
               restParams: this.handleInfo(restfulParam || [], 'restParams'),
               bodyParams: this.handleInfo(requestInfo, 'bodyParams')
@@ -136,10 +152,9 @@ export class EolinkImporter {
                   bodyParams: this.handleResponseBody(apiItem)
                 }
               }
-            ] , 
+            ]
           } as Collection
         }) || []
-
 
       return {
         name: item.groupName,
@@ -199,10 +214,10 @@ export class EolinkImporter {
           name: s.paramKey,
           isRequired: Number(this.isRequired(s.paramNotNull)),
           paramAttr: {
-            example: this.getDefaultValue(s),
+            example: this.getDefaultValue(s)
           },
           description: s.paramName || '',
-          childList: this.handleInfo(s.childList,_in)
+          childList: this.handleInfo(s.childList, _in)
         } as BodyParam
       })
     }
@@ -222,7 +237,7 @@ export class EolinkImporter {
             name: item.paramKey,
             isRequired: Number(this.isRequired(item.paramNotNull)),
             paramAttr: {
-              example: this.getDefaultValue(item),
+              example: this.getDefaultValue(item)
             },
             description: item.paramName || '',
             childList: this.handleInfo(item.childList, _in)
@@ -235,7 +250,7 @@ export class EolinkImporter {
   handleResponseBody(api) {
     const { apiSuccessMock, apiFailureMock, resultInfo } = api.baseInfo
     if (resultInfo?.[0]?.paramList?.length) {
-     return this.handleInfo(resultInfo?.[0]?.paramList)
+      return this.handleInfo(resultInfo?.[0]?.paramList)
     } else if (apiSuccessMock || apiFailureMock) {
       return [
         {
@@ -250,9 +265,12 @@ export class EolinkImporter {
     }
   }
 
-  getResponseContentType(apiItem){
+  getResponseContentType(apiItem) {
     if (apiItem.resultInfo?.[0]?.paramList?.length) {
-    return ContentType[responseType[apiItem.resultInfo?.[0]?.responseType]] || ContentType.JSON_OBJECT
+      return (
+        ContentType[responseType[apiItem.resultInfo?.[0]?.responseType]] ||
+        ContentType.JSON_OBJECT
+      )
     } else {
       return ContentType.RAW
     }
@@ -262,10 +280,10 @@ export class EolinkImporter {
     return responseHeader.map((n) => ({
       name: n.headerName || '',
       partType: mui.headerParams,
-      isRequired: Number(n.paramNotNull === '0'), 
+      isRequired: Number(n.paramNotNull === '0'),
       description: n.paramName || '',
       paramAttr: {
-        example: this.getDefaultValue(n),
+        example: this.getDefaultValue(n)
       }
     }))
   }
