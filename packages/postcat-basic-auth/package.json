@@ -1,7 +1,7 @@
 {
   "name": "postcat-basic-auth",
   "title": "Basic Authorization",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Basic Auth is an HTTP-based security authentication mechanism that adds the Authorization field to the request header.",
   "author": {
     "name": "Postcat"
@@ -43,5 +43,6 @@
         "zh-Hans"
       ]
     }
-  }
+  },
+  "dependencies": {}
 }
