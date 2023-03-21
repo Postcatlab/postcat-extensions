@@ -7,7 +7,7 @@ import {
 import type {
   Items,
   HeaderList,
-  Request1,
+  Request1 as Request,
   Url,
   Response,
   Header,
@@ -73,7 +73,7 @@ export class PostmanImporter {
               : []
         } as Group
       }
-      const request = item.request as Request1
+      const request = item.request as Request
       const response = item.response as Response[]
 
       return {
@@ -142,7 +142,7 @@ export class PostmanImporter {
           name: n.key || '',
           partType: mui.queryParams,
           dataType: ApiParamsType[typeof n.value],
-          isRequired: 0,
+          isRequired: 1,
           description: n.description as string,
           paramAttr: {
             example: n.value || ''
@@ -160,7 +160,7 @@ export class PostmanImporter {
         headerList.map((n) => ({
           name: n.key,
           partType: mui.headerParams,
-          isRequired: 0,
+          isRequired: 1,
           description: n.description as string,
           paramAttr: {
             example: n.value
@@ -170,7 +170,7 @@ export class PostmanImporter {
     }
   }
 
-  handleRequestBodyType(body: Request1['body']): ContentType {
+  handleRequestBodyType(body: Request['body']): ContentType {
     switch (body?.mode) {
       case 'raw':
         const type = whatTextType(body.raw)
@@ -195,10 +195,10 @@ export class PostmanImporter {
   }
 
   handleResponseBodyType(res: Response[] = []): ContentType {
-    return this.handleRequestBodyType(res[0]?.body as Request1['body'])
+    return this.handleRequestBodyType(res[0]?.body as Request['body'])
   }
 
-  handleRequestBody(body: Request1['body']): RequestParams['bodyParams'] {
+  handleRequestBody(body: Request['body']): RequestParams['bodyParams'] {
     if (Object.is(body, null)) {
       return []
     } else if (body?.mode === 'raw') {
@@ -220,7 +220,7 @@ export class PostmanImporter {
       }
     } else if (['formdata', 'urlencoded'].includes(body?.mode!)) {
       const data = body?.[body.mode!] as NonNullable<
-        Request1['body']
+        Request['body']
       >['formdata']
       return (
         data?.map((n) => ({
@@ -228,7 +228,7 @@ export class PostmanImporter {
             n.type === 'file' ? ApiParamsType.file : ApiParamsType.string,
           name: n.key,
           partType: mui.bodyParams,
-          isRequired: 0,
+          isRequired: n.disabled ? 0 : 1,
           description: n.description as string,
           paramAttr: {
             example: n.value as string
@@ -240,13 +240,14 @@ export class PostmanImporter {
   }
 
   handleResponseBody(res: Response[] = []): ResponseParams['bodyParams'] {
+    console.log(res)
     try {
       const result = JSON.parse(res[0].body?.replace(/\s/g, '')!)
       return [].concat(result).flatMap((item) => {
         return Object.entries(item).map<BodyParam>(([key, value]) => ({
           description: '',
           name: key,
-          isRequired: 0,
+          isRequired: 1,
           dataType: ApiParamsType[getDataType(value)],
           paramAttr: {
             example: safeStringify(value)
@@ -258,14 +259,16 @@ export class PostmanImporter {
         }))
       })
     } catch (error) {
-      return [
-        {
-          name: '',
-          isRequired: 1,
-          binaryRawData: res[0]?.body ?? '',
-          paramAttr: {}
-        }
-      ]
+      return res[0]?.body
+        ? [
+            {
+              name: '',
+              isRequired: 1,
+              binaryRawData: res[0]?.body,
+              paramAttr: {}
+            }
+          ]
+        : []
     }
   }
 
@@ -280,7 +283,7 @@ export class PostmanImporter {
           return {
             description: '',
             name: key,
-            isRequired: 0,
+            isRequired: 1,
             orderNo: index,
             dataType: ApiParamsType[getDataType(value)],
             paramAttr: {
@@ -312,7 +315,7 @@ export class PostmanImporter {
     }
   }
 
-  handleJsonRootType(body: Request1['body']): ContentType {
+  handleJsonRootType(body: Request['body']): ContentType {
     let _body = body?.raw
 
     if (isString(_body)) {

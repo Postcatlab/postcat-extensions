@@ -29,6 +29,7 @@
   "features": {
     "importAPI": {
       "action": "importFunc",
+      "type": "file",
       "label": "OpenAPI(.json)",
       "description": "${function.description}",
       "icon": "https://data.eolink.com/bxBDitte0fdc7007f09f0f85e91b48792c52b7affad5b1d"

@@ -27,6 +27,7 @@
   ],
   "features": {
     "importAPI": {
+      "type": "file",
       "action": "importFunc",
       "label": "Eolink(.json)",
       "description": "${function.description}",

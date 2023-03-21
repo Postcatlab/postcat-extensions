@@ -24,6 +24,7 @@
   "features": {
     "importAPI": {
       "action": "importFunc",
+      "type": "file",
       "label": "Postcat(.json)",
       "description": "",
       "icon": "https://data.eolink.com/ZGamXgU3feaa571c54beb2e5190fb404225a1303894a895"
