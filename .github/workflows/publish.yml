@@ -43,7 +43,7 @@ jobs:
           # Optionally specify the directories to scan
           # for modules. If this is not specified, the
           # root directory is scanned.
-          scan: "./packages"
+          scan: "./packages, ./libs"
           # Optionally force publishing as a public
           # module. We don't recommend setting this,
           # unless you have a very specific use case.
