@@ -4,11 +4,7 @@ import {
   Protocol,
   RequestMethod
 } from '../../../shared/src/types/api.model'
-import {
-  ApiData,
-  BodyParam,
-  HeaderParam
-} from '../../../shared/src/types/apiData'
+import { BodyParam, HeaderParam } from '../../../shared/src/types/apiData'
 import {
   Collection,
   CollectionTypeEnum,
@@ -26,28 +22,7 @@ const METHOD_ARR = [
   'PATCH'
 ] as const
 
-const tmpParamTypeArr = [
-  'string',
-  'file',
-  'json',
-  'int',
-  'float',
-  'double',
-  'date',
-  'datetime',
-  'boolean',
-  'byte',
-  'short',
-  'long',
-  'array',
-  'object',
-  'number',
-  'null'
-] as const
-
 const protocolSupports = [Protocol.HTTP, Protocol.HTTPS, Protocol.SOAP] as const
-
-const apiBodyTypes = ['formData', 'raw', 'json', 'xml', 'binary'] as const
 
 const responseType = ['json', 'xml', 'raw', 'binary'] as const
 export class EolinkImporter {
@@ -248,7 +223,8 @@ export class EolinkImporter {
   }
 
   handleResponseBody(api) {
-    const { apiSuccessMock, apiFailureMock, resultInfo } = api.baseInfo
+    const { apiSuccessMock, apiFailureMock } = api.baseInfo
+    const resultInfo = api.resultInfo
     if (resultInfo?.[0]?.paramList?.length) {
       return this.handleInfo(resultInfo?.[0]?.paramList)
     } else if (apiSuccessMock || apiFailureMock) {
