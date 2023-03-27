@@ -1,6 +1,5 @@
 import type { OpenAPIV3 } from 'openapi-types'
 import {
-  Collection,
   CollectionTypeEnum,
   Environment,
   EnvParameters,
@@ -31,7 +30,7 @@ export const contentTypeMap = new Map([
 ] as const)
 
 const contentTypeMapKeys = [...contentTypeMap.keys()]
-type ContentTypeMapKey  = (typeof contentTypeMapKeys)[number]
+type ContentTypeMapKey = typeof contentTypeMapKeys[number]
 
 export const parametersInMap = new Map([
   ['query', 'queryParams'],
@@ -124,9 +123,17 @@ export class OpenAPIParser {
   ) {
     return tags?.reduce<typeof this.groups>((prev, curr) => {
       if (typeof curr === 'string') {
-        prev[curr] ??= { name: curr?.slice?.(0, 100), collectionType: CollectionTypeEnum.GROUP, children: [] }
+        prev[curr] ??= {
+          name: curr?.slice?.(0, 100),
+          collectionType: CollectionTypeEnum.GROUP,
+          children: []
+        }
       } else {
-        prev[curr.name] ??= { name: curr.name?.slice?.(0, 100), collectionType: CollectionTypeEnum.GROUP, children: [] }
+        prev[curr.name] ??= {
+          name: curr.name?.slice?.(0, 100),
+          collectionType: CollectionTypeEnum.GROUP,
+          children: []
+        }
       }
       return prev
     }, this.groups)
@@ -168,16 +175,16 @@ export class OpenAPIParser {
                 {
                   isDefault: 1,
                   contentType: contentTypeMap.get(
-                      this.getResponseContentType(obj.responses)
-                    ),
+                    this.getResponseContentType(obj.responses)
+                  ),
                   responseParams: {
                     headerParams: this.generateResponseHeaders(
-                        this.getResponseObject(obj.responses)?.headers
-                      ),
+                      this.getResponseObject(obj.responses)?.headers
+                    ),
                     bodyParams: this.generateResponseBody(obj.responses)
                   }
                 }
-              ] 
+              ]
             }
 
             if (obj.tags?.length) {
@@ -205,10 +212,12 @@ export class OpenAPIParser {
     return parameters.reduce<HeaderParam[]>((prev, curr, index) => {
       if (this.is$ref(curr)) {
       } else if (_in === curr.in) {
-        prev.push(this.genParams( curr, { 
-          partType: partTypeMap[_in],
-          orderNo: index
-        }))
+        prev.push(
+          this.genParams(curr, {
+            partType: partTypeMap[_in],
+            orderNo: index
+          })
+        )
       }
 
       return prev
@@ -281,11 +290,12 @@ export class OpenAPIParser {
       // const ref = this.get$Ref(schemaObject)
 
       const editBody: BodyParam = {
-        // ...other, 
-        name:name?.slice?.(0, 100),
-        isRequired: ~~(required.includes(name)),
+        // ...other,
+        name: name?.slice?.(0, 100),
+        isRequired: ~~required.includes(name),
         partType: partTypeMap.body,
-        dataType: ~~ApiParamsType[
+        dataType:
+          ~~ApiParamsType[
             value.type || formatType(type!) || getDataType(defaultValue ?? '')
           ],
         description: description?.slice?.(0, 100) || '',
@@ -398,10 +408,15 @@ export class OpenAPIParser {
     }
   }
 
-  getResponseContentType(responses: OpenAPIV3.ResponsesObject): ContentTypeMapKey {
+  getResponseContentType(
+    responses: OpenAPIV3.ResponsesObject
+  ): ContentTypeMapKey {
     const resObj = this.getResponseObject(responses)
     if (resObj?.content) {
-      return Object.keys(resObj?.content).at(0) as ContentTypeMapKey || 'application/json'
+      return (
+        (Object.keys(resObj?.content).at(0) as ContentTypeMapKey) ||
+        'application/json'
+      )
     } else {
       return 'application/json'
     }
@@ -423,7 +438,7 @@ export class OpenAPIParser {
       (prev, [name, detail], index) => {
         if (!this.is$ref(detail)) {
           prev.push(
-            this.genParams( detail, {
+            this.genParams(detail, {
               name: name?.slice?.(0, 100),
               partType: partTypeMap.header,
               orderNo: index
@@ -436,14 +451,11 @@ export class OpenAPIParser {
     )
   }
 
-  genParams(
-    obj: OpenAPIV3.ParameterBaseObject,
-    opts?: BodyParam
-  ): BodyParam {
+  genParams(obj: OpenAPIV3.ParameterBaseObject, opts?: BodyParam): BodyParam {
     return {
       ...obj,
       dataType: ~~ApiParamsType[obj?.type],
-      isRequired: ~~(obj.required),
+      isRequired: ~~obj.required,
       description: obj.description?.slice?.(0, 100) || '',
       paramAttr: {
         example: safeStringify(obj.example ?? '')

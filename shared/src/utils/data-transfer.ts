@@ -1,8 +1,6 @@
-// @ts-nocheck
-
-import { whatType, whatTextType } from './common'
-import { ApiBodyType, ApiEditBody, JsonRootType } from '../types/pcAPI'
-import { flatData } from './tree.utils'
+import { whatType, whatTextType, JSONParse } from './common'
+import { BodyParam } from '../types/apiData'
+import { ApiBodyType } from '../types/api.model'
 
 export const isXML = (data) => {
   const parser = new DOMParser()
@@ -21,18 +19,18 @@ export const isXML = (data) => {
 /**
  * Parse item to eoTableComponent need
  */
-export const parseTree = (key, value, level = 0) => {
+export const parseTree = (key, value): BodyParam | unknown => {
   if (whatType(value) === 'object') {
     return {
       name: key,
-      required: true,
-      example: '',
-      type: 'object',
+      isRequired: 1,
+      'paramAttr.example': '',
+      paramAttr: {
+        example: ''
+      },
+      dataType: ApiParamsType.object,
       description: '',
-      listDepth: level,
-      children: Object.keys(value).map((it) =>
-        parseTree(it, value[it], level + 1)
-      )
+      childList: Object.keys(value).map((it) => parseTree(it, value[it]))
     }
   }
   if (whatType(value) === 'array') {
@@ -42,37 +40,39 @@ export const parseTree = (key, value, level = 0) => {
     if (whatType(data) === 'string') {
       return {
         name: key,
-        required: true,
-        //TODO only test page has value
-        value: JSON.stringify(value),
-        //TODO only edit page has example
-        example: JSON.stringify(value),
-        type: 'array',
-        description: '',
-        listDepth: level
+        isRequired: 1,
+        'paramAttr.example': JSON.stringify(value),
+        dataType: ApiParamsType.array,
+        paramAttr: {
+          example: JSON.stringify(value)
+        },
+        description: ''
       }
     }
     return {
       name: key,
-      required: true,
-      example: '',
-      type: 'array',
+      isRequired: 1,
+      'paramAttr.example': '',
+      paramAttr: {
+        example: ''
+      },
+      dataType: ApiParamsType.array,
       description: '',
-      listDepth: level,
-      children: data
-        ? Object.keys(data).map((it) => parseTree(it, data[it], level + 1))
+      childList: data
+        ? Object.keys(data).map((it) => parseTree(it, data[it]))
         : []
     }
   }
   // * value is string & number & null
   return {
     name: key,
-    value: value == null ? '' : value.toString(),
+    isRequired: 1,
     description: '',
-    type: whatType(value),
-    required: true,
-    example: value == null ? '' : value.toString(),
-    listDepth: level
+    'paramAttr.example': value == null ? '' : value.toString(),
+    paramAttr: {
+      example: value == null ? '' : value.toString()
+    },
+    dataType: ApiParamsType[whatType(value)]
   }
 }
 /**
@@ -88,7 +88,14 @@ export const form2json = (tmpl) =>
       return { key: key?.trim(), value: value?.trim() }
     })
 
-export const xml2json = (tmpl) => {
+const xml2jsonArr = (
+  tmpl
+): Array<{
+  tagName: string
+  childList: any[]
+  content: string
+  attr: string
+}> => {
   // * delete <?xml ... ?>
   let xml = tmpl.replace(/<\?xml.+\?>/g, '').trim()
   if (xml === '') {
@@ -103,7 +110,7 @@ export const xml2json = (tmpl) => {
   let index = null
   while (xml) {
     // * handle end tags
-    if (xml.trim().substring(0, 2) === '</') {
+    if (xml.substring(0, 2) === '</') {
       const end = xml.match(endTag)
       const [str, label] = end
       const last = stack.pop()
@@ -116,23 +123,25 @@ export const xml2json = (tmpl) => {
         result.push(last)
       } else {
         const parent = stack.pop()
-        parent.children.push(last)
+        parent.childList.push(last)
         stack.push(parent)
       }
-      xml = xml.trim().substring(str.length)
+      index = xml.indexOf(str) === -1 ? 0 : xml.indexOf(str)
+      xml = xml.substring(index + str.length).trim()
+      index = null
       continue
     }
     // * handle start tags
-    if ((start = xml.match(startTag))) {
+    if (xml.indexOf('<') === 0 && (start = xml.match(startTag))) {
       const [str, label, attr] = start
       if (str.slice(-2) === '/>') {
         // * single tag
         const parent = stack.pop()
-        parent.children.push({
+        parent.childList.push({
           tagName: label.trim(),
           attr: attr.trim(),
           content: '',
-          children: []
+          childList: []
         })
         stack.push(parent)
         xml = xml.trim().substring(str.length)
@@ -142,19 +151,23 @@ export const xml2json = (tmpl) => {
         tagName: label.trim(),
         attr: attr.trim(),
         content: '',
-        children: []
+        childList: []
       })
-      xml = xml.trim().substring(str.length)
+      index = xml.indexOf(str) === -1 ? 0 : xml.indexOf(str)
+      xml = xml.substring(index + str.length)
+      index = null
       continue
     }
     // * handle text content
-    if ((index = xml.indexOf('<') > 0)) {
+    if (xml.indexOf('<') > 0) {
+      index = xml.indexOf('<')
       const content = xml.slice(0, index)
       const last = stack.pop()
       last.content += content
       stack.push(last)
-      xml = xml.substring(index)
+      xml = xml.substring(index).trim()
       index = null
+      continue
     }
     xml = xml.trim()
   }
@@ -164,112 +177,55 @@ export const xml2json = (tmpl) => {
   // console.log(JSON.stringify(result, null, 2));
   return result
 }
-
-type uiData = {
-  textType: ApiBodyType | string
-  rootType: JsonRootType | string
-  data: ApiEditBody | any
-}
-
-export const xml2UiData = (text) => {
-  const data: any[] = xml2json(text)
+export const xml2json = (text) => {
+  const data: any[] = xml2jsonArr(text)
   const deep = (list = []) =>
     list.reduce(
-      (total, { tagName, content, attr, children }) => ({
+      (total, { tagName, content, attr, childList }) => ({
         ...total,
-        [tagName]: children?.length > 0 ? deep(children || []) : content
+        [tagName]: childList?.length > 0 ? deep(childList || []) : content
         // attribute: attr,  // * not support the key for now cause ui has not show it
       }),
       {}
     )
-  const result = deep(data)
-  console.log('result', result)
-  return JSON.parse(JSON.stringify(result))
+  return deep(data)
 }
-/**
- * Json object 2 xml
- *
- * @param o Object
- * @param tab tab or indent string for pretty output formatting,omit or use empty string "" to supress.
- * @returns
- */
-export const json2XML: (o: object, tab?) => string = (o, tab) => {
-  const toXml = function (v, name, ind) {
-    let xml = ''
-    if (v instanceof Array) {
-      for (let i = 0, n = v.length; i < n; i++) {
-        xml += ind + toXml(v[i], name, ind + '\t') + '\n'
-      }
-    } else if (typeof v == 'object') {
-      let hasChild = false
-      xml += ind + '<' + name
-      for (var m in v) {
-        if (m.charAt(0) == '@') {
-          xml += ' ' + m.substr(1) + '="' + v[m].toString() + '"'
-        } else {
-          hasChild = true
-        }
-      }
-      xml += hasChild ? '>' : '/>'
-      if (hasChild) {
-        for (var m in v) {
-          if (m == '#text') {
-            xml += v[m]
-          } else if (m == '#cdata') {
-            xml += '<![CDATA[' + v[m] + ']]>'
-          } else if (m.charAt(0) != '@') {
-            xml += toXml(v[m], m, ind + '\t')
-          }
-        }
-        xml +=
-          (xml.charAt(xml.length - 1) == '\n' ? ind : '') + '</' + name + '>'
-      }
-    } else {
-      xml += ind + '<' + name + '>' + v.toString() + '</' + name + '>'
-    }
-    return xml
-  }
-  let xml = ''
-  for (const m in o) {
-    if (Object.prototype.hasOwnProperty.call(o, m)) {
-      xml += toXml(o[m], m, '')
-    }
-  }
-  return tab ? xml.replace(/\t/g, tab) : xml.replace(/\t|\n/g, '')
+
+type uiData = {
+  contentType: ApiBodyType
+  data: BodyParam | any
 }
 
 /**
- * Transfer text to json/xml/raw ui data,such as request body/response body
- * Flat array with listdepth
+ * Transfer text to json/xml/raw table data,such as request body/response body
  *
  * @returns body info
  */
-export const text2UiData: (text: string) => uiData = (text) => {
+export const text2table: (text: string) => uiData = (text) => {
   const result: uiData = {
-    textType: 'raw',
-    rootType: 'object',
-    data: text
+    contentType: ApiBodyType.Raw,
+    data: [
+      {
+        binaryRawData: text
+      }
+    ]
   }
   const textType = whatTextType(text)
-  result.textType = ['xml', 'json'].includes(textType) ? textType : 'raw'
-  switch (result.textType) {
-    case 'xml': {
-      result.data = xml2UiData(text)
-      result.data = flatData(
-        Object.keys(result.data).map((it) => parseTree(it, result.data[it]))
-      )
+  result.contentType =
+    textType === 'xml'
+      ? ApiBodyType.XML
+      : textType === 'json'
+      ? whatType(JSONParse(text)) === 'array'
+        ? ApiBodyType.JSONArray
+        : ApiBodyType.JSON
+      : ApiBodyType.Raw
+  switch (result.contentType) {
+    case ApiBodyType.XML: {
+      result.data = json2Table(xml2json(text))
       break
     }
-    case 'json': {
-      try {
-        result.data = JSON.parse(result.data)
-        result.data = flatData(
-          Object.keys(result.data).map((it) => parseTree(it, result.data[it]))
-        )
-      } catch (error) {
-        console.error('text2UiData', error)
-        result.textType = 'raw'
-      }
+    case ApiBodyType.JSON: {
+      result.data = json2Table(JSON.parse(text))
       break
     }
     default: {
@@ -278,155 +234,21 @@ export const text2UiData: (text: string) => uiData = (text) => {
   }
   return result
 }
+export const json2Table = (json) =>
+  Object.entries(json).map(([key, value]) => parseTree(key, value))
 
-/**
- * Format eoapi body to json
- * !TODO Current just from sass apikit,need refactor
- *
- * @param eoapiArr
- * @param inputOptions
- * @returns
- */
-export const uiData2Json = function (eoapiArr: ApiEditBody[], inputOptions) {
-  inputOptions = inputOptions || {}
-  const result = {}
-  const loopFun = (inputArr, inputObject) => {
-    if (inputOptions.checkXmlAttr) {
-      inputObject['@eo_attr'] = inputObject['@eo_attr'] || {}
-    }
-    for (const val of inputArr || []) {
-      if (!val.name) {
-        continue
-      }
-      if (!val.required && !inputOptions.ignoreCheckbox) {
-        continue
-      }
-      const tmpKey = val.nameHtml || val.name
-      if (inputOptions.checkXmlAttr) {
-        if (val.isErrorXmlAttr) {
-          // $rootScope.InfoModal('请填写正确格式的XML属性列表再进行转换', 'warning');
-          throw new Error('errorXmlAttr')
-        }
-        if (inputObject['@eo_attr'].hasOwnProperty(tmpKey)) {
-          inputObject['@eo_attr'][tmpKey] = [
-            inputObject['@eo_attr'][tmpKey],
-            (val.attribute || '').replace(/\s+/, ' ')
-          ]
-        } else {
-          inputObject['@eo_attr'][tmpKey] = (val.attribute || '').replace(
-            /\s+/,
-            ' '
-          )
-        }
-      }
-      if (inputOptions.defaultValueKey) {
-        inputObject[tmpKey] = val[inputOptions.defaultValueKey]
-      } else {
-        inputObject[tmpKey] = val.paramInfo
-      }
-      if (val.children && val.children.length > 0) {
-        switch (val.type) {
-          case 'array': {
-            const tmp_child_zero_item = val.children[0]
-            if (tmp_child_zero_item.isArrItem) {
-              // 判断是否为新数组格式
-              if (inputOptions.checkXmlAttr) {
-                inputObject['@eo_attr'][tmpKey] = []
-              }
-              inputObject[tmpKey] = []
-              val.children.forEach((tmp_arr_item) => {
-                if (
-                  !(
-                    tmp_arr_item.checkbox ||
-                    tmp_arr_item.paramNotNull ||
-                    inputOptions.ignoreCheckbox
-                  )
-                ) {
-                  return
-                }
-                if (inputOptions.checkXmlAttr) {
-                  const tmp_attr =
-                    typeof tmp_arr_item.attribute === 'string'
-                      ? tmp_arr_item.attribute
-                      : ''
-                  inputObject['@eo_attr'][tmpKey].push(
-                    tmp_attr.replace(/\s+/, ' ')
-                  )
-                }
-                let tmp_result_arr_item = {}
-                if (
-                  tmp_arr_item.type === 'array' ||
-                  !(tmp_arr_item.children && tmp_arr_item.children.length > 0)
-                ) {
-                  loopFun([tmp_arr_item], tmp_result_arr_item)
-                  tmp_result_arr_item =
-                    tmp_result_arr_item[
-                      tmp_arr_item.nameHtml || tmp_arr_item.name
-                    ]
-                } else {
-                  loopFun(tmp_arr_item.children, tmp_result_arr_item)
-                }
-                inputObject[tmpKey].push(tmp_result_arr_item)
-              })
-            } else {
-              if (inputOptions.checkXmlAttr) {
-                inputObject['@eo_attr'][tmpKey] = [
-                  inputObject['@eo_attr'][tmpKey]
-                ]
-              }
-              inputObject[tmpKey] = [{}]
-              loopFun(val.children, inputObject[tmpKey][0])
-            }
-            break
-          }
-          default: {
-            inputObject[tmpKey] = {}
-            loopFun(val.children, inputObject[tmpKey])
-            break
-          }
-        }
-      } else {
-        const tmpDefaultTypeValueObj = {
-          boolean: 'false',
-          array: '[]',
-          object: '{}',
-          number: '0',
-          int: '0'
-        }
-        switch (val.type) {
-          case 'string': {
-            inputObject[tmpKey] = inputObject[tmpKey] || ''
-            break
-          }
-          case 'null': {
-            inputObject[tmpKey] = null
-            break
-          }
-          default: {
-            try {
-              inputObject[tmpKey] = JSON.parse(
-                inputObject[tmpKey] || tmpDefaultTypeValueObj[val.type]
-              )
-            } catch (JSON_PARSE_ERROR) {
-              inputObject[tmpKey] = inputObject[tmpKey] || ''
-            }
-            break
-          }
-        }
-      }
-    }
-  }
-  loopFun(eoapiArr, result)
-  return result
-}
+const fields = [
+  'createUserId',
+  'updateUserId',
+  'managerId',
+  'id',
+  'groupId',
+  'projectId'
+]
 
-
-
-const fields = ['createUserId', 'updateUserId', 'managerId', 'id', 'groupId', 'projectId']
-
-export const filterFieds = (data:any[] = []) => {
-  data.forEach(item => {
-    fields.forEach(k => Reflect.deleteProperty(item, k))
+export const filterFieds = (data: any[] = []) => {
+  data.forEach((item) => {
+    fields.forEach((k) => Reflect.deleteProperty(item, k))
     if (item.children?.length || item.childList?.length) {
       filterFieds(item.children || item.childList)
     }
@@ -434,7 +256,7 @@ export const filterFieds = (data:any[] = []) => {
       filterFieds(item.responseList)
     }
     if (item.apiAttrInfo) {
-      fields.forEach(k => Reflect.deleteProperty(item.apiAttrInfo, k))
+      fields.forEach((k) => Reflect.deleteProperty(item.apiAttrInfo, k))
     }
   })
 }

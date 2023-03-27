@@ -14,7 +14,7 @@ import type {
   HttpsSchemaGetpostmanComJsonDraft07CollectionV210,
   VariableList
 } from './types/postman-collection'
-import { text2UiData } from '../../../shared/src/utils/data-transfer'
+import { text2table } from '../../../shared/src/utils/data-transfer'
 import {
   whatTextType,
   safeStringify,
@@ -25,12 +25,10 @@ import {
   ApiData,
   BodyParam,
   HeaderParam,
-  QueryParam,
   RequestParams,
   ResponseParams
 } from '../../../shared/src/types/apiData'
 import {
-  ApiBodyType,
   ApiParamsType,
   ContentType,
   mui,
@@ -75,11 +73,10 @@ export class PostmanImporter {
       }
       const request = item.request as Request
       const response = item.response as Response[]
-
       return {
         collectionType: CollectionTypeEnum.API_DATA,
         name: item.name,
-        uri: this.handleUrl(request?.url),
+        uri: this.handleUrl(request?.url) || item.name,
         protocol: Protocol.HTTP,
         apiAttrInfo: {
           requestMethod: RequestMethod[request?.method?.toUpperCase() || 'GET'],
@@ -206,7 +203,7 @@ export class PostmanImporter {
         if (whatTextType(body.raw) === 'json') {
           return this.transformBodyData(JSON.parse(body.raw.replace(/\s/g, '')))
         }
-        return text2UiData(body.raw || '').data
+        return text2table(body.raw || '').data
       } catch (error) {
         console.error(error)
         return [
@@ -240,7 +237,6 @@ export class PostmanImporter {
   }
 
   handleResponseBody(res: Response[] = []): ResponseParams['bodyParams'] {
-    console.log(res)
     try {
       const result = JSON.parse(res[0].body?.replace(/\s/g, '')!)
       return [].concat(result).flatMap((item) => {

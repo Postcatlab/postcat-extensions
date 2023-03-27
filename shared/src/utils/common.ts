@@ -30,6 +30,15 @@ export const whatType = (data: any): string => {
   }
   return 'unknown'
 }
+export const JSONParse = (text, defaultVal = {}, reviver?) => {
+  if (typeof text === 'object') return text
+  try {
+    return JSON.parse(text, reviver)
+  } catch (ex) {
+    pcConsole.warn('JSONParse error:', ex)
+    return defaultVal
+  }
+}
 /**
  * judge text content type
  *

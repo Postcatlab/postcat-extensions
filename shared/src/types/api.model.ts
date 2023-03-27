@@ -196,15 +196,6 @@ export const API_BODY_TYPE = [
   }
 ]
 /**
- * Json Root Type
- *
- * @description body type is json,set root type of object/array
- */
-export enum JsonRootType {
-  Object = 2,
-  Array = 6
-}
-/**
  * Import string by api body type
  */
 export const IMPORT_MUI = {
@@ -216,11 +207,9 @@ export const IMPORT_MUI = {
   6: 'json'
 }
 
-
-
 export const mui = {
   headerParams: 0,
   bodyParams: 1,
   queryParams: 2,
   restParams: 3
-};
+}
