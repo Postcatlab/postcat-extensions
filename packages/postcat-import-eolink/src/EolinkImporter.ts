@@ -41,12 +41,12 @@ export class EolinkImporter {
     const projectName = this.eolinkData?.projectInfo?.projectName
     const collections = projectName
       ? [
-          {
-            name: projectName,
-            collectionType: CollectionTypeEnum.GROUP,
-            children: this.transformItems(data)
-          }
-        ]
+        {
+          name: projectName,
+          collectionType: CollectionTypeEnum.GROUP,
+          children: this.transformItems(data)
+        }
+      ]
       : this.transformItems(data)
     return {
       collections,
@@ -59,7 +59,7 @@ export class EolinkImporter {
       let params: any[] = []
       try {
         params = JSON.parse(item?.globalVariable)
-      } catch (error) {}
+      } catch (error) { }
       return {
         name: item.envName || '',
         hostUri: item.frontURI || '',
@@ -96,8 +96,8 @@ export class EolinkImporter {
           const protocol = apiType.startsWith('http')
             ? apiType
             : protocolSupports.includes(apiType)
-            ? 'http'
-            : apiType
+              ? 'http'
+              : apiType
 
           return {
             collectionType: CollectionTypeEnum.API_DATA,
@@ -114,7 +114,7 @@ export class EolinkImporter {
               headerParams: this.handleResponseHeaders(headerInfo || []),
               queryParams: this.handleInfo(urlParam, 'queryParams'),
               restParams: this.handleInfo(restfulParam || [], 'restParams'),
-              bodyParams: this.handleInfo(requestInfo, 'bodyParams')
+              bodyParams: this.handleBodyParams(baseInfo, requestInfo)
             },
             responseList: [
               {
@@ -262,5 +262,33 @@ export class EolinkImporter {
         example: this.getDefaultValue(n)
       }
     }))
+  }
+
+  handleBodyParams(baseInfo, requestInfo) {
+    if ([1, 4].includes(baseInfo.apiRequestParamType)) {
+      return [{
+        binaryRawData: baseInfo.apiRequestRaw,
+        id: null,
+        parentId: 0,
+        apiUuid: '',
+        responseUuid: '',
+        name: '',
+        paramType: 0,
+        partType: 1,
+        dataType: 0,
+        dataTypeValue: '',
+        structureId: 0,
+        structureParamId: '',
+        contentType: null,
+        isRequired: 0,
+        description: '',
+        orderNo: 0,
+        isDefault: null,
+        paramAttr: {},
+        childList: []
+      }]
+    } else {
+      return this.handleInfo(requestInfo, 'bodyParams')
+    }
   }
 }
