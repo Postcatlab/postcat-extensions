@@ -213,3 +213,8 @@ export const mui = {
   queryParams: 2,
   restParams: 3
 }
+
+export const PARAM_TYPE = {
+  input: 0,
+  output: 1
+}
