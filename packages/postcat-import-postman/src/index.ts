@@ -9,7 +9,7 @@ export const importFunc = (
   data: HttpsSchemaGetpostmanComJsonDraft07CollectionV210
 ) => {
   console.log('before PostmanImport', data)
-  if (!(data.info && data.info?._postman_id)) {
+  if (!(data?.info && data?.info?._postman_id)) {
     return [null, { msg: '文件不合法，该文件不是postman格式' }]
   }
 
