@@ -36,17 +36,17 @@ export class APIPostImporter {
   }
 
   transformEnv(env: any[] = []): ImportProjectDto['environmentList'] {
-    return env.map((item) => {
+    return env?.map((item) => {
       return {
-        name: item.name || '',
-        hostUri: item.pre_url || '',
+        name: item?.name || '',
+        hostUri: item?.pre_url || '',
         // todo params list for envs.list?
       }
-    })
+    }) || []
   }
 
   transformItems(items: any): ImportProjectDto['collections'] {
-    return items.map((item) => {
+    return items?.map((item) => {
       // 处理分组
       if (TargetTypeEnum.GROUP == item.target_type) {
         return {
@@ -90,7 +90,7 @@ export class APIPostImporter {
               contentType: this.handleResponseBodyType(response),
               responseParams: {
                 // 没有header?
-                // headerParams: this.handleResponseHeaders(response),
+                headerParams: [],
                 bodyParams: this.handleResponseBody(response)
               }
             }
@@ -100,7 +100,7 @@ export class APIPostImporter {
         console.error("unknown target_type");
         return {} as Group;
       }
-    })
+    }) || []
   }
 
 

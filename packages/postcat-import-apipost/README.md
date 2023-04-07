@@ -1,4 +1,4 @@
-# Import APIPost
+# Import ApiPost
 
 ## usage
 

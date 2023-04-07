@@ -1,4 +1,4 @@
-# 导入 APIPost 插件。
+# 导入 ApiPost 插件。
 
 ## 使用
 

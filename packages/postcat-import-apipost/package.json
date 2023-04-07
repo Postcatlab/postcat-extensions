@@ -2,8 +2,8 @@
   "name": "postcat-import-apipost",
   "version": "1.0.0",
   "author": "cxx",
-  "description": "Import APIs from APIPost to Postcat.",
-  "title": "Import from APIPost",
+  "description": "Import APIs from ApiPost to Postcat.",
+  "title": "Import from ApiPost",
   "main": "dist/index.js",
   "logo": "https://data.eolink.com/Rxrc1uH7731d0f097679e4ccc64b93996ce7b6cdf54771f",
   "scripts": {
@@ -29,7 +29,7 @@
     "importAPI": {
       "action": "importFunc",
       "type": "file",
-      "label": "APIPost(.json)",
+      "label": "ApiPost(.json)",
       "description": "${function.description}",
       "icon": "https://data.eolink.com/Rxrc1uH7731d0f097679e4ccc64b93996ce7b6cdf54771f"
     },
