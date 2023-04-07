@@ -1,5 +1,7 @@
 module.exports = {
   authAPI: (config) => {
+    console.log(config, 222);
+
     const headerValue = `Basic ${Buffer.from(config.username || '')}:${
       config.password
     }`
