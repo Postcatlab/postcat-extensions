@@ -2,11 +2,10 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
   authAPI: (config) => {
-
     try {
       const authorizationValue = `Bearer ${jwt.sign(
         JSON.parse(config.payload),
-        config.Secret,
+        config.isBase64Encoded ? Buffer.from(config.Secret).toString('base64') : config.Secret,
         {algorithm: config.Algorithm}
       )}`
 
