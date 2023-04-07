@@ -10,7 +10,7 @@ export const importFunc = (
 ) => {
   console.log('before PostmanImport', data)
   if (!data?.info?._postman_id) {
-    return [null, { msg: '文件不合法，该文件不是postman格式' }]
+    return [null, { msg: '文件不合法，该文件不是 Postman 格式' }]
   }
 
   const postmanImporter = new PostmanImporter(data)
