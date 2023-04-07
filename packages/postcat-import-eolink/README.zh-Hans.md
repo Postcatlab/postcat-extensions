@@ -1,4 +1,4 @@
-# 导入 Eolink 插件。
+# 导入 Eolink 插件
 
 ## 使用
 
@@ -9,5 +9,4 @@
 ![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/shared/assets/images/overview-zh.png)
 
 请选择想要入的文件格式，拖入文件点击确定按钮即可完成导入。
-
-<img src="https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-import-eolink/assets/images/import_dialog.png" style="width: 100%" />
+![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-import-eolink/assets/images/import_dialog.png)
