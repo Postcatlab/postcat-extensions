@@ -1,12 +1,14 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
 module.exports = {
   authAPI: (config) => {
     try {
       const authorizationValue = `Bearer ${jwt.sign(
         JSON.parse(config.payload),
-        config.isBase64Encoded ? Buffer.from(config.Secret).toString('base64') : config.Secret,
-        {algorithm: config.Algorithm}
+        config.isBase64Encoded
+          ? Buffer.from(config.Secret).toString('base64')
+          : config.Secret,
+        { algorithm: config.Algorithm }
       )}`
 
       return `pc.request.headers.add({
@@ -14,7 +16,6 @@ module.exports = {
       })`
     } catch (err) {
       console.error(err)
-
       return null
     }
   }

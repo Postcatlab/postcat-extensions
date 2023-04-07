@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
-  "logo": "https://data.eolink.com/pGtIXHG6c0ebf5254f4046ff96239cc3676784985bd4d94",
+  "logo": "https://data.eolink.com/5fwiFW182ef051fc6150c6a274fde19a83667432b534ef0",
   "engines": {
     "postcat": "^0.4.0"
   },
