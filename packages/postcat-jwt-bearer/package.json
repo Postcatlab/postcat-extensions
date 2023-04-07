@@ -1,7 +1,7 @@
 {
   "name": "postcat-jwt-bearer",
   "title": "JWT Authorization",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JWT Bearer Authorization",
   "author": {
     "name": "Postcat"

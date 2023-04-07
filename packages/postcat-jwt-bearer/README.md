@@ -18,7 +18,9 @@ GET /security/somethings HTTP/1.1
 Authorization: Basic bmFtZTpwYXNzd29yZA==
 ```
 
-including **head**
+including:
+
+**head**
 
 ```json
 {
@@ -47,6 +49,7 @@ WT provides 7 default fields for developers to choose.
 - jti (JWT ID): number, unique identifier
 
 **Signature**
+
 For each encryption algorithm, the signature corresponds to a calculation formula. For example, the signature of the SHA256 encryption algorithm is as follows:
 
 ```
