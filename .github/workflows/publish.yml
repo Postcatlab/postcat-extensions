@@ -33,7 +33,7 @@ jobs:
 
       - name: build
         run: |
-          pnpm install
+          pnpm install --fix-lockfile
           pnpm build
 
       - name: Publish

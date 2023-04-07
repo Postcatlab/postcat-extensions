@@ -1,4 +1,4 @@
-# 导入 OpenAPI 插件
+# 导入 ${title} 插件
 
 ## 使用
 
@@ -10,4 +10,4 @@
 ![](https://raw.githubusercontent.com/Postcatlab/postcat-extensions/main/shared/assets/images/overview-zh.png)
 
 请选择想要入的文件格式，拖入文件点击确定按钮即可完成导入。
-![](https://raw.githubusercontent.com/eolinker/postcat-extensions/main/packages/postcat-import-openapi/assets/images/import_dialog_zh.png)
+${importImg}
