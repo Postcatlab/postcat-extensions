@@ -25,7 +25,11 @@ export class APIPostImporter {
     // 项目名
     const projectName = data.project?.name
     const projectDescription = data.project?.description
-    const collections = this.transformItems(data?.apis)
+    const collections = [{
+        name: projectName || 'Import from ApiPost',
+        collectionType: CollectionTypeEnum.GROUP,
+        children: this.transformItems(data?.apis)
+      }]
     const environmentList = this.transformEnv(data?.envs)
     return {
       name: projectName,
@@ -226,23 +230,7 @@ export class APIPostImporter {
   handleResponseBody(res: any): ResponseParams['bodyParams'] {
     try {
       const result = JSON.parse(res.success?.raw?.replace(/\s/g, '')!)
-      return [].concat(result).flatMap((item) => {
-        return Object.entries(item).map<BodyParam>(([key, value]) => ({
-          partType: mui.bodyParams,
-          paramType: PARAM_TYPE.output,
-          description: '',
-          name: key,
-          isRequired: 1,
-          dataType: ApiParamsType[getDataType(value)],
-          paramAttr: {
-            example: safeStringify(value)
-          },
-          childList:
-            value && typeof value === 'object'
-              ? this.transformBodyData(value as any, PARAM_TYPE.output)
-              : undefined
-        }))
-      })
+      return  this.transformBodyData(result, PARAM_TYPE.input)
     } catch (error) {
       return res?.success?.raw
         ? [
@@ -266,7 +254,9 @@ export class APIPostImporter {
         if (typeof n !== 'object') {
           return []
         }
-        return Object.entries<any>(n).map<BodyParam>(([key, value], index) => {
+        return Object.entries<any>(n)
+          .filter(([key, value]) => key != null && key !== '')
+          .map<BodyParam>(([key, value], index) => {
           return {
             partType: mui.bodyParams,
             paramType: paramType,
