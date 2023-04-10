@@ -20,11 +20,11 @@
   "features": {
     "authAPI": {
       "action": "authAPI",
-      "label": "JWT Bearer",
+      "label": "OAuth 2.0",
       "configuration": {
         "type": "object",
         "properties": {
-          "Algorithm": {
+          "token": {
             "type": "string",
             "ui": {
               "widget": "select"
@@ -83,6 +83,6 @@
     }
   },
   "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+    "oauth": "^0.10.0"
   }
 }
