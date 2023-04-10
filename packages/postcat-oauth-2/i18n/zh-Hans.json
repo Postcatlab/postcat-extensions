@@ -1,0 +1,4 @@
+{
+  "title": "JWT 鉴权",
+  "description": "JSON Web Token (JWT) 鉴权方式，安装后会在请求头部 Authorization 加入鉴权值"
+}

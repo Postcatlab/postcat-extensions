@@ -1,0 +1,88 @@
+{
+  "name": "postcat-oauth-2",
+  "title": "OAuth2.0 Authorization",
+  "version": "0.0.1",
+  "description": "OAuth2.0 Authorization",
+  "author": {
+    "name": "Postcat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
+  },
+  "logo": "https://data.eolink.com/5fwiFW182ef051fc6150c6a274fde19a83667432b534ef0",
+  "engines": {
+    "postcat": "^0.4.0"
+  },
+  "categories": [
+    "API Testing"
+  ],
+  "features": {
+    "authAPI": {
+      "action": "authAPI",
+      "label": "JWT Bearer",
+      "configuration": {
+        "type": "object",
+        "properties": {
+          "Algorithm": {
+            "type": "string",
+            "ui": {
+              "widget": "select"
+            },
+            "required": true,
+            "default": "HS256",
+            "label": "Algorithm",
+            "enum": [
+              {
+                "label": "HS256",
+                "value": "HS256"
+              },
+              {
+                "label": "HS384",
+                "value": "HS384"
+              },
+              {
+                "label": "HS512",
+                "value": "HS512"
+              }
+            ]
+          },
+          "Secret": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "label": "Secret"
+          },
+          "isBase64Encoded": {
+            "ui": {
+              "widget": "checkbox"
+            },
+            "type": "boolean",
+            "label": "",
+            "title": "Secret Base64 encoded",
+            "default": false
+          },
+          "payload": {
+            "ui": {
+              "widget": "textarea",
+              "rows": 4
+            },
+            "placeholder": "Please enter Payload,the format must be json",
+            "type": "string",
+            "label": "Payload",
+            "default": ""
+          }
+        }
+      }
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
+  }
+}
