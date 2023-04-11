@@ -1,7 +1,7 @@
 {
   "name": "postcat-jwt-bearer",
   "title": "JWT Authorization",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "JWT Bearer Authorization",
   "author": {
     "name": "Postcat"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/Postcatlab/postcat-extensions.git"
   },
-  "logo": "https://data.eolink.com/pGtIXHG6c0ebf5254f4046ff96239cc3676784985bd4d94",
+  "logo": "https://data.eolink.com/5fwiFW182ef051fc6150c6a274fde19a83667432b534ef0",
   "engines": {
     "postcat": "^0.4.0"
   },
@@ -40,6 +40,10 @@
               {
                 "label": "HS384",
                 "value": "HS384"
+              },
+              {
+                "label": "HS512",
+                "value": "HS512"
               }
             ]
           },
@@ -63,6 +67,7 @@
               "widget": "textarea",
               "rows": 4
             },
+            "placeholder": "Please enter Payload,the format must be json",
             "type": "string",
             "label": "Payload",
             "default": ""
@@ -76,5 +81,8 @@
         "zh-Hans"
       ]
     }
+  },
+  "dependencies": {
+    "jsonwebtoken": "^9.0.0"
   }
 }

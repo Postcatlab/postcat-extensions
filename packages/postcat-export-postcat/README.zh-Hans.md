@@ -1,4 +1,4 @@
-# 导入 Postcat 插件
+# 导出 Postcat 插件
 
 支持导出 Postcat JSON 文件。
 
