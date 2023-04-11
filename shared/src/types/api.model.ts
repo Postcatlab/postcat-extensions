@@ -29,6 +29,7 @@ export enum ApiParamsType {
   file = 1,
   json = 2,
   int = 3,
+  integer = 3,
   float = 4,
   double = 5,
   date = 6,
