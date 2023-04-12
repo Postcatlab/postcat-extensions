@@ -1,7 +1,7 @@
 {
   "name": "postcat-jwt-bearer",
   "title": "JWT Authorization",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JWT Bearer Authorization",
   "author": {
     "name": "Postcat"
@@ -24,14 +24,24 @@
       "configuration": {
         "type": "object",
         "properties": {
-          "Algorithm": {
+          "payload": {
+            "ui": {
+              "widget": "textarea",
+              "rows": 4
+            },
+            "placeholder": "Please enter Payload,the format must be JSON",
+            "type": "string",
+            "label": "Payload",
+            "default": "{}"
+          },
+          "algorithm": {
             "type": "string",
             "ui": {
               "widget": "select"
             },
             "required": true,
             "default": "HS256",
-            "label": "Algorithm",
+            "label": "algorithm",
             "enum": [
               {
                 "label": "HS256",
@@ -44,35 +54,168 @@
               {
                 "label": "HS512",
                 "value": "HS512"
+              },
+              {
+                "label": "RS256",
+                "value": "RS256"
+              },
+              {
+                "label": "RS384",
+                "value": "RS384"
+              },
+              {
+                "label": "RS512",
+                "value": "RS512"
+              },
+              {
+                "label": "PS256",
+                "value": "PS256"
+              },
+              {
+                "label": "PS384",
+                "value": "PS384"
+              },
+              {
+                "label": "PS512",
+                "value": "PS512"
+              },
+              {
+                "label": "ES256",
+                "value": "ES256"
+              },
+              {
+                "label": "ES384",
+                "value": "ES384"
+              },
+              {
+                "label": "ES512",
+                "value": "ES512"
               }
             ]
           },
-          "Secret": {
+          "tokenPosition": {
             "type": "string",
-            "required": false,
-            "default": "",
-            "label": "Secret"
-          },
-          "isBase64Encoded": {
             "ui": {
-              "widget": "checkbox"
+              "widget": "select"
             },
-            "type": "boolean",
-            "label": "",
-            "title": "Secret Base64 encoded",
-            "default": false
+            "required": true,
+            "default": "header",
+            "label": "Add JWT token to",
+            "enum": [
+              {
+                "label": "Request Header",
+                "value": "header"
+              },
+              {
+                "label": "Query Param",
+                "value": "query"
+              }
+            ]
           },
-          "payload": {
+          "jwtHeaders": {
             "ui": {
               "widget": "textarea",
               "rows": 4
             },
-            "placeholder": "Please enter Payload,the format must be json",
+            "placeholder": "Please enter JWT other headers,the format must be JSON",
             "type": "string",
-            "label": "Payload",
-            "default": ""
+            "label": "JWT headers",
+            "default": "{}"
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "algorithm": {
+                  "enum": ["HS256", "HS384", "HS512"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "Secret": {
+                  "type": "string",
+                  "default": "",
+                  "label": "Secret"
+                },
+                "isBase64Encoded": {
+                  "ui": {
+                    "widget": "checkbox"
+                  },
+                  "type": "boolean",
+                  "label": "",
+                  "title": "Secret Base64 encoded",
+                  "default": false
+                }
+              },
+              "required": [
+                "Secret"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "algorithm": {
+                  "enum": ["RS256", "RS384", "RS512", "PS256", "PS384", "PS512", "ES256", "ES384", "ES512"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "Secret": {
+                  "type": "string",
+                  "ui": {
+                    "widget": "textarea"
+                  },
+                  "default": "",
+                  "label": "Secret"
+                }
+              },
+              "required": [
+                "Secret"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "tokenPosition": {
+                  "enum": ["header"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "headerPrefix": {
+                  "type": "string",
+                  "default": "Bearer",
+                  "label": "Request header prefix"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "tokenPosition": {
+                  "enum": ["query"]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "queryTokenName": {
+                  "type": "string",
+                  "default": "token",
+                  "label": "Query param name"
+                }
+              }
+            }
+          }
+
+        ]
       }
     },
     "i18n": {
@@ -83,6 +226,7 @@
     }
   },
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "jsonwebtoken": "^9.0.0"
   }
 }
