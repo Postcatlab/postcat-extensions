@@ -19,7 +19,7 @@ module.exports = {
 
       if(config.tokenPosition === 'header') {
         return `pc.request.headers.add({
-          key:'Authorization', value:'${config.headerPrefix || 'Bear'} ${authorizationValue}'
+          key:'Authorization', value:'${config.headerPrefix || 'Bearer'} ${authorizationValue}'
         })`
       } else {
         return `pc.request.addQueryParams({

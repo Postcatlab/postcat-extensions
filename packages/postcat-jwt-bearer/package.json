@@ -32,17 +32,7 @@
             "placeholder": "Please enter Payload,the format must be JSON",
             "type": "string",
             "label": "Payload",
-            "default": ""
-          },
-          "jwtHeaders": {
-            "ui": {
-              "widget": "textarea",
-              "rows": 4
-            },
-            "placeholder": "Please enter JWT other headers,the format must be JSON",
-            "type": "string",
-            "label": "JWT headers",
-            "default": ""
+            "default": "{}"
           },
           "algorithm": {
             "type": "string",
@@ -121,6 +111,16 @@
                 "value": "query"
               }
             ]
+          },
+          "jwtHeaders": {
+            "ui": {
+              "widget": "textarea",
+              "rows": 4
+            },
+            "placeholder": "Please enter JWT other headers,the format must be JSON",
+            "type": "string",
+            "label": "JWT headers",
+            "default": "{}"
           }
         },
         "allOf": [
@@ -190,7 +190,7 @@
               "properties": {
                 "headerPrefix": {
                   "type": "string",
-                  "default": "",
+                  "default": "Bearer",
                   "label": "Request header prefix"
                 }
               }
@@ -208,7 +208,7 @@
               "properties": {
                 "queryTokenName": {
                   "type": "string",
-                  "default": "",
+                  "default": "token",
                   "label": "Query param name"
                 }
               }
