@@ -10,9 +10,7 @@ export class APIFoxImporter {
 
   constructor(data) {
     this.apifoxData = data
-    console.log('this.apifoxData', this.apifoxData)
     this.postcatData = this.transformToPostcat(this.apifoxData)
-    console.log('postcatData', this.postcatData)
   }
 
   transformToPostcat(data): ImportProjectDto {
@@ -70,7 +68,6 @@ export class APIFoxImporter {
         const apiUri = api?.path || '$' + item.name;
         const apiProtocol = Protocol.HTTP;
         const apiMethod = api.method as string;
-        console.log(api.parameters)
         return {
           collectionType: CollectionTypeEnum.API_DATA,
           name: apiName,

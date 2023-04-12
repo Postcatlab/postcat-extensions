@@ -16,9 +16,7 @@ export class APIPostImporter {
 
   constructor(data) {
     this.apipostData = data
-    // console.log('this.apipostData', this.apipostData)
     this.postcatData = this.transformToPostcat(this.apipostData)
-    console.log('postcatData', this.postcatData)
   }
 
   transformToPostcat(data): ImportProjectDto {

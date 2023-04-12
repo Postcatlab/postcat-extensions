@@ -25,6 +25,7 @@ export const enumsToArr = (tEnum) =>
  * API body FormData param type
  */
 export enum ApiParamsType {
+  text = 0,
   string = 0,
   file = 1,
   json = 2,
