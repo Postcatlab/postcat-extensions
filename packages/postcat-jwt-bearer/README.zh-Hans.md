@@ -1,6 +1,6 @@
 # JWT 鉴权插件
 
-Json Web Token (JWT) 是为在网络应用环境间传递声明而执行的一种基于 JSON 的开放标准。
+JSON Web Token (JWT) 是为在网络应用环境间传递声明而执行的一种基于 JSON 的开放标准，安装后会在请求头部 Authorization 加入 JWT 鉴权后的值。
 
 JWT 被设计为紧凑且安全，特别适用于分布式站点的单点登录（SSO）场景。JWT 一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息。
 
@@ -18,7 +18,9 @@ GET /security/somethings  HTTP/1.1
 Authorization: Basic bmFtZTpwYXNzd29yZA==
 ```
 
-包括**头部**
+包括:
+
+**头部**
 
 ```json
 {
@@ -47,6 +49,7 @@ WT 规定了 7 个默认字段供开发者选用。
 - jti (JWT ID)：编号，唯一标识
 
 **签名 Signature**
+
 对于每种加密算法，签名都对应的一个计算公式。例如 SHA256 加密算法的签名如下：
 
 ```

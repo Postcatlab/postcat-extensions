@@ -29,6 +29,7 @@ export enum ApiParamsType {
   file = 1,
   json = 2,
   int = 3,
+  integer = 3,
   float = 4,
   double = 5,
   date = 6,
@@ -212,4 +213,9 @@ export const mui = {
   bodyParams: 1,
   queryParams: 2,
   restParams: 3
+}
+
+export const PARAM_TYPE = {
+  input: 0,
+  output: 1
 }
