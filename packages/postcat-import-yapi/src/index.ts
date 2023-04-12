@@ -6,7 +6,7 @@ export const importFunc = (data) => {
     return [null, { msg: '文件不合法，该文件不是 YApi 格式' }]
   }
   console.log('YApi before PostmanImport', data)
-  const apiPostImporter = new YApiImporter(data)
-  console.log('YApi after PostmanImport', apiPostImporter.postcatData)
-  return [apiPostImporter.postcatData, null]
+  const yapiImporter = new YApiImporter(data)
+  console.log('YApi after PostmanImport', yapiImporter.postcatData)
+  return [yapiImporter.postcatData, null]
 }
