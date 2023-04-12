@@ -49,7 +49,6 @@ WT provides 7 default fields for developers to choose.
 - jti (JWT ID): number, unique identifier
 
 **Signature**
-
 For each encryption algorithm, the signature corresponds to a calculation formula. For example, the signature of the SHA256 encryption algorithm is as follows:
 
 ```
