@@ -1,7 +1,7 @@
 {
   "name": "postcat-jwt-bearer",
   "title": "JWT Authorization",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JWT Bearer Authorization",
   "author": {
     "name": "Postcat"
@@ -128,7 +128,11 @@
             "if": {
               "properties": {
                 "algorithm": {
-                  "enum": ["HS256", "HS384", "HS512"]
+                  "enum": [
+                    "HS256",
+                    "HS384",
+                    "HS512"
+                  ]
                 }
               }
             },
@@ -158,7 +162,17 @@
             "if": {
               "properties": {
                 "algorithm": {
-                  "enum": ["RS256", "RS384", "RS512", "PS256", "PS384", "PS512", "ES256", "ES384", "ES512"]
+                  "enum": [
+                    "RS256",
+                    "RS384",
+                    "RS512",
+                    "PS256",
+                    "PS384",
+                    "PS512",
+                    "ES256",
+                    "ES384",
+                    "ES512"
+                  ]
                 }
               }
             },
@@ -182,7 +196,9 @@
             "if": {
               "properties": {
                 "tokenPosition": {
-                  "enum": ["header"]
+                  "enum": [
+                    "header"
+                  ]
                 }
               }
             },
@@ -200,7 +216,9 @@
             "if": {
               "properties": {
                 "tokenPosition": {
-                  "enum": ["query"]
+                  "enum": [
+                    "query"
+                  ]
                 }
               }
             },
@@ -214,7 +232,6 @@
               }
             }
           }
-
         ]
       }
     },

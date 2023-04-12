@@ -18,7 +18,9 @@ GET /security/somethings HTTP/1.1
 Authorization: Basic bmFtZTpwYXNzd29yZA==
 ```
 
-including **head**
+including:
+
+**head**
 
 ```json
 {
