@@ -1,6 +1,6 @@
 {
   "name": "postcat-import-apipost",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "cxx",
   "description": "Import APIs from ApiPost to Postcat.",
   "title": "Import from ApiPost",
