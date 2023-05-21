@@ -174,9 +174,7 @@ export class OpenAPIParser {
               responseList: [
                 {
                   isDefault: 1,
-                  contentType: contentTypeMap.get(
-                    this.getResponseContentType(obj.responses)
-                  ),
+                  contentType: this.getResponseContentType(obj.responses),
                   responseParams: {
                     headerParams: this.generateResponseHeaders(
                       this.getResponseObject(obj.responses)?.headers
@@ -349,11 +347,9 @@ export class OpenAPIParser {
     schema?: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject
   ): BodyParam[] {
     if (!schema) return []
-
     if (this.is$ref(schema)) {
       const [ref, innerSchema] = this.get$Ref(schema)
       const schemaObject = this.getSchemaBy$ref(ref)
-
       return schemaObject
         ? this.schema2PostcatiEditBody(schemaObject).concat(
             this.transformProperties(
@@ -368,7 +364,9 @@ export class OpenAPIParser {
     } else if (schema.type === 'object') {
       return this.transformProperties(schema?.properties, schema.required)
     } else {
-      return []
+      console.warn(`$Ref can't find the type,default object`, schema)
+      schema.type ??= schema.type || 'object'
+      return this.transformProperties(schema?.properties, schema.required)
     }
   }
 
@@ -408,17 +406,16 @@ export class OpenAPIParser {
     }
   }
 
-  getResponseContentType(
-    responses: OpenAPIV3.ResponsesObject
-  ): ContentTypeMapKey {
+  getResponseContentType(responses: OpenAPIV3.ResponsesObject): ContentType {
     const resObj = this.getResponseObject(responses)
     if (resObj?.content) {
-      return (
-        (Object.keys(resObj?.content).at(0) as ContentTypeMapKey) ||
-        'application/json'
-      )
+      const contentType = (Object.keys(resObj?.content).at(0) ||
+        'application/json') as ContentTypeMapKey
+      return contentTypeMap.has(contentType)
+        ? (contentTypeMap.get(contentType) as ContentType)
+        : ContentType.JSON_OBJECT
     } else {
-      return 'application/json'
+      return contentTypeMap.get('application/json') as ContentType
     }
   }
 
