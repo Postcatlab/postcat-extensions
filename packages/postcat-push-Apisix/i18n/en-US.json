@@ -1,0 +1,12 @@
+{
+    "title":"Push to Apisix",
+    "description":"Push API data to Apisix",
+    "function.description":"Push API data to Apisix",
+    "configuration.apisixUrl.description":"Please enter the Apisix imports the Address in the format: http://{ip or domain name}:{port number}",
+    "configuration.apisixUrl.label":"Apisix imports the Address",
+    "configuration.apisixUserName.label":"usename",
+    "configuration.apisixPassword.label":"password",
+    "configuration.merge_method.label":"Merge HTTP methods",
+    "configuration.task_name.label":"Import task name",
+    "configuration.merge_method.description":"Whether to combine multiple HTTP methods in the OpenAPI path into a single route. When you have multiple HTTP methods in your path with different details configured (such as securitySchema), you can turn this option off and it will generate separate routes for different HTTP methods"
+}

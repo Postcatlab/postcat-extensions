@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "esnext",
+    "baseUrl": ".",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "declaration": true, /* 生成相应的 '.d.ts' file. */
+    "emitDeclarationOnly": true, /* 只生成声明文件，不生成 js 文件*/
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "rootDir": ".",
+    "typeRoots": [
+      "./typings"
+    ]
+  },
+  "include": [
+    "packages/**/*",
+    "shared",
+    "babel.config.js",
+    "jest.config.js",
+    "test",
+    "./typings"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "docs",
+    "commitlint.config.js",
+    ".eslintrc.js",
+    "**/*.test.ts"
+  ],
+  "paths": {
+    "@shared/*": [
+      "shared/*"
+    ]
+  }
+}

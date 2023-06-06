@@ -1,0 +1,87 @@
+{
+  "name": "postcat-push-Apisix",
+  "title": "${title}",
+  "version": "0.0.1",
+  "description": "Push OpenAPI data to Apisix",
+  "author": "postCat",
+  "main": "dist/index.js",
+  "logo": "https://apisix.apache.org/zh/img/logo2.svg",
+  "scripts": {
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -w -c rollup.config.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@types/lodash-es": "*",
+    "esbuild": "^0.14.38",
+    "nodemon": "^2.0.15",
+    "rollup": "^2.78.0",
+    "rollup-plugin-dts": "^4.2.1",
+    "rollup-plugin-esbuild": "^4.9.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.6"
+  },
+  "dependencies": {
+    "lodash": "*",
+    "lodash-es": "^4.17.21",
+    "openapi-types": "^12.0.2"
+  },
+  "categories": [
+    "Data Migration"
+  ],
+  "features": {
+    "pushAPI": {
+      "action": "sync_to_remote",
+      "label": "Apisix",
+      "description": "${function.description}",
+      "icon": "https://apisix.apache.org/zh/img/logo2.svg",
+      "extestion": ""
+    },
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "apisixUrl": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "label": "${configuration.apisixUrl.label}",
+          "description": "${configuration.apisixUrl.description}"
+        },
+        "task_name": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "label": "${configuration.task_name.label}"
+        },
+        "merge_method": {
+          "ui": {
+            "widget": "switch"
+          },
+          "label": "${configuration.merge_method.label}",
+          "description": "${configuration.merge_method.description}",
+          "default": false
+        },
+        "apisixUserName": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "label": "${configuration.apisixUserName.label}"
+        },
+        "apisixPassword": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "label": "${configuration.apisixPassword.label}"
+        }
+      }
+    },
+    "i18n": {
+      "sourceLocale": "en-US",
+      "locales": [
+        "zh-Hans"
+      ]
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "license": "ISC"
+}
