@@ -7,7 +7,7 @@ export default [
   {
     input: 'src/index.ts',
     output: {
-      name: 'postcat-push-apinto',
+      name: 'postcat-push-apisix',
       format: 'umd',
       file: 'dist/index.js',
       sourcemap: 'inline'

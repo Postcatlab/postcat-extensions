@@ -1,9 +1,9 @@
 {
   "name": "postcat-push-apisix",
-  "title": "${title}",
-  "version": "0.0.1",
+  "title": "Apache APISIX",
+  "version": "0.0.2",
   "description": "Push OpenAPI data to Apisix",
-  "author": "postCat",
+  "author": "Apache APISIX",
   "main": "dist/index.js",
   "logo": "https://apisix.apache.org/zh/img/logo2.svg",
   "scripts": {

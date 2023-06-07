@@ -1,12 +1,12 @@
 {
-  "title":"同步到 Apisix",
-  "description":"将数据以 OpenAPI 的格式推送到 Apisix 平台",
-  "function.description":"将 API 信息推送到 Apisix",
-  "configuration.apisixUrl.description":"请输入控制台地址，格式如：http://{ip或域名}:{端口号}",
-  "configuration.apisixUrl.label":"Apisix 控制台地址",
-  "configuration.apisixUserName.label":"用户名",
-  "configuration.apisixPassword.label":"密码",
-  "configuration.merge_method.label":"合并 HTTP 请求",
-  "configuration.task_name.label":"导入任务名称",
-  "configuration.merge_method.description":"是否将 OpenAPI 路径中的多个 HTTP 方法合并为单一路由。当你的路径中多个 HTTP 方法有不同的细节配置 (如securitySchema) ，你可以关闭这个选项，将为不同的HTTP 方法生成单独的路由"
+  "title": "Apache APISIX",
+  "description": "将数据以 OpenAPI 的格式推送到 Apisix 平台",
+  "function.description": "将 API 信息推送到 Apisix",
+  "configuration.apisixUrl.description": "请输入控制台地址，格式如：http://{ip或域名}:{端口号}",
+  "configuration.apisixUrl.label": "Apisix 控制台地址",
+  "configuration.apisixUserName.label": "用户名",
+  "configuration.apisixPassword.label": "密码",
+  "configuration.merge_method.label": "合并 HTTP 请求",
+  "configuration.task_name.label": "导入任务名称",
+  "configuration.merge_method.description": "是否将 OpenAPI 路径中的多个 HTTP 方法合并为单一路由。当你的路径中多个 HTTP 方法有不同的细节配置 (如securitySchema) ，你可以关闭这个选项，将为不同的HTTP 方法生成单独的路由"
 }
