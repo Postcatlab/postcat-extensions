@@ -1,7 +1,7 @@
 {
   "name": "postcat-push-apisix",
   "title": "Apache APISIX",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Push OpenAPI data to Apisix",
   "author": "Apache APISIX",
   "main": "dist/index.js",

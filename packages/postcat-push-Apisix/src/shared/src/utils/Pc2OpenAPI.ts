@@ -1,6 +1,5 @@
- 
 import { OpenAPIV3 } from 'openapi-types'
-import { safeJSONParse, safeStringify } from '../../../shared/src/utils/common'
+import { safeJSONParse, safeStringify } from './common'
 import {
   ApiBodyType,
   apiBodyTypeMap,
@@ -8,9 +7,18 @@ import {
   apiParamsTypeMap,
   ContentType,
   requestMethodMap
-} from '../../../shared/src/types/api.model'
-import { ApiData, BodyParam,   RequestParams, ResponseParams } from '../../../shared/src/types/apiData'
-import { Collection, CollectionTypeEnum, ImportProjectDto } from '../../../shared/src/types/pcAPI'
+} from '../types/api.model'
+import {
+  ApiData,
+  BodyParam,
+  RequestParams,
+  ResponseParams
+} from '../types/apiData'
+import {
+  Collection,
+  CollectionTypeEnum,
+  ImportProjectDto
+} from '../types/pcAPI'
 
 type SchemaObjectType =
   | OpenAPIV3.ArraySchemaObjectType
@@ -94,29 +102,39 @@ class PcToOpenAPI {
       components: {}
     }
   }
-  
-  generatePaths(collections: ImportProjectDto['collections'] = [], parentGroup?: Collection, defaultPaths = {}): OpenAPIV3.PathsObject {
 
+  generatePaths(
+    collections: ImportProjectDto['collections'] = [],
+    parentGroup?: Collection,
+    defaultPaths = {}
+  ): OpenAPIV3.PathsObject {
     // const flatGroupList = this.flattenGroupList(groupList)
 
     return collections.reduce<OpenAPIV3.PathsObject>((paths, item) => {
-      if (item?.collectionType === CollectionTypeEnum.API_DATA && 'uri' in item) {
+      if (
+        item?.collectionType === CollectionTypeEnum.API_DATA &&
+        'uri' in item
+      ) {
         const { uri, name, apiAttrInfo } = item!
-      const method = requestMethodMap[apiAttrInfo?.requestMethod!]
+        const method = requestMethodMap[apiAttrInfo?.requestMethod!]
 
-      const httpMethod = method.toLowerCase() as OpenAPIV3.HttpMethods
-      paths[uri!] ??= {}
-      paths[uri!]![httpMethod] = {
-        tags: parentGroup?.name ? [parentGroup?.name] : [],
-        summary: name,
-        description: name,
-        operationId: name,
-        parameters: this.generateParameters(item!),
-        requestBody: this.generateRequestBody(item!),
-        responses: this.generateResponseBody(item!),
-        security: []
-      }
-      } else if (item?.collectionType === CollectionTypeEnum.GROUP && 'children' in item && item.children?.length) {
+        const httpMethod = method.toLowerCase() as OpenAPIV3.HttpMethods
+        paths[uri!] ??= {}
+        paths[uri!]![httpMethod] = {
+          tags: parentGroup?.name ? [parentGroup?.name] : [],
+          summary: name,
+          description: name,
+          operationId: name,
+          parameters: this.generateParameters(item!),
+          requestBody: this.generateRequestBody(item!),
+          responses: this.generateResponseBody(item!),
+          security: []
+        }
+      } else if (
+        item?.collectionType === CollectionTypeEnum.GROUP &&
+        'children' in item &&
+        item.children?.length
+      ) {
         this.generatePaths(item.children, item, paths)
       }
 
@@ -156,7 +174,7 @@ class PcToOpenAPI {
     if (!apiData?.requestParams?.bodyParams) {
       return
     }
-    const { apiAttrInfo , requestParams  } = apiData
+    const { apiAttrInfo, requestParams } = apiData
     const { contentType: requestContentType, requestMethod } = apiAttrInfo || {}
     const method = requestMethodMap[requestMethod!]
 
@@ -193,9 +211,7 @@ class PcToOpenAPI {
     if (!apiData?.responseList?.[0]?.responseParams?.bodyParams?.length) {
       return {}
     }
-    const { 
-      responseList = []
-    } = apiData
+    const { responseList = [] } = apiData
 
     if (!responseList.length) {
       return {}
@@ -279,7 +295,7 @@ class PcToOpenAPI {
                 )
               })
             } else {
-              const type =  getDataType(dataType!)
+              const type = getDataType(dataType!)
 
               prev[name!] = {
                 ...this.createBaseSchemaObject(item),
@@ -337,7 +353,10 @@ class PcToOpenAPI {
     return requireds.length ? requireds : undefined
   }
 
-  generateTags(collections: ImportProjectDto['collections'] = [], arr: any[] = []): OpenAPIV3.TagObject[] {
+  generateTags(
+    collections: ImportProjectDto['collections'] = [],
+    arr: any[] = []
+  ): OpenAPIV3.TagObject[] {
     return collections.reduce((prev, curr) => {
       if (curr?.collectionType === CollectionTypeEnum.GROUP) {
         prev.push({
