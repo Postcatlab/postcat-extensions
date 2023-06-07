@@ -1,5 +1,5 @@
 {
-  "name": "postcat-push-Apisix",
+  "name": "postcat-push-apisix",
   "title": "${title}",
   "version": "0.0.1",
   "description": "Push OpenAPI data to Apisix",
