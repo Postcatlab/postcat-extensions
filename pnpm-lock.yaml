@@ -220,6 +220,12 @@ importers:
     dependencies:
       jsonwebtoken: 9.0.0
 
+  packages/postcat-oauth-2:
+    specifiers:
+      oauth: ^0.10.0
+    dependencies:
+      oauth: 0.10.0
+
   packages/postcat-openDLP:
     specifiers:
       '@rollup/plugin-node-resolve': ^15.0.0
@@ -5292,6 +5298,10 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /oauth/0.10.0:
+    resolution: {integrity: sha512-1orQ9MT1vHFGQxhuy7E/0gECD3fd2fCC+PIX+/jgmU/gI3EpRocXtmtvxCO5x3WZ443FLTLFWNDjl5MPJf9u+Q==}
+    dev: false
 
   /object-inspect/1.12.2:
     resolution: {integrity: sha512-z+cPxW0QGUp0mcqcsgQyLVRDoXFQbXOwBaqyF7VIgI4TWNQsDHrBpUQslRmIfAoYWdYzs6UlKJtB2XJpTaNSpQ==}
